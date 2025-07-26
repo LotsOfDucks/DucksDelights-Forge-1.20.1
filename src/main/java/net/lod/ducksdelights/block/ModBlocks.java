@@ -27,6 +27,9 @@ public class ModBlocks {
     public static final RegistryObject<SyncedRedstoneBlock> SYNCED_REDSTONE_BLOCK = registerBlock("synced_redstone_block",
             () -> new SyncedRedstoneBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
 
+    public static final RegistryObject<DemonCoreBlock> DEMON_CORE_BLOCK = registerBlock("demon_core",
+            () -> new DemonCoreBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)));
+
     public static final RegistryObject<Block> CHALK = registerBlock("chalk",
             () -> new Block(BlockBehaviour.Properties.of()
                     .sound(SoundType.CALCITE)

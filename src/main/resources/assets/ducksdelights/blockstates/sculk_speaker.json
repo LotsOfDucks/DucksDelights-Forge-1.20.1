@@ -1,0 +1,229 @@
+{
+  "variants": {
+    "facing=north,tune=1": {
+      "model": "ducksdelights:block/sculk_speaker_1"
+    },
+    "facing=north,tune=2": {
+      "model": "ducksdelights:block/sculk_speaker_2"
+    },
+    "facing=north,tune=3": {
+      "model": "ducksdelights:block/sculk_speaker_3"
+    },
+    "facing=north,tune=4": {
+      "model": "ducksdelights:block/sculk_speaker_4"
+    },
+    "facing=north,tune=5": {
+      "model": "ducksdelights:block/sculk_speaker_5"
+    },
+    "facing=north,tune=6": {
+      "model": "ducksdelights:block/sculk_speaker_6"
+    },
+    "facing=north,tune=7": {
+      "model": "ducksdelights:block/sculk_speaker_7"
+    },
+    "facing=north,tune=8": {
+      "model": "ducksdelights:block/sculk_speaker_8"
+    },
+    "facing=north,tune=9": {
+      "model": "ducksdelights:block/sculk_speaker_9"
+    },
+    "facing=north,tune=10": {
+      "model": "ducksdelights:block/sculk_speaker_10"
+    },
+    "facing=north,tune=11": {
+      "model": "ducksdelights:block/sculk_speaker_11"
+    },
+    "facing=north,tune=12": {
+      "model": "ducksdelights:block/sculk_speaker_12"
+    },
+    "facing=north,tune=13": {
+      "model": "ducksdelights:block/sculk_speaker_13"
+    },
+    "facing=north,tune=14": {
+      "model": "ducksdelights:block/sculk_speaker_14"
+    },
+    "facing=north,tune=15": {
+      "model": "ducksdelights:block/sculk_speaker_15"
+    },
+    "facing=east,tune=1": {
+      "model": "ducksdelights:block/sculk_speaker_1",
+      "y": 90
+    },
+    "facing=east,tune=2": {
+      "model": "ducksdelights:block/sculk_speaker_2",
+      "y": 90
+    },
+    "facing=east,tune=3": {
+      "model": "ducksdelights:block/sculk_speaker_3",
+      "y": 90
+    },
+    "facing=east,tune=4": {
+      "model": "ducksdelights:block/sculk_speaker_4",
+      "y": 90
+    },
+    "facing=east,tune=5": {
+      "model": "ducksdelights:block/sculk_speaker_5",
+      "y": 90
+    },
+    "facing=east,tune=6": {
+      "model": "ducksdelights:block/sculk_speaker_6",
+      "y": 90
+    },
+    "facing=east,tune=7": {
+      "model": "ducksdelights:block/sculk_speaker_7",
+      "y": 90
+    },
+    "facing=east,tune=8": {
+      "model": "ducksdelights:block/sculk_speaker_8",
+      "y": 90
+    },
+    "facing=east,tune=9": {
+      "model": "ducksdelights:block/sculk_speaker_9",
+      "y": 90
+    },
+    "facing=east,tune=10": {
+      "model": "ducksdelights:block/sculk_speaker_10",
+      "y": 90
+    },
+    "facing=east,tune=11": {
+      "model": "ducksdelights:block/sculk_speaker_11",
+      "y": 90
+    },
+    "facing=east,tune=12": {
+      "model": "ducksdelights:block/sculk_speaker_12",
+      "y": 90
+    },
+    "facing=east,tune=13": {
+      "model": "ducksdelights:block/sculk_speaker_13",
+      "y": 90
+    },
+    "facing=east,tune=14": {
+      "model": "ducksdelights:block/sculk_speaker_14",
+      "y": 90
+    },
+    "facing=east,tune=15": {
+      "model": "ducksdelights:block/sculk_speaker_15",
+      "y": 90
+    },
+    "facing=south,tune=1": {
+      "model": "ducksdelights:block/sculk_speaker_1",
+      "y": 180
+    },
+    "facing=south,tune=2": {
+      "model": "ducksdelights:block/sculk_speaker_2",
+      "y": 180
+    },
+    "facing=south,tune=3": {
+      "model": "ducksdelights:block/sculk_speaker_3",
+      "y": 180
+    },
+    "facing=south,tune=4": {
+      "model": "ducksdelights:block/sculk_speaker_4",
+      "y": 180
+    },
+    "facing=south,tune=5": {
+      "model": "ducksdelights:block/sculk_speaker_5",
+      "y": 180
+    },
+    "facing=south,tune=6": {
+      "model": "ducksdelights:block/sculk_speaker_6",
+      "y": 180
+    },
+    "facing=south,tune=7": {
+      "model": "ducksdelights:block/sculk_speaker_7",
+      "y": 180
+    },
+    "facing=south,tune=8": {
+      "model": "ducksdelights:block/sculk_speaker_8",
+      "y": 180
+    },
+    "facing=south,tune=9": {
+      "model": "ducksdelights:block/sculk_speaker_9",
+      "y": 180
+    },
+    "facing=south,tune=10": {
+      "model": "ducksdelights:block/sculk_speaker_10",
+      "y": 180
+    },
+    "facing=south,tune=11": {
+      "model": "ducksdelights:block/sculk_speaker_11",
+      "y": 180
+    },
+    "facing=south,tune=12": {
+      "model": "ducksdelights:block/sculk_speaker_12",
+      "y": 180
+    },
+    "facing=south,tune=13": {
+      "model": "ducksdelights:block/sculk_speaker_13",
+      "y": 180
+    },
+    "facing=south,tune=14": {
+      "model": "ducksdelights:block/sculk_speaker_14",
+      "y": 180
+    },
+    "facing=south,tune=15": {
+      "model": "ducksdelights:block/sculk_speaker_15",
+      "y": 180
+    },
+    "facing=west,tune=1": {
+      "model": "ducksdelights:block/sculk_speaker_1",
+      "y": 270
+    },
+    "facing=west,tune=2": {
+      "model": "ducksdelights:block/sculk_speaker_2",
+      "y": 270
+    },
+    "facing=west,tune=3": {
+      "model": "ducksdelights:block/sculk_speaker_3",
+      "y": 270
+    },
+    "facing=west,tune=4": {
+      "model": "ducksdelights:block/sculk_speaker_4",
+      "y": 270
+    },
+    "facing=west,tune=5": {
+      "model": "ducksdelights:block/sculk_speaker_5",
+      "y": 270
+    },
+    "facing=west,tune=6": {
+      "model": "ducksdelights:block/sculk_speaker_6",
+      "y": 270
+    },
+    "facing=west,tune=7": {
+      "model": "ducksdelights:block/sculk_speaker_7",
+      "y": 270
+    },
+    "facing=west,tune=8": {
+      "model": "ducksdelights:block/sculk_speaker_8",
+      "y": 270
+    },
+    "facing=west,tune=9": {
+      "model": "ducksdelights:block/sculk_speaker_9",
+      "y": 270
+    },
+    "facing=west,tune=10": {
+      "model": "ducksdelights:block/sculk_speaker_10",
+      "y": 270
+    },
+    "facing=west,tune=11": {
+      "model": "ducksdelights:block/sculk_speaker_11",
+      "y": 270
+    },
+    "facing=west,tune=12": {
+      "model": "ducksdelights:block/sculk_speaker_12",
+      "y": 270
+    },
+    "facing=west,tune=13": {
+      "model": "ducksdelights:block/sculk_speaker_13",
+      "y": 270
+    },
+    "facing=west,tune=14": {
+      "model": "ducksdelights:block/sculk_speaker_14",
+      "y": 270
+    },
+    "facing=west,tune=15": {
+      "model": "ducksdelights:block/sculk_speaker_15",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,powered=false,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_open"
+    },
+    "facing=north,powered=true,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_closed"
+    },
+    "facing=east,powered=false,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_open",
+      "y": 90
+    },
+    "facing=east,powered=true,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_closed",
+      "y": 90
+    },
+    "facing=south,powered=false,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_open",
+      "y": 180
+    },
+    "facing=south,powered=true,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_closed",
+      "y": 180
+    },
+    "facing=west,powered=false,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_open",
+      "y": 270
+    },
+    "facing=west,powered=true,player_placed=true": {
+      "model": "ducksdelights:block/demon_core_closed",
+      "y": 270
+    },
+    "facing=north,powered=false,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_open_aged"
+    },
+    "facing=north,powered=true,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_closed_aged"
+    },
+    "facing=east,powered=false,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_open_aged",
+      "y": 90
+    },
+    "facing=east,powered=true,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_closed_aged",
+      "y": 90
+    },
+    "facing=south,powered=false,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_open_aged",
+      "y": 180
+    },
+    "facing=south,powered=true,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_closed_aged",
+      "y": 180
+    },
+    "facing=west,powered=false,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_open_aged",
+      "y": 270
+    },
+    "facing=west,powered=true,player_placed=false": {
+      "model": "ducksdelights:block/demon_core_closed_aged",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "moisture=0": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=1": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=2": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=3": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=4": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=5": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=6": {
+      "model": "ducksdelights:block/paddy_farmland"
+    },
+    "moisture=7": {
+      "model": "ducksdelights:block/paddy_farmland_moist"
+    }
+  }
+}

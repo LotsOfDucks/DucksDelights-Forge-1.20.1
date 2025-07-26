@@ -1,0 +1,52 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"0": "ducksdelights:block/sculk_speaker_side_13",
+		"1": "ducksdelights:block/sculk_speaker_bottom",
+		"2": "ducksdelights:block/sculk_speaker_side_input",
+		"4": "ducksdelights:block/sculk_speaker_top",
+		"5": "ducksdelights:block/sculk_speaker_note_block",
+		"particle": "ducksdelights:block/sculk_speaker_bottom"
+	},
+	"elements": [
+		{
+			"name": "bottom_slab",
+			"from": [0, 0, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 16, 16], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [0, 8, 16, 16], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [0, 8, 16, 16], "texture": "#2", "cullface": "south"},
+				"west": {"uv": [0, 8, 16, 16], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "down"}
+			}
+		},
+		{
+			"name": "top_slab",
+			"from": [2, 8, 2],
+			"to": [14, 12, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 8, 2]},
+			"faces": {
+				"north": {"uv": [0, 12, 12, 16], "texture": "#5"},
+				"east": {"uv": [0, 12, 12, 16], "texture": "#5"},
+				"south": {"uv": [0, 12, 12, 16], "texture": "#5"},
+				"west": {"uv": [0, 12, 12, 16], "texture": "#5"},
+				"up": {"uv": [0, 0, 12, 12], "texture": "#5"},
+				"down": {"uv": [0, 0, 12, 12], "texture": "#5"}
+			}
+		},
+		{
+			"name": "tendrils",
+			"from": [1, 8, 1],
+			"to": [15, 11, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 8, 1]},
+			"faces": {
+				"north": {"uv": [1, 5, 15, 8], "texture": "#0"},
+				"east": {"uv": [1, 5, 15, 8], "texture": "#0"},
+				"south": {"uv": [1, 5, 15, 8], "texture": "#0"},
+				"west": {"uv": [1, 5, 15, 8], "texture": "#0"}
+			}
+		}
+	]
+}

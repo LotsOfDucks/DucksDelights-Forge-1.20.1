@@ -1,0 +1,14 @@
+{
+  "demon_core_ambient": {
+    "subtitle": "sounds.ducksdelights.demon_core_ambient",
+    "sounds": [
+      "ducksdelights:demon_core_ambient"
+    ]
+  },
+  "demon_core_tink": {
+    "subtitle": "sounds.ducksdelights.demon_core_tink",
+    "sounds": [
+      "ducksdelights:demon_core_tink"
+    ]
+  }
+}

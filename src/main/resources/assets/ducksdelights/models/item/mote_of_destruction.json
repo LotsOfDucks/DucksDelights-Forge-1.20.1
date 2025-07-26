@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ducksdelights:item/mote_of_destruction"
+  }
+}

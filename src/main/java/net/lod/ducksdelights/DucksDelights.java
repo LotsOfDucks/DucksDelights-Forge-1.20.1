@@ -5,6 +5,7 @@ import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItems;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -32,6 +33,7 @@ public class DucksDelights {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
+        ModSoundEvents.register(modEventBus);
 
 
 

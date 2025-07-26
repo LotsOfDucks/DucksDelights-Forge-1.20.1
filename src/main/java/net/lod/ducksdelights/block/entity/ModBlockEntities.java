@@ -17,6 +17,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(SyncedRedstoneBlockEntity::new,
                             ModBlocks.SYNCED_REDSTONE_BLOCK.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<DemonCoreBlockEntity>> DEMON_CORE_BE =
+            BLOCK_ENTITIES.register("demon_core_block_entity", () ->
+                    BlockEntityType.Builder.of(DemonCoreBlockEntity::new,
+                            ModBlocks.DEMON_CORE_BLOCK.get()).build(null));
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "ducksdelights:item/blue_rock_candy"
+  }
+}

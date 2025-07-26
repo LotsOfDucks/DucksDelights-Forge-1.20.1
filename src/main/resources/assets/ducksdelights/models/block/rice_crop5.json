@@ -1,0 +1,70 @@
+{
+  "parent": "minecraft:block",
+  "texture_size": [32, 32],
+  "textures": {
+    "0": "ducksdelights:block/rice_crop_5",
+    "particle": "ducksdelights:block/rice_crop_5"
+  },
+  "elements": [
+    {
+      "name": "face1",
+      "from": [8, -6, -1],
+      "to": [8, 16, 15],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 7]},
+      "faces": {
+        "north": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "east": {"uv": [8, 0, 0, 11], "texture": "#0"},
+        "south": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "west": {"uv": [0, 0, 8, 11], "texture": "#0"},
+        "up": {"uv": [8, 0, 0, 0], "rotation": 270, "texture": "#0"},
+        "down": {"uv": [8, 0, 0, 0], "rotation": 90, "texture": "#0"}
+      },
+      "shade": false
+    },
+    {
+      "name": "face2",
+      "from": [-1, -6, 8],
+      "to": [15, 16, 8],
+      "rotation": {"angle": -45, "axis": "y", "origin": [7, 0, 8]},
+      "faces": {
+        "north": {"uv": [0, 0, 8, 11], "texture": "#0"},
+        "east": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "south": {"uv": [8, 0, 0, 11], "texture": "#0"},
+        "west": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "up": {"uv": [8, 0, 0, 0], "rotation": 180, "texture": "#0"},
+        "down": {"uv": [8, 0, 0, 0], "rotation": 180, "texture": "#0"}
+      },
+      "shade": false
+    },
+    {
+      "name": "face3",
+      "from": [0, -6, 9],
+      "to": [16, 16, 9],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 9]},
+      "faces": {
+        "north": {"uv": [8, 0, 0, 11], "texture": "#0"},
+        "east": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "south": {"uv": [0, 0, 8, 11], "texture": "#0"},
+        "west": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "up": {"uv": [8, 0, 0, 0], "rotation": 180, "texture": "#0"},
+        "down": {"uv": [8, 0, 0, 0], "rotation": 180, "texture": "#0"}
+      },
+      "shade": false
+    },
+    {
+      "name": "face4",
+      "from": [-1, -6, 8],
+      "to": [15, 16, 8],
+      "rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 8]},
+      "faces": {
+        "north": {"uv": [8, 0, 0, 11], "texture": "#0"},
+        "east": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "south": {"uv": [0, 0, 8, 11], "texture": "#0"},
+        "west": {"uv": [0, 0, 0, 11], "texture": "#0"},
+        "up": {"uv": [8, 0, 0, 0], "rotation": 180, "texture": "#0"},
+        "down": {"uv": [8, 0, 0, 0], "rotation": 180, "texture": "#0"}
+      },
+      "shade": false
+    }
+  ]
+}

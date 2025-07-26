@@ -1,0 +1,320 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen"
+      },
+      "when": {
+        "growing": "true",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen"
+      },
+      "when": {
+        "growing": "true",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "growing": "true",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "growing": "true",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "growing": "true",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "growing": "true",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "growing": "true",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "growing": "true",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "growing": "true",
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "growing": "true",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "growing": "true",
+        "down": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "minecraft:block/glow_lichen",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "growing": "true",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead"
+      },
+      "when": {
+        "growing": "false",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead"
+      },
+      "when": {
+        "growing": "false",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "growing": "false",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "growing": "false",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "growing": "false",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "growing": "false",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "growing": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "growing": "false",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "growing": "false",
+        "up": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "growing": "false",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "growing": "false",
+        "down": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "ducksdelights:block/thorny_vines_dead",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "growing": "false",
+        "down": "false",
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "up": "false",
+        "west": "false"
+      }
+    }
+  ]
+}

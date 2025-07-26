@@ -1,0 +1,78 @@
+{
+	"parent": "minecraft:block/block",
+	"textures": {
+		"0": "ducksdelights:block/demon_core_shell_side_aged",
+		"1": "ducksdelights:block/demon_core_shell_bottom_inside_aged",
+		"2": "ducksdelights:block/demon_core_shell_bottom_aged",
+		"3": "ducksdelights:block/demon_core_shell_top_aged",
+		"4": "ducksdelights:block/heavy_core",
+		"particle": "ducksdelights:block/demon_core_shell_bottom_aged"
+	},
+	"elements": [
+		{
+			"name": "core",
+			"from": [4, 4, 4],
+			"to": [12, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 4, 7]},
+			"faces": {
+				"north": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"east": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"south": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"west": {"uv": [0, 8, 8, 16], "texture": "#4"},
+				"up": {"uv": [8, 8, 0, 0], "texture": "#4"},
+				"down": {"uv": [16, 0, 8, 8], "texture": "#4"}
+			}
+		},
+		{
+			"name": "bottomshell",
+			"from": [0, 0, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 8, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 8, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 8, 16, 16], "texture": "#0"},
+				"up": {"uv": [16, 16, 0, 0], "texture": "#1"},
+				"down": {"uv": [16, 0, 0, 16], "texture": "#2"}
+			}
+		},
+		{
+			"name": "topshell",
+			"from": [1, 8, 1],
+			"to": [15, 14, 15],
+			"rotation": {"angle": 0, "axis": "z", "origin": [15, 8, 8]},
+			"faces": {
+				"north": {"uv": [1, 2, 15, 8], "texture": "#0"},
+				"east": {"uv": [1, 2, 15, 8], "texture": "#0"},
+				"south": {"uv": [1, 2, 15, 8], "texture": "#0"},
+				"west": {"uv": [1, 2, 15, 8], "texture": "#0"},
+				"up": {"uv": [15, 15, 1, 1], "texture": "#3"},
+				"down": {"uv": [15, 1, 1, 15], "texture": "#3"}
+			}
+		},
+		{
+			"name": "stand",
+			"from": [3.07609, 7.59012, 2],
+			"to": [4.07609, 12.59012, 3],
+			"rotation": {"angle": 0, "axis": "z", "origin": [4, 13, 3]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 5], "texture": "#1"},
+				"east": {"uv": [15, 9, 16, 14], "texture": "#1"},
+				"south": {"uv": [15, 2, 16, 7], "texture": "#1"},
+				"west": {"uv": [0, 10, 1, 15], "texture": "#1"},
+				"up": {"uv": [15, 0, 16, 1], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		1,
+		{
+			"name": "lid",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [2, 3]
+		}
+	]
+}

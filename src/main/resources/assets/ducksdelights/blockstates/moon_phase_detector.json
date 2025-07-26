@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "phase=0": {
+      "model": "ducksdelights:block/moon_phase_detector_full",
+      "y": 270
+    },
+    "phase=1": {
+      "model": "ducksdelights:block/moon_phase_detector_waningg",
+      "y": 270
+    },
+    "phase=2": {
+      "model": "ducksdelights:block/moon_phase_detector_3rdhalf",
+      "y": 270
+    },
+    "phase=3": {
+      "model": "ducksdelights:block/moon_phase_detector_waningc",
+      "y": 270
+    },
+    "phase=4": {
+      "model": "ducksdelights:block/moon_phase_detector_new",
+      "y": 270
+    },
+    "phase=5": {
+      "model": "ducksdelights:block/moon_phase_detector_waxingc",
+      "y": 270
+    },
+    "phase=6": {
+      "model": "ducksdelights:block/moon_phase_detector_1sthalf",
+      "y": 270
+    },
+    "phase=7": {
+      "model": "ducksdelights:block/moon_phase_detector_waxingg",
+      "y": 270
+    }
+  }
+}
