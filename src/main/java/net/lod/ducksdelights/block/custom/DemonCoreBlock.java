@@ -52,7 +52,7 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterlogged
         return new DemonCoreBlockEntity(blockPos, blockState);
     }
 
-    @javax.annotation.Nullable
+    @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return createTickerHelper(pBlockEntityType, ModBlockEntities.DEMON_CORE_BE.get(), pLevel.isClientSide ? DemonCoreBlockEntity::clientTick : DemonCoreBlockEntity::serverTick);
     }
@@ -65,10 +65,14 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterlogged
         return SHAPE;
     }
 
-    @javax.annotation.Nullable
+    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidState = pContext.getLevel().getFluidState(pContext.getClickedPos());
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(POWERED, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())).setValue(PLAYER_PLACED, true);
+    }
+
+    public FluidState getFluidState(BlockState pState) {
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {

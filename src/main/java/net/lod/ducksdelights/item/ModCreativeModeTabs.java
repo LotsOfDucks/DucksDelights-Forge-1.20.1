@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -28,7 +27,8 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> VOIDBREAK_NATURAL_BLOCKS = CREATIVE_MODE_TABS.register("voidbreak_natural_blocks", () -> CreativeModeTab.builder().icon(() -> new ItemStack(Items.DEEPSLATE))
             .title(Component.translatable("creativetab.voidbreak_nat_blocks"))
             .displayItems((itemDisplayParameters, output) -> {
-                output.accept(ModBlocks.DEMON_CORE_BLOCK.get());
+                output.accept(ModBlocks.DEMON_CORE.get());
+                output.accept(ModBlocks.SCULK_SPEAKER.get());
                 output.accept(ModBlocks.GNEISS.get());
                 output.accept(ModBlocks.CHALK.get());
                 output.accept(ModBlocks.CHALKY_DIRT.get());

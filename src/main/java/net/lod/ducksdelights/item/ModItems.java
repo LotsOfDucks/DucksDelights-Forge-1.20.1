@@ -2,6 +2,8 @@ package net.lod.ducksdelights.item;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.ModBlocks;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
@@ -21,6 +23,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> CHALK_DUST = ITEMS.register("chalk_dust",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> BLACKBERRIES = ITEMS.register("blackberries",
+            () -> new ItemNameBlockItem(ModBlocks.BLACKBERRY_CROP.get(),new Item.Properties()
+                    .food(Foods.SWEET_BERRIES)));
 
     public static final RegistryObject<Item> LUMEI_BUD = ITEMS.register("lumei_bud",
             () -> new ItemNameBlockItem(ModBlocks.LUMEI_STEM.get(),new Item.Properties()));

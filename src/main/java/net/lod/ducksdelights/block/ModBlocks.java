@@ -3,13 +3,16 @@ package net.lod.ducksdelights.block;
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
 import net.lod.ducksdelights.item.ModItems;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -24,11 +27,41 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, DucksDelights.MOD_ID);
 
-    public static final RegistryObject<SyncedRedstoneBlock> SYNCED_REDSTONE_BLOCK = registerBlock("synced_redstone_block",
-            () -> new SyncedRedstoneBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)));
+    private static boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return true;
+    }
 
-    public static final RegistryObject<DemonCoreBlock> DEMON_CORE_BLOCK = registerBlock("demon_core",
-            () -> new DemonCoreBlock(BlockBehaviour.Properties.copy(Blocks.NETHERITE_BLOCK)));
+    private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return false;
+    }
+
+    public static final RegistryObject<BlackberryCropBlock> BLACKBERRY_CROP = registerBlock("blackberry_crop",
+            () -> new BlackberryCropBlock(BlockBehaviour.Properties.of()
+                    .strength(1.0F)
+                    .requiresCorrectToolForDrops()
+                    .offsetType(BlockBehaviour.OffsetType.XYZ)
+                    .noCollission()
+                    .pushReaction(PushReaction.DESTROY)
+                    .sound(SoundType.MANGROVE_ROOTS)
+                    .mapColor(MapColor.COLOR_GREEN)));
+
+    public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerBlock("demon_core",
+            () -> new DemonCoreBlock(BlockBehaviour.Properties.of()
+                    .strength(50.0F, 1200.0F)
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .lightLevel((state) -> 3)
+                    .emissiveRendering((state, world, pos) -> state.getValue(DemonCoreBlock.POWERED))
+                    .mapColor(MapColor.COLOR_BLACK)));
+
+    public static final RegistryObject<MoonPhaseDetectorBlock> MOON_PHASE_DETECTOR = registerBlock("moon_phase_detector",
+            () -> new MoonPhaseDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DAYLIGHT_DETECTOR)));
+
+    public static final RegistryObject<SculkSpeakerBlock> SCULK_SPEAKER = registerBlock("sculk_speaker",
+            () -> new SculkSpeakerBlock(BlockBehaviour.Properties.of()
+                    .sound(SoundType.SCULK)
+                    .mapColor(MapColor.COLOR_CYAN)
+                    .strength(1.5F)
+                    .noOcclusion()));
 
     public static final RegistryObject<Block> CHALK = registerBlock("chalk",
             () -> new Block(BlockBehaviour.Properties.of()

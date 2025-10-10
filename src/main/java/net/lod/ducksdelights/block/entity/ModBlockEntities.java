@@ -12,16 +12,15 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, DucksDelights.MOD_ID);
 
-    public static final RegistryObject<BlockEntityType<SyncedRedstoneBlockEntity>> SYNCED_REDSTONE_BE =
-            BLOCK_ENTITIES.register("synced_redstone_block_entity", () ->
-                    BlockEntityType.Builder.of(SyncedRedstoneBlockEntity::new,
-                            ModBlocks.SYNCED_REDSTONE_BLOCK.get()).build(null));
-
     public static final RegistryObject<BlockEntityType<DemonCoreBlockEntity>> DEMON_CORE_BE =
             BLOCK_ENTITIES.register("demon_core_block_entity", () ->
                     BlockEntityType.Builder.of(DemonCoreBlockEntity::new,
-                            ModBlocks.DEMON_CORE_BLOCK.get()).build(null));
+                            ModBlocks.DEMON_CORE.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<MoonPhaseDetectorBlockEntity>> MOON_PHASE_DETECTOR_BE =
+            BLOCK_ENTITIES.register("moon_phase_detector_block_entity", () ->
+                    BlockEntityType.Builder.of(MoonPhaseDetectorBlockEntity::new,
+                            ModBlocks.MOON_PHASE_DETECTOR.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
