@@ -15,6 +15,7 @@ public class ModFoods {
     public static FoodProperties KIBBLESTONE;
     public static FoodProperties ROCK_CANDY;
     public static FoodProperties BLACKBERRY;
+    public static FoodProperties BLACKBERRY_PIE;
 
 
     public ModFoods() {
@@ -32,5 +33,6 @@ public class ModFoods {
         KIBBLESTONE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
         ROCK_CANDY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
         BLACKBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+        BLACKBERRY_PIE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.3F).build();
     }
 }

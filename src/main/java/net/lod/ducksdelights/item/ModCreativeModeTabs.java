@@ -20,6 +20,7 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("itemgroup.ducksdelights.items"))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.BLACKBERRIES.get());
+                output.accept(ModItems.BLACKBERRY_PIE.get());
                 output.accept(ModItems.RAW_RICE.get());
                 output.accept(ModItems.RAW_GOLDEN_RICE.get());
                 output.accept(ModItems.WHITE_RICE.get());

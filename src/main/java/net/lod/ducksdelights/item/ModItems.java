@@ -29,6 +29,10 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.BLACKBERRY_CROP.get(),new Item.Properties()
                     .food(ModFoods.BLACKBERRY)));
 
+    public static final RegistryObject<Item> BLACKBERRY_PIE = ITEMS.register("blackberry_pie",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.BLACKBERRY_PIE)));
+
     public static final RegistryObject<Item> RAW_RICE = ITEMS.register("raw_rice",
             () -> new ItemNameBlockItem(ModBlocks.RICE_CROP.get(),new Item.Properties()));
 
