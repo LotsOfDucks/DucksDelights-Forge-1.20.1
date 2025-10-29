@@ -2,6 +2,6 @@
   "parent": "ducksdelights:block/paddy_farmland_template",
   "textures": {
     "dirt": "minecraft:block/dirt",
-    "top": "minecraft:block/farmland"
+    "top": "ducksdelights:block/paddy"
   }
 }
