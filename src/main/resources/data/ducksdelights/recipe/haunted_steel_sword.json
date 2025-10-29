@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "n",
+        "n",
+        "s"
+    ],
+    "key": {
+        "n": "ducksdelights:haunted_steel_ingot",
+        "s": "minecraft:stick"
+    },
+    "result": {
+        "id": "ducksdelights:haunted_steel_sword",
+        "count": 1
+    }
+}

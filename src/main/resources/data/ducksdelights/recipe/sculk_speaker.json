@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "redstone",
+    "pattern": [
+        "#",
+        "S"
+    ],
+    "key": {
+        "#": "minecraft:note_block",
+        "S": "minecraft:sculk_sensor"
+    },
+    "result": {
+        "id": "ducksdelights:sculk_speaker",
+        "count": 1
+    }
+}

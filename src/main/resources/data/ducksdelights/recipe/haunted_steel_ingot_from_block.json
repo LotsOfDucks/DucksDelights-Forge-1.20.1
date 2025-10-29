@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "ducksdelights:haunted_steel_block"
+  ],
+  "result": {
+    "id": "ducksdelights:haunted_steel_ingot",
+    "count": 9
+  }
+}

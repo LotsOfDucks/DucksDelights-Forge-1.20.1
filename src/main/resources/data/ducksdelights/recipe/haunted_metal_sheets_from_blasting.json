@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": "ducksdelights:haunted_metal_scrap",
+  "result": {
+    "id": "ducksdelights:haunted_metal_sheets"
+  },
+  "experience": 2,
+  "cookingtime": 100
+}

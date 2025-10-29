@@ -15,12 +15,37 @@ public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DucksDelights.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> VOIDBREAK_ITEMS = CREATIVE_MODE_TABS.register("voidbreak_items", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.VOID_BOTTLE.get()))
-            .title(Component.translatable("creativetab.voidbreak_items"))
+    public static final RegistryObject<CreativeModeTab> DUCKSDELIGHTS_ITEMS = CREATIVE_MODE_TABS.register("ducksdelights_items", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.WHITE_RICE.get()))
+            .title(Component.translatable("creativetab.ducksdelights_items"))
             .displayItems((itemDisplayParameters, output) -> {
-                output.accept(ModItems.VOID_BOTTLE.get());
-                output.accept(ModItems.CHALK_DUST.get());
-                output.accept(ModItems.LUMEI_BUD.get());
+                output.accept(ModItems.BLACKBERRIES.get());
+                output.accept(ModItems.RAW_RICE.get());
+                output.accept(ModItems.RAW_GOLDEN_RICE.get());
+                output.accept(ModItems.WHITE_RICE.get());
+                output.accept(ModItems.GOLDEN_RICE.get());
+                output.accept(ModItems.ONIGIRI.get());
+                output.accept(ModItems.CHICKEN_ONIGIRI.get());
+                output.accept(ModItems.BEEF_ONIGIRI.get());
+                output.accept(ModItems.PORK_ONIGIRI.get());
+                output.accept(ModItems.SALMON_ONIGIRI.get());
+                output.accept(ModItems.GILDED_ONIGIRI.get());
+                output.accept(ModItems.PLAIN_ROCK_CANDY.get());
+                output.accept(ModItems.WHITE_ROCK_CANDY.get());
+                output.accept(ModItems.LIGHT_GRAY_ROCK_CANDY.get());
+                output.accept(ModItems.GRAY_ROCK_CANDY.get());
+                output.accept(ModItems.BLACK_ROCK_CANDY.get());
+                output.accept(ModItems.BROWN_ROCK_CANDY.get());
+                output.accept(ModItems.RED_ROCK_CANDY.get());
+                output.accept(ModItems.ORANGE_ROCK_CANDY.get());
+                output.accept(ModItems.YELLOW_ROCK_CANDY.get());
+                output.accept(ModItems.LIME_ROCK_CANDY.get());
+                output.accept(ModItems.GREEN_ROCK_CANDY.get());
+                output.accept(ModItems.CYAN_ROCK_CANDY.get());
+                output.accept(ModItems.LIGHT_BLUE_ROCK_CANDY.get());
+                output.accept(ModItems.BLUE_ROCK_CANDY.get());
+                output.accept(ModItems.PURPLE_ROCK_CANDY.get());
+                output.accept(ModItems.MAGENTA_ROCK_CANDY.get());
+                output.accept(ModItems.PINK_ROCK_CANDY.get());
             })
             .build());
 
@@ -29,6 +54,7 @@ public class ModCreativeModeTabs {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModBlocks.DEMON_CORE.get());
                 output.accept(ModBlocks.SCULK_SPEAKER.get());
+                output.accept(ModBlocks.PADDY_FARMLAND.get());
                 output.accept(ModBlocks.GNEISS.get());
                 output.accept(ModBlocks.CHALK.get());
                 output.accept(ModBlocks.CHALKY_DIRT.get());

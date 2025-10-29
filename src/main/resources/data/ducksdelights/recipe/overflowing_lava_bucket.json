@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "minecraft:nether_star",
+    "ducksdelights:haunted_steel_lava_bucket",
+    "ducksdelights:mote_of_creation"
+  ],
+  "result": {
+    "id": "ducksdelights:overflowing_lava_bucket",
+    "count": 1
+  }
+}

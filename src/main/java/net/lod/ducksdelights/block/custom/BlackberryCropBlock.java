@@ -191,7 +191,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                 for (int z = -1; z <= 1; ++z){
                     BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
                     BlockState dirtCheckState = world.getBlockState(pos.offset(x, y-1, z));
-                    if (plantCheckState.is(Blocks.AIR) && dirtCheckState.is(BlockTags.DIRT)) {
+                    if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && dirtCheckState.is(BlockTags.DIRT)) {
                         validLocations += 1;
                     }
                 }
@@ -210,7 +210,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                 for (int z = -1; z <= 1; ++z){
                     BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
                     BlockState dirtCheckState = world.getBlockState(pos.offset(x, y-1, z));
-                    if (plantCheckState.is(Blocks.AIR) && dirtCheckState.is(BlockTags.DIRT)) {
+                    if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && dirtCheckState.is(BlockTags.DIRT)) {
                         if (random.nextInt(100) <= 0) {
                             world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState(), 2);
                         }

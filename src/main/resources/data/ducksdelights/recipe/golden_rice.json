@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:bowl",
+    "ducksdelights:raw_golden_rice"
+  ],
+  "result": {
+    "id": "ducksdelights:golden_rice",
+    "count": 1
+  }
+}

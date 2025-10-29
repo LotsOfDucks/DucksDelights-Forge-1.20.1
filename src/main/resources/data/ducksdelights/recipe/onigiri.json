@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:dried_kelp",
+    "ducksdelights:white_rice"
+  ],
+  "group": "onigiri",
+  "result": {
+    "id": "ducksdelights:onigiri",
+    "count": 1
+  }
+}

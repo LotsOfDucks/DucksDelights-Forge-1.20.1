@@ -4,6 +4,7 @@ import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
 import net.lod.ducksdelights.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -35,6 +36,8 @@ public class ModBlocks {
         return false;
     }
 
+    private static boolean neverSpawn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {return false;}
+
     public static final RegistryObject<BlackberryCropBlock> BLACKBERRY_CROP = registerBlock("blackberry_crop",
             () -> new BlackberryCropBlock(BlockBehaviour.Properties.of()
                     .strength(1.0F)
@@ -44,6 +47,24 @@ public class ModBlocks {
                     .pushReaction(PushReaction.DESTROY)
                     .sound(SoundType.MANGROVE_ROOTS)
                     .mapColor(MapColor.COLOR_GREEN)));
+
+    public static final RegistryObject<RiceCropBlock> RICE_CROP = registerBlock("rice_crop",
+            () -> new RiceCropBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.CROP)
+                    .pushReaction(PushReaction.DESTROY)));
+
+    public static final RegistryObject<PaddyFarmlandBlock> PADDY_FARMLAND = registerBlock("paddy_farmland",
+            () -> new PaddyFarmlandBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6F)
+                    .sound(SoundType.GRAVEL)
+                    .mapColor(MapColor.DIRT)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)
+                    .randomTicks()));
 
     public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerBlock("demon_core",
             () -> new DemonCoreBlock(BlockBehaviour.Properties.of()
