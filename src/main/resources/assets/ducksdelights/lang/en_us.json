@@ -1,8 +1,7 @@
 {
   "itemgroup.ducksdelights.items": "Ducks' Delights Items",
-  "itemgroup.ducksdelights.toolsandequip": "Ducks' Delights Tools & Equip.",
-  "itemgroup.ducksdelights.materials": "Ducks' Delights Materials",
-  "itemgroup.ducksdelights.food": "Ducks' Delights Food",
+  "itemgroup.ducksdelights.blocks": "Ducks' Delights Blocks",
+  "itemgroup.ducksdelights.misc": "Ducks' Delights Misc",
 
   "tag.item.ducksdelights.onigiri": "Onigiri",
   "tag.item.ducksdelights.haunted_tool_materials": "Haunted Tool Materials",
