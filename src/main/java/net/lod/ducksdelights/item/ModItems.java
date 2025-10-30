@@ -2,7 +2,7 @@ package net.lod.ducksdelights.item;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.item.custom.RemainderFoodItem;
+import net.lod.ducksdelights.item.custom.RemainderItem;
 import net.lod.ducksdelights.item.custom.foods.ModFoods;
 import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.Item;
@@ -78,71 +78,71 @@ public class ModItems {
                     .food(ModFoods.KIBBLESTONE)));
 
     public static final RegistryObject<Item> PLAIN_ROCK_CANDY = ITEMS.register("plain_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> WHITE_ROCK_CANDY = ITEMS.register("white_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> LIGHT_GRAY_ROCK_CANDY = ITEMS.register("light_gray_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> GRAY_ROCK_CANDY = ITEMS.register("gray_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> BLACK_ROCK_CANDY = ITEMS.register("black_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> BROWN_ROCK_CANDY = ITEMS.register("brown_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> RED_ROCK_CANDY = ITEMS.register("red_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> ORANGE_ROCK_CANDY = ITEMS.register("orange_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> YELLOW_ROCK_CANDY = ITEMS.register("yellow_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> LIME_ROCK_CANDY = ITEMS.register("lime_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> GREEN_ROCK_CANDY = ITEMS.register("green_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> CYAN_ROCK_CANDY = ITEMS.register("cyan_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> LIGHT_BLUE_ROCK_CANDY = ITEMS.register("light_blue_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> BLUE_ROCK_CANDY = ITEMS.register("blue_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> PURPLE_ROCK_CANDY = ITEMS.register("purple_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> MAGENTA_ROCK_CANDY = ITEMS.register("magenta_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
     public static final RegistryObject<Item> PINK_ROCK_CANDY = ITEMS.register("pink_rock_candy",
-            () -> new RemainderFoodItem(new Item.Properties()
+            () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
 

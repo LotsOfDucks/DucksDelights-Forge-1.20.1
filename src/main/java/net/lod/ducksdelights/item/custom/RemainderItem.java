@@ -4,14 +4,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 
-public class RemainderFoodItem extends Item {
+public class RemainderItem extends Item {
     public static ItemLike remainder;
 
-    public RemainderFoodItem(Properties pProperties, ItemLike remainderItem) {
+    public RemainderItem(Properties pProperties, ItemLike remainderItem) {
         super(pProperties);
         remainder = remainderItem;
     }
