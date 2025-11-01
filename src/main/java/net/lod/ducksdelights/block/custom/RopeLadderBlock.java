@@ -150,7 +150,7 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
         BlockPos.MutableBlockPos below = pPos.mutable().move(Direction.DOWN);
         if (heldItem.is(ModBlocks.ROPE_LADDER.get().asItem())) {
             while (isBelowRopeLadder(pLevel, below)) {
-                if (pLevel.getBlockState(below).is(Blocks.AIR)) {
+                if (pLevel.getBlockState(below).is(Blocks.AIR) || pLevel.getBlockState(below).is(Blocks.CAVE_AIR)) {
                     pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
                     pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
                     if (!pPlayer.getAbilities().instabuild) {
