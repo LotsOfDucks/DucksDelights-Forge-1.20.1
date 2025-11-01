@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "n": {
+            "item": "ducksdelights:kibblestone"
+        }
+    },
+    "pattern": [
+        "nn",
+        "nn"
+    ],
+    "result": {
+        "item": "minecraft:cobblestone",
+        "count": 1
+    }
+}

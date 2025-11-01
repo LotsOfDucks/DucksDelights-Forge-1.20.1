@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "redstone",
+    "key": {
+        "#": {
+            "item": "minecraft:netherite_ingot"
+        },
+        "$": {
+            "item": "minecraft:chiseled_stone_bricks"
+        }
+    },
+    "pattern": [
+        "###",
+        "#$#",
+        "###"
+    ],
+    "result": {
+        "item": "ducksdelights:demon_core",
+        "count": 1
+    }
+}

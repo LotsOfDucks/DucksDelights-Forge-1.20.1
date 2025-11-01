@@ -61,12 +61,12 @@ public class RiceCropBlock extends CropBlock {
                 if (pRandom.nextInt((int)(25.0F / f) + 1) == 0) {
                     if (age == 5 && !pState.getValue(GOLDEN)) {
                         if (pRandom.nextInt(getAvailableGold(pLevel, pPos)) == 0) {
-                            pLevel.setBlock(pPos, this.withAge(age + 1, pState.setValue(GOLDEN,true)), 2);
+                            pLevel.setBlock(pPos, this.withAge(age + 1, pState.setValue(GOLDEN,true)), 3);
                         } else {
-                            pLevel.setBlock(pPos, this.withAge(age + 1,pState), 2);
+                            pLevel.setBlock(pPos, this.withAge(age + 1,pState), 3);
                         }
                     } else {
-                        pLevel.setBlock(pPos, this.withAge(age + 1,pState), 2);
+                        pLevel.setBlock(pPos, this.withAge(age + 1,pState), 3);
                     }
                 }
             }

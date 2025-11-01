@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:demon_core",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "player_placed": "true"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ducksdelights:demon_core"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "ducksdelights:blocks/demon_core"
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:light_blue_dye"
+    },
+    {
+      "item": "ducksdelights:kibblestone"
+    }
+  ],
+  "group": "rock_candy",
+  "result": {
+    "item": "ducksdelights:light_blue_rock_candy",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:stick"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "item": "ducksdelights:kibblestone"
+    }
+  ],
+  "group": "rock_candy",
+  "result": {
+    "item": "ducksdelights:cyan_rock_candy",
+    "count": 1
+  }
+}

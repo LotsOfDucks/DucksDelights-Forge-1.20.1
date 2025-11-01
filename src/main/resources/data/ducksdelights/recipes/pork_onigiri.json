@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:cooked_porkchop"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "item": "ducksdelights:white_rice"
+    }
+  ],
+  "group": "onigiri",
+  "result": {
+    "item": "ducksdelights:pork_onigiri",
+    "count": 1
+  }
+}

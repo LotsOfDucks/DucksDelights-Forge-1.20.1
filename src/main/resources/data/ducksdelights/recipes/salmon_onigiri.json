@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:cooked_salmon"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "item": "ducksdelights:white_rice"
+    }
+  ],
+  "group": "onigiri",
+  "result": {
+    "item": "ducksdelights:salmon_onigiri",
+    "count": 1
+  }
+}

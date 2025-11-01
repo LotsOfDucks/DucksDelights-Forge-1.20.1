@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "minecraft:golden_carrot"
+    },
+    {
+      "item": "minecraft:dried_kelp"
+    },
+    {
+      "item": "ducksdelights:golden_rice"
+    }
+  ],
+  "result": {
+    "item": "ducksdelights:gilded_onigiri",
+    "count": 1
+  }
+}

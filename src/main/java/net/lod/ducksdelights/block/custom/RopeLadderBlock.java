@@ -21,9 +21,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
@@ -95,7 +93,20 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
 
     private boolean canAttachTo(BlockGetter pBlockReader, BlockPos pPos, Direction pDirection) {
         BlockState attachedBlockState = pBlockReader.getBlockState(pPos);
-        return attachedBlockState.isFaceSturdy(pBlockReader, pPos, pDirection);
+        if (attachedBlockState.hasProperty(SlabBlock.TYPE)) {
+            if (attachedBlockState.getValue(SlabBlock.TYPE) == (SlabType.TOP)) {
+                return true;
+            }
+        } else if (attachedBlockState.hasProperty(StairBlock.HALF)) {
+            if (attachedBlockState.getValue(StairBlock.HALF) == (Half.TOP)) {
+                return true;
+            }
+        } else if (attachedBlockState.hasProperty(RopeLadderBlock.FACING)) {
+            if (attachedBlockState.getValue(RopeLadderBlock.FACING) == (pDirection.getOpposite()) && attachedBlockState.getValue(RopeLadderBlock.ANCHORED)) {
+                return true;
+            }
+        }
+        return (attachedBlockState.isFaceSturdy(pBlockReader, pPos, pDirection));
     }
 
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
@@ -136,8 +147,8 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack heldItem = pPlayer.getItemInHand(pHand);
         boolean flag = false;
+        BlockPos.MutableBlockPos below = pPos.mutable().move(Direction.DOWN);
         if (heldItem.is(ModBlocks.ROPE_LADDER.get().asItem())) {
-            BlockPos.MutableBlockPos below = pPos.mutable().move(Direction.DOWN);
             while (isBelowRopeLadder(pLevel, below)) {
                 if (pLevel.getBlockState(below).is(Blocks.AIR)) {
                     pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
@@ -162,16 +173,13 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
                 }
                 below.move(Direction.DOWN);
             }
-        } else if (heldItem.isEmpty()) {
-            BlockPos.MutableBlockPos below = pPos.mutable().move(Direction.DOWN);
+        } else if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !pPlayer.getOffhandItem().is(ModBlocks.ROPE_LADDER.get().asItem())) {
             while (isBelowRopeLadder(pLevel, below)) {
                 if (!pLevel.getBlockState(below).is(ModBlocks.ROPE_LADDER.get())) {
-                    if (pLevel.getBlockState(below.above()).is(ModBlocks.ROPE_LADDER.get())) {
-                        if (pLevel.getBlockState(below.above()).getValue(WATERLOGGED)) {
-                            pLevel.setBlock(below.above(), Blocks.WATER.defaultBlockState(), 3);
-                        } else {
-                            pLevel.setBlock(below.above(), Blocks.AIR.defaultBlockState(), 3);
-                        }
+                    if (pLevel.getBlockState(below.above()).getValue(WATERLOGGED)) {
+                        pLevel.setBlock(below.above(), Blocks.WATER.defaultBlockState(), 3);
+                    } else {
+                        pLevel.setBlock(below.above(), Blocks.AIR.defaultBlockState(), 3);
                     }
                     pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_BREAK, SoundSource.BLOCKS);
                     if (!pPlayer.getAbilities().instabuild) {
