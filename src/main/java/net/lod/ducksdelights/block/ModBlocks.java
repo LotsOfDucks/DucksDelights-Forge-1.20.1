@@ -38,6 +38,12 @@ public class ModBlocks {
 
     private static boolean neverSpawn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {return false;}
 
+
+
+    public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
+            () -> new RopeLadderBlock(BlockBehaviour.Properties.copy(Blocks.LADDER)
+                    .sound(SoundType.BAMBOO_WOOD)));
+
     public static final RegistryObject<BlackberryCropBlock> BLACKBERRY_CROP = registerBlock("blackberry_crop",
             () -> new BlackberryCropBlock(BlockBehaviour.Properties.of()
                     .strength(1.0F)

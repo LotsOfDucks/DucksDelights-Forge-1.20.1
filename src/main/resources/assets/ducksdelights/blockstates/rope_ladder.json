@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,anchored=false": {
+      "model": "ducksdelights:block/rope_ladder",
+      "y": 90
+    },
+    "facing=north,anchored=false": {
+      "model": "ducksdelights:block/rope_ladder"
+    },
+    "facing=south,anchored=false": {
+      "model": "ducksdelights:block/rope_ladder",
+      "y": 180
+    },
+    "facing=west,anchored=false": {
+      "model": "ducksdelights:block/rope_ladder",
+      "y": 270
+    },
+    "facing=east,anchored=true": {
+      "model": "ducksdelights:block/rope_ladder_coil",
+      "y": 90
+    },
+    "facing=north,anchored=true": {
+      "model": "ducksdelights:block/rope_ladder_coil"
+    },
+    "facing=south,anchored=true": {
+      "model": "ducksdelights:block/rope_ladder_coil",
+      "y": 180
+    },
+    "facing=west,anchored=true": {
+      "model": "ducksdelights:block/rope_ladder_coil",
+      "y": 270
+    }
+  }
+}

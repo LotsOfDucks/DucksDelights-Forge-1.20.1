@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "pattern": [
+        "# #",
+        "#$#",
+        "# #"
+    ],
+    "key": {
+        "#": "minecraft:string",
+        "$": "minecraft:ladder"
+    },
+    "result": {
+        "id": "ducksdelights:rope_ladder",
+        "count": 1
+    }
+}

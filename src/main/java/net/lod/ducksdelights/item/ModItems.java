@@ -2,8 +2,11 @@ package net.lod.ducksdelights.item;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.item.custom.EmptySoulCageItem;
 import net.lod.ducksdelights.item.custom.RemainderItem;
+import net.lod.ducksdelights.item.custom.SoulCageItem;
 import net.lod.ducksdelights.item.custom.foods.ModFoods;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BowlFoodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
@@ -17,13 +20,11 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, DucksDelights.MOD_ID);
 
-    public static final RegistryObject<Item> VOID_BOTTLE = ITEMS.register("void_bottle",
-            () -> new Item(new Item.Properties()
-                    .craftRemainder(Items.GLASS_BOTTLE)
-                    .stacksTo(16)));
+    public static final RegistryObject<Item> SOUL_CAGE_EMPTY = ITEMS.register("soul_cage_empty",
+            () -> new EmptySoulCageItem(new Item.Properties().stacksTo(1)));
 
-    public static final RegistryObject<Item> CHALK_DUST = ITEMS.register("chalk_dust",
-            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SOUL_CAGE = ITEMS.register("soul_cage",
+            () -> new SoulCageItem(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<Item> BLACKBERRIES = ITEMS.register("blackberries",
             () -> new ItemNameBlockItem(ModBlocks.BLACKBERRY_CROP.get(),new Item.Properties()

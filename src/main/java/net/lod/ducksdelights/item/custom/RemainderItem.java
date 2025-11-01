@@ -16,7 +16,7 @@ public class RemainderItem extends Item {
     }
 
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
-        ItemStack $$3 = super.finishUsingItem(pStack, pLevel, pEntityLiving);
-        return pEntityLiving instanceof Player && ((Player)pEntityLiving).getAbilities().instabuild ? $$3 : new ItemStack(remainder);
+        ItemStack noChange = super.finishUsingItem(pStack, pLevel, pEntityLiving);
+        return pEntityLiving instanceof Player && ((Player)pEntityLiving).getAbilities().instabuild ? noChange : new ItemStack(remainder);
     }
 }
