@@ -129,7 +129,7 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
         if (!pState.canSurvive(pLevel, pPos) && !this.isBelowRopeLadder(pLevel, pPos)) {
             pLevel.destroyBlock(pPos, true);
         } else if (!pState.canSurvive(pLevel, pPos) && this.isBelowRopeLadder(pLevel, pPos)) {
-            pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(FACING, pLevel.getBlockState(pPos.above()).getValue(FACING)), 2);
+            pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(FACING, pLevel.getBlockState(pPos.above()).getValue(FACING)), 3);
         }
     }
 
@@ -140,16 +140,20 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
             BlockPos.MutableBlockPos below = pPos.mutable().move(Direction.DOWN);
             while (isBelowRopeLadder(pLevel, below)) {
                 if (pLevel.getBlockState(below).is(Blocks.AIR)) {
-                    pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false), 2);
-                    pLevel.playSound(null, below, SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
+                    pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
+                    pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
                     if (!pPlayer.getAbilities().instabuild) {
                         heldItem.shrink(1);
                     }
                     flag = true;
                     break;
                 } else if (pLevel.getBlockState(below).is(Blocks.WATER)) {
-                    pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, true), 2);
-                    pLevel.playSound(null, below, SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
+                    if (pLevel.getFluidState(below).isSource()) {
+                        pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, true), 3);
+                    } else {
+                        pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
+                    }
+                    pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
                     if (!pPlayer.getAbilities().instabuild) {
                         heldItem.shrink(1);
                     }
@@ -164,12 +168,12 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
                 if (!pLevel.getBlockState(below).is(ModBlocks.ROPE_LADDER.get())) {
                     if (pLevel.getBlockState(below.above()).is(ModBlocks.ROPE_LADDER.get())) {
                         if (pLevel.getBlockState(below.above()).getValue(WATERLOGGED)) {
-                            pLevel.setBlock(below.above(), Blocks.WATER.defaultBlockState(), 2);
+                            pLevel.setBlock(below.above(), Blocks.WATER.defaultBlockState(), 3);
                         } else {
-                            pLevel.setBlock(below.above(), Blocks.AIR.defaultBlockState(), 2);
+                            pLevel.setBlock(below.above(), Blocks.AIR.defaultBlockState(), 3);
                         }
                     }
-                    pLevel.playSound(null, below, SoundEvents.BAMBOO_WOOD_BREAK, SoundSource.BLOCKS);
+                    pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_BREAK, SoundSource.BLOCKS);
                     if (!pPlayer.getAbilities().instabuild) {
                         pPlayer.addItem(new ItemStack(ModBlocks.ROPE_LADDER.get().asItem(), 1));
                     }

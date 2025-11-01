@@ -2,10 +2,13 @@ package net.lod.ducksdelights;
 
 import com.mojang.logging.LogUtils;
 import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.block.custom.DispenserBehavior.RopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.sound.ModSoundEvents;
+import net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -70,7 +73,7 @@ public class DucksDelights {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
         }
     }
 }
