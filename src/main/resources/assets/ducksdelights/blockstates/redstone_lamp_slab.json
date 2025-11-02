@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "type=bottom,lit=false": {
+      "model": "ducksdelights:block/redstone_lamp_slab"
+    },
+    "type=double,lit=false": {
+      "model": "ducksdelights:block/redstone_lamp_slab_double"
+    },
+    "type=top,lit=false": {
+      "model": "ducksdelights:block/redstone_lamp_slab_top"
+    },
+    "type=bottom,lit=true": {
+      "model": "ducksdelights:block/redstone_lamp_slab_on"
+    },
+    "type=double,lit=true": {
+      "model": "ducksdelights:block/redstone_lamp_slab_double_on"
+    },
+    "type=top,lit=true": {
+      "model": "ducksdelights:block/redstone_lamp_slab_top_on"
+    }
+  }
+}

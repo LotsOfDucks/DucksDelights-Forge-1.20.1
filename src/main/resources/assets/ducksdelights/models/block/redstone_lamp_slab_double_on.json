@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "minecraft:block/redstone_lamp",
+    "side": "ducksdelights:block/redstone_lamp_slab_on"
+  }
+}
