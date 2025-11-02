@@ -55,6 +55,10 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
         return ModItems.BLACKBERRIES.get();
     }
 
+    public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
+        return new ItemStack(this.getBaseSeedId());
+    }
+
     public boolean isRandomlyTicking(BlockState pState) {
         return !this.hasFruit(pState) || this.isSpreading(pState);
     }
