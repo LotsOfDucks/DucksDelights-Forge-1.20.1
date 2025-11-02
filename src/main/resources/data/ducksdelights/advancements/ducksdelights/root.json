@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "start": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+    "description": {
+      "translate": "advancements.ducksdelights.root.description"
+    },
+    "icon": {
+      "item": "ducksdelights:sculk_speaker"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.ducksdelights.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "start"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

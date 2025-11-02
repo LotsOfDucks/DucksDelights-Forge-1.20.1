@@ -1,0 +1,50 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "rice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:raw_rice"
+              ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "golden_rice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:raw_golden_rice"
+              ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_rice.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "ducksdelights:raw_rice"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.ducksdelights.find_rice.title"
+    }
+  },
+  "requirements": [
+    [
+      "rice",
+      "golden_rice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
