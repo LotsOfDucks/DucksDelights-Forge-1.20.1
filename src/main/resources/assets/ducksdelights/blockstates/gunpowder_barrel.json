@@ -1,52 +1,55 @@
 {
   "variants": {
-    "fullness=0": {
+    "fullness=0,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel"
     },
-    "fullness=1": {
+    "fullness=1,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_1"
     },
-    "fullness=2": {
+    "fullness=2,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_2"
     },
-    "fullness=3": {
+    "fullness=3,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_3"
     },
-    "fullness=4": {
+    "fullness=4,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_4"
     },
-    "fullness=5": {
+    "fullness=5,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_5"
     },
-    "fullness=6": {
+    "fullness=6,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_6"
     },
-    "fullness=7": {
+    "fullness=7,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_7"
     },
-    "fullness=8": {
+    "fullness=8,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_8"
     },
-    "fullness=9": {
+    "fullness=9,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_9"
     },
-    "fullness=10": {
+    "fullness=10,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_10"
     },
-    "fullness=11": {
+    "fullness=11,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_11"
     },
-    "fullness=12": {
+    "fullness=12,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_12"
     },
-    "fullness=13": {
+    "fullness=13,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_13"
     },
-    "fullness=14": {
+    "fullness=14,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_14"
     },
-    "fullness=15": {
+    "fullness=15,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_15"
+    },
+    "exploding=true": {
+      "model": "ducksdelights:block/exploding_barrel"
     }
   }
 }

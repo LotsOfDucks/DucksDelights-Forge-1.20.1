@@ -30,7 +30,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class ExplodingBarrelBlock extends FillableBarrelBlock{
-
+    public LivingEntity igniter = null;
 
     public ExplodingBarrelBlock(ItemLike fillItem, Properties pProperties) {
         super(fillItem, pProperties);
@@ -53,8 +53,8 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
             return InteractionResult.FAIL;
         } else if (itemstack.is(Items.FLINT_AND_STEEL) || itemstack.is(Items.FIRE_CHARGE)) {
             if (!pState.getValue(WATERLOGGED)) {
-                pState.setValue(EXPLODING, true);
-                pLevel.scheduleTick(pPos, this, 1);
+                startExplode(pLevel, pState, pPos);
+                this.igniter = pPlayer;
                 Item item = itemstack.getItem();
                 if (!pPlayer.isCreative()) {
                     if (itemstack.is(Items.FLINT_AND_STEEL)) {
@@ -86,23 +86,19 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
 
     public void onCaughtFire(BlockState state, Level world, BlockPos pos, @Nullable Direction face, @Nullable LivingEntity igniter) {
         if (!state.getValue(WATERLOGGED)) {
-            this.setExplode(world, state, pos);
-            this.explode(world, pos, igniter);
-            world.removeBlock(pos, false);
+            startExplode(world, state, pos);
         }
     }
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (pLevel.hasNeighborSignal(pPos)) {
-            pState.setValue(EXPLODING, true);
-            pLevel.scheduleTick(pPos, this, 1);
+            startExplode(pLevel, pState, pPos);
         }
     }
 
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         if (!pOldState.is(pState.getBlock()) && pLevel.hasNeighborSignal(pPos)) {
-            pState.setValue(EXPLODING, true);
-            pLevel.scheduleTick(pPos, this, 1);
+            startExplode(pLevel, pState, pPos);
         }
     }
 
@@ -110,8 +106,8 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         if (!pLevel.isClientSide) {
             BlockPos blockpos = pHit.getBlockPos();
             if (pProjectile.isOnFire() && pProjectile.mayInteract(pLevel, blockpos)) {
-                pState.setValue(EXPLODING, true);
-                pLevel.scheduleTick(blockpos, this, 1);
+                this.igniter = (LivingEntity) pProjectile.getOwner();
+                startExplode(pLevel, pState, blockpos);
             }
         }
     }
@@ -151,7 +147,6 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                     BlockState checkNearbyBarrel = level.getBlockState(blockPos.offset(x, y, z));
                     if (checkNearbyBarrel.is(ModBlocks.GUNPOWDER_BARREL.get())) {
                         if (!checkNearbyBarrel.getValue(WATERLOGGED)) {
-                            checkNearbyBarrel.setValue(EXPLODING, true);
                             float adjacent = getExplosionRadiusValues(level, blockPos.offset(x, y, z));
                             radius += (adjacent / 4);
                         }
@@ -163,16 +158,33 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         return radius;
     }
 
+    private void startExplode(Level level, BlockState state, BlockPos pos) {
+        for (int x = -1; x <= 1; ++x) {
+            for (int y = -1; y <= 1; ++y) {
+                for (int z = -1; z <= 1; ++z) {
+                    BlockPos bombPos = pos.offset(x, y, z);
+                    BlockState isBomb = level.getBlockState(bombPos);
+                    if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get())) {
+                        level.setBlock(bombPos, isBomb.setValue(EXPLODING, true), 3);
+                        level.scheduleTick(pos, this, 1);
+                    }
+                }
+            }
+        }
+    }
+
     private void setExplode(Level level, BlockState state, BlockPos pos) {
-        int range = level.getBlockState(pos).getValue(FULLNESS) + 1;
+        int range = level.getBlockState(pos).getValue(FULLNESS) + 2;
         for (int x = -range; x <= range; ++x) {
             for (int y = -range; y <= range; ++y) {
                 for (int z = -range; z <= range; ++z){
                     BlockPos bombPos = pos.offset(x, y, z);
                     BlockState isBomb = level.getBlockState(bombPos);
                     if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get()) || isBomb.is(Blocks.TNT)) {
-                        isBomb.setValue(EXPLODING, true);
-                        level.scheduleTick(bombPos, isBomb.getBlock(), 1);
+                        if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get())) {
+                            level.setBlock(bombPos, isBomb.setValue(EXPLODING, true), 3);
+                            level.scheduleTick(bombPos, isBomb.getBlock(), 1);
+                        }
                     }
                 }
             }
@@ -180,7 +192,15 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        onCaughtFire(pState, pLevel, pPos, null, null);
+        if (!pState.getValue(WATERLOGGED)) {
+            if (pState.getValue(EXPLODING)) {
+                setExplode(pLevel, pState, pPos);
+                this.explode(pLevel, pPos, igniter);
+                pLevel.removeBlock(pPos, false);
+            } else {
+                setExplode(pLevel, pState, pPos);
+            }
+        }
     }
 
     private void explode(Level pLevel, BlockPos pPos, LivingEntity entity) {
@@ -192,7 +212,6 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                             .getHolder(ModDamageTypes.FISSION).get()
             );
             pLevel.explode(entity, damageSource , new ExplosionDamageCalculator() ,pPos.getCenter().x(), pPos.getCenter().y() + 0.5, pPos.getCenter().z(), radius, true, Level.ExplosionInteraction.TNT);
-
         }
     }
 

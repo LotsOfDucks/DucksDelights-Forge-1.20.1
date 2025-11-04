@@ -46,10 +46,15 @@ public class ModBlocks {
         return (p_50763_) -> (Boolean)p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
     }
 
+    private static ToIntFunction<BlockState> explodingBlockEmission(int pLightValue) {
+        return (p_50763_) -> (Boolean)p_50763_.getValue(FillableBarrelBlock.EXPLODING) ? pLightValue : 0;
+    }
+
     public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
             () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .ignitedByLava()
                     .strength(0.1F)
+                    .lightLevel(explodingBlockEmission(15))
                     .pushReaction(PushReaction.NORMAL)));
 
     public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
