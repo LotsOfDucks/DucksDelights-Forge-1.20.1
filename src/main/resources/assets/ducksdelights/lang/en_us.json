@@ -107,10 +107,16 @@
   "block.ducksdelights.moon_phase_detector": "Moon Phase Detector",
   "block.ducksdelights.paddy_farmland": "Paddy",
   "block.ducksdelights.rope_ladder": "Rope Ladder",
+  "block.ducksdelights.anti_rope_ladder": "Anti-Rope Ladder",
+  "block.ducksdelights.redstone_lamp_slab": "Redstone Lamp Slab",
+
+
+  "block.ducksdelights.gunpowder_barrel": "Barrel Of Gunpowder",
 
 
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",
   "sounds.ducksdelights.demon_core_tink": "Demon Core Opens/Closes",
+  "sounds.ducksdelights.barrel_fill": "Barrel Fills/Empties",
 
   "death.attack.fission": "%1$s observed supercriticality.",
   "death.attack.fission.player": "%2$s convinced %1$s to remove the screwdriver.",

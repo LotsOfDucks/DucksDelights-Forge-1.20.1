@@ -2,9 +2,9 @@
 	"render_type": "minecraft:cutout",
 	"ambientocclusion": false,
 	"textures": {
-		"1": "ducksdelights:block/rope_ladder",
-		"3": "ducksdelights:block/rope_ladder_coil",
-		"particle": "ducksdelights:block/rope_ladder"
+		"1": "ducksdelights:block/anti_rope_ladder",
+		"3": "ducksdelights:block/anti_rope_ladder_coil",
+		"particle": "ducksdelights:block/anti_rope_ladder"
 	},
 	"elements": [
 		{
@@ -18,8 +18,8 @@
 			}
 		},
 		{
-			"from": [1, 8, 8],
-			"to": [15, 16, 16],
+			"from": [1, 0, 8],
+			"to": [15, 8, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 14, 8]},
 			"faces": {
 				"north": {"uv": [1, 0, 15, 8], "texture": "#3"},

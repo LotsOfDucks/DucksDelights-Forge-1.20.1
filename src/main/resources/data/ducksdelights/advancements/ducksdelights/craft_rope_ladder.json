@@ -1,0 +1,36 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "rope_ladder": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:rope_ladder"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_rope_ladder.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:rope_ladder"
+    },
+    "title": {
+      "translate": "advancements.ducksdelights.craft_rope_ladder.title"
+    }
+  },
+  "requirements": [
+    [
+      "rope_ladder"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

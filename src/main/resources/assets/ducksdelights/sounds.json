@@ -10,5 +10,14 @@
     "sounds": [
       "ducksdelights:demon_core_tink"
     ]
+  },
+  "barrel_fill": {
+    "subtitle": "sounds.ducksdelights.barrel_fill",
+    "sounds": [
+      "minecraft:block/composter/fill1",
+      "minecraft:block/composter/fill2",
+      "minecraft:block/composter/fill3",
+      "minecraft:block/composter/fill4"
+    ]
   }
 }

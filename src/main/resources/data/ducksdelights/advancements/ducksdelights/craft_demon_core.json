@@ -1,0 +1,38 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "demon_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:demon_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_demon_core.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:demon_core"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "title": {
+      "translate": "advancements.ducksdelights.craft_demon_core.title"
+    }
+  },
+  "requirements": [
+    [
+      "demon_core"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

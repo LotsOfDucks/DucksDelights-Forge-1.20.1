@@ -1,0 +1,18 @@
+{
+  "render_type": "minecraft:cutout",
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "ducksdelights:block/anti_rope_ladder",
+    "texture": "ducksdelights:block/anti_rope_ladder"
+  },
+  "elements": [
+    {   "from": [ 0, 0, 7.8 ],
+      "to": [ 16, 16, 7.8 ],
+      "shade": false,
+      "faces": {
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture" },
+        "south": { "uv": [ 16, 0, 0, 16 ], "texture": "#texture" }
+      }
+    }
+  ]
+}

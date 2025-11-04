@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ducksdelights:rope_ladder"
+    "ducksdelights:rope_ladder",
+    "ducksdelights:anti_rope_ladder"
   ]
 }

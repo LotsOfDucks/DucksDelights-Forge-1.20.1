@@ -1,0 +1,33 @@
+{
+  "parent": "ducksdelights:ducksdelights/find_rice",
+  "criteria": {
+    "onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#ducksdelights:onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_onigiri.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:onigiri"
+    },
+    "title": {
+      "translate": "advancements.ducksdelights.craft_onigiri.title"
+    }
+  },
+  "requirements": [
+    [
+      "onigiri"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -9,8 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,7 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
+public class AntiRopeLadderBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING;
     public static final BooleanProperty WATERLOGGED;
     public static final BooleanProperty ANCHORED;
@@ -42,8 +40,7 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
     protected static final VoxelShape WEAST;
     protected static final VoxelShape NOUTH;
 
-
-    public RopeLadderBlock(Properties pProperties) {
+    public AntiRopeLadderBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(ANCHORED, false));
     }
@@ -75,28 +72,22 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     public boolean isBelowRopeLadder(BlockGetter level, BlockPos blockPos) {
-        BlockState aboveBlock = level.getBlockState(blockPos.above());
-        return aboveBlock.is(ModBlocks.ROPE_LADDER.get());
-    }
-
-    public boolean doesMatchAboveRopeLadder(BlockGetter level, BlockPos blockPos) {
-        BlockState aboveBlock = level.getBlockState(blockPos.above());
-        BlockState thisBlock = level.getBlockState(blockPos);
-        return aboveBlock.getValue(FACING) == thisBlock.getValue(FACING);
+        BlockState belowBlock = level.getBlockState(blockPos.below());
+        return belowBlock.is(ModBlocks.ANTI_ROPE_LADDER.get());
     }
 
     private boolean canAttachTo(BlockGetter pBlockReader, BlockPos pPos, Direction pDirection) {
         BlockState attachedBlockState = pBlockReader.getBlockState(pPos);
         if (attachedBlockState.hasProperty(SlabBlock.TYPE)) {
-            if (attachedBlockState.getValue(SlabBlock.TYPE) == (SlabType.TOP)) {
+            if (attachedBlockState.getValue(SlabBlock.TYPE) == (SlabType.BOTTOM)) {
                 return true;
             }
         } else if (attachedBlockState.hasProperty(StairBlock.HALF)) {
-            if (attachedBlockState.getValue(StairBlock.HALF) == (Half.TOP)) {
+            if (attachedBlockState.getValue(StairBlock.HALF) == (Half.BOTTOM)) {
                 return true;
             }
-        } else if (attachedBlockState.hasProperty(RopeLadderBlock.FACING)) {
-            if (attachedBlockState.getValue(RopeLadderBlock.FACING) == (pDirection.getOpposite()) && attachedBlockState.getValue(RopeLadderBlock.ANCHORED)) {
+        } else if (attachedBlockState.hasProperty(AntiRopeLadderBlock.FACING)) {
+        if (attachedBlockState.getValue(AntiRopeLadderBlock.FACING) == (pDirection.getOpposite()) && attachedBlockState.getValue(AntiRopeLadderBlock.ANCHORED)) {
                 return true;
             }
         }
@@ -134,55 +125,55 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
         if (!pState.canSurvive(pLevel, pPos) && !this.isBelowRopeLadder(pLevel, pPos)) {
             pLevel.destroyBlock(pPos, true);
         } else if (!pState.canSurvive(pLevel, pPos) && this.isBelowRopeLadder(pLevel, pPos)) {
-            pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(FACING, pLevel.getBlockState(pPos.above()).getValue(FACING)), 3);
+            pLevel.setBlock(pPos, pLevel.getBlockState(pPos).setValue(FACING, pLevel.getBlockState(pPos.below()).getValue(FACING)), 3);
         }
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack heldItem = pPlayer.getItemInHand(pHand);
         boolean flag = false;
-        BlockPos.MutableBlockPos below = pPos.mutable().move(Direction.DOWN);
-        if (heldItem.is(ModBlocks.ROPE_LADDER.get().asItem())) {
-            while (isBelowRopeLadder(pLevel, below)) {
-                if (pLevel.getBlockState(below).is(Blocks.AIR) || pLevel.getBlockState(below).is(Blocks.CAVE_AIR)) {
-                    pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
-                    pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
-                    if (!pPlayer.isCreative()) {
+        BlockPos.MutableBlockPos above = pPos.mutable().move(Direction.UP);
+        if (heldItem.is(ModBlocks.ANTI_ROPE_LADDER.get().asItem())) {
+            while (isBelowRopeLadder(pLevel, above)) {
+                if (pLevel.getBlockState(above).is(Blocks.AIR) || pLevel.getBlockState(above).is(Blocks.CAVE_AIR)) {
+                    pLevel.setBlock(above, pLevel.getBlockState(above.below()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
+                    pLevel.playSound(null, above.below(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
+                    if (!pPlayer.getAbilities().instabuild) {
                         heldItem.shrink(1);
                     }
                     flag = true;
                     break;
-                } else if (pLevel.getBlockState(below).is(Blocks.WATER)) {
-                    if (pLevel.getFluidState(below).isSource()) {
-                        pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, true), 3);
+                } else if (pLevel.getBlockState(above).is(Blocks.WATER)) {
+                    if (pLevel.getFluidState(above).isSource()) {
+                        pLevel.setBlock(above, pLevel.getBlockState(above.below()).setValue(ANCHORED, false).setValue(WATERLOGGED, true), 3);
                     } else {
-                        pLevel.setBlock(below, pLevel.getBlockState(below.above()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
+                        pLevel.setBlock(above, pLevel.getBlockState(above.below()).setValue(ANCHORED, false).setValue(WATERLOGGED, false), 3);
                     }
-                    pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
-                    if (!pPlayer.isCreative()) {
+                    pLevel.playSound(null, above.below(), SoundEvents.BAMBOO_WOOD_PLACE, SoundSource.BLOCKS);
+                    if (!pPlayer.getAbilities().instabuild) {
                         heldItem.shrink(1);
                     }
                     flag = true;
                     break;
                 }
-                below.move(Direction.DOWN);
+                above.move(Direction.UP);
             }
-        } else if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !pPlayer.getOffhandItem().is(ModBlocks.ROPE_LADDER.get().asItem())) {
-            while (isBelowRopeLadder(pLevel, below)) {
-                if (!pLevel.getBlockState(below).is(ModBlocks.ROPE_LADDER.get())) {
-                    if (pLevel.getBlockState(below.above()).getValue(WATERLOGGED)) {
-                        pLevel.setBlock(below.above(), Blocks.WATER.defaultBlockState(), 3);
+        } else if (pPlayer.getItemInHand(InteractionHand.MAIN_HAND).isEmpty() && !pPlayer.getOffhandItem().is(ModBlocks.ANTI_ROPE_LADDER.get().asItem())) {
+            while (isBelowRopeLadder(pLevel, above)) {
+                if (!pLevel.getBlockState(above).is(ModBlocks.ANTI_ROPE_LADDER.get())) {
+                    if (pLevel.getBlockState(above.below()).getValue(WATERLOGGED)) {
+                        pLevel.setBlock(above.below(), Blocks.WATER.defaultBlockState(), 3);
                     } else {
-                        pLevel.setBlock(below.above(), Blocks.AIR.defaultBlockState(), 3);
+                        pLevel.setBlock(above.below(), Blocks.AIR.defaultBlockState(), 3);
                     }
-                    pLevel.playSound(null, below.above(), SoundEvents.BAMBOO_WOOD_BREAK, SoundSource.BLOCKS);
-                    if (!pPlayer.isCreative()) {
-                        pPlayer.addItem(new ItemStack(ModBlocks.ROPE_LADDER.get().asItem(), 1));
+                    pLevel.playSound(null, above.below(), SoundEvents.BAMBOO_WOOD_BREAK, SoundSource.BLOCKS);
+                    if (!pPlayer.getAbilities().instabuild) {
+                        pPlayer.addItem(new ItemStack(ModBlocks.ANTI_ROPE_LADDER.get().asItem(), 1));
                     }
                     flag = true;
                     break;
                 }
-                below.move(Direction.DOWN);
+                above.move(Direction.UP);
             }
         }
 
@@ -244,10 +235,10 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
         ANCHORED = BooleanProperty.create("anchored");
         WEAST = Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
         NOUTH = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
-        VoxelShape spool_north = Block.box(0.0, 8.0, 9.0, 16.0, 16.0, 16.0);
-        VoxelShape spool_south = Block.box(0.0, 8.0, 0.0, 16.0, 16.0, 7.0);
-        VoxelShape spool_east = Block.box(0.0, 8.0, 0.0, 7.0, 16.0, 16.0);
-        VoxelShape spool_west = Block.box(9.0, 8.0, 0.0, 16.0, 16.0, 16.0);
+        VoxelShape spool_north = Block.box(0.0, 0.0, 9.0, 16.0, 8.0, 16.0);
+        VoxelShape spool_south = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 7.0);
+        VoxelShape spool_east = Block.box(0.0, 0.0, 0.0, 7.0, 8.0, 16.0);
+        VoxelShape spool_west = Block.box(9.0, 0.0, 0.0, 16.0, 8.0, 16.0);
         NORTH_ANCHORED = Shapes.or(NOUTH, new VoxelShape[]{spool_north});
         SOUTH_ANCHORED = Shapes.or(NOUTH, new VoxelShape[]{spool_south});
         EAST_ANCHORED = Shapes.or(WEAST, new VoxelShape[]{spool_east});

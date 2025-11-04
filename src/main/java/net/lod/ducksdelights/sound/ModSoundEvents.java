@@ -18,6 +18,8 @@ public class ModSoundEvents {
 
     public static final RegistryObject<SoundEvent> DEMON_CORE_AMBIENT = registerSoundEvents("demon_core_ambient");
 
+    public static final RegistryObject<SoundEvent> BARREL_FILL = registerSoundEvents("barrel_fill");
+
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.tryBuild(DucksDelights.MOD_ID, name)));
     }

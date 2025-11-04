@@ -1,0 +1,37 @@
+{
+  "parent": "ducksdelights:ducksdelights/find_rice",
+  "criteria": {
+    "golden_rice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:raw_golden_rice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_golden_rice.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:raw_golden_rice"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.ducksdelights.find_golden_rice.title"
+    }
+  },
+  "requirements": [
+    [
+      "golden_rice"
+    ]
+  ],
+  "rewards": {
+    "experience": 10
+  },
+  "sends_telemetry_event": true
+}

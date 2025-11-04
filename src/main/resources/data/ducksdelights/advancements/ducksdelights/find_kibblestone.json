@@ -1,0 +1,33 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "kibblestone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:kibblestone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_kibblestone.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:kibblestone"
+    },
+    "title": {
+      "translate": "advancements.ducksdelights.find_kibblestone.title"
+    }
+  },
+  "requirements": [
+    [
+      "kibblestone"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

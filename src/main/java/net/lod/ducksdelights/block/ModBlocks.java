@@ -4,18 +4,23 @@ import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
 import net.lod.ducksdelights.item.ModItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.ToFloatFunction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -41,11 +46,17 @@ public class ModBlocks {
         return (p_50763_) -> (Boolean)p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
     }
 
-
+    public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
+            () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)
+                    .noOcclusion()
+                    .pushReaction(PushReaction.BLOCK)));
 
     public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
             () -> new RopeLadderBlock(BlockBehaviour.Properties.copy(Blocks.LADDER)
                     .sound(SoundType.BAMBOO_WOOD)));
+
+    public static final RegistryObject<AntiRopeLadderBlock> ANTI_ROPE_LADDER = registerBlock("anti_rope_ladder",
+            () -> new AntiRopeLadderBlock(BlockBehaviour.Properties.copy(ModBlocks.ROPE_LADDER.get())));
 
     public static final RegistryObject<LampSlabBlock> REDSTONE_LAMP_SLAB = registerBlock("redstone_lamp_slab",
             () -> new LampSlabBlock(BlockBehaviour.Properties.of()

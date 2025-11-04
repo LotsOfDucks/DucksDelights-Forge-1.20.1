@@ -1,0 +1,38 @@
+{
+  "parent": "ducksdelights:ducksdelights/craft_onigiri",
+  "criteria": {
+    "gilded_onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:gilded_onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_gilded_onigiri.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:gilded_onigiri"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "title": {
+      "translate": "advancements.ducksdelights.craft_gilded_onigiri.title"
+    }
+  },
+  "requirements": [
+    [
+      "gilded_onigiri"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

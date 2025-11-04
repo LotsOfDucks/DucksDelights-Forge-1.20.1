@@ -1,0 +1,85 @@
+{
+  "parent": "ducksdelights:ducksdelights/craft_onigiri",
+  "criteria": {
+    "onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "beef_onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:beef_onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chicken_onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:chicken_onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pork_onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:pork_onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "salmon_onigiri": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:salmon_onigiri"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_all_onigiri.description"
+    },
+    "icon": {
+      "count": 1,
+      "item": "ducksdelights:beef_onigiri"
+    },
+    "title": {
+      "translate": "advancements.ducksdelights.craft_all_onigiri.title"
+    }
+  },
+  "requirements": [
+    [
+      "onigiri"
+    ],
+    [
+      "beef_onigiri"
+    ],
+    [
+      "chicken_onigiri"
+    ],
+    [
+      "pork_onigiri"
+    ],
+    [
+      "salmon_onigiri"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

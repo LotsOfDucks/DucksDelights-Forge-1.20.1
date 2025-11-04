@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cooked_rice": {
+      "conditions": {
+        "items": [
+          {
+            "items": "ducksdelights:white_rice"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ducksdelights:onigiri"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cooked_rice"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ducksdelights:onigiri",
+      "ducksdelights:beef_onigiri",
+      "ducksdelights:pork_onigiri",
+      "ducksdelights:chicken_onigiri",
+      "ducksdelights:salmon_onigiri"
+    ]
+  }
+}
