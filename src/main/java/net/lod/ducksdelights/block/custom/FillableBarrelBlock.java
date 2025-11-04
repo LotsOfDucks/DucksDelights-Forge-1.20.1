@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -101,7 +102,7 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
                 }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
-            return InteractionResult.FAIL;
+            return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         } else {
             if (fullness > 0 && pHand.equals(InteractionHand.MAIN_HAND)) {
                 pLevel.setBlock(pPos, pState.setValue(FULLNESS, fullness - 1), 3);
@@ -111,7 +112,15 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
                 }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
-            return InteractionResult.FAIL;
+            if (fullness == 0 && pHand.equals(InteractionHand.MAIN_HAND)) {
+                pLevel.setBlock(pPos, ModBlocks.EMPTY_BARREL.get().defaultBlockState(), 3);
+                pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                if (!pPlayer.isCreative()) {
+                    pPlayer.addItem(new ItemStack(this.FILLITEM));
+                }
+                return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            }
+            return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
         }
     }
 

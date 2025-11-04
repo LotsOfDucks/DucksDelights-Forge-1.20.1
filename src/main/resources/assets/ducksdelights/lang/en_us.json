@@ -111,6 +111,7 @@
   "block.ducksdelights.redstone_lamp_slab": "Redstone Lamp Slab",
 
 
+  "block.ducksdelights.empty_barrel": "Empty Barrel",
   "block.ducksdelights.gunpowder_barrel": "Barrel Of Gunpowder",
 
 
@@ -120,6 +121,8 @@
 
   "death.attack.fission": "%1$s observed supercriticality.",
   "death.attack.fission.player": "%2$s convinced %1$s to remove the screwdriver.",
+  "death.attack.gunpowder_barrel": "%1$s stored their gunpowder unsafely.",
+  "death.attack.gunpowder_barrel.player": "%2$s made use of their surroundings to defeat %1$s.",
 
   "advancements.ducksdelights.root.title": "Ducks' Delights",
   "advancements.ducksdelights.root.description": "Enjoy LotsOfDucks' random additions",

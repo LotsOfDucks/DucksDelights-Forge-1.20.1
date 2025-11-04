@@ -50,10 +50,14 @@ public class ModBlocks {
         return (state) -> (Boolean)state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
     }
 
+    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerBlock("empty_barrel",
+            () -> new EmptyBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)
+                    .ignitedByLava()
+                    .pushReaction(PushReaction.NORMAL)));
+
     public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
             () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .ignitedByLava()
-                    .strength(0.1F)
                     .pushReaction(PushReaction.NORMAL)));
 
     public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
@@ -67,7 +71,6 @@ public class ModBlocks {
             () -> new LampSlabBlock(BlockBehaviour.Properties.of()
                     .lightLevel(litBlockEmission(15))
                     .strength(0.3F)
-                    .lightLevel(litBlockEmission(15))
                     .sound(SoundType.GLASS)));
 
     public static final RegistryObject<BlackberryCropBlock> BLACKBERRY_CROP = registerBlock("blackberry_crop",

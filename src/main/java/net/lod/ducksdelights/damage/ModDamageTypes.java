@@ -10,5 +10,5 @@ import java.util.Objects;
 
 public class ModDamageTypes {
     public static final ResourceKey<DamageType> FISSION = ResourceKey.create(Registries.DAMAGE_TYPE, Objects.requireNonNull(ResourceLocation.tryBuild(DucksDelights.MOD_ID, "fission")));
-
+    public static final ResourceKey<DamageType> GUNPOWDER_BARREL = ResourceKey.create(Registries.DAMAGE_TYPE, Objects.requireNonNull(ResourceLocation.tryBuild(DucksDelights.MOD_ID, "gunpowder_barrel")));
 }

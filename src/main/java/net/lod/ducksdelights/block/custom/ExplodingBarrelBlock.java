@@ -81,6 +81,14 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                 }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
+            if (fullness == 0 && pHand.equals(InteractionHand.MAIN_HAND)) {
+                pLevel.setBlock(pPos, ModBlocks.EMPTY_BARREL.get().defaultBlockState(), 3);
+                pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                if (!pPlayer.isCreative()) {
+                    pPlayer.addItem(new ItemStack(this.FILLITEM));
+                }
+                return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            }
             return InteractionResult.FAIL;
         }
     }
@@ -171,7 +179,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                 }
             }
         }
-        level.scheduleTick(pos, this, 20);
+        level.scheduleTick(pos, this, 1);
     }
 
     private void setExplode(Level level, BlockState state, BlockPos pos) {
@@ -184,7 +192,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                     if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get()) || isBomb.is(Blocks.TNT)) {
                         if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get())) {
                             level.setBlock(bombPos, isBomb.setValue(EXPLODING, true), 3);
-                            level.scheduleTick(bombPos, isBomb.getBlock(), 20);
+                            level.scheduleTick(bombPos, isBomb.getBlock(), 1);
                         }
                     }
                 }
@@ -210,7 +218,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
             DamageSource damageSource = new DamageSource(
                     pLevel.registryAccess()
                             .registryOrThrow(Registries.DAMAGE_TYPE)
-                            .getHolder(ModDamageTypes.FISSION).get()
+                            .getHolder(ModDamageTypes.GUNPOWDER_BARREL).get()
             );
             pLevel.explode(entity, damageSource , new ExplosionDamageCalculator() ,pPos.getCenter().x(), pPos.getCenter().y() + 0.5, pPos.getCenter().z(), radius, true, Level.ExplosionInteraction.TNT);
         }
