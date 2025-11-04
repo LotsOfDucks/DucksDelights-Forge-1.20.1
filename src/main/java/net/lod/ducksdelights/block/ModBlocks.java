@@ -42,19 +42,18 @@ public class ModBlocks {
 
     private static boolean neverSpawn(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {return false;}
 
-    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
-        return (p_50763_) -> (Boolean)p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+    private static ToIntFunction<BlockState> litBlockEmission(int lightValue) {
+        return (state) -> (Boolean)state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
     }
 
-    private static ToIntFunction<BlockState> explodingBlockEmission(int pLightValue) {
-        return (p_50763_) -> (Boolean)p_50763_.getValue(FillableBarrelBlock.EXPLODING) ? pLightValue : 0;
+    private static ToIntFunction<BlockState> explodingBlockEmission(int lightValue) {
+        return (state) -> (Boolean)state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
     }
 
     public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
             () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .ignitedByLava()
                     .strength(0.1F)
-                    .lightLevel(explodingBlockEmission(15))
                     .pushReaction(PushReaction.NORMAL)));
 
     public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
@@ -68,6 +67,7 @@ public class ModBlocks {
             () -> new LampSlabBlock(BlockBehaviour.Properties.of()
                     .lightLevel(litBlockEmission(15))
                     .strength(0.3F)
+                    .lightLevel(litBlockEmission(15))
                     .sound(SoundType.GLASS)));
 
     public static final RegistryObject<BlackberryCropBlock> BLACKBERRY_CROP = registerBlock("blackberry_crop",

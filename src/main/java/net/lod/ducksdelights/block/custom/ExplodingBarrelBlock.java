@@ -5,6 +5,7 @@ import net.lod.ducksdelights.damage.ModDamageTypes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -30,7 +31,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class ExplodingBarrelBlock extends FillableBarrelBlock{
-    public LivingEntity igniter = null;
+    private LivingEntity igniter = null;
 
     public ExplodingBarrelBlock(ItemLike fillItem, Properties pProperties) {
         super(fillItem, pProperties);
@@ -166,11 +167,11 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                     BlockState isBomb = level.getBlockState(bombPos);
                     if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get())) {
                         level.setBlock(bombPos, isBomb.setValue(EXPLODING, true), 3);
-                        level.scheduleTick(pos, this, 1);
                     }
                 }
             }
         }
+        level.scheduleTick(pos, this, 20);
     }
 
     private void setExplode(Level level, BlockState state, BlockPos pos) {
@@ -183,7 +184,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                     if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get()) || isBomb.is(Blocks.TNT)) {
                         if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get())) {
                             level.setBlock(bombPos, isBomb.setValue(EXPLODING, true), 3);
-                            level.scheduleTick(bombPos, isBomb.getBlock(), 1);
+                            level.scheduleTick(bombPos, isBomb.getBlock(), 20);
                         }
                     }
                 }
@@ -195,7 +196,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         if (!pState.getValue(WATERLOGGED)) {
             if (pState.getValue(EXPLODING)) {
                 setExplode(pLevel, pState, pPos);
-                this.explode(pLevel, pPos, igniter);
+                explode(pLevel, pPos, this.igniter);
                 pLevel.removeBlock(pPos, false);
             } else {
                 setExplode(pLevel, pState, pPos);
