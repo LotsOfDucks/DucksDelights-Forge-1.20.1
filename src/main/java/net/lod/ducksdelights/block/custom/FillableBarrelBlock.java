@@ -51,21 +51,18 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
     public static final IntegerProperty FULLNESS;
     public final ItemLike FILLITEM;
     public static final BooleanProperty WATERLOGGED;
+    public static BooleanProperty EXPLODING;
 
     private static final VoxelShape[] SHAPE_BY_FULLNESS;
 
     public FillableBarrelBlock(ItemLike fillItem, Properties pProperties) {
         super(pProperties);
         this.FILLITEM = fillItem;
-        this.registerDefaultState(this.stateDefinition.any().setValue(FULLNESS, 13).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FULLNESS, 13).setValue(WATERLOGGED, false).setValue(EXPLODING, false));
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_FULLNESS[this.getFullness(pState)];
-    }
-
-    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return this.getShape(pState, pLevel, pPos, pContext);
     }
 
     @Nullable
@@ -123,12 +120,13 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FULLNESS, WATERLOGGED);
+        pBuilder.add(FULLNESS, WATERLOGGED, EXPLODING);
     }
 
     static {
         FULLNESS = IntegerProperty.create("fullness", 0, 15);
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
+        EXPLODING = BooleanProperty.create("exploding");
         VoxelShape wall_north = Block.box(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
         VoxelShape wall_south = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 1.0);
         VoxelShape wall_east = Block.box(15.0, 0.0, 1.0, 16.0, 16.0, 15.0);

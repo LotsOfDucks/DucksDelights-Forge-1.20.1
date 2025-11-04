@@ -48,8 +48,9 @@ public class ModBlocks {
 
     public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
             () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)
-                    .noOcclusion()
-                    .pushReaction(PushReaction.BLOCK)));
+                    .ignitedByLava()
+                    .strength(0.1F)
+                    .pushReaction(PushReaction.NORMAL)));
 
     public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
             () -> new RopeLadderBlock(BlockBehaviour.Properties.copy(Blocks.LADDER)

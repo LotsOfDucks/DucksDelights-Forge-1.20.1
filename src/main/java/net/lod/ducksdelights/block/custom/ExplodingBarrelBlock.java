@@ -1,34 +1,31 @@
 package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.damage.ModDamageTypes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
@@ -56,8 +53,8 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
             return InteractionResult.FAIL;
         } else if (itemstack.is(Items.FLINT_AND_STEEL) || itemstack.is(Items.FIRE_CHARGE)) {
             if (!pState.getValue(WATERLOGGED)) {
-                this.onCaughtFire(pState, pLevel, pPos, pHit.getDirection(), pPlayer);
-                pLevel.removeBlock(pPos, false);
+                pState.setValue(EXPLODING, true);
+                pLevel.scheduleTick(pPos, this, 1);
                 Item item = itemstack.getItem();
                 if (!pPlayer.isCreative()) {
                     if (itemstack.is(Items.FLINT_AND_STEEL)) {
@@ -97,12 +94,14 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (pLevel.hasNeighborSignal(pPos)) {
+            pState.setValue(EXPLODING, true);
             pLevel.scheduleTick(pPos, this, 1);
         }
     }
 
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         if (!pOldState.is(pState.getBlock()) && pLevel.hasNeighborSignal(pPos)) {
+            pState.setValue(EXPLODING, true);
             pLevel.scheduleTick(pPos, this, 1);
         }
     }
@@ -110,9 +109,9 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
     public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
         if (!pLevel.isClientSide) {
             BlockPos blockpos = pHit.getBlockPos();
-            Entity entity = pProjectile.getOwner();
             if (pProjectile.isOnFire() && pProjectile.mayInteract(pLevel, blockpos)) {
-                this.onCaughtFire(pState, pLevel, blockpos, null, entity instanceof LivingEntity ? (LivingEntity)entity : null);
+                pState.setValue(EXPLODING, true);
+                pLevel.scheduleTick(blockpos, this, 1);
             }
         }
     }
@@ -151,8 +150,11 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                 for (int z = -1; z <= 1; ++z){
                     BlockState checkNearbyBarrel = level.getBlockState(blockPos.offset(x, y, z));
                     if (checkNearbyBarrel.is(ModBlocks.GUNPOWDER_BARREL.get())) {
-                        float adjacent = this.getExplosionRadiusValues(level, blockPos.offset(x, y, z));
-                        radius += (adjacent/ 4);
+                        if (!checkNearbyBarrel.getValue(WATERLOGGED)) {
+                            checkNearbyBarrel.setValue(EXPLODING, true);
+                            float adjacent = getExplosionRadiusValues(level, blockPos.offset(x, y, z));
+                            radius += (adjacent / 4);
+                        }
                     }
                 }
             }
@@ -169,7 +171,8 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                     BlockPos bombPos = pos.offset(x, y, z);
                     BlockState isBomb = level.getBlockState(bombPos);
                     if (isBomb.is(ModBlocks.GUNPOWDER_BARREL.get()) || isBomb.is(Blocks.TNT)) {
-                        level.scheduleTick(bombPos, level.getBlockState(bombPos).getBlock(), 1);
+                        isBomb.setValue(EXPLODING, true);
+                        level.scheduleTick(bombPos, isBomb.getBlock(), 1);
                     }
                 }
             }
@@ -183,8 +186,20 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
     private void explode(Level pLevel, BlockPos pPos, LivingEntity entity) {
         if (!pLevel.isClientSide) {
             float radius = this.getExplosionRadius(pLevel, pPos);
-            pLevel.explode(entity, pPos.getX(), pPos.getY(), pPos.getZ(), radius, true,Level.ExplosionInteraction.TNT);
+            DamageSource damageSource = new DamageSource(
+                    pLevel.registryAccess()
+                            .registryOrThrow(Registries.DAMAGE_TYPE)
+                            .getHolder(ModDamageTypes.FISSION).get()
+            );
+            pLevel.explode(entity, damageSource , new ExplosionDamageCalculator() ,pPos.getCenter().x(), pPos.getCenter().y() + 0.5, pPos.getCenter().z(), radius, true, Level.ExplosionInteraction.TNT);
 
         }
+    }
+
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        if (pState.getValue(EXPLODING)) {
+            return Block.box(7.99, 0.0, 7.99, 8.01, 0.01, 8.01);
+        }
+        return super.getShape(pState, pLevel, pPos, pContext);
     }
 }
