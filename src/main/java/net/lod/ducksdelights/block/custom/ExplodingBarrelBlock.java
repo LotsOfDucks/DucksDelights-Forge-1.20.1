@@ -31,8 +31,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import javax.annotation.Nullable;
 
 public class ExplodingBarrelBlock extends FillableBarrelBlock{
-    private LivingEntity igniter = null;
-
     public ExplodingBarrelBlock(ItemLike fillItem, Properties pProperties) {
         super(fillItem, pProperties);
     }
@@ -55,7 +53,6 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         } else if (itemstack.is(Items.FLINT_AND_STEEL) || itemstack.is(Items.FIRE_CHARGE)) {
             if (!pState.getValue(WATERLOGGED)) {
                 startExplode(pLevel, pState, pPos);
-                this.igniter = pPlayer;
                 Item item = itemstack.getItem();
                 if (!pPlayer.isCreative()) {
                     if (itemstack.is(Items.FLINT_AND_STEEL)) {
@@ -115,7 +112,6 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         if (!pLevel.isClientSide) {
             BlockPos blockpos = pHit.getBlockPos();
             if (pProjectile.isOnFire() && pProjectile.mayInteract(pLevel, blockpos)) {
-                this.igniter = (LivingEntity) pProjectile.getOwner();
                 startExplode(pLevel, pState, blockpos);
             }
         }
@@ -204,7 +200,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         if (!pState.getValue(WATERLOGGED)) {
             if (pState.getValue(EXPLODING)) {
                 setExplode(pLevel, pState, pPos);
-                explode(pLevel, pPos, this.igniter);
+                explode(pLevel, pPos, null);
                 pLevel.removeBlock(pPos, false);
             } else {
                 setExplode(pLevel, pState, pPos);
