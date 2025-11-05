@@ -50,7 +50,24 @@ public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
                     Container container = new SimpleContainer(cookingItem);
                     ItemStack finishStack = pBlockEntity.quickCheck.getRecipeFor(container, pLevel).map((p_270054_) -> p_270054_.assemble(container, pLevel.registryAccess())).orElse(cookingItem);
                     if (finishStack.isItemEnabled(pLevel.enabledFeatures())) {
-                        Containers.dropItemStack(pLevel, pPos.getCenter().x(), pPos.getCenter().y(), pPos.getCenter().z(), finishStack);
+                        float yShift = switch (pState.getValue(BlazingBarrelBlock.FULLNESS)) {
+                            case 2 -> 0.18825F;
+                            case 3 -> 0.25075F;
+                            case 4 -> 0.31325F;
+                            case 5 -> 0.37575F;
+                            case 6 -> 0.43825F;
+                            case 7 -> 0.50075F;
+                            case 8 -> 0.56325F;
+                            case 9 -> 0.62575F;
+                            case 10 -> 0.68825F;
+                            case 11 -> 0.75075F;
+                            case 12 -> 0.81325F;
+                            case 13 -> 0.87575F;
+                            case 14 -> 0.93825F;
+                            case 15 -> 1.00075F;
+                            default -> 0.12575F;
+                        };
+                        Containers.dropItemStack(pLevel, pPos.getCenter().x(), pPos.getY() + yShift, pPos.getCenter().z(), finishStack);
                         pBlockEntity.items.set(slot, ItemStack.EMPTY);
                         pLevel.sendBlockUpdated(pPos, pState, pState, 3);
                         pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos, GameEvent.Context.of(pState));
