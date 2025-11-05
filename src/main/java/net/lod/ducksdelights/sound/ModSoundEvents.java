@@ -20,6 +20,8 @@ public class ModSoundEvents {
 
     public static final RegistryObject<SoundEvent> BARREL_FILL = registerSoundEvents("barrel_fill");
 
+    public static final RegistryObject<SoundEvent> BLAZING_BARREL_CRACKLE = registerSoundEvents("blazing_barrel_crackle");
+
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.tryBuild(DucksDelights.MOD_ID, name)));
     }

@@ -180,7 +180,7 @@ public class BlazingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
 
 
         if (pRandom.nextInt(10) == 0) {
-            pLevel.playLocalSound((double)pPos.getX() + 0.5, (double)pPos.getY() + 0.5, (double)pPos.getZ() + 0.5, SoundEvents.CAMPFIRE_CRACKLE, SoundSource.BLOCKS, 0.5F + pRandom.nextFloat(), pRandom.nextFloat() * 0.7F + 0.6F, false);
+            pLevel.playLocalSound((double)pPos.getX() + 0.5, (double)pPos.getY() + 0.5, (double)pPos.getZ() + 0.5, ModSoundEvents.BLAZING_BARREL_CRACKLE.get(), SoundSource.BLOCKS, 0.5F + pRandom.nextFloat(), pRandom.nextFloat() * 0.7F + 0.6F, false);
         }
 
         if (this.spawnParticles && !pState.getValue(WATERLOGGED)) {

@@ -120,6 +120,7 @@
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",
   "sounds.ducksdelights.demon_core_tink": "Demon Core Opens/Closes",
   "sounds.ducksdelights.barrel_fill": "Barrel Fills/Empties",
+  "sounds.ducksdelights.blazing_barrel_crackle": "Blaze Powder Crackles",
 
   "death.attack.fission": "%1$s observed supercriticality.",
   "death.attack.fission.player": "%2$s convinced %1$s to remove the screwdriver.",

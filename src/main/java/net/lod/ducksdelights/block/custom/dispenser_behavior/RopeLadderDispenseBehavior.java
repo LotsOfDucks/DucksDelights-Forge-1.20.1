@@ -1,4 +1,4 @@
-package net.lod.ducksdelights.block.custom.DispenserBehavior;
+package net.lod.ducksdelights.block.custom.dispenser_behavior;
 
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.RopeLadderBlock;

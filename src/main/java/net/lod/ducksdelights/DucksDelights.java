@@ -2,7 +2,7 @@ package net.lod.ducksdelights;
 
 import com.mojang.logging.LogUtils;
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.block.custom.DispenserBehavior.RopeLadderDispenseBehavior;
+import net.lod.ducksdelights.block.custom.dispenser_behavior.RopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.renderer.BlazingBarrelRenderer;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;

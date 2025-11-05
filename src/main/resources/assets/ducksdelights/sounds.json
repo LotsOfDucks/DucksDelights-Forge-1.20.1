@@ -19,5 +19,16 @@
       "minecraft:block/composter/fill3",
       "minecraft:block/composter/fill4"
     ]
+  },
+  "blazing_barrel_crackle": {
+    "subtitle": "sounds.ducksdelights.blazing_barrel_crackle",
+    "sounds": [
+      "minecraft:block/campfire/crackle1",
+      "minecraft:block/campfire/crackle2",
+      "minecraft:block/campfire/crackle3",
+      "minecraft:block/campfire/crackle4",
+      "minecraft:block/campfire/crackle5",
+      "minecraft:block/campfire/crackle6"
+    ]
   }
 }
