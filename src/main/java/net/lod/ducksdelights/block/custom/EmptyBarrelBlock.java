@@ -46,6 +46,12 @@ public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock {
         if (!itemstack.isEmpty()) {
             if (itemstack.is(Items.GUNPOWDER)) {
                 pLevel.setBlock(pPos, ModBlocks.GUNPOWDER_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 0), 3);
+                pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            }
+            if (itemstack.is(Items.GLOWSTONE_DUST)) {
+                pLevel.setBlock(pPos, ModBlocks.GLOWSTONE_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 0), 3);
+                pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
         }

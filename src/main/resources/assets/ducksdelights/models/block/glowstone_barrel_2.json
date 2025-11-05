@@ -1,6 +1,6 @@
 {
 	"parent": "ducksdelights:block/fillable_barrel_2",
 	"textures": {
-		"filler": "ducksdelights:block/gunpowder_barrel_filler"
+		"filler": "ducksdelights:block/glowstone_barrel_filler"
 	}
 }

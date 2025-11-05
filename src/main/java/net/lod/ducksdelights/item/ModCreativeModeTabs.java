@@ -56,6 +56,7 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("itemgroup.ducksdelights.blocks"))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModBlocks.EMPTY_BARREL.get());
+                output.accept(ModBlocks.GLOWSTONE_BARREL.get());
                 output.accept(ModBlocks.GUNPOWDER_BARREL.get());
                 output.accept(ModBlocks.DEMON_CORE.get());
                 output.accept(ModBlocks.ROPE_LADDER.get());

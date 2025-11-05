@@ -124,6 +124,14 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
         }
     }
 
+    public boolean hasAnalogOutputSignal(BlockState pState) {
+        return true;
+    }
+
+    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+        return this.getFullness(pState);
+    }
+
     public FluidState getFluidState(BlockState pState) {
         return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
     }

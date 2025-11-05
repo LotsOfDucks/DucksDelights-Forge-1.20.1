@@ -46,6 +46,10 @@ public class ModBlocks {
         return (state) -> (Boolean)state.getValue(BlockStateProperties.LIT) ? lightValue : 0;
     }
 
+    private static ToIntFunction<BlockState> filledBlockEmission(int lightValue) {
+        return (state) -> (Boolean)!state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
+    }
+
     private static ToIntFunction<BlockState> explodingBlockEmission(int lightValue) {
         return (state) -> (Boolean)state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
     }
@@ -54,6 +58,29 @@ public class ModBlocks {
             () -> new EmptyBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .ignitedByLava()
                     .pushReaction(PushReaction.NORMAL)));
+
+    public static final RegistryObject<FillableBarrelBlock> GLOWSTONE_BARREL = registerBlock("glowstone_barrel",
+            () -> new FillableBarrelBlock(Items.GLOWSTONE_DUST ,BlockBehaviour.Properties.copy(ModBlocks.EMPTY_BARREL.get())
+                    .lightLevel(((state) ->
+                            switch (state.getValue(FillableBarrelBlock.FULLNESS)) {
+                                case 1 -> 1;
+                                case 2 -> 2;
+                                case 3 -> 3;
+                                case 4 -> 4;
+                                case 5 -> 5;
+                                case 6 -> 6;
+                                case 7 -> 7;
+                                case 8 -> 8;
+                                case 9 -> 9;
+                                case 10 -> 10;
+                                case 11 -> 11;
+                                case 12 -> 12;
+                                case 13 -> 13;
+                                case 14 -> 14;
+                                case 15 -> 15;
+                                default -> 0;
+
+            }))));
 
     public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
             () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)
