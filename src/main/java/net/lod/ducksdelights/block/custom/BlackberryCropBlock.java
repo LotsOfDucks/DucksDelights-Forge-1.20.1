@@ -32,7 +32,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlackberryCropBlock extends BushBlock implements BonemealableBlock {
     public static final IntegerProperty AGE;
-    public static final BooleanProperty MAX_AGE;
     public static final IntegerProperty STAGE;
     public static final BooleanProperty HAS_FRUIT;
     public static final BooleanProperty IS_SPREADING;
@@ -40,7 +39,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
 
     public BlackberryCropBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(MAX_AGE, false).setValue(STAGE, 0).setValue(HAS_FRUIT, false).setValue(IS_SPREADING, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(STAGE, 0).setValue(HAS_FRUIT, false).setValue(IS_SPREADING, false));
     }
 
     public RenderShape getRenderShape(BlockState pState) {
@@ -64,7 +63,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     }
 
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        pLevel.setBlock(pPos, pState.setValue(IS_SPREADING, canSpread(pLevel, pPos)), 3);
+        pLevel.setBlock(pPos, pState.setValue(IS_SPREADING, this.canSpread(pLevel, pPos)), 3);
         if (pState.getValue(IS_SPREADING)) {
             this.applySpread(pLevel, pPos, pState, pRandom);
         }
@@ -74,19 +73,18 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
             int stage = this.getStage(pState);
             if (age < maxAge) {
                 if (pRandom.nextInt(10) == 0) {
-                    pLevel.setBlock(pPos, this.withAge(age + 1, pState), 3);
+                    pLevel.setBlock(pPos, pState.setValue(AGE, age + 1), 3);
                 }
             }
-            if (age == maxAge) {
-                pLevel.setBlock(pPos, pState.setValue(MAX_AGE, true), 3);
+            if (this.isMaxAgeForStage(pState)) {
                 if (stage < 2 && pLevel.getBlockState(pPos.above()).is(Blocks.AIR)) {
                     if (pRandom.nextInt(5) == 0) {
-                        pLevel.setBlock(pPos.above(), this.withPropertiesOf(pState).setValue(STAGE, this.getStage(pState)+1).setValue(AGE, this.getAge(pState)+1).setValue(MAX_AGE, false), 3);
+                        pLevel.setBlock(pPos.above(), pState.setValue(STAGE, stage+1).setValue(AGE, age+1).setValue(IS_SPREADING, canSpread(pLevel, pPos.above())), 3);
                     }
                 }
                 if (!pState.getValue(HAS_FRUIT)) {
                     if (pRandom.nextInt(20) == 0) {
-                        pLevel.setBlock(pPos, this.withFruit(true, pState), 3);
+                        pLevel.setBlock(pPos, pState.setValue(HAS_FRUIT, true), 3);
                     }
                 }
             }
@@ -104,7 +102,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     }
 
     public boolean isMaxAgeForStage(BlockState state) {
-        return state.getValue(MAX_AGE);
+        return this.getAge(state) == this.getMaxAge(state);
     }
 
     public BlockState withAge(int age, BlockState state) {
@@ -138,7 +136,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
 
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         if (world.getBlockState(pos.below()).is(ModBlocks.BLACKBERRY_CROP.get())) {
-            return world.getBlockState(pos.below()).getValue(STAGE) < 2 && world.getBlockState(pos.below()).getValue(MAX_AGE);
+            return world.getBlockState(pos.below()).getValue(STAGE) < 2 && isMaxAgeForStage(world.getBlockState(pos.below()));
         } else return this.mayPlaceOn(world.getBlockState(pos), world, pos);
     }
 
@@ -167,12 +165,12 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     }
 
     public void applyGrowth(Level world, BlockPos pos, BlockState state) {
-        int i = Math.min(this.getMaxAge(state), this.getAge(state) + this.getGrowthAmount(world));
-        world.setBlock(pos, this.withAge(i, state), 3);
-        if (this.getAge(state) == this.getMaxAge(state)) {
-            world.setBlock(pos, this.withFruit(true, state).setValue(MAX_AGE, true), 3);
+        int growthAmount = Math.min(this.getMaxAge(state), this.getAge(state) + this.getGrowthAmount(world));
+        world.setBlock(pos, this.withAge(growthAmount, state), 2);
+        if (this.isMaxAgeForStage(state)) {
+            world.setBlock(pos, this.withFruit(true, state), 2);
             if (world.getBlockState(pos.above()).is(Blocks.AIR) && world.getBlockState(pos).getValue(STAGE) <= 1) {
-                world.setBlock(pos.above(), this.withPropertiesOf(state).setValue(STAGE, this.getStage(state)+1).setValue(AGE, this.getAge(state)+1).setValue(MAX_AGE, false), 3);
+                world.setBlock(pos.above(), this.withPropertiesOf(state).setValue(STAGE, this.getStage(state)+1).setValue(AGE, this.getAge(state)+1), 3);
             }
         }
     }
@@ -181,14 +179,14 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
         return Mth.nextInt(world.random, 0, 1);
     }
 
-    public boolean canSpread(ServerLevel world, BlockPos pos) {
+    private boolean canSpread(Level world, BlockPos pos) {
         if (!world.getGameRules().getBoolean(GameRules.RULE_DO_VINES_SPREAD)){
             return false;
         }
-        return getValidLocations(world, pos) > 0;
+        return this.getValidLocations(world, pos) > 0;
     }
 
-    public static float getValidLocations(ServerLevel world, BlockPos pos) {
+    private float getValidLocations(Level world, BlockPos pos) {
         int validLocations = 0;
         for (int x = -1; x <= 1; ++x) {
             for (int y = -1; y <= 1; ++y) {
@@ -311,13 +309,12 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(AGE, MAX_AGE, STAGE, HAS_FRUIT, IS_SPREADING);
+        pBuilder.add(AGE, STAGE, HAS_FRUIT, IS_SPREADING);
     }
 
     static {
         AGE = IntegerProperty.create("age", 0, 5);
         STAGE = IntegerProperty.create("stage", 0, 2);
-        MAX_AGE = BooleanProperty.create("max_age");
         HAS_FRUIT = BooleanProperty.create("has_fruit");
         IS_SPREADING = BooleanProperty.create("is_spreading");
         AGE_TO_SHAPE = new VoxelShape[]{
