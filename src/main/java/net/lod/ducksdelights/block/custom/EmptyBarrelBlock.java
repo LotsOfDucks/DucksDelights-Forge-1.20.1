@@ -7,7 +7,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -28,13 +32,17 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock {
+public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock, Equipable {
     public static final BooleanProperty WATERLOGGED;
     private static final VoxelShape SHAPE;
 
     public EmptyBarrelBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
+    }
+
+    public EquipmentSlot getEquipmentSlot() {
+        return EquipmentSlot.HEAD;
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {

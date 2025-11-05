@@ -56,7 +56,6 @@ public class ModBlocks {
 
     public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerBlock("empty_barrel",
             () -> new EmptyBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)
-                    .ignitedByLava()
                     .pushReaction(PushReaction.NORMAL)));
 
     public static final RegistryObject<FillableBarrelBlock> GLOWSTONE_BARREL = registerBlock("glowstone_barrel",
