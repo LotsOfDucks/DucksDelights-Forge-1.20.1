@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "fullness=1,": {
+      "model": "ducksdelights:block/blazing_barrel_1"
+    },
+    "fullness=2": {
+      "model": "ducksdelights:block/blazing_barrel_2"
+    },
+    "fullness=3": {
+      "model": "ducksdelights:block/blazing_barrel_3"
+    },
+    "fullness=4": {
+      "model": "ducksdelights:block/blazing_barrel_4"
+    },
+    "fullness=5": {
+      "model": "ducksdelights:block/blazing_barrel_5"
+    },
+    "fullness=6": {
+      "model": "ducksdelights:block/blazing_barrel_6"
+    },
+    "fullness=7": {
+      "model": "ducksdelights:block/blazing_barrel_7"
+    },
+    "fullness=8": {
+      "model": "ducksdelights:block/blazing_barrel_8"
+    },
+    "fullness=9": {
+      "model": "ducksdelights:block/blazing_barrel_9"
+    },
+    "fullness=10": {
+      "model": "ducksdelights:block/blazing_barrel_10"
+    },
+    "fullness=11": {
+      "model": "ducksdelights:block/blazing_barrel_11"
+    },
+    "fullness=12": {
+      "model": "ducksdelights:block/blazing_barrel_12"
+    },
+    "fullness=13": {
+      "model": "ducksdelights:block/blazing_barrel_13"
+    },
+    "fullness=14": {
+      "model": "ducksdelights:block/blazing_barrel_14"
+    },
+    "fullness=15": {
+      "model": "ducksdelights:block/blazing_barrel_15"
+    }
+  }
+}

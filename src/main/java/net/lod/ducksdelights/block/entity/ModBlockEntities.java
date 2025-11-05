@@ -22,6 +22,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(MoonPhaseDetectorBlockEntity::new,
                             ModBlocks.MOON_PHASE_DETECTOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<BlazingBarrelBlockEntity>> BLAZING_BARREL_DETECTOR_BE =
+            BLOCK_ENTITIES.register("blazing_barrel_block_entity", () ->
+                    BlockEntityType.Builder.of(BlazingBarrelBlockEntity::new,
+                            ModBlocks.BLAZING_BARREL.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

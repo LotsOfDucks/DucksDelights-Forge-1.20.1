@@ -78,9 +78,32 @@ public class ModBlocks {
                                 case 13 -> 13;
                                 case 14 -> 14;
                                 case 15 -> 15;
-                                default -> 0;
+                                default -> 1;
 
             }))));
+
+    public static final RegistryObject<BlazingBarrelBlock> BLAZING_BARREL = registerBlock("blazing_barrel",
+            () -> new BlazingBarrelBlock(Items.BLAZE_POWDER , true, 1,BlockBehaviour.Properties.copy(ModBlocks.EMPTY_BARREL.get())
+                    .lightLevel(((state) ->
+                            switch (state.getValue(FillableBarrelBlock.FULLNESS)) {
+                                case 1 -> 1;
+                                case 2 -> 2;
+                                case 3 -> 3;
+                                case 4 -> 4;
+                                case 5 -> 5;
+                                case 6 -> 6;
+                                case 7 -> 7;
+                                case 8 -> 8;
+                                case 9 -> 9;
+                                case 10 -> 10;
+                                case 11 -> 11;
+                                case 12 -> 12;
+                                case 13 -> 13;
+                                case 14 -> 14;
+                                case 15 -> 15;
+                                default -> 1;
+
+                            }))));
 
     public static final RegistryObject<ExplodingBarrelBlock> GUNPOWDER_BARREL = registerBlock("gunpowder_barrel",
             () -> new ExplodingBarrelBlock(Items.GUNPOWDER ,BlockBehaviour.Properties.copy(Blocks.BARREL)

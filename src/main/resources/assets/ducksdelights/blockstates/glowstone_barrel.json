@@ -1,8 +1,5 @@
 {
   "variants": {
-    "fullness=0": {
-      "model": "ducksdelights:block/glowstone_barrel"
-    },
     "fullness=1,": {
       "model": "ducksdelights:block/glowstone_barrel_1"
     },

@@ -1,0 +1,6 @@
+{
+	"parent": "ducksdelights:block/fillable_barrel_6",
+	"textures": {
+		"filler": "ducksdelights:block/blazing_barrel_filler"
+	}
+}

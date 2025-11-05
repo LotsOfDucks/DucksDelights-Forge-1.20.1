@@ -70,7 +70,7 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                 return InteractionResult.FAIL;
             }
         } else {
-            if (fullness > 0 && pHand.equals(InteractionHand.MAIN_HAND)) {
+            if (fullness > 1 && pHand.equals(InteractionHand.MAIN_HAND)) {
                 pLevel.setBlock(pPos, pState.setValue(FULLNESS, fullness - 1), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
                 if (!pPlayer.isCreative()) {
@@ -78,8 +78,8 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
                 }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
-            if (fullness == 0 && pHand.equals(InteractionHand.MAIN_HAND)) {
-                pLevel.setBlock(pPos, ModBlocks.EMPTY_BARREL.get().defaultBlockState(), 3);
+            if (fullness == 1 && pHand.equals(InteractionHand.MAIN_HAND)) {
+                pLevel.setBlock(pPos, ModBlocks.EMPTY_BARREL.get().defaultBlockState().setValue(WATERLOGGED, pState.getValue(WATERLOGGED)), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
                 if (!pPlayer.isCreative()) {
                     pPlayer.addItem(new ItemStack(this.FILLITEM));
@@ -123,7 +123,6 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
 
     public float getExplosionRadiusValues (Level level, BlockPos blockPos) {
          return switch (level.getBlockState(blockPos).getValue(FULLNESS)) {
-            case 0 -> 1;
             case 1 -> 2;
             case 2 -> 3;
             case 3 -> 4;

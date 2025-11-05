@@ -43,14 +43,20 @@ public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock {
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
+        boolean isWaterlogged = pState.getValue(WATERLOGGED);
         if (!itemstack.isEmpty()) {
             if (itemstack.is(Items.GUNPOWDER)) {
-                pLevel.setBlock(pPos, ModBlocks.GUNPOWDER_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 0), 3);
+                pLevel.setBlock(pPos, ModBlocks.GUNPOWDER_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
             if (itemstack.is(Items.GLOWSTONE_DUST)) {
-                pLevel.setBlock(pPos, ModBlocks.GLOWSTONE_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 0), 3);
+                pLevel.setBlock(pPos, ModBlocks.GLOWSTONE_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
+                pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            }
+            if (itemstack.is(Items.BLAZE_POWDER)) {
+                pLevel.setBlock(pPos, ModBlocks.BLAZING_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }

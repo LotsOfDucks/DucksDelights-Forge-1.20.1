@@ -1,8 +1,5 @@
 {
   "variants": {
-    "fullness=0,exploding=false": {
-      "model": "ducksdelights:block/gunpowder_barrel"
-    },
     "fullness=1,exploding=false": {
       "model": "ducksdelights:block/gunpowder_barrel_1"
     },

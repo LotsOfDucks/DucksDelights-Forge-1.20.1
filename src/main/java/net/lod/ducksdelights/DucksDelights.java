@@ -3,11 +3,12 @@ package net.lod.ducksdelights;
 import com.mojang.logging.LogUtils;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.DispenserBehavior.RopeLadderDispenseBehavior;
+import net.lod.ducksdelights.block.custom.renderer.BlazingBarrelRenderer;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.sound.ModSoundEvents;
-import net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -73,6 +74,7 @@ public class DucksDelights {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            BlockEntityRenderers.register(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), BlazingBarrelRenderer::new);
             DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
         }
     }
