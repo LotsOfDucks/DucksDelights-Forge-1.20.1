@@ -25,6 +25,7 @@ import java.util.Optional;
 public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
     private static final int BURN_COOL_SPEED = 2;
     private static final int NUM_SLOTS = 4;
+    private static final int[] SLOTS_FOR_OTHER = new int[]{0,1,2,3};
     private final NonNullList<ItemStack> items;
     private final int[] cookingProgress;
     private final int[] cookingTime;

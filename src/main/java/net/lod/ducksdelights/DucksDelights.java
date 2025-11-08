@@ -2,6 +2,7 @@ package net.lod.ducksdelights;
 
 import com.mojang.logging.LogUtils;
 import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.block.custom.dispenser_behavior.AntiRopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.dispenser_behavior.RopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.renderer.BlazingBarrelRenderer;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
@@ -76,6 +77,7 @@ public class DucksDelights {
         public static void onClientSetup(FMLClientSetupEvent event) {
             BlockEntityRenderers.register(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), BlazingBarrelRenderer::new);
             DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
+            DispenserBlock.registerBehavior(ModBlocks.ANTI_ROPE_LADDER.get().asItem(), new AntiRopeLadderDispenseBehavior());
         }
     }
 }

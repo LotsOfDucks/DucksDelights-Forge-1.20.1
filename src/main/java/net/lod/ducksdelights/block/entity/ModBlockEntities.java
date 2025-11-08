@@ -27,6 +27,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(BlazingBarrelBlockEntity::new,
                             ModBlocks.BLAZING_BARREL.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<AdderBlockEntity>> ADDER_BE =
+            BLOCK_ENTITIES.register("adder_block_entity", () ->
+                    BlockEntityType.Builder.of(AdderBlockEntity::new,
+                            ModBlocks.ADDER.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

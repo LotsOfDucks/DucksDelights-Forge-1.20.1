@@ -169,6 +169,9 @@ public class ModBlocks {
                     .strength(1.5F)
                     .noOcclusion()));
 
+    public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
+            () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
+
 
 
 
