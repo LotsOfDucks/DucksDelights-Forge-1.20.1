@@ -91,9 +91,9 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
             boolean turnOn = this.shouldTurnOn(pLevel, pPos, pState);
             boolean isOn = pState.getValue(POWERED);
             if (isOn && !turnOn) {
-                pLevel.setBlock(pPos, pState.setValue(POWERED, false), 2);
+                pLevel.setBlock(pPos, pState.setValue(POWERED, false), 3);
             } else if (!isOn && turnOn) {
-                pLevel.setBlock(pPos, pState.setValue(POWERED, true), 2);
+                pLevel.setBlock(pPos, pState.setValue(POWERED, true), 3);
             }
 
             this.updateNeighborsInFront(pLevel, pPos, pState);

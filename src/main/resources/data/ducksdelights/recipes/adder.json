@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:redstone_torch"
+    },
+    "I": {
+      "item": "minecraft:deepslate"
+    },
+    "X": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    "III"
+  ],
+  "result": {
+    "item": "ducksdelights:adder"
+  }
+}
