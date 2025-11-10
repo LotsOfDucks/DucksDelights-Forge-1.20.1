@@ -79,15 +79,6 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
         return i;
     }
 
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pPlayer.getAbilities().mayBuild) {
-            return InteractionResult.PASS;
-        } else {
-            this.refreshOutputState(pLevel, pPos, pState);
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
-        }
-    }
-
     protected void checkTickOnNeighbor(Level pLevel, BlockPos pPos, BlockState pState) {
         if (!pLevel.getBlockTicks().willTickThisTick(pPos, this)) {
             int outputSignal = this.calculateOutputSignal(pLevel, pPos, pState);
@@ -102,7 +93,6 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
     }
 
     private void refreshOutputState(Level pLevel, BlockPos pPos, BlockState pState) {
-        int totalSignal = this.calculateOutputSignalUnreduced(pLevel, pPos, pState);
         int outputSignal = this.calculateOutputSignal(pLevel, pPos, pState);
         BlockEntity blockentity = pLevel.getBlockEntity(pPos);
         int blockEntityOutput = 0;
