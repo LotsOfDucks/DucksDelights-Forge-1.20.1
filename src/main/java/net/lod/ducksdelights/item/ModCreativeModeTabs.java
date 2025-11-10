@@ -55,15 +55,17 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> DUCKSDELIGHTS_BLOCKS = CREATIVE_MODE_TABS.register("ducksdelights_blocks", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.DEMON_CORE.get()))
             .title(Component.translatable("itemgroup.ducksdelights.blocks"))
             .displayItems((itemDisplayParameters, output) -> {
+                output.accept(ModBlocks.ROPE_LADDER.get());
+                output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
                 output.accept(ModBlocks.EMPTY_BARREL.get());
                 output.accept(ModBlocks.BLAZING_BARREL.get());
                 output.accept(ModBlocks.GLOWSTONE_BARREL.get());
                 output.accept(ModBlocks.GUNPOWDER_BARREL.get());
                 output.accept(ModBlocks.DEMON_CORE.get());
-                output.accept(ModBlocks.ROPE_LADDER.get());
-                output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
                 output.accept(ModBlocks.SCULK_SPEAKER.get());
                 output.accept(ModBlocks.MOON_PHASE_DETECTOR.get());
+                output.accept(ModBlocks.REDSTONE_LAMP_SLAB.get());
+                output.accept(ModBlocks.ADDER.get());
                 output.accept(ModBlocks.PADDY_FARMLAND.get());
             })
             .build());
