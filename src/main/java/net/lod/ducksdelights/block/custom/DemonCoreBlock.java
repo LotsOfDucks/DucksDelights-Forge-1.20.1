@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.custom.interfaces.SimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.DemonCoreBlockEntity;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.sound.ModSoundEvents;
@@ -32,10 +33,12 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterAndLavaloggedBlock {
     public static final BooleanProperty POWERED;
     public static final BooleanProperty FORCE_POWERED;
     public static final BooleanProperty WATERLOGGED;
+    public static final BooleanProperty LAVALOGGED;
+    public static final BooleanProperty LOGGED;
     public static final BooleanProperty PLAYER_PLACED;
     protected static final VoxelShape UP_SHAPE;
     protected static final VoxelShape LOW_SHAPE;
@@ -44,7 +47,7 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterlogged
 
     public DemonCoreBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FORCE_POWERED, false).setValue(WATERLOGGED, false).setValue(PLAYER_PLACED, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FORCE_POWERED, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(PLAYER_PLACED, false).setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -68,11 +71,11 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterlogged
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidState = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(POWERED, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())).setValue(PLAYER_PLACED, true);
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(LAVALOGGED, fluidState.getType() == Fluids.LAVA).setValue(POWERED, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())).setValue(PLAYER_PLACED, true);
     }
 
     public FluidState getFluidState(BlockState pState) {
-        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : pState.getValue(LAVALOGGED) ? Fluids.LAVA.getSource(false) : super.getFluidState(pState);
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
@@ -93,7 +96,7 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterlogged
         if (pState.getValue(PLAYER_PLACED) && !pState.getValue(FORCE_POWERED) && isPowered != pState.getValue(POWERED)) {
             pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_TINK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!pState.getValue(POWERED)) {
-                if (!pState.getValue(WATERLOGGED)) {
+                if (!pState.getValue(LOGGED)) {
                     pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 4.0F, 1.0F);
                 } else {
                     pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 1.0F, 0.5F);
@@ -104,13 +107,15 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterlogged
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(POWERED, FORCE_POWERED, WATERLOGGED, FACING, PLAYER_PLACED);
+        pBuilder.add(POWERED, FORCE_POWERED, WATERLOGGED, LAVALOGGED, LOGGED, FACING, PLAYER_PLACED);
     }
 
     static {
         POWERED = BlockStateProperties.POWERED;
         FORCE_POWERED = BooleanProperty.create("force_powered");
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
+        LAVALOGGED = ModBlockStateProperties.LAVALOGGED;
+        LOGGED = ModBlockStateProperties.LOGGED;
         PLAYER_PLACED = BooleanProperty.create("player_placed");
         LOW_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
         UP_SHAPE = Block.box(1.0, 8.0, 1.0, 15.0, 14.0, 15.0);

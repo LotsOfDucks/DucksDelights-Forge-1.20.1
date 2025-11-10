@@ -50,27 +50,19 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pState.getValue(ANCHORED)) {
-            switch (pState.getValue(FACING)) {
-                case NORTH:
-                    return NORTH_ANCHORED;
-                case SOUTH:
-                    return SOUTH_ANCHORED;
-                case WEST:
-                    return WEST_ANCHORED;
-                case EAST:
-                default:
-                    return EAST_ANCHORED;
-            }
+            return switch (pState.getValue(FACING)) {
+                case NORTH -> NORTH_ANCHORED;
+                case SOUTH -> SOUTH_ANCHORED;
+                case WEST -> WEST_ANCHORED;
+                case EAST -> EAST_ANCHORED;
+                default -> EAST_ANCHORED;
+            };
         } else {
-            switch (pState.getValue(FACING)) {
-                case NORTH, SOUTH:
-                    return NOUTH;
-                case WEST:
-                    return WEAST;
-                case EAST:
-                default:
-                    return WEAST;
-            }
+            return switch (pState.getValue(FACING)) {
+                case NORTH, SOUTH -> NOUTH;
+                case WEST, EAST -> WEAST;
+                default -> WEAST;
+            };
         }
     }
 

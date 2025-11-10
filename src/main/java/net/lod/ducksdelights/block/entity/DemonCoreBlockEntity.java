@@ -27,6 +27,8 @@ import java.util.List;
 public class DemonCoreBlockEntity extends BlockEntity {
     private boolean powered;
     private boolean waterlogged;
+    private boolean lavalogged;
+    private boolean logged;
     public int ticks;
     public int range = 20;
 
@@ -61,7 +63,7 @@ public class DemonCoreBlockEntity extends BlockEntity {
     public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, DemonCoreBlockEntity pBlockEntity) {
         ++pBlockEntity.ticks;
         pBlockEntity.powered = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.POWERED);
-        pBlockEntity.waterlogged = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.WATERLOGGED);
+        pBlockEntity.logged = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.LOGGED);
         if (pBlockEntity.powered) {
             int range = pBlockEntity.range;
             int boxX = pPos.getX();
@@ -73,7 +75,7 @@ public class DemonCoreBlockEntity extends BlockEntity {
                 irradiateEntities(pLevel, list, pPos, range);
             }
             if (pLevel.getGameTime() % 40L == 0L) {
-                if (!pBlockEntity.waterlogged) {
+                if (!pBlockEntity.logged) {
                     pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 4.0F, 1.0F);
                 } else {
                     pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 1.0F, 0.5F);
