@@ -3,12 +3,11 @@ package net.lod.ducksdelights.block;
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
 import net.lod.ducksdelights.item.ModItems;
+import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.ToFloatFunction;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -54,7 +53,7 @@ public class ModBlocks {
         return (state) -> (Boolean)state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
     }
 
-    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerBlock("empty_barrel",
+    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerArmorBlock("empty_barrel", ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,
             () -> new EmptyBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .pushReaction(PushReaction.NORMAL)));
 
@@ -151,7 +150,7 @@ public class ModBlocks {
                     .isViewBlocking(ModBlocks::never)
                     .randomTicks()));
 
-    public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerBlock("demon_core",
+    public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerFireproofBlock("demon_core",
             () -> new DemonCoreBlock(BlockBehaviour.Properties.of()
                     .strength(50.0F, 1200.0F)
                     .sound(SoundType.NETHERITE_BLOCK)
@@ -169,6 +168,10 @@ public class ModBlocks {
                     .strength(1.5F)
                     .noOcclusion()));
 
+    public static final RegistryObject<ResonatorBlock> RESONATOR = registerBlock("resonator",
+            () -> new ResonatorBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)
+                    .pushReaction(PushReaction.PUSH_ONLY)));
+
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
 
@@ -185,6 +188,28 @@ public class ModBlocks {
 
     private static <T extends Block>RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    }
+
+    private static <T extends Block> RegistryObject<T> registerFireproofBlock(String name, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerFireproofBlockItem(name, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block>RegistryObject<Item> registerFireproofBlockItem(String name, RegistryObject<T> block) {
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()
+                .fireResistant()
+                .rarity(Rarity.EPIC)));
+    }
+
+    private static <T extends Block> RegistryObject<T> registerArmorBlock(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType,Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerArmorBlockItem(name, armorMaterial, armorType,toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block>RegistryObject<Item> registerArmorBlockItem(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType,RegistryObject<T> block) {
+        return ModItems.ITEMS.register(name, () -> new ArmorBlockItem(block.get(), armorMaterial, armorType,new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {

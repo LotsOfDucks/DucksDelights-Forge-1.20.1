@@ -6,9 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -18,7 +15,6 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.ticks.TickPriority;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,11 +41,8 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
     private int calculateOutputSignalUnreduced(Level pLevel, BlockPos pPos, BlockState pState) {
         int inputSignal = this.getInputSignal(pLevel, pPos, pState);
         int sideSignal = this.getAlternateSignal(pLevel, pPos, pState);
-        int outputSignal = inputSignal + sideSignal;
-        if (inputSignal + sideSignal > 15) {
-        }
 
-        return outputSignal;
+        return inputSignal + sideSignal;
     }
 
     private int calculateOutputSignal(Level pLevel, BlockPos pPos, BlockState pState) {

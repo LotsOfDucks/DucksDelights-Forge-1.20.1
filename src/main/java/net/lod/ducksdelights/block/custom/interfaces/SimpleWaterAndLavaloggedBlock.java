@@ -1,6 +1,6 @@
 package net.lod.ducksdelights.block.custom.interfaces;
 
-import net.lod.ducksdelights.block.custom.ModBlockStateProperties;
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
