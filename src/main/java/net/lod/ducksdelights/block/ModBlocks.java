@@ -4,8 +4,9 @@ import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
+import net.lod.ducksdelights.item.custom.ModArmorMaterials;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.util.ToFloatFunction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
@@ -13,13 +14,9 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -53,7 +50,7 @@ public class ModBlocks {
         return (state) -> (Boolean)state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
     }
 
-    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerArmorBlock("empty_barrel", ArmorMaterials.LEATHER, ArmorItem.Type.HELMET,
+    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerArmorBlock("empty_barrel", ModArmorMaterials.BARREL, ArmorItem.Type.HELMET,
             () -> new EmptyBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .pushReaction(PushReaction.NORMAL)));
 
@@ -209,7 +206,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block>RegistryObject<Item> registerArmorBlockItem(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType,RegistryObject<T> block) {
-        return ModItems.ITEMS.register(name, () -> new ArmorBlockItem(block.get(), armorMaterial, armorType,new Item.Properties()));
+        return ModItems.ITEMS.register(name, () -> new ArmorBlockItem(block.get(), armorMaterial, armorType, ModSoundEvents.ARMOR_BARREL_EQUIP.get(), new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {

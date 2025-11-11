@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.item.custom;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.Util;
@@ -7,6 +8,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntitySelector;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,7 +18,9 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
@@ -38,6 +44,7 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
     private final float toughness;
     protected final float knockbackResistance;
     protected final ArmorMaterial material;
+    private final SoundEvent equipSound;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
     public static boolean dispenseArmor(BlockSource pSource, ItemStack pStack) {
@@ -59,9 +66,16 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
         }
     }
 
-    public ArmorBlockItem(Block pBlock, ArmorMaterial pMaterial, ArmorItem.Type pType, Properties pProperties) {
+
+    private static final Map<ArmorMaterial, MobEffectInstance> MATERIAL_EFFECT_MAP =
+            (new ImmutableMap.Builder<ArmorMaterial, MobEffectInstance>())
+                    .put(ModArmorMaterials.BARREL, new MobEffectInstance(MobEffects.BLINDNESS, 60, 0,
+                            false, false, true)).build();
+
+    public ArmorBlockItem(Block pBlock, ArmorMaterial pMaterial, ArmorItem.Type pType,SoundEvent equipSound ,Properties pProperties) {
         super(pBlock, pProperties);
         this.material = pMaterial;
+        this.equipSound = equipSound;
         this.type = pType;
         this.defense = pMaterial.getDefenseForType(pType);
         this.toughness = pMaterial.getToughness();
@@ -82,7 +96,83 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
         return pEquipmentSlot == this.type.getSlot() ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
     }
 
+    public ArmorItem.Type getType() {
+        return this.type;
+    }
+
+    public int getEnchantmentValue() {
+        return this.material.getEnchantmentValue();
+    }
+
+    public ArmorMaterial getMaterial() {
+        return this.material;
+    }
+
+    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+        return this.material.getRepairIngredient().test(pRepair) || super.isValidRepairItem(pToRepair, pRepair);
+    }
+
+    public int getDefense() {
+        return this.defense;
+    }
+
+    public float getToughness() {
+        return this.toughness;
+    }
+
     public EquipmentSlot getEquipmentSlot() {
         return this.type.getSlot();
+    }
+
+    public SoundEvent getEquipSound() {
+        return this.equipSound;
+    }
+
+    public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+        if (!level.isClientSide) {
+            if (hasHelmetOn(player)) {
+                evaluateArmorEffects(player);
+            }
+        }
+        super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
+    }
+
+    private void evaluateArmorEffects(Player player) {
+        for (Map.Entry<ArmorMaterial, MobEffectInstance> entry : MATERIAL_EFFECT_MAP.entrySet()) {
+            ArmorMaterial mapArmorMaterial = entry.getKey();
+            MobEffectInstance mapStatusEffect = entry.getValue();
+            if (hasCorrectHelmetOn(mapArmorMaterial, player)) {
+                addStatusEffect(player, mapArmorMaterial, mapStatusEffect);
+            }
+        }
+    }
+
+    private void addStatusEffect(Player player, ArmorMaterial mapArmorMaterial, MobEffectInstance mapStatusEffect) {
+        boolean playerHasEffect = player.hasEffect(mapStatusEffect.getEffect());
+        if (hasCorrectHelmetOn(mapArmorMaterial, player)) {
+            if (!playerHasEffect) {
+                player.addEffect(new MobEffectInstance(mapStatusEffect));
+            } else {
+                boolean playerEffectEnding = Objects.requireNonNull(player.getEffect(mapStatusEffect.getEffect())).getDuration() < 40;
+                if (playerEffectEnding) {
+                    player.addEffect(new MobEffectInstance(mapStatusEffect));
+                }
+            }
+        }
+    }
+
+    private boolean hasHelmetOn(Player player) {
+        ItemStack helmet = player.getInventory().getArmor(3);
+        return !helmet.isEmpty();
+    }
+
+    private boolean hasCorrectHelmetOn(ArmorMaterial armorMaterial, Player player) {
+        ItemStack armorStack = player.getInventory().getArmor(3);
+        if (!(armorStack.getItem() instanceof ArmorBlockItem)) {
+            return false;
+        }
+
+        ArmorBlockItem helmet = ((ArmorBlockItem)player.getInventory().getArmor(3).getItem());
+        return helmet.getMaterial() == armorMaterial;
     }
 }

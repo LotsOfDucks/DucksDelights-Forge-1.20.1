@@ -11,6 +11,12 @@
       "ducksdelights:demon_core_tink"
     ]
   },
+  "armor_barrel_equip": {
+    "subtitle": "sounds.ducksdelights.barrel_equip",
+    "sounds": [
+      "minecraft:block/barrel/close"
+    ]
+  },
   "barrel_fill": {
     "subtitle": "sounds.ducksdelights.barrel_fill",
     "sounds": [

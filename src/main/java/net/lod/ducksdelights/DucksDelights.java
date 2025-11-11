@@ -54,7 +54,9 @@ public class DucksDelights {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        BlockEntityRenderers.register(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), BlazingBarrelRenderer::new);
+        DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
+        DispenserBlock.registerBehavior(ModBlocks.ANTI_ROPE_LADDER.get().asItem(), new AntiRopeLadderDispenseBehavior());
     }
 
     // Add the example block item to the building blocks tab
@@ -75,9 +77,7 @@ public class DucksDelights {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            BlockEntityRenderers.register(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), BlazingBarrelRenderer::new);
-            DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
-            DispenserBlock.registerBehavior(ModBlocks.ANTI_ROPE_LADDER.get().asItem(), new AntiRopeLadderDispenseBehavior());
+
         }
     }
 }

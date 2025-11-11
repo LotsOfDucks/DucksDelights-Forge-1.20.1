@@ -8,8 +8,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Objects;
-
 public class ModSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, DucksDelights.MOD_ID);
@@ -17,6 +15,8 @@ public class ModSoundEvents {
     public static final RegistryObject<SoundEvent> DEMON_CORE_TINK = registerSoundEvents("demon_core_tink");
 
     public static final RegistryObject<SoundEvent> DEMON_CORE_AMBIENT = registerSoundEvents("demon_core_ambient");
+
+    public static final RegistryObject<SoundEvent> ARMOR_BARREL_EQUIP = registerSoundEvents("armor_barrel_equip");
 
     public static final RegistryObject<SoundEvent> BARREL_FILL = registerSoundEvents("barrel_fill");
 
