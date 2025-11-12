@@ -6,11 +6,15 @@ import com.mojang.serialization.Dynamic;
 import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.ResonatorBlock;
+import net.lod.ducksdelights.block.custom.interfaces.SimpleWaterAndLavaloggedBlock;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.GameEventTags;
 import net.minecraft.tags.TagKey;
@@ -18,6 +22,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SculkSensorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.BlockPositionSource;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -31,7 +36,7 @@ import java.util.Objects;
 
 public class ResonatorBlockEntity extends BlockEntity implements GameEventListener.Holder<VibrationSystem.Listener>, VibrationSystem {
     private static final Logger LOGGER = LogUtils.getLogger();
-    private static final int BREAKING_TIME = 100;
+    private static final int BREAKING_TIME = 20;
     private final VibrationSystem.User vibrationUser = new ResonatorBlockEntity.VibrationUser(this.getBlockPos());
     private VibrationSystem.Data vibrationData = new VibrationSystem.Data();
     private final VibrationSystem.Listener vibrationListener = new VibrationSystem.Listener(this);
@@ -86,7 +91,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         this.lastVibrationFrequency = pLastVibrationFrequency;
     }
 
-    public boolean canBreak(ServerLevel level, BlockPos resonatorPos, BlockPos targetPos) {
+    public boolean canBreak(ServerLevel level, BlockPos targetPos) {
         if (!level.getBlockState(targetPos).is(BlockTags.REPLACEABLE)) {
             float targetDestroyTime = level.getBlockState(targetPos).getBlock().defaultDestroyTime();
             float resonanceThreshhold = switch (getLastVibrationFrequency()) {
@@ -125,7 +130,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
                 case (15) -> 50.0F;
                 default -> -0.1F;
             };
-            if (level.getBlockState(targetPos).is(Blocks.BEDROCK)) {
+            if (level.getBlockState(targetPos).is(Blocks.BEDROCK) && (getLastVibrationFrequency() == 15)) {
                 return true;
             }
             if (getLastVibrationFrequency() < 15) {
@@ -137,31 +142,45 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         return false;
     }
 
-    public void breakingBlock(ServerLevel level, BlockState resontatorState ,BlockPos resonatorPos, BlockPos targetPos) {
-        ResonatorBlockEntity resonatorEntity = (ResonatorBlockEntity) level.getBlockEntity(resonatorPos);
-        if (canBreak(level, resonatorPos, targetPos)) {
+    public void breakingBlock(ServerLevel level, BlockState resontatorState ,BlockPos resonatorPos, BlockPos targetPos, ResonatorBlockEntity blockEntity) {
+        if (canBreak(level, targetPos)) {
             BlockState targetState = level.getBlockState(targetPos);
-
+            float targetDestroyTime = level.getBlockState(targetPos).getBlock().defaultDestroyTime();
             if (!resontatorState.getValue(ModBlockStateProperties.BREAKING)) {
                 level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, true), 3);
             }
-            resonatorEntity.breakTicks++;
-            if (this.breakTicks >= BREAKING_TIME) {
-                this.breakBlock(level, resonatorPos, targetPos);
-                level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, false), 3);
-                resonatorEntity.breakTicks = 0;
+            if (targetDestroyTime >= 0.0) {
+                if (this.breakTicks >= (BREAKING_TIME * (targetDestroyTime / 4))) {
+                    this.breakBlock(level, resonatorPos, targetPos);
+                    level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, false), 3);
+                    blockEntity.breakTicks = 0;
+                } else {
+                    if (blockEntity.breakTicks % 5 == 0) {
+                        spawnParticles(level, targetState, targetPos);
+                    }
+                    level.scheduleTick(resonatorPos, resontatorState.getBlock(), 1);
+                }
             } else {
-                spawnParticles(level, targetState, targetPos);
-                level.scheduleTick(resonatorPos, resontatorState.getBlock(), 1);
+                if (this.breakTicks >= 1000) {
+                    this.breakBlock(level, resonatorPos, targetPos);
+                    level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, false), 3);
+                    blockEntity.breakTicks = 0;
+                } else {
+                    if (blockEntity.breakTicks % 5 == 0) {
+                        spawnParticles(level, targetState, targetPos);
+                    }
+                    level.scheduleTick(resonatorPos, resontatorState.getBlock(), 1);
+                }
             }
+            blockEntity.breakTicks++;
         } else {
             level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, false), 3);
-            resonatorEntity.breakTicks = 0;
+            blockEntity.breakTicks = 0;
         }
     }
 
     public void breakBlock(ServerLevel level, BlockPos resonatorPos, BlockPos targetPos) {
-
+        level.destroyBlock(targetPos, true);
     }
 
     public void spawnParticles(ServerLevel level, BlockState targetState ,BlockPos targetPos) {
@@ -199,11 +218,20 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         }
 
         public boolean canReceiveVibration(ServerLevel p_281256_, BlockPos p_281528_, GameEvent p_282632_, GameEvent.Context p_282914_) {
-            return !(Boolean)ResonatorBlockEntity.this.getBlockState().getValue(ResonatorBlock.BREAKING);
+            BlockPos resonatorPos = this.blockPos;
+            BlockState resonatorState = p_281256_.getBlockState(resonatorPos);
+            Direction facing = resonatorState.getValue(ResonatorBlock.FACING);
+            BlockPos targetPos = resonatorPos.relative(facing);
+            return !(Boolean)ResonatorBlockEntity.this.getBlockState().getValue(ResonatorBlock.BREAKING) && !p_281256_.getBlockState(targetPos).is(BlockTags.REPLACEABLE);
         }
 
         public void onReceiveVibration(ServerLevel pLevel, BlockPos pPos, GameEvent pGameEvent, @Nullable Entity pEntity, @Nullable Entity pPlayerEntity, float pDistance) {
-            pLevel.setBlock(pPos.above(), pLevel.getBlockState(pPos.below()), 3);
+            BlockPos resonatorPos = this.blockPos;
+            BlockState resonatorState = pLevel.getBlockState(resonatorPos);
+            Direction facing = resonatorState.getValue(ResonatorBlock.FACING);
+            BlockPos targetPos = resonatorPos.relative(facing);
+            ResonatorBlockEntity.this.setLastVibrationFrequency(VibrationSystem.getGameEventFrequency(pGameEvent));
+            breakingBlock(pLevel, resonatorState, resonatorPos, targetPos, (ResonatorBlockEntity) pLevel.getBlockEntity(resonatorPos));
         }
 
         public void onDataChanged() {

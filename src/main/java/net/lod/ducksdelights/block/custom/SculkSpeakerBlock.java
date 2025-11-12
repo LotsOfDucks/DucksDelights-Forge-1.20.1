@@ -140,7 +140,6 @@ public class SculkSpeakerBlock extends Block implements SimpleWaterloggedBlock {
         if (!pLevel.isClientSide) {
             pState = pState.cycle(TUNE);
             pLevel.setBlockAndUpdate(pPos, pState);
-            this.playResonance(pPlayer, pState, pLevel, pPos);
             pPlayer.awardStat(Stats.TUNE_NOTEBLOCK);
         }
 
@@ -174,7 +173,7 @@ public class SculkSpeakerBlock extends Block implements SimpleWaterloggedBlock {
             }
             Holder holder = noteBlockInstrument.getSoundEvent();
             if (!(Boolean) pState.getValue(WATERLOGGED)) {
-                pLevel.playSeededSound(null, (double) pPos.getX() + 0.5, (double) pPos.getY() + 0.5, (double) pPos.getZ() + 0.5, holder, SoundSource.RECORDS, 3.0F, f, pLevel.random.nextLong());
+                pLevel.playSeededSound(null, (double) pPos.getX() + 0.5, (double) pPos.getY() + 0.5, (double) pPos.getZ() + 0.5, holder, SoundSource.RECORDS, 0.5F, f, pLevel.random.nextLong());
             } else {
                 double d = pPos.getX();
                 double e = pPos.getY();

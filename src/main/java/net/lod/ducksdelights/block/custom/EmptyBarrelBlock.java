@@ -32,17 +32,13 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock, Equipable {
+public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED;
     private static final VoxelShape SHAPE;
 
     public EmptyBarrelBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
-    }
-
-    public EquipmentSlot getEquipmentSlot() {
-        return EquipmentSlot.HEAD;
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -56,16 +52,25 @@ public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock, E
             if (itemstack.is(Items.GUNPOWDER)) {
                 pLevel.setBlock(pPos, ModBlocks.GUNPOWDER_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                if (!pPlayer.isCreative()) {
+                    itemstack.shrink(1);
+                }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
             if (itemstack.is(Items.GLOWSTONE_DUST)) {
                 pLevel.setBlock(pPos, ModBlocks.GLOWSTONE_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                if (!pPlayer.isCreative()) {
+                    itemstack.shrink(1);
+                }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
             if (itemstack.is(Items.BLAZE_POWDER)) {
                 pLevel.setBlock(pPos, ModBlocks.BLAZING_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
                 pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                if (!pPlayer.isCreative()) {
+                    itemstack.shrink(1);
+                }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
         }

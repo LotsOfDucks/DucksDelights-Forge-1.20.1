@@ -123,6 +123,7 @@
   "sounds.ducksdelights.barrel_equip": "Barrel Placed Gently On Head",
   "sounds.ducksdelights.barrel_fill": "Barrel Fills/Empties",
   "sounds.ducksdelights.blazing_barrel_crackle": "Blaze Powder Crackles",
+  "sounds.ducksdelights.resonator_resonate": "Resonator Resonates Resoundingly",
 
   "death.attack.fission": "%1$s observed supercriticality.",
   "death.attack.fission.player": "%2$s convinced %1$s to remove the screwdriver.",

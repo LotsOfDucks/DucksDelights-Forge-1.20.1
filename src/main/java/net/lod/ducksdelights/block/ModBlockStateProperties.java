@@ -10,9 +10,7 @@ public class ModBlockStateProperties {
     public ModBlockStateProperties() {
     }
 
-    static {
 
-    }
 }
 
 

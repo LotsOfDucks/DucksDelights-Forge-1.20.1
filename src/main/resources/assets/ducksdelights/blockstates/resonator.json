@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "facing=down,breaking=false": {
+      "model": "ducksdelights:block/resonator"
+    },
+    "facing=down,breaking=true": {
+      "model": "ducksdelights:block/resonator_on"
+    },
+    "facing=up,breaking=false": {
+      "model": "ducksdelights:block/resonator",
+      "x": 180
+    },
+    "facing=up,breaking=true": {
+      "model": "ducksdelights:block/resonator_on",
+      "x": 180
+    },
+    "facing=north,breaking=false": {
+      "model": "ducksdelights:block/resonator",
+      "x": 270
+    },
+    "facing=north,breaking=true": {
+      "model": "ducksdelights:block/resonator_on",
+      "x": 270
+    },
+    "facing=south,breaking=false": {
+      "model": "ducksdelights:block/resonator",
+      "x": 90
+    },
+    "facing=south,breaking=true": {
+      "model": "ducksdelights:block/resonator_on",
+      "x": 90
+    },
+    "facing=east,breaking=false": {
+      "model": "ducksdelights:block/resonator",
+      "x": 270,
+      "y": 90
+    },
+    "facing=east,breaking=true": {
+      "model": "ducksdelights:block/resonator_on",
+      "x": 270,
+      "y": 90
+    },
+    "facing=west,breaking=false": {
+      "model": "ducksdelights:block/resonator",
+      "x": 270,
+      "y": 270
+    },
+    "facing=west,breaking=true": {
+      "model": "ducksdelights:block/resonator_on",
+      "x": 270,
+      "y": 270
+    }
+  }
+}

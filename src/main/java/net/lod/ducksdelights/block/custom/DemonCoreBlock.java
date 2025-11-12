@@ -71,7 +71,7 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterAndLav
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         FluidState fluidState = pContext.getLevel().getFluidState(pContext.getClickedPos());
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(LAVALOGGED, fluidState.getType() == Fluids.LAVA).setValue(POWERED, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())).setValue(PLAYER_PLACED, true);
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(LAVALOGGED, fluidState.getType() == Fluids.LAVA).setValue(LOGGED, (fluidState.getType() == (Fluids.LAVA) || fluidState.getType() == (Fluids.WATER))).setValue(POWERED, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())).setValue(PLAYER_PLACED, true);
     }
 
     public FluidState getFluidState(BlockState pState) {

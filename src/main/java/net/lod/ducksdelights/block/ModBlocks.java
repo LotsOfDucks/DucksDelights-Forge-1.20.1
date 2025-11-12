@@ -166,8 +166,10 @@ public class ModBlocks {
                     .noOcclusion()));
 
     public static final RegistryObject<ResonatorBlock> RESONATOR = registerBlock("resonator",
-            () -> new ResonatorBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)
-                    .pushReaction(PushReaction.PUSH_ONLY)));
+            () -> new ResonatorBlock(BlockBehaviour.Properties.of()
+                    .strength(0.5F)
+                    .sound(SoundType.POLISHED_DEEPSLATE)
+                    .mapColor(MapColor.DEEPSLATE)));
 
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));

@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.interfaces.SimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.block.entity.ResonatorBlockEntity;
 import net.lod.ducksdelights.sound.ModSoundEvents;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -33,10 +35,12 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class ResonatorBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+public class ResonatorBlock extends BaseEntityBlock implements SimpleWaterAndLavaloggedBlock {
     public static final DirectionProperty FACING;
     public static final BooleanProperty BREAKING;
     public static final BooleanProperty WATERLOGGED;
+    public static final BooleanProperty LAVALOGGED;
+    public static final BooleanProperty LOGGED;
     protected static final VoxelShape NORTH;
     protected static final VoxelShape SOUTH;
     protected static final VoxelShape WEST;
@@ -49,7 +53,7 @@ public class ResonatorBlock extends BaseEntityBlock implements SimpleWaterlogged
 
     public ResonatorBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(BREAKING, false).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.UP).setValue(BREAKING, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false));
     }
 
     @Override
@@ -60,11 +64,11 @@ public class ResonatorBlock extends BaseEntityBlock implements SimpleWaterlogged
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockPos blockpos = pContext.getClickedPos();
         FluidState fluidstate = pContext.getLevel().getFluidState(blockpos);
-        return this.defaultBlockState().setValue(FACING, pContext.getClickedFace().getOpposite()).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+        return this.defaultBlockState().setValue(FACING, pContext.getClickedFace().getOpposite()).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER).setValue(LAVALOGGED, fluidstate.getType() == Fluids.LAVA).setValue(LOGGED, (fluidstate.getType() == (Fluids.LAVA) || fluidstate.getType() == (Fluids.WATER)));
     }
 
     public FluidState getFluidState(BlockState pState) {
-        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(pState);
+        return pState.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : pState.getValue(LAVALOGGED) ? Fluids.LAVA.getSource(false) : super.getFluidState(pState);
     }
 
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -76,6 +80,10 @@ public class ResonatorBlock extends BaseEntityBlock implements SimpleWaterlogged
             case UP -> UP;
             case DOWN -> DOWN;
         };
+    }
+
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 
     public static boolean getBreaking(BlockState blockState) {
@@ -97,19 +105,28 @@ public class ResonatorBlock extends BaseEntityBlock implements SimpleWaterlogged
         }) : null;
     }
 
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        if (blockEntity instanceof ResonatorBlockEntity) {
+            ((ResonatorBlockEntity) blockEntity).breakingBlock(pLevel, pState, pPos, pPos.relative(pState.getValue(FACING)), (ResonatorBlockEntity) blockEntity);
+        }
+    }
+
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, WATERLOGGED, BREAKING);
+        pBuilder.add(FACING, WATERLOGGED, LAVALOGGED, LOGGED, BREAKING);
     }
 
     static {
         FACING = BlockStateProperties.FACING;
         BREAKING = ModBlockStateProperties.BREAKING;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        NORTH = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
-        SOUTH = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
-        WEST = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
-        EAST = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
-        UP = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
+        LAVALOGGED = ModBlockStateProperties.LAVALOGGED;
+        LOGGED = ModBlockStateProperties.LOGGED;
+        NORTH = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 8.0);
+        SOUTH = Block.box(0.0, 0.0, 8.0, 16.0, 16.0, 16.0);
+        WEST = Block.box(0.0, 0.0, 0.0, 8.0, 16.0, 16.0);
+        EAST = Block.box(8.0, 0.0, 0.0, 16.0, 16.0, 16.0);
+        UP = Block.box(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
         DOWN = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
     }
 }
