@@ -7,6 +7,7 @@ import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.ResonatorBlock;
 import net.lod.ducksdelights.block.custom.interfaces.SimpleWaterAndLavaloggedBlock;
+import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +20,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.GameEventTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,6 +36,7 @@ import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.Objects;
+import java.util.Random;
 
 public class ResonatorBlockEntity extends BlockEntity implements GameEventListener.Holder<VibrationSystem.Listener>, VibrationSystem {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -130,7 +134,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
                 case (15) -> 50.0F;
                 default -> -0.1F;
             };
-            if (level.getBlockState(targetPos).is(Blocks.BEDROCK) && (getLastVibrationFrequency() == 15)) {
+            if ((level.getBlockState(targetPos).is(Blocks.BEDROCK) || level.getBlockState(targetPos).is(ModBlocks.SHATTERED_BEDROCK.get())) && (getLastVibrationFrequency() == 15)) {
                 return true;
             }
             if (getLastVibrationFrequency() < 15) {
@@ -150,8 +154,8 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
                 level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, true), 3);
             }
             if (targetDestroyTime >= 0.0) {
-                if (this.breakTicks >= (BREAKING_TIME * (targetDestroyTime / 4))) {
-                    this.breakBlock(level, resonatorPos, targetPos);
+                if (this.breakTicks >= (BREAKING_TIME * (targetDestroyTime / 2))) {
+                    this.breakBlock(level, resonatorPos, targetState, targetPos);
                     level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, false), 3);
                     blockEntity.breakTicks = 0;
                 } else {
@@ -162,7 +166,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
                 }
             } else {
                 if (this.breakTicks >= 1000) {
-                    this.breakBlock(level, resonatorPos, targetPos);
+                    this.breakBlock(level, resonatorPos, targetState, targetPos);
                     level.setBlock(resonatorPos, resontatorState.setValue(ModBlockStateProperties.BREAKING, false), 3);
                     blockEntity.breakTicks = 0;
                 } else {
@@ -179,8 +183,15 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         }
     }
 
-    public void breakBlock(ServerLevel level, BlockPos resonatorPos, BlockPos targetPos) {
-        level.destroyBlock(targetPos, true);
+    public void breakBlock(ServerLevel level, BlockPos resonatorPos, BlockState targetState, BlockPos targetPos) {
+        if (!targetState.is(Blocks.BEDROCK)) {
+            level.destroyBlock(targetPos, true);
+        } else {
+            level.setBlock(targetPos, ModBlocks.SHATTERED_BEDROCK.get().defaultBlockState(), 3);
+            level.levelEvent(null, 2001, targetPos, Block.getId(targetState));
+            ItemEntity itemEntity = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.BEDROCK_CHIPS.get(), 2));
+            level.addFreshEntity(itemEntity);
+        }
     }
 
     public void spawnParticles(ServerLevel level, BlockState targetState ,BlockPos targetPos) {

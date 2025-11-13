@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,6 +34,10 @@ public class ModBlocks {
     }
 
     private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return false;
+    }
+
+    private static Boolean neverEntity(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
         return false;
     }
 
@@ -170,6 +175,24 @@ public class ModBlocks {
                     .strength(0.5F)
                     .sound(SoundType.POLISHED_DEEPSLATE)
                     .mapColor(MapColor.DEEPSLATE)));
+
+    public static final RegistryObject<ShatteredBedrockBlock> SHATTERED_BEDROCK = registerBlock("shattered_bedrock",
+            () -> new ShatteredBedrockBlock(5778454, BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .sound(SoundType.DEEPSLATE_TILES)
+                    .strength(-1.0F, 3600000.0F)));
+
+    public static final RegistryObject<GlassBlock> REINFORCED_GLASS = registerBlock("reinforced_glass",
+            () -> new GlassBlock(BlockBehaviour.Properties.of()
+                    .instrument(NoteBlockInstrument.HAT)
+                    .strength(1.0F, 3600000.0F)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverEntity)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)));
 
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));

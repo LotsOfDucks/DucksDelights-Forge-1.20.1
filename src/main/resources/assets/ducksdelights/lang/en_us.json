@@ -11,6 +11,8 @@
   "item.ducksdelights.demon_core": "Demon Core",
   "item.ducksdelights.moon_phase_detector": "Moon Phase Detector",
 
+  "item.ducksdelights.bedrock_chips": "Bedrock Chips",
+
   "item.ducksdelights.paddy_farmland": "Paddy",
   "item.ducksdelights.raw_rice": "Paddy Rice",
   "item.ducksdelights.raw_golden_rice": "Golden Paddy Rice",
@@ -110,6 +112,9 @@
   "block.ducksdelights.rope_ladder": "Rope Ladder",
   "block.ducksdelights.anti_rope_ladder": "Anti-Rope Ladder",
   "block.ducksdelights.redstone_lamp_slab": "Redstone Lamp Slab",
+  "block.ducksdelights.resonator": "Block Resonator",
+  "block.ducksdelights.shattered_bedrock": "Shattered Bedrock",
+  "block.ducksdelights.reinforced_glass": "Reinforced Glass",
 
 
   "block.ducksdelights.empty_barrel": "Empty Barrel",
@@ -129,6 +134,8 @@
   "death.attack.fission.player": "%2$s convinced %1$s to remove the screwdriver.",
   "death.attack.gunpowder_barrel": "%1$s stored their gunpowder unsafely.",
   "death.attack.gunpowder_barrel.player": "%2$s made use of their surroundings to defeat %1$s.",
+  "death.attack.bedrock_chips": "%1$s, Why would you eat that???",
+  "death.attack.bedrock_chips.player": "%2$s watched %1$s eat bedrock for some reason.",
 
   "advancements.ducksdelights.root.title": "Ducks' Delights",
   "advancements.ducksdelights.root.description": "Enjoy LotsOfDucks' random additions",

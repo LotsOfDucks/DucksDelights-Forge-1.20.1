@@ -19,6 +19,7 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> DUCKSDELIGHTS_ITEMS = CREATIVE_MODE_TABS.register("ducksdelights_items", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.WHITE_RICE.get()))
             .title(Component.translatable("itemgroup.ducksdelights.items"))
             .displayItems((itemDisplayParameters, output) -> {
+                output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.BLACKBERRIES.get());
                 output.accept(ModItems.BLACKBERRY_PIE.get());
                 output.accept(ModItems.RAW_RICE.get());
@@ -66,6 +67,9 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.MOON_PHASE_DETECTOR.get());
                 output.accept(ModBlocks.REDSTONE_LAMP_SLAB.get());
                 output.accept(ModBlocks.ADDER.get());
+                output.accept(ModBlocks.RESONATOR.get());
+                output.accept(ModBlocks.SHATTERED_BEDROCK.get());
+                output.accept(ModBlocks.REINFORCED_GLASS.get());
                 output.accept(ModBlocks.PADDY_FARMLAND.get());
             })
             .build());

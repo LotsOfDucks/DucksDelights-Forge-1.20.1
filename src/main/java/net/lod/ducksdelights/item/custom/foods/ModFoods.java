@@ -1,5 +1,7 @@
 package net.lod.ducksdelights.item.custom.foods;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraftforge.eventbus.api.IEventBus;
 
@@ -16,6 +18,7 @@ public class ModFoods {
     public static FoodProperties ROCK_CANDY;
     public static FoodProperties BLACKBERRY;
     public static FoodProperties BLACKBERRY_PIE;
+    public static FoodProperties BEDROCK_CHIPS;
 
 
     public ModFoods() {
@@ -34,5 +37,6 @@ public class ModFoods {
         ROCK_CANDY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
         BLACKBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
         BLACKBERRY_PIE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.3F).build();
+        BEDROCK_CHIPS = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.1F).build();
     }
 }
