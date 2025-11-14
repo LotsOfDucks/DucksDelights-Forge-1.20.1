@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -203,7 +204,7 @@ public class SculkSpeakerBlock extends Block implements SimpleWaterloggedBlock {
     static {
         POWERED = BlockStateProperties.POWERED;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        TUNE = IntegerProperty.create("tune", 1, 15);
+        TUNE = ModBlockStateProperties.TUNE;
         UP_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
         LOW_SHAPE = Block.box(2.0, 8.0, 2.0, 14.0, 12.0, 14.0);
         SHAPE = Shapes.or(UP_SHAPE, LOW_SHAPE);

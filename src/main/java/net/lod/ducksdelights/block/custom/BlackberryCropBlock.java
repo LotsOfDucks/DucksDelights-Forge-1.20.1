@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.sound.ModSoundEvents;
@@ -313,10 +314,10 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     }
 
     static {
-        AGE = IntegerProperty.create("age", 0, 5);
-        STAGE = IntegerProperty.create("stage", 0, 2);
-        HAS_FRUIT = BooleanProperty.create("has_fruit");
-        IS_SPREADING = BooleanProperty.create("is_spreading");
+        AGE = ModBlockStateProperties.AGE_6;
+        STAGE = ModBlockStateProperties.STAGE;
+        HAS_FRUIT = ModBlockStateProperties.HAS_FRUIT;
+        IS_SPREADING = ModBlockStateProperties.IS_SPREADING;
         AGE_TO_SHAPE = new VoxelShape[]{
                 Block.box(4.0, 0.0, 4.0, 12.0, 6.0, 12.0),
                 Block.box(3.0, 0.0, 3.0, 13.0, 12.0, 13.0),

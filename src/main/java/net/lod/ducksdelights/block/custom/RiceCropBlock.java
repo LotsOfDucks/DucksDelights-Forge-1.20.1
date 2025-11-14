@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -148,8 +149,8 @@ public class RiceCropBlock extends CropBlock {
     }
 
     static {
-        AGE = IntegerProperty.create("age", 0, 7);
-        GOLDEN = BooleanProperty.create("golden");
+        AGE = ModBlockStateProperties.AGE_8;
+        GOLDEN = ModBlockStateProperties.GOLDEN;
         AGE_TO_SHAPE = new VoxelShape[]{
                 Block.box(7.0, -6.0, 7.0, 9.0, 1.0, 9.0),
                 Block.box(6.0, -6.0, 6.0, 10.0, 3.0, 10.0),

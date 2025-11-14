@@ -112,11 +112,11 @@ public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterAndLav
 
     static {
         POWERED = BlockStateProperties.POWERED;
-        FORCE_POWERED = BooleanProperty.create("force_powered");
+        FORCE_POWERED = ModBlockStateProperties.FORCE_POWERED;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
         LAVALOGGED = ModBlockStateProperties.LAVALOGGED;
         LOGGED = ModBlockStateProperties.LOGGED;
-        PLAYER_PLACED = BooleanProperty.create("player_placed");
+        PLAYER_PLACED = ModBlockStateProperties.PLAYER_PLACED;
         LOW_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
         UP_SHAPE = Block.box(1.0, 8.0, 1.0, 15.0, 14.0, 15.0);
         SHAPE = Shapes.or(UP_SHAPE, LOW_SHAPE);

@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -224,7 +225,7 @@ public class AntiRopeLadderBlock extends Block implements SimpleWaterloggedBlock
     static {
         FACING = HorizontalDirectionalBlock.FACING;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        ANCHORED = BooleanProperty.create("anchored");
+        ANCHORED = ModBlockStateProperties.ANCHORED;
         WEAST = Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
         NOUTH = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
         VoxelShape spool_north = Block.box(0.0, 0.0, 9.0, 16.0, 8.0, 16.0);

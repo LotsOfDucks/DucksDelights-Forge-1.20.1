@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
@@ -141,9 +142,9 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
     }
 
     static {
-        FULLNESS = IntegerProperty.create("fullness", 1, 15);
+        FULLNESS = ModBlockStateProperties.FULLNESS;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
-        EXPLODING = BooleanProperty.create("exploding");
+        EXPLODING = ModBlockStateProperties.EXPLODING;
         VoxelShape wall_north = Block.box(0.0, 0.0, 15.0, 16.0, 16.0, 16.0);
         VoxelShape wall_south = Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 1.0);
         VoxelShape wall_east = Block.box(15.0, 0.0, 1.0, 16.0, 16.0, 15.0);

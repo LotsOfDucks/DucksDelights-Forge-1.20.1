@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.block.entity.MoonPhaseDetectorBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -133,8 +134,8 @@ public class MoonPhaseDetectorBlock extends BaseEntityBlock {
 
     static {
         POWER = BlockStateProperties.POWER;
-        PHASE = IntegerProperty.create("phase", 0, 7);
-        SPECIFIC = BooleanProperty.create("specific");
+        PHASE = ModBlockStateProperties.PHASE;
+        SPECIFIC = ModBlockStateProperties.SPECIFIC;
         SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 6.0, 16.0);
     }
 
