@@ -194,6 +194,13 @@ public class ModBlocks {
                     .isSuffocating(ModBlocks::never)
                     .isViewBlocking(ModBlocks::never)));
 
+    public static final RegistryObject<IronBarsBlock> REINFORCED_GLASS_PANE = registerBlock("reinforced_glass_pane",
+            () -> new IronBarsBlock(BlockBehaviour.Properties.of()
+                    .instrument(NoteBlockInstrument.HAT)
+                    .strength(1.0F, 3600000.0F)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()));
+
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
 

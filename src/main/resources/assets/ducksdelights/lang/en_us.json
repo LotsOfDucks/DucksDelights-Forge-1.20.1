@@ -108,13 +108,16 @@
   "block.ducksdelights.adder": "Redstone Adder",
   "block.ducksdelights.demon_core": "Demon Core",
   "block.ducksdelights.moon_phase_detector": "Moon Phase Detector",
+  "block.ducksdelights.redstone_lamp_slab": "Redstone Lamp Slab",
   "block.ducksdelights.paddy_farmland": "Paddy",
+
   "block.ducksdelights.rope_ladder": "Rope Ladder",
   "block.ducksdelights.anti_rope_ladder": "Anti-Rope Ladder",
-  "block.ducksdelights.redstone_lamp_slab": "Redstone Lamp Slab",
+
   "block.ducksdelights.resonator": "Block Resonator",
   "block.ducksdelights.shattered_bedrock": "Shattered Bedrock",
   "block.ducksdelights.reinforced_glass": "Reinforced Glass",
+  "block.ducksdelights.reinforced_glass_pane": "Reinforced Glass Pane",
 
 
   "block.ducksdelights.empty_barrel": "Empty Barrel",
