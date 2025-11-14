@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "n": {
+            "item": "ducksdelights:reinforced_glass"
+        }
+    },
+    "pattern": [
+        "nnn",
+        "nnn"
+    ],
+    "result": {
+        "item": "minecraft:cobblestone",
+        "count": 16
+    }
+}

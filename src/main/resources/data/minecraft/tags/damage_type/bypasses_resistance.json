@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "ducksdelights:fission"
+    "ducksdelights:fission",
+    "ducksdelights:bedrock_chips"
   ]
 }

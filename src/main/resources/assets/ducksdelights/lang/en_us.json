@@ -140,6 +140,8 @@
   "death.attack.bedrock_chips": "%1$s, Why would you eat that???",
   "death.attack.bedrock_chips.player": "%2$s watched %1$s eat bedrock for some reason.",
 
+  "trim_material.ducksdelights.bedrock_chips": "Bedrock Material",
+
   "advancements.ducksdelights.root.title": "Ducks' Delights",
   "advancements.ducksdelights.root.description": "Enjoy LotsOfDucks' random additions",
   "advancements.ducksdelights.craft_demon_core.title": "Let's Get Critical",

@@ -1,0 +1,9 @@
+{
+  "asset_name": "bedrock_chips",
+  "description": {
+    "color": "#222222",
+    "translate": "trim_material.ducksdelights.bedrock_chips"
+  },
+  "ingredient": "ducksdelights:bedrock_chips",
+  "item_model_index": 0.3
+}

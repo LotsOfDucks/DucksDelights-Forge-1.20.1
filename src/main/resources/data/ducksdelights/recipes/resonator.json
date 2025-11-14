@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:lightning_rod"
+    },
+    "I": {
+      "item": "minecraft:deepslate"
+    },
+    "X": {
+      "item": "minecraft:echo_shard"
+    }
+  },
+  "pattern": [
+    "# #",
+    "#X#",
+    "III"
+  ],
+  "result": {
+    "item": "ducksdelights:resonator"
+  }
+}
