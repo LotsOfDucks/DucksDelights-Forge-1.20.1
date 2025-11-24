@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ducksdelights:block/bedrock_enriched_sand"
+  }
+}

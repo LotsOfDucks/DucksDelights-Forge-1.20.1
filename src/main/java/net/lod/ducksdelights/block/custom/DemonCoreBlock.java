@@ -1,7 +1,7 @@
 package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlockStateProperties;
-import net.lod.ducksdelights.block.custom.interfaces.SimpleWaterAndLavaloggedBlock;
+import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.DemonCoreBlockEntity;
 import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.lod.ducksdelights.sound.ModSoundEvents;
@@ -33,7 +33,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class DemonCoreBlock extends BaseEntityBlock implements SimpleWaterAndLavaloggedBlock {
+public class DemonCoreBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock {
     public static final BooleanProperty POWERED;
     public static final BooleanProperty FORCE_POWERED;
     public static final BooleanProperty WATERLOGGED;

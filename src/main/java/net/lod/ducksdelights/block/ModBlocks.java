@@ -183,6 +183,9 @@ public class ModBlocks {
                     .sound(SoundType.DEEPSLATE_TILES)
                     .strength(-1.0F, 3600000.0F)));
 
+    public static final RegistryObject<SandBlock> BEDROCK_SAND = registerBlock("bedrock_enriched_sand",
+            () -> new SandBlock(14406560, BlockBehaviour.Properties.copy(Blocks.SAND)));
+
     public static final RegistryObject<GlassBlock> REINFORCED_GLASS = registerBlock("reinforced_glass",
             () -> new GlassBlock(BlockBehaviour.Properties.of()
                     .instrument(NoteBlockInstrument.HAT)

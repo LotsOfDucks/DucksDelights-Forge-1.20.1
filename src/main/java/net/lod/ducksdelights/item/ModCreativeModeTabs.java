@@ -70,6 +70,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ADDER.get());
                 output.accept(ModBlocks.RESONATOR.get());
                 output.accept(ModBlocks.SHATTERED_BEDROCK.get());
+                output.accept(ModBlocks.BEDROCK_SAND.get());
                 output.accept(ModBlocks.REINFORCED_GLASS.get());
                 output.accept(ModBlocks.REINFORCED_GLASS_PANE.get());
 

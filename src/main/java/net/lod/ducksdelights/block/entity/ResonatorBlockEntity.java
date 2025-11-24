@@ -6,16 +6,13 @@ import com.mojang.serialization.Dynamic;
 import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.ResonatorBlock;
-import net.lod.ducksdelights.block.custom.interfaces.SimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.item.ModItems;
-import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.GameEventTags;
 import net.minecraft.tags.TagKey;
@@ -25,7 +22,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.SculkSensorBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.BlockPositionSource;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -35,8 +31,6 @@ import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
-import java.util.Random;
 
 public class ResonatorBlockEntity extends BlockEntity implements GameEventListener.Holder<VibrationSystem.Listener>, VibrationSystem {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -187,8 +181,8 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         if (!targetState.is(Blocks.BEDROCK)) {
             level.destroyBlock(targetPos, true);
         } else {
+            spawnParticles(level, targetState, targetPos);
             level.setBlock(targetPos, ModBlocks.SHATTERED_BEDROCK.get().defaultBlockState(), 3);
-            level.levelEvent(null, 2001, targetPos, Block.getId(targetState));
             ItemEntity itemEntity = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.BEDROCK_CHIPS.get(), 2));
             level.addFreshEntity(itemEntity);
         }
