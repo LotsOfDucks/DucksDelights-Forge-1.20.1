@@ -2,16 +2,10 @@ package net.lod.ducksdelights.item;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.item.custom.BedrockChipsItem;
-import net.lod.ducksdelights.item.custom.EmptySoulCageItem;
-import net.lod.ducksdelights.item.custom.RemainderItem;
-import net.lod.ducksdelights.item.custom.SoulCageItem;
+import net.lod.ducksdelights.damage.ModDamageTypes;
+import net.lod.ducksdelights.item.custom.*;
 import net.lod.ducksdelights.item.custom.foods.ModFoods;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BowlFoodItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -30,6 +24,9 @@ public class ModItems {
     public static final RegistryObject<BedrockChipsItem> BEDROCK_CHIPS = ITEMS.register("bedrock_chips",
             () -> new BedrockChipsItem(new Item.Properties()
                     .food(ModFoods.BEDROCK_CHIPS)));
+
+    public static final RegistryObject<RadioactiveItem> FISSILE_SHARD = ITEMS.register("fissile_shard",
+            () -> new RadioactiveItem(new Item.Properties(), ModDamageTypes.FISSION));
 
     public static final RegistryObject<Item> BLACKBERRIES = ITEMS.register("blackberries",
             () -> new ItemNameBlockItem(ModBlocks.BLACKBERRY_CROP.get(),new Item.Properties()

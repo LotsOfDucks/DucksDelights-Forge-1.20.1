@@ -31,6 +31,7 @@ import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class ResonatorBlockEntity extends BlockEntity implements GameEventListener.Holder<VibrationSystem.Listener>, VibrationSystem {
     private static final Logger LOGGER = LogUtils.getLogger();
@@ -184,6 +185,10 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
             spawnParticles(level, targetState, targetPos);
             level.setBlock(targetPos, ModBlocks.SHATTERED_BEDROCK.get().defaultBlockState(), 3);
             ItemEntity itemEntity = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.BEDROCK_CHIPS.get(), 2));
+            if (level.random.nextInt() % 20 == 0) {
+                ItemEntity itemEntity2 = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.FISSILE_SHARD.get(), 1));
+                level.addFreshEntity(itemEntity2);
+            }
             level.addFreshEntity(itemEntity);
         }
     }

@@ -11,6 +11,7 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -19,8 +20,7 @@ import java.util.List;
 
 public interface IRadiativeBlockEntity {
 
-
-    static void getEntitiesInRange(Level level, BlockPos pos, BlockState ptate, BlockEntity blockEntity, Integer range, Float damageScale, Float xOffsetPos, Float xOffsetNeg, Float yOffsetPos, Float yOffsetNeg, Float zOffsetPos, Float zOffsetNeg, DamageSource damageSource) {
+    static void getEntitiesInRange(Level level, BlockPos pos, BlockState state, BlockEntity blockEntity, Integer range, Float damageScale, Float xOffsetPos, Float xOffsetNeg, Float yOffsetPos, Float yOffsetNeg, Float zOffsetPos, Float zOffsetNeg, DamageSource damageSource) {
         int boxX = pos.getX();
         int boxY = pos.getY();
         int boxZ = pos.getZ();
