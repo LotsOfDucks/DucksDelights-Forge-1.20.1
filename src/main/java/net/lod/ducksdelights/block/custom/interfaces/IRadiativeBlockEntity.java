@@ -1,8 +1,6 @@
 package net.lod.ducksdelights.block.custom.interfaces;
 
-import net.lod.ducksdelights.damage.ModDamageTypes;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,7 +9,6 @@ import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -36,8 +33,8 @@ public interface IRadiativeBlockEntity {
             if (pos.getCenter().closerThan(livingEntity.position(), range) && livingEntity.isAlive()) {
                 if (livingEntity instanceof Player && livingEntity.tickCount <= 200) {
                     return;
-                } else if (hasLos(world, livingEntity, pos, range, damageScale,xOffsetPos, xOffsetNeg, yOffsetPos, yOffsetNeg, zOffsetPos, zOffsetNeg)) {
-                    applyDamage(livingEntity, damageSource);
+                } else if (hasLos(world, livingEntity, pos, range, damageScale, xOffsetPos, xOffsetNeg, yOffsetPos, yOffsetNeg, zOffsetPos, zOffsetNeg)) {
+                    applyDamage(livingEntity, damageSource, world, pos, range, damageScale);
                 }
             }
         }
@@ -50,12 +47,14 @@ public interface IRadiativeBlockEntity {
         double blockCenterPosY = blockPos.getCenter().y();
         double blockCenterPosZ = blockPos.getCenter().z();
         long entityDistance = (long) Math.min(range, Math.max(Math.ceil(Math.abs(blockPos.getCenter().distanceTo(entityPositionFeet))), 1));
-        entityDistance = (long) (entityDistance / damageScale);
-        if (world.getDifficulty() == Difficulty.PEACEFUL) {
-            entityDistance = entityDistance * 2;
-        }
         entityDistance = Math.max(entityDistance, 1);
-        if (world.getGameTime() % entityDistance == 0L) {
+        long modifiedEntityDistance;
+        modifiedEntityDistance = (long) (entityDistance / damageScale);
+        if (world.getDifficulty() == Difficulty.PEACEFUL) {
+            modifiedEntityDistance = modifiedEntityDistance * 2;
+        }
+        modifiedEntityDistance = Math.max(modifiedEntityDistance, 1);
+        if (world.getGameTime() % modifiedEntityDistance == 0L) {
             if (entityPositionEyes.x() > blockCenterPosX) {
                 Vec3 eyeVectorX = new Vec3(blockPos.getCenter().x() +xOffsetPos, blockPos.getCenter().y(), blockPos.getCenter().z());
                 boolean eyesX = livingEntity.level().clip(new ClipContext(eyeVectorX, entityPositionEyes, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, livingEntity)).getType() == HitResult.Type.BLOCK;
@@ -138,7 +137,19 @@ public interface IRadiativeBlockEntity {
         return false;
     }
 
-    static void applyDamage(LivingEntity livingEntity, DamageSource damageSource) {
-        livingEntity.hurt(damageSource, 1);
+    static void applyDamage(LivingEntity livingEntity, DamageSource damageSource, Level world, BlockPos blockPos, int range, float damageScale) {
+        double entityDistance = Math.min(range, Math.max(Math.ceil(Math.abs(blockPos.getCenter().distanceTo(livingEntity.position()))), 1));
+        entityDistance = Math.max(entityDistance, 1);
+        double modifiedEntityDistance;
+        modifiedEntityDistance = entityDistance / damageScale;
+        if (world.getDifficulty() == Difficulty.PEACEFUL) {
+            modifiedEntityDistance = modifiedEntityDistance * 2;
+        }
+        modifiedEntityDistance = Math.max(modifiedEntityDistance, 0.1);
+        if (modifiedEntityDistance <= 1 && damageScale > 1.0F) {
+            livingEntity.hurt(damageSource,  (float) (entityDistance / modifiedEntityDistance));
+        } else {
+            livingEntity.hurt(damageSource, 1);
+        }
     }
 }
