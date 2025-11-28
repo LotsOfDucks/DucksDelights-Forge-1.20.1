@@ -138,15 +138,15 @@ public interface IRadiativeBlockEntity {
     }
 
     static void applyDamage(LivingEntity livingEntity, DamageSource damageSource, Level world, BlockPos blockPos, int range, float damageScale) {
-        double entityDistance = Math.min(range, Math.max(Math.ceil(Math.abs(blockPos.getCenter().distanceTo(livingEntity.position()))), 1));
-        entityDistance = Math.max(entityDistance, 1);
+        double entityDistance = Math.max(Math.min(range, Math.max(Math.ceil(Math.abs(blockPos.getCenter().distanceTo(livingEntity.position()))), 1)), 1);
+        float damageScaleFinal = Math.max(damageScale, 0.01F);
         double modifiedEntityDistance;
-        modifiedEntityDistance = entityDistance / damageScale;
+        modifiedEntityDistance = entityDistance / damageScaleFinal;
         if (world.getDifficulty() == Difficulty.PEACEFUL) {
             modifiedEntityDistance = modifiedEntityDistance * 2;
         }
         modifiedEntityDistance = Math.max(modifiedEntityDistance, 0.1);
-        if (modifiedEntityDistance <= 1 && damageScale > 1.0F) {
+        if (modifiedEntityDistance <= 1 && damageScaleFinal > 1.0F) {
             livingEntity.hurt(damageSource,  (float) (entityDistance / modifiedEntityDistance));
         } else {
             livingEntity.hurt(damageSource, 1);
