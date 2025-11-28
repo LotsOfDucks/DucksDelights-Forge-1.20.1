@@ -46,10 +46,11 @@ public interface IRadiativeBlockEntity {
         double blockCenterPosX = blockPos.getCenter().x();
         double blockCenterPosY = blockPos.getCenter().y();
         double blockCenterPosZ = blockPos.getCenter().z();
+        float damageScaleFinal = Math.max(damageScale, 0.01F);
         long entityDistance = (long) Math.min(range, Math.max(Math.ceil(Math.abs(blockPos.getCenter().distanceTo(entityPositionFeet))), 1));
         entityDistance = Math.max(entityDistance, 1);
         long modifiedEntityDistance;
-        modifiedEntityDistance = (long) (entityDistance / damageScale);
+        modifiedEntityDistance = (long) (entityDistance / damageScaleFinal);
         if (world.getDifficulty() == Difficulty.PEACEFUL) {
             modifiedEntityDistance = modifiedEntityDistance * 2;
         }
