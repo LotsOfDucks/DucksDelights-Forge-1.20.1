@@ -48,8 +48,8 @@ public class BlazingBarrelRenderer implements BlockEntityRenderer<BlazingBarrelB
 
 
         for(int slot = 0; slot < itemList.size(); ++slot) {
-            ItemStack $$10 = itemList.get(slot);
-            if ($$10 != ItemStack.EMPTY) {
+            ItemStack itemStack = itemList.get(slot);
+            if (itemStack != ItemStack.EMPTY) {
                 pPoseStack.pushPose();
                 pPoseStack.translate(0.5F, yShift, 0.5F);
                 Direction directionRotation = Direction.from2DDataValue((slot) % 4);
@@ -58,7 +58,7 @@ public class BlazingBarrelRenderer implements BlockEntityRenderer<BlazingBarrelB
                 pPoseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
                 pPoseStack.translate(-0.2F, -0.2F, 0.0F);
                 pPoseStack.scale(0.375F, 0.375F, 0.375F);
-                this.itemRenderer.renderStatic($$10, ItemDisplayContext.FIXED, pPackedLight, pPackedOverlay, pPoseStack, pBuffer, pBlockEntity.getLevel(), blockPos + slot);
+                this.itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, pPackedLight, pPackedOverlay, pPoseStack, pBuffer, pBlockEntity.getLevel(), blockPos + slot);
                 pPoseStack.popPose();
             }
         }

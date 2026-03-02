@@ -1,0 +1,13 @@
+{
+  "type": "ducksdelights:blazing",
+  "cookingtime": 600,
+  "ingredients": [
+    {
+      "item": "minecraft:chicken"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "minecraft:cooked_chicken"
+  }
+}

@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.entity;
 
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.custom.DemonCoreBlock;
 import net.lod.ducksdelights.block.custom.interfaces.IRadiativeBlockEntity;
 import net.lod.ducksdelights.damage.ModDamageTypes;

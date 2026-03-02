@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.entity;
 
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.spawners.BlightedSpawner;
 import net.minecraft.client.multiplayer.ClientLevel;

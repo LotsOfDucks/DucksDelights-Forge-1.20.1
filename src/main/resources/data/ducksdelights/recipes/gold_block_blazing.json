@@ -1,0 +1,13 @@
+{
+  "type": "ducksdelights:blazing",
+  "cookingtime": 3600,
+  "ingredients": [
+    {
+      "item": "minecraft:raw_gold_block"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "minecraft:gold_block"
+  }
+}

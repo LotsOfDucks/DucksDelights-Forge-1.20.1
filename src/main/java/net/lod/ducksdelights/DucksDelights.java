@@ -2,15 +2,17 @@ package net.lod.ducksdelights;
 
 import com.mojang.logging.LogUtils;
 import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.block.ModCompostables;
 import net.lod.ducksdelights.block.custom.dispenser_behavior.AntiRopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.dispenser_behavior.RopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.renderer.BlazingBarrelRenderer;
 import net.lod.ducksdelights.block.custom.renderer.BlightedSpawnerRenderer;
-import net.lod.ducksdelights.block.entity.ModBlockEntities;
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.entity.ModEntities;
 import net.lod.ducksdelights.entity.client.DynamicFallingBlockRenderer;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItems;
+import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -38,6 +40,7 @@ public class DucksDelights {
     public DucksDelights(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
+        ModRecipes.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
@@ -64,6 +67,7 @@ public class DucksDelights {
         BlockEntityRenderers.register(ModBlockEntities.BLIGHTED_SPAWNER_BE.get(), BlightedSpawnerRenderer::new);
         DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
         DispenserBlock.registerBehavior(ModBlocks.ANTI_ROPE_LADDER.get().asItem(), new AntiRopeLadderDispenseBehavior());
+        ModCompostables.register();
     }
 
     // Add the example block item to the building blocks tab

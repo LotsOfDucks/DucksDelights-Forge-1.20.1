@@ -1,0 +1,13 @@
+{
+  "type": "ducksdelights:blazing",
+  "cookingtime": 800,
+  "ingredients": [
+    {
+      "item": "minecraft:raw_iron"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "minecraft:iron_ingot"
+  }
+}

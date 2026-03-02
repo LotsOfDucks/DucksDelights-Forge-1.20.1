@@ -2,7 +2,7 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
-import net.lod.ducksdelights.block.entity.ModBlockEntities;
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.entity.ResonatorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

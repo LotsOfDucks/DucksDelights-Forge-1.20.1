@@ -1,5 +1,6 @@
 package net.lod.ducksdelights.block.entity;
 
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;

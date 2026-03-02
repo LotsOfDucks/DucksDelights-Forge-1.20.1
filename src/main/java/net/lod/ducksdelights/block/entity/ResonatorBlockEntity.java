@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.entity;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.ResonatorBlock;
@@ -31,7 +32,6 @@ import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class ResonatorBlockEntity extends BlockEntity implements GameEventListener.Holder<VibrationSystem.Listener>, VibrationSystem {
     private static final Logger LOGGER = LogUtils.getLogger();

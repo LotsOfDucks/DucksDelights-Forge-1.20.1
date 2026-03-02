@@ -3,7 +3,7 @@ package net.lod.ducksdelights.block.custom;
 import net.lod.ducksdelights.block.ModBlockStateProperties;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.DemonCoreBlockEntity;
-import net.lod.ducksdelights.block.entity.ModBlockEntities;
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -95,7 +95,7 @@ public class DemonCoreBlock extends BaseEntityBlock implements ISimpleWaterAndLa
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         boolean isPowered = pLevel.hasNeighborSignal(pPos);
-        if (pState.getValue(PLAYER_PLACED) && !pState.getValue(FORCE_POWERED) && isPowered != pState.getValue(POWERED)) {
+        if (!pState.getValue(FORCE_POWERED) && isPowered != pState.getValue(POWERED)) {
             pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_TINK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!pState.getValue(POWERED)) {
                 if (!pState.getValue(LOGGED)) {

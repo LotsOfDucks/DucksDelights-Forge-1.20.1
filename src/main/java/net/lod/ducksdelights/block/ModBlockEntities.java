@@ -1,7 +1,7 @@
-package net.lod.ducksdelights.block.entity;
+package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
-import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.block.entity.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -41,6 +41,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("blighted_spawner_entity", () ->
                     BlockEntityType.Builder.of(BlightedSpawnerBlockEntity::new,
                             ModBlocks.BLIGHTED_SPAWNER_BLOCK.get()).build(null));
+
+    //public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAN_BE =
+    //        BLOCK_ENTITIES.register("giant_clam", () ->
+    //                BlockEntityType.Builder.of(GiantClamBlockEntity::new,
+    //                        ModBlocks.GIANT_CLAM.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -1,0 +1,13 @@
+{
+  "type": "ducksdelights:blazing",
+  "cookingtime": 300,
+  "ingredients": [
+    {
+      "item": "ducksdelights:haunted_metal_scrap"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "ducksdelights:haunted_steel_nugget"
+  }
+}

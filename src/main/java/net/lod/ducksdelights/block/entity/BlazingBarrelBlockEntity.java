@@ -1,6 +1,8 @@
 package net.lod.ducksdelights.block.entity;
 
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.custom.BlazingBarrelBlock;
+import net.lod.ducksdelights.recipe.BlazingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -11,9 +13,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.*;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,14 +29,14 @@ public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
     private final NonNullList<ItemStack> items;
     private final int[] cookingProgress;
     private final int[] cookingTime;
-    private final RecipeManager.CachedCheck<Container, CampfireCookingRecipe> quickCheck;
+    private final RecipeManager.CachedCheck<SimpleContainer, BlazingRecipe> quickCheck;
 
     public BlazingBarrelBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), pPos, pBlockState);
         this.items = NonNullList.withSize(4, ItemStack.EMPTY);
         this.cookingProgress = new int[4];
         this.cookingTime = new int[4];
-        this.quickCheck = RecipeManager.createCheck(RecipeType.CAMPFIRE_COOKING);
+        this.quickCheck = RecipeManager.createCheck(BlazingRecipe.Type.INSTANCE);
     }
 
     //yeah this is modified campfire code and im not ashamed of that
@@ -50,7 +50,7 @@ public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
                 cook = true;
                 pBlockEntity.cookingProgress[slot]++;
                 if (pBlockEntity.cookingProgress[slot] >= (pBlockEntity.cookingTime[slot] * 0.75)) {
-                    Container container = new SimpleContainer(cookingItem);
+                    SimpleContainer container = new SimpleContainer(cookingItem);
                     ItemStack finishStack = pBlockEntity.quickCheck.getRecipeFor(container, pLevel).map((p_270054_) -> p_270054_.assemble(container, pLevel.registryAccess())).orElse(cookingItem);
                     if (finishStack.isItemEnabled(pLevel.enabledFeatures())) {
                         float yShift = switch (pState.getValue(BlazingBarrelBlock.FULLNESS)) {
@@ -157,11 +157,11 @@ public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
         return compoundTag;
     }
 
-    public Optional<CampfireCookingRecipe> getCookableRecipe(ItemStack pStack) {
+    public Optional<BlazingRecipe> getCookableRecipe(ItemStack pStack) {
         return this.items.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.quickCheck.getRecipeFor(new SimpleContainer(new ItemStack[]{pStack}), this.level);
     }
 
-    public boolean placeFood(@Nullable Entity pEntity, ItemStack pStack, int pCookTime) {
+    public boolean placeItem(@Nullable Entity pEntity, ItemStack pStack, int pCookTime) {
         for(int slot = 0; slot < this.items.size(); ++slot) {
             ItemStack itemStack = this.items.get(slot);
             if (itemStack.isEmpty()) {

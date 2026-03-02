@@ -1,8 +1,6 @@
 package net.lod.ducksdelights.item.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.block.entity.BlightedSpawnerBlockEntity;
-import net.lod.ducksdelights.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;

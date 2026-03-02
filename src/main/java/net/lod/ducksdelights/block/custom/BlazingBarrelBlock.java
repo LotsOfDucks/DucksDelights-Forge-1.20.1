@@ -2,14 +2,13 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.BlazingBarrelBlockEntity;
-import net.lod.ducksdelights.block.entity.ModBlockEntities;
+import net.lod.ducksdelights.block.ModBlockEntities;
+import net.lod.ducksdelights.recipe.BlazingRecipe;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -18,8 +17,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -113,14 +112,14 @@ public class BlazingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         int fullness = this.getFullness(pState);
         if (!itemstack.is(this.FILLITEM.asItem()) && !itemstack.isEmpty()) {
-            if (blockentity instanceof BlazingBarrelBlockEntity blazingBarrelBlockEntity) {
-                Optional<CampfireCookingRecipe> optional = blazingBarrelBlockEntity.getCookableRecipe(itemstack);
+            if (pLevel.isClientSide) {
+                return InteractionResult.SUCCESS;
+            } else if (blockentity instanceof BlazingBarrelBlockEntity blazingBarrelBlockEntity) {
+                Optional<BlazingRecipe> optional = blazingBarrelBlockEntity.getCookableRecipe(itemstack);
                 if (optional.isPresent()) {
-                    if (!pLevel.isClientSide && blazingBarrelBlockEntity.placeFood(pPlayer, pPlayer.getAbilities().instabuild ? itemstack.copy() : itemstack, ((CampfireCookingRecipe)optional.get()).getCookingTime())) {
-                        return InteractionResult.SUCCESS;
+                    if (blazingBarrelBlockEntity.placeItem(pPlayer, pPlayer.getAbilities().instabuild ? itemstack.copy() : itemstack, optional.get().getCookingTime())) {
+                        return InteractionResult.CONSUME;
                     }
-
-                    return InteractionResult.CONSUME;
                 }
             }
             return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
