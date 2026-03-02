@@ -39,6 +39,8 @@ public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
         this.quickCheck = RecipeManager.createCheck(RecipeType.CAMPFIRE_COOKING);
     }
 
+    //yeah this is modified campfire code and im not ashamed of that
+
     public static void cookTick(Level pLevel, BlockPos pPos, BlockState pState, BlazingBarrelBlockEntity pBlockEntity) {
         boolean cook = false;
 

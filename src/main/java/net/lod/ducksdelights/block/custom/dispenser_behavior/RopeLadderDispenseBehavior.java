@@ -24,6 +24,7 @@ public class RopeLadderDispenseBehavior extends OptionalDispenseItemBehavior {
 
     private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
+    //Oh this is worse than the Anti-Rope Ladder
     protected ItemStack execute(BlockSource pSource, ItemStack pStack) {
         this.setSuccess(false);
         Item item = pStack.getItem();

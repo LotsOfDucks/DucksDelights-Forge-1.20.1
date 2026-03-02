@@ -42,6 +42,8 @@ public class PaddyFarmlandBlock extends Block implements SimpleWaterloggedBlock 
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false).setValue(MOISTURE, 0));
     }
 
+    //dirt slab
+
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }

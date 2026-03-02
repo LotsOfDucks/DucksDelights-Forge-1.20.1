@@ -50,6 +50,8 @@ public class DemonCoreBlock extends BaseEntityBlock implements ISimpleWaterAndLa
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED, false).setValue(FORCE_POWERED, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(PLAYER_PLACED, false).setValue(FACING, Direction.NORTH));
     }
 
+    //mmmmm, demon core.
+
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new DemonCoreBlockEntity(blockPos, blockState);
@@ -97,9 +99,9 @@ public class DemonCoreBlock extends BaseEntityBlock implements ISimpleWaterAndLa
             pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_TINK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!pState.getValue(POWERED)) {
                 if (!pState.getValue(LOGGED)) {
-                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 4.0F, 1.0F);
+                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
                 } else {
-                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 1.0F, 0.5F);
+                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, 0.5F);
                 }
             }
             pLevel.setBlockAndUpdate(pPos, pState.setValue(POWERED, isPowered));

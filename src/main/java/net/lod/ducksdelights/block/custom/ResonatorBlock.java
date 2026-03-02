@@ -41,8 +41,7 @@ public class ResonatorBlock extends BaseEntityBlock implements ISimpleWaterAndLa
     protected static final VoxelShape UP;
     protected static final VoxelShape DOWN;
 
-
-
+    //this block sucked too, it worked relatively quickly but man was it finicky
 
     public ResonatorBlock(Properties pProperties) {
         super(pProperties);

@@ -141,6 +141,7 @@ public class FillableBarrelBlock extends Block implements SimpleWaterloggedBlock
         pBuilder.add(FULLNESS, WATERLOGGED, EXPLODING);
     }
 
+    //I'm so sorry
     static {
         FULLNESS = ModBlockStateProperties.FULLNESS;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;

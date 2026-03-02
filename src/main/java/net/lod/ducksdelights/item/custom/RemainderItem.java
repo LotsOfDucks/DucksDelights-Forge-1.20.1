@@ -15,6 +15,8 @@ public class RemainderItem extends Item {
         remainder = remainderItem;
     }
 
+    //I think its crazy I had to make this.
+
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         ItemStack noChange = super.finishUsingItem(pStack, pLevel, pEntityLiving);
         return pEntityLiving instanceof Player && ((Player)pEntityLiving).getAbilities().instabuild ? noChange : new ItemStack(remainder);

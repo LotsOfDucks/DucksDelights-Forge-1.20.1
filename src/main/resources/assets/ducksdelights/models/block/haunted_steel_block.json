@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "ducksdelights:block/haunted_steel_block"
+    "all": "ducksdelights:block/haunted_steel_block_alt"
   }
 }

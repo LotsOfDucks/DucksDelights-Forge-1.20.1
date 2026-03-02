@@ -24,6 +24,7 @@ public class BlazingBarrelRenderer implements BlockEntityRenderer<BlazingBarrelB
         this.itemRenderer = pContext.getItemRenderer();
     }
 
+    //Item model offset for different fullness stages
     public void render(BlazingBarrelBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         NonNullList<ItemStack> itemList = pBlockEntity.getItems();
         int blockPos = (int)pBlockEntity.getBlockPos().asLong();

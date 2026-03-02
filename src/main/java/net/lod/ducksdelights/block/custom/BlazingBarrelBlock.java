@@ -79,6 +79,9 @@ public class BlazingBarrelBlock extends BaseEntityBlock implements SimpleWaterlo
         this.registerDefaultState(this.stateDefinition.any().setValue(FULLNESS, 13).setValue(WATERLOGGED, false).setValue(EXPLODING, false));
     }
 
+    //I'm debating redoing all of the Barrel Blocks, and using a different method of tracking the contained item
+    //as of now its very scuffed
+
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE_BY_FULLNESS[this.getFullness(pState)];
     }

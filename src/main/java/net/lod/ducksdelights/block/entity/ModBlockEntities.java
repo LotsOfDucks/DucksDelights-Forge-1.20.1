@@ -37,6 +37,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ResonatorBlockEntity::new,
                             ModBlocks.RESONATOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<BlightedSpawnerBlockEntity>> BLIGHTED_SPAWNER_BE =
+            BLOCK_ENTITIES.register("blighted_spawner_entity", () ->
+                    BlockEntityType.Builder.of(BlightedSpawnerBlockEntity::new,
+                            ModBlocks.BLIGHTED_SPAWNER_BLOCK.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

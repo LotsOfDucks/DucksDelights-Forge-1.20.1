@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -71,15 +72,15 @@ public class AntiRopeLadderBlock extends Block implements SimpleWaterloggedBlock
 
     private boolean canAttachTo(BlockGetter pBlockReader, BlockPos pPos, Direction pDirection) {
         BlockState attachedBlockState = pBlockReader.getBlockState(pPos);
-        if (attachedBlockState.hasProperty(SlabBlock.TYPE)) {
+        if (attachedBlockState.is(BlockTags.SLABS)) {
             if (attachedBlockState.getValue(SlabBlock.TYPE) == (SlabType.BOTTOM)) {
                 return true;
             }
-        } else if (attachedBlockState.hasProperty(StairBlock.HALF)) {
+        } else if (attachedBlockState.is(BlockTags.STAIRS)) {
             if (attachedBlockState.getValue(StairBlock.HALF) == (Half.BOTTOM)) {
                 return true;
             }
-        } else if (attachedBlockState.hasProperty(AntiRopeLadderBlock.FACING)) {
+        } else if (attachedBlockState.is(ModBlocks.ANTI_ROPE_LADDER.get())) {
         if (attachedBlockState.getValue(AntiRopeLadderBlock.FACING) == (pDirection.getOpposite()) && attachedBlockState.getValue(AntiRopeLadderBlock.ANCHORED)) {
                 return true;
             }
@@ -122,6 +123,7 @@ public class AntiRopeLadderBlock extends Block implements SimpleWaterloggedBlock
         }
     }
 
+    //this is ugly but i dont want to redo it in any way
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack heldItem = pPlayer.getItemInHand(pHand);
         boolean flag = false;

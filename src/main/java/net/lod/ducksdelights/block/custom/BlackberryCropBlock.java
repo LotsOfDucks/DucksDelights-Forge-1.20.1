@@ -43,6 +43,9 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(STAGE, 0).setValue(HAS_FRUIT, false).setValue(IS_SPREADING, false));
     }
 
+    //this exists in such a hellish manner because i wanted a 3 stage crop in one block using blockstates
+    //do not do this
+
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
@@ -138,6 +141,13 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         if (world.getBlockState(pos.below()).is(ModBlocks.BLACKBERRY_CROP.get())) {
             return world.getBlockState(pos.below()).getValue(STAGE) < 2 && isMaxAgeForStage(world.getBlockState(pos.below()));
+        } else if (world.getBlockState(pos).is(ModBlocks.BLACKBERRY_CROP.get())) {
+            if (state.getValue(STAGE) == 1) {
+                if (world.getBlockState(pos.below(2)).is(BlockTags.DIRT) && (world.getBlockState(pos.below()).is(BlockTags.FENCES) || world.getBlockState(pos.below()).is(BlockTags.FENCE_GATES) || world.getBlockState(pos.below()).is(BlockTags.WALLS))) {
+                    return true;
+                }
+            }
+            return this.mayPlaceOn(world.getBlockState(pos), world, pos);
         } else return this.mayPlaceOn(world.getBlockState(pos), world, pos);
     }
 
@@ -194,7 +204,10 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                 for (int z = -1; z <= 1; ++z){
                     BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
                     BlockState dirtCheckState = world.getBlockState(pos.offset(x, y-1, z));
+                    BlockState subDirtCheckState = world.getBlockState(pos.offset(x, y-2, z));
                     if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && dirtCheckState.is(BlockTags.DIRT)) {
+                        validLocations += 1;
+                    } else if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && (dirtCheckState.is(BlockTags.FENCES) || dirtCheckState.is(BlockTags.FENCE_GATES) || dirtCheckState.is(BlockTags.WALLS) && subDirtCheckState.is(BlockTags.DIRT))) {
                         validLocations += 1;
                     }
                 }
@@ -211,11 +224,17 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
         for (int x = -1; x <= 1; ++x) {
             for (int y = -1; y <= 1; ++y) {
                 for (int z = -1; z <= 1; ++z){
-                    BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
-                    BlockState dirtCheckState = world.getBlockState(pos.offset(x, y-1, z));
-                    if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && dirtCheckState.is(BlockTags.DIRT)) {
-                        if (random.nextInt(100) <= 0) {
-                            world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState(), 3);
+                    if (world.random.nextInt(100) <= 0) {
+                        BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
+                        BlockState dirtCheckState = world.getBlockState(pos.offset(x, y - 1, z));
+                        BlockState subDirtCheckState = world.getBlockState(pos.offset(x, y - 2, z));
+                        if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE))) {
+                            if (dirtCheckState.is(BlockTags.DIRT)) {
+                                world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState(), 3);
+                            }
+                            if (subDirtCheckState.is(BlockTags.DIRT) && (dirtCheckState.is(BlockTags.FENCES) || dirtCheckState.is(BlockTags.FENCE_GATES) || dirtCheckState.is(BlockTags.WALLS))) {
+                                world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState().setValue(STAGE, 1).setValue(AGE, 3), 3);
+                            }
                         }
                     }
                 }
@@ -237,6 +256,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
 
     }
 
+    //this is worse than the anti-rope ladder
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pLevel.getBlockState(pPos).getValue(HAS_FRUIT)) {
             int j = 1 + pLevel.random.nextInt(3);
@@ -265,10 +285,10 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                 pLevel.playSound(null, pPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
                 popResource(pLevel, pPos, new ItemStack(ModItems.BLACKBERRIES.get(), j));
                 BlockState targetState = pState.setValue(HAS_FRUIT, false);
-                BlockState targetState2 = pLevel.getBlockState(pPos.below()).setValue(HAS_FRUIT, false);
                 pLevel.setBlock(pPos, targetState, 3);
                 pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos.below(), GameEvent.Context.of(pPlayer, targetState));
                 if (pLevel.getBlockState(pPos.below()).is(ModBlocks.BLACKBERRY_CROP.get())) {
+                    BlockState targetState2 = pLevel.getBlockState(pPos.below()).setValue(HAS_FRUIT, false);
                     if (pLevel.getBlockState(pPos.below()).getValue(HAS_FRUIT)) {
                         popResource(pLevel, pPos, new ItemStack(ModItems.BLACKBERRIES.get(), j));
                         pLevel.setBlock(pPos.below(), targetState2, 3);
@@ -286,17 +306,17 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                 pLevel.playSound(null, pPos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + pLevel.random.nextFloat() * 0.4F);
                 popResource(pLevel, pPos, new ItemStack(ModItems.BLACKBERRIES.get(), j));
                 BlockState targetState = pState.setValue(HAS_FRUIT, false);
-                BlockState targetState2 = pLevel.getBlockState(pPos.below()).setValue(HAS_FRUIT, false);
-                BlockState targetState3 = pLevel.getBlockState(pPos.below(2)).setValue(HAS_FRUIT, false);
                 pLevel.setBlock(pPos, targetState, 3);
                 pLevel.gameEvent(GameEvent.BLOCK_CHANGE, pPos.below(), GameEvent.Context.of(pPlayer, targetState));
                 if (pLevel.getBlockState(pPos.below()).is(ModBlocks.BLACKBERRY_CROP.get())) {
+                    BlockState targetState2 = pLevel.getBlockState(pPos.below()).setValue(HAS_FRUIT, false);
                     if (pLevel.getBlockState(pPos.below()).getValue(HAS_FRUIT)) {
                         popResource(pLevel, pPos, new ItemStack(ModItems.BLACKBERRIES.get(), j));
                         pLevel.setBlock(pPos.below(), targetState2, 3);
                     }
                 }
                 if (pLevel.getBlockState(pPos.below(2)).is(ModBlocks.BLACKBERRY_CROP.get())) {
+                    BlockState targetState3 = pLevel.getBlockState(pPos.below(2)).setValue(HAS_FRUIT, false);
                     if (pLevel.getBlockState(pPos.below(2)).getValue(HAS_FRUIT)) {
                         popResource(pLevel, pPos, new ItemStack(ModItems.BLACKBERRIES.get(), j));
                         pLevel.setBlock(pPos.below(2), targetState3, 3);

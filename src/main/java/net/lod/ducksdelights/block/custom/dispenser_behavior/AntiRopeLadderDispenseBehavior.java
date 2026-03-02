@@ -24,6 +24,7 @@ public class AntiRopeLadderDispenseBehavior extends OptionalDispenseItemBehavior
 
     private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
+    //Good God I haven't looked at this in a while
     protected ItemStack execute(BlockSource pSource, ItemStack pStack) {
         this.setSuccess(false);
         Item item = pStack.getItem();

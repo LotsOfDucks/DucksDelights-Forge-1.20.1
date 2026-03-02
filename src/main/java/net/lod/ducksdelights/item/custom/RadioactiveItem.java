@@ -1,6 +1,5 @@
 package net.lod.ducksdelights.item.custom;
 
-import net.lod.ducksdelights.damage.ModDamageTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
@@ -13,22 +12,52 @@ import net.minecraft.world.level.Level;
 public class RadioactiveItem extends Item {
     private final ResourceKey<DamageType> damageType;
 
+    private boolean hasDamaged;
+
     public RadioactiveItem(Properties pProperties, ResourceKey<DamageType> damageType) {
         super(pProperties);
         this.damageType = damageType;
     }
 
+    //this was a bitch to get working correct, having multiple stacks in the inventory cause so many problems
+    //im free now *i hope*
+    //just realized while typing that this only works for player inventories and not other entity inventories.
+    //I'm not fixing that
+
     public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
         if (!level.isClientSide) {
-            if (level.getGameTime() % 20L == 0L) {
-                DamageSource damageSource = new DamageSource(
-                        level.registryAccess()
-                                .registryOrThrow(Registries.DAMAGE_TYPE)
-                                .getHolder(damageType).get()
-                );
-                player.hurt(damageSource, 1);
+            if (level.getGameTime() % getTicksUntilDamage(player) == 0L) {
+                if (!hasDamaged) {
+                    this.damageTrigger(level, player);
+                    hasDamaged = true;
+                }
+            } else {
+                if (hasDamaged) {
+                    hasDamaged = false;
+                }
             }
         }
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
+    }
+
+    public static long getTicksUntilDamage(Player player) {
+        long ticksUntilDamage = 200;
+        for (int slot = 0; slot <= player.getInventory().items.size(); slot++) {
+            ItemStack targetItemStack = player.getInventory().getItem(slot);
+            if (targetItemStack.getItem() instanceof RadioactiveItem) {
+                long itemStackFullness = targetItemStack.getCount() / targetItemStack.getMaxStackSize();
+                ticksUntilDamage *= Math.max(((1 - (itemStackFullness))), 1);
+            }
+        }
+        return ticksUntilDamage;
+    }
+
+    public void damageTrigger(Level level, Player player) {
+        DamageSource damageSource = new DamageSource(
+                level.registryAccess()
+                        .registryOrThrow(Registries.DAMAGE_TYPE)
+                        .getHolder(damageType).get()
+        );
+        player.hurt(damageSource, 1);
     }
 }

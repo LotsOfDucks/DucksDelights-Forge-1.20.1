@@ -35,6 +35,9 @@ public class ExplodingBarrelBlock extends FillableBarrelBlock{
         super(fillItem, pProperties);
     }
 
+    //this entire thing was bullshit. getting it to explode correctly sucked balls
+    //it's absolutely way too strong but i dont care anymore.
+
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         int fullness = this.getFullness(pState);

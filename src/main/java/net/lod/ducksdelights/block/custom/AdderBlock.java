@@ -4,6 +4,7 @@ import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.AdderBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
@@ -38,6 +39,7 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
         return blockentity instanceof AdderBlockEntity ? ((AdderBlockEntity)blockentity).getOutputSignal() : 0;
     }
 
+    //is it powered at all
     private int calculateOutputSignalUnreduced(Level pLevel, BlockPos pPos, BlockState pState) {
         int inputSignal = this.getInputSignal(pLevel, pPos, pState);
         int sideSignal = this.getAlternateSignal(pLevel, pPos, pState);
@@ -45,6 +47,7 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
         return inputSignal + sideSignal;
     }
 
+    //actual output value
     private int calculateOutputSignal(Level pLevel, BlockPos pPos, BlockState pState) {
         int inputSignal = this.getInputSignal(pLevel, pPos, pState);
         int sideSignal = this.getAlternateSignal(pLevel, pPos, pState);
@@ -56,6 +59,7 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
         return outputSignal;
     }
 
+    //should be on? Yes/No
     protected boolean shouldTurnOn(Level pLevel, BlockPos pPos, BlockState pState) {
         return this.calculateOutputSignalUnreduced(pLevel, pPos, pState) > 0;
     }
@@ -85,6 +89,7 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
 
     }
 
+    //make sure it updates accordingly, this sucked to code
     private void refreshOutputState(Level pLevel, BlockPos pPos, BlockState pState) {
         int outputSignal = this.calculateOutputSignal(pLevel, pPos, pState);
         BlockEntity blockentity = pLevel.getBlockEntity(pPos);
@@ -127,6 +132,50 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
             state.neighborChanged((Level)world, pos, world.getBlockState(neighbor).getBlock(), neighbor, false);
         }
 
+    }
+
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        if (pState.getValue(POWERED)) {
+            Direction directionFacing = pState.getValue(FACING);
+            //get center pos
+            double xPos = (double)pPos.getX() + 0.5 + (pRandom.nextDouble() - 0.5) * 0.2;
+            double yPos = (double)pPos.getY() + 0.4 + (pRandom.nextDouble() - 0.5) * 0.2;
+            double zPos = (double)pPos.getZ() + 0.5 + (pRandom.nextDouble() - 0.5) * 0.2;
+            float xoffset = 0F;
+            float zoffset = 0F;
+
+            //determine if spawning particle for from 2 torches else back torch
+            if (pRandom.nextBoolean()) {
+                switch (directionFacing) {
+                    case NORTH, SOUTH -> xoffset = 2F;
+                    case EAST, WEST -> xoffset = 0F;
+                }
+                switch (directionFacing) {
+                    case NORTH, SOUTH -> zoffset = 0F;
+                    case EAST, WEST -> zoffset = 2F;
+                }
+                //left or right torch
+                if (pRandom.nextBoolean()) {
+                    xoffset *= -1F;
+                    zoffset *= -1F;
+                }
+            } else {
+                switch (directionFacing) {
+                    case NORTH, SOUTH -> xoffset = 0F;
+                    case EAST -> xoffset = 6F;
+                    case WEST -> xoffset = -6F;
+                }
+                switch (directionFacing) {
+                    case NORTH -> zoffset = -6F;
+                    case SOUTH -> zoffset = 6F;
+                    case EAST, WEST -> zoffset = 0F;
+                }
+            }
+            //convert to pixel scale
+            xoffset /= 16.0F;
+            zoffset /= 16.0F;
+            pLevel.addParticle(DustParticleOptions.REDSTONE, xPos + xoffset, yPos, zPos + zoffset, 0.0, 0.0, 0.0);
+        }
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

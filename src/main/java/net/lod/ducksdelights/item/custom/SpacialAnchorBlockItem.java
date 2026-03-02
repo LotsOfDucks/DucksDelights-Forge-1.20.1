@@ -18,6 +18,8 @@ public class SpacialAnchorBlockItem extends BlockItem {
         super(pBlock, pProperties);
     }
 
+    //angel block style thing i wanna add eventually
+
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
         ItemStack heldItem = pPlayer.getItemInHand(pHand);
         if (pLevel.isClientSide) {

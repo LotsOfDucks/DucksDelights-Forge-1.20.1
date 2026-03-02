@@ -50,8 +50,8 @@
   "item.ducksdelights.mote_of_creation": "Mote Of Creation",
   "item.ducksdelights.mote_of_destruction": "Mote Of Destruction",
   "item.ducksdelights.mote_upgrade_template": "Mote Imbuement Template",
+  "item.ducksdelights.haunted_steel_nugget": "Haunted Steel Nugget",
   "item.ducksdelights.haunted_metal_scrap": "Haunted Metal Scrap",
-  "item.ducksdelights.haunted_metal_sheets": "Haunted Metal Sheets",
   "item.ducksdelights.haunted_steel_ingot": "Haunted Steel Ingot",
   "item.ducksdelights.haunted_steel_bucket": "Haunted Steel Bucket",
 
@@ -71,9 +71,12 @@
   "item.ducksdelights.haunted_steel_leggings": "Haunted Steel Leggings",
   "item.ducksdelights.haunted_steel_boots": "Haunted Steel Boots",
 
-  "item.ducksdelights.haunted_steel_block": "Block of Haunted Steel",
-
   "item.ducksdelights.soul_cage": "Soul Cage",
+  "item.ducksdelights.soul_cage_full": "Soul Cage (Filled)",
+  "item.ducksdelights.soul_cage.desc1": "Interact With Entity at 1 HP",
+  "item.ducksdelights.soul_cage.desc2": "Captures Entity",
+  "item.ducksdelights.soul_cage_full.desc1": "Contains:",
+  "item.ducksdelights.soul_cage_full.broken_desc": "Error, Discard This.",
 
   "item.ducksdelights.creation_imbued_helmet": "Creation Imbued Helmet",
   "item.ducksdelights.creation_imbued_chestplate": "Creation Imbued Chestplate",
@@ -89,20 +92,6 @@
   "item.ducksdelights.haunted_steel_lava_bucket": "Haunted Steel Lava Bucket",
   "item.ducksdelights.overflowing_water_bucket": "Overflowing Water Bucket",
   "item.ducksdelights.overflowing_lava_bucket": "Overflowing Lava Bucket",
-
-  "item.minecraft.potion.effect.health_boost_potion": "Potion of Health Boost",
-  "item.minecraft.splash_potion.effect.health_boost_potion": "Splash Potion of Health Boost",
-  "item.minecraft.lingering_potion.effect.health_boost_potion": "LingeringPotion of Health Boost",
-  "item.minecraft.tipped_arrow.effect.health_boost_potion": "Arrow of Health Boost",
-  "item.minecraft.potion.effect.long_health_boost_potion": "Potion of Health Boost",
-  "item.minecraft.splash_potion.effect.long_health_boost_potion": "Splash Potion of Health Boost",
-  "item.minecraft.lingering_potion.effect.long_health_boost_potion": "Lingering Potion of Health Boost",
-  "item.minecraft.tipped_arrow.effect.long_health_boost_potion": "Arrow of Health Boost",
-  "item.minecraft.potion.effect.strong_health_boost_potion": "Potion of Health Boost",
-  "item.minecraft.splash_potion.effect.strong_health_boost_potion": "Splash Potion of Health Boost",
-  "item.minecraft.lingering_potion.effect.strong_health_boost_potion": "Lingering Potion of Health Boost",
-  "item.minecraft.tipped_arrow.effect.strong_health_boost_potion": "Arrow of Health Boost",
-
 
   "block.ducksdelights.sculk_speaker": "Sculk Speaker",
   "block.ducksdelights.adder": "Redstone Adder",
@@ -120,11 +109,17 @@
   "block.ducksdelights.reinforced_glass": "Reinforced Glass",
   "block.ducksdelights.reinforced_glass_pane": "Reinforced Glass Pane",
 
-
   "block.ducksdelights.empty_barrel": "Empty Barrel",
   "block.ducksdelights.glowstone_barrel": "Barrel Of Glowstone",
   "block.ducksdelights.blazing_barrel": "Barrel Of Blaze Powder",
   "block.ducksdelights.gunpowder_barrel": "Barrel Of Gunpowder",
+
+  "block.ducksdelights.haunted_steel_block": "Block of Haunted Steel",
+  "item.ducksdelights.blighted_spawner": "Blighted Spawner",
+
+  "block.ducksdelights.blighted_spawner": "Blighted Spawner",
+  "block.ducksdelights.blighted_spawner.desc1": "Interact With Filled Soul Cage",
+  "block.ducksdelights.blighted_spawner.desc2": "Sets Mob Type",
 
 
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",
@@ -140,6 +135,8 @@
   "death.attack.gunpowder_barrel.player": "%2$s made use of their surroundings to defeat %1$s.",
   "death.attack.bedrock_chips": "%1$s, Why would you eat that???",
   "death.attack.bedrock_chips.player": "%2$s watched %1$s eat bedrock for some reason.",
+  "death.attack.shattered_bedrock": "%1$s was crushed by an unstoppable force.",
+  "death.attack.shattered_bedrock.player": "%2$s crushed %1$s with the stone to end all stone.",
 
   "trim_material.ducksdelights.bedrock_chips": "Bedrock Material",
 

@@ -15,8 +15,16 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, DucksDelights.MOD_ID);
 
-    public static final RegistryObject<Item> SOUL_CAGE_EMPTY = ITEMS.register("soul_cage_empty",
-            () -> new EmptySoulCageItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> HAUNTED_METAL_SCRAP = ITEMS.register("haunted_metal_scrap",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_NUGGET = ITEMS.register("haunted_steel_nugget",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_INGOT = ITEMS.register("haunted_steel_ingot",
+            () -> new Item(new Item.Properties()));
+
+
 
     public static final RegistryObject<Item> SOUL_CAGE = ITEMS.register("soul_cage",
             () -> new SoulCageItem(new Item.Properties().stacksTo(1)));
@@ -25,8 +33,13 @@ public class ModItems {
             () -> new BedrockChipsItem(new Item.Properties()
                     .food(ModFoods.BEDROCK_CHIPS)));
 
-    public static final RegistryObject<RadioactiveItem> FISSILE_SHARD = ITEMS.register("fissile_shard",
+    public static final RegistryObject<RadioactiveItem> STARBLIGHT_MOTE = ITEMS.register("starblight_mote",
+            () -> new StarblightMoteItem(new Item.Properties(), ModDamageTypes.FISSION));
+
+    public static final RegistryObject<RadioactiveItem> STARBLIGHT_SHARD = ITEMS.register("starblight_shard",
             () -> new RadioactiveItem(new Item.Properties(), ModDamageTypes.FISSION));
+
+
 
     public static final RegistryObject<Item> BLACKBERRIES = ITEMS.register("blackberries",
             () -> new ItemNameBlockItem(ModBlocks.BLACKBERRY_CROP.get(),new Item.Properties()
@@ -35,6 +48,8 @@ public class ModItems {
     public static final RegistryObject<Item> BLACKBERRY_PIE = ITEMS.register("blackberry_pie",
             () -> new Item(new Item.Properties()
                     .food(ModFoods.BLACKBERRY_PIE)));
+
+
 
     public static final RegistryObject<Item> RAW_RICE = ITEMS.register("raw_rice",
             () -> new ItemNameBlockItem(ModBlocks.RICE_CROP.get(),new Item.Properties()));
@@ -75,6 +90,8 @@ public class ModItems {
     public static final RegistryObject<Item> GILDED_ONIGIRI = ITEMS.register("gilded_onigiri",
             () -> new Item(new Item.Properties()
                     .food(ModFoods.GILDED_ONIGIRI)));
+
+
 
     public static final RegistryObject<Item> KIBBLESTONE = ITEMS.register("kibblestone",
             () -> new Item(new Item.Properties()

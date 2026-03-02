@@ -17,6 +17,7 @@ import java.util.List;
 
 public interface IRadiativeBlockEntity {
 
+    //Track Entities in Box for possible irradiation
     static void getEntitiesInRange(Level level, BlockPos pos, BlockState state, BlockEntity blockEntity, Integer range, Float damageScale, Float xOffsetPos, Float xOffsetNeg, Float yOffsetPos, Float yOffsetNeg, Float zOffsetPos, Float zOffsetNeg, DamageSource damageSource) {
         int boxX = pos.getX();
         int boxY = pos.getY();
@@ -28,6 +29,7 @@ public interface IRadiativeBlockEntity {
         }
     }
 
+    //Apply damage function if entity is in LOS and isn't freshly spawned
     static void irradiateEntities(Level world, List<LivingEntity> list, BlockPos pos, Integer range, Float damageScale, Float xOffsetPos, Float xOffsetNeg, Float yOffsetPos, Float yOffsetNeg, Float zOffsetPos, Float zOffsetNeg, DamageSource damageSource) {
         for (LivingEntity livingEntity : list) {
             if (pos.getCenter().closerThan(livingEntity.position(), range) && livingEntity.isAlive()) {
@@ -40,6 +42,7 @@ public interface IRadiativeBlockEntity {
         }
     }
 
+    //LOS checks from closest block face to both eye pos and foot pos. If it doesn't collide with blocks, success
     static boolean hasLos(Level world, LivingEntity livingEntity, BlockPos blockPos, Integer range, Float damageScale, Float xOffsetPos, Float xOffsetNeg, Float yOffsetPos, Float yOffsetNeg, Float zOffsetPos, Float zOffsetNeg) {
         Vec3 entityPositionFeet = livingEntity.position();
         Vec3 entityPositionEyes = livingEntity.getEyePosition();
@@ -137,6 +140,7 @@ public interface IRadiativeBlockEntity {
         return false;
     }
 
+    //Controls Damage Scaling and some edge cases. generally linear based on distance, spikes at higher strengths
     static void applyDamage(LivingEntity livingEntity, DamageSource damageSource, Level world, BlockPos blockPos, int range, float damageScale) {
         double entityDistance = Math.max(Math.min(range, Math.max(Math.ceil(Math.abs(blockPos.getCenter().distanceTo(livingEntity.position()))), 1)), 1);
         float damageScaleFinal = Math.max(damageScale, 0.01F);

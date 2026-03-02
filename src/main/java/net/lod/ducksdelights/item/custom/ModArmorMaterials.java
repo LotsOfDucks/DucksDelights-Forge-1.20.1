@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
     BARREL("barrel", 3, new int[]{1, 3, 2, 1}, 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0F, 0F, () -> Ingredient.of(ItemTags.PLANKS));
-
+    //barrel
 
     private static final int[] BASE_DURABILITY = {11, 16, 15, 13};
     private final String name;

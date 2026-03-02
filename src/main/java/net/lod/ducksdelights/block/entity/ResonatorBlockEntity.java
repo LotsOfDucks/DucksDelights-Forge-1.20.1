@@ -46,6 +46,9 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         super(ModBlockEntities.RESONATOR_BE.get() ,pPos, pBlockState);
     }
 
+    //all of this code was admittedly pretty fun to put together, the decorative logic was fun, the data saving and loading
+    //sucks and i took it from other sculk  blocks. I dislike sculk code greatly.
+
     public VibrationSystem.Data getVibrationData() {
         return this.vibrationData;
     }
@@ -90,6 +93,8 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         this.lastVibrationFrequency = pLastVibrationFrequency;
     }
 
+    //this specifies the block strengths that apply to each frequency, likely could be done better
+    //I wish the bedrock conditions didnt have to be hard coded but i refuse to make custom recipes right now.
     public boolean canBreak(ServerLevel level, BlockPos targetPos) {
         if (!level.getBlockState(targetPos).is(BlockTags.REPLACEABLE)) {
             float targetDestroyTime = level.getBlockState(targetPos).getBlock().defaultDestroyTime();
@@ -141,6 +146,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
         return false;
     }
 
+    //this could be better but I like it
     public void breakingBlock(ServerLevel level, BlockState resontatorState ,BlockPos resonatorPos, BlockPos targetPos, ResonatorBlockEntity blockEntity) {
         if (canBreak(level, targetPos)) {
             BlockState targetState = level.getBlockState(targetPos);
@@ -186,7 +192,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
             level.setBlock(targetPos, ModBlocks.SHATTERED_BEDROCK.get().defaultBlockState(), 3);
             ItemEntity itemEntity = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.BEDROCK_CHIPS.get(), 2));
             if (level.random.nextInt() % 20 == 0) {
-                ItemEntity itemEntity2 = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.FISSILE_SHARD.get(), 1));
+                ItemEntity itemEntity2 = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.STARBLIGHT_MOTE.get(), 1));
                 level.addFreshEntity(itemEntity2);
             }
             level.addFreshEntity(itemEntity);
@@ -195,6 +201,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
 
     public void spawnParticles(ServerLevel level, BlockState targetState ,BlockPos targetPos) {
         level.levelEvent(null, 2001, targetPos, Block.getId(targetState));
+        level.levelEvent(2004, targetPos, 0);
     }
 
     public VibrationSystem.Listener getListener() {

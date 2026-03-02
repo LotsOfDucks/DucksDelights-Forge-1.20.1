@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
+import net.lod.ducksdelights.damage.ModDamageTypes;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.lod.ducksdelights.item.custom.ModArmorMaterials;
@@ -152,14 +153,6 @@ public class ModBlocks {
                     .isViewBlocking(ModBlocks::never)
                     .randomTicks()));
 
-    public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerFireproofBlock("demon_core",
-            () -> new DemonCoreBlock(BlockBehaviour.Properties.of()
-                    .strength(50.0F, 1200.0F)
-                    .sound(SoundType.NETHERITE_BLOCK)
-                    .lightLevel((state) -> 3)
-                    .emissiveRendering((state, world, pos) -> state.getValue(DemonCoreBlock.POWERED))
-                    .mapColor(MapColor.COLOR_BLACK)));
-
     public static final RegistryObject<MoonPhaseDetectorBlock> MOON_PHASE_DETECTOR = registerBlock("moon_phase_detector",
             () -> new MoonPhaseDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DAYLIGHT_DETECTOR)));
 
@@ -176,8 +169,8 @@ public class ModBlocks {
                     .sound(SoundType.POLISHED_DEEPSLATE)
                     .mapColor(MapColor.DEEPSLATE)));
 
-    public static final RegistryObject<ShatteredBedrockBlock> SHATTERED_BEDROCK = registerBlock("shattered_bedrock",
-            () -> new ShatteredBedrockBlock(5778454, BlockBehaviour.Properties.of()
+    public static final RegistryObject<SandBlock> SHATTERED_BEDROCK = registerBlock("shattered_bedrock",
+            () -> new SandBlock(5778454, BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .sound(SoundType.DEEPSLATE_TILES)
@@ -204,8 +197,35 @@ public class ModBlocks {
                     .sound(SoundType.GLASS)
                     .noOcclusion()));
 
+
+
+    public static final RegistryObject<Block> HAUNTED_STEEL_BLOCK = registerBlock("haunted_steel_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_CYAN)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .requiresCorrectToolForDrops()
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.NETHERITE_BLOCK)));
+
+    public static final RegistryObject<BlightedSpawnerBlock> BLIGHTED_SPAWNER_BLOCK = registerBlock("blighted_spawner",
+            () -> new BlightedSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.SPAWNER)
+                    .lightLevel((state) -> 1)));
+
+    public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerFireproofBlock("demon_core",
+            () -> new DemonCoreBlock(BlockBehaviour.Properties.of()
+                    .strength(50.0F, 1200.0F)
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .lightLevel((state) -> 3)
+                    .emissiveRendering((state, world, pos) -> state.getValue(DemonCoreBlock.POWERED))
+                    .mapColor(MapColor.COLOR_BLACK)));
+
+
+
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
+
+    public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
 
 

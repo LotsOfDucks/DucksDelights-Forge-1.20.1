@@ -13,6 +13,8 @@ public class BedrockChipsItem extends Item {
         super(pProperties);
     }
 
+    //this item was entirely a joke and im committed to the bit
+
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         ItemStack noChange = super.finishUsingItem(pStack, pLevel, pEntityLiving);
         DamageSource damageSource = new DamageSource(

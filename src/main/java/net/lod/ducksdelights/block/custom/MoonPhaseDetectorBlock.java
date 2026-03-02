@@ -40,6 +40,8 @@ public class MoonPhaseDetectorBlock extends BaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(POWER, 0).setValue(PHASE, 0).setValue(SPECIFIC, true));
     }
 
+    //this block has some bugs on forge that involve the texture not updating properly that i dont have any interest in fixing
+
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
     }

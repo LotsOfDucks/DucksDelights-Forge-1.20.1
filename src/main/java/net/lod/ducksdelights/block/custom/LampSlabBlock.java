@@ -38,6 +38,9 @@ public class LampSlabBlock extends SlabBlock {
         this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false).setValue(LIT, false));
     }
 
+    //this will be redone at some point, I want top and bottom slab power to be independant of eachother
+    //as of now it is just fine as a joke block
+
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
             boolean $$6 = pState.getValue(LIT);

@@ -49,6 +49,9 @@ public class SculkSpeakerBlock extends Block implements SimpleWaterloggedBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(TUNE, 1).setValue(POWERED, false).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
     }
 
+    //this block is the reason i made this mod. I wanted to use it in a disc player machine of mine to decrease the redstone clock time
+    //very proud of this block. the code is very old though, sorry
+
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }

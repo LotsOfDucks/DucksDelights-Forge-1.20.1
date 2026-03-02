@@ -21,6 +21,10 @@ public class SclampBlock extends BaseEntityBlock {
         super(pProperties);
     }
 
+    //yeah this was a test block for the Resonator to get sculk power working.
+    //I didnt finish it or even use it for actual testing of that system.
+    //genuine appendix but if the appendix never even did anything.
+
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return null;

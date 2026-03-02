@@ -20,6 +20,8 @@ import net.minecraft.world.level.material.Fluids;
 import java.util.Optional;
 
 public interface ISimpleWaterAndLavaloggedBlock extends BucketPickup, LiquidBlockContainer {
+
+    //This doesnt really need a note, its fairly obvious
     default boolean canPlaceLiquid(BlockGetter pLevel, BlockPos pPos, BlockState pState, Fluid pFluid) {
         return (pFluid == Fluids.WATER && !pState.getValue(ModBlockStateProperties.LAVALOGGED)) || (pFluid == Fluids.LAVA && !pState.getValue(BlockStateProperties.WATERLOGGED));
     }

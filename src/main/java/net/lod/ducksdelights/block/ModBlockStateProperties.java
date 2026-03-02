@@ -30,6 +30,12 @@ public class ModBlockStateProperties {
 
     public static final IntegerProperty TUNE = IntegerProperty.create("tune", 1, 15);
 
+    public static final IntegerProperty VALUE = IntegerProperty.create("value", 1, 15);
+
+    public static final BooleanProperty OPEN = BooleanProperty.create("open");
+
+
+
 
     public ModBlockStateProperties() {
     }

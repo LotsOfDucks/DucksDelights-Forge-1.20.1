@@ -1,0 +1,173 @@
+{
+  "render_type": "minecraft:cutout",
+  "ambientocclusion": false,
+  "textures": {
+    "1": "ducksdelights:block/soul_cage",
+    "particle": "ducksdelights:block/soul_cage"
+  },
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        70,
+        90,
+        0
+      ],
+      "translation": [
+        0,
+        -1,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        70,
+        90,
+        0
+      ],
+      "translation": [
+        0,
+        -1,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        5,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        5,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "elements": [
+    {
+      "name": "base",
+      "from": [6.25, 0.25, 6.25],
+      "to": [9.75, 1, 9.75],
+      "rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
+      "faces": {
+        "north": {"uv": [4, 4, 8, 5], "texture": "#1"},
+        "east": {"uv": [4, 4, 8, 5], "texture": "#1"},
+        "south": {"uv": [4, 4, 8, 5], "texture": "#1"},
+        "west": {"uv": [4, 4, 8, 5], "texture": "#1"},
+        "up": {"uv": [8, 4, 4, 0], "texture": "#1"},
+        "down": {"uv": [8, 0, 4, 4], "texture": "#1"}
+      }
+    },
+    {
+      "name": "cage",
+      "from": [6, 0, 6],
+      "to": [10, 6, 10],
+      "rotation": {"angle": 0, "axis": "y", "origin": [7, 0, 7]},
+      "faces": {
+        "north": {"uv": [0, 0, 4, 6], "texture": "#1"},
+        "east": {"uv": [4, 0, 0, 6], "texture": "#1"},
+        "south": {"uv": [0, 0, 4, 6], "texture": "#1"},
+        "west": {"uv": [4, 0, 0, 6], "texture": "#1"},
+        "up": {"uv": [4, 10, 0, 6], "texture": "#1"},
+        "down": {"uv": [4, 10, 0, 14], "texture": "#1"}
+      }
+    },
+    {
+      "name": "handle",
+      "from": [5, 5, 8],
+      "to": [11, 9, 8],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 8]},
+      "faces": {
+        "north": {"uv": [4, 5, 10, 9], "texture": "#1"},
+        "east": {"uv": [2, 0, 2, 4], "texture": "#1"},
+        "south": {"uv": [4, 5, 10, 9], "texture": "#1"},
+        "west": {"uv": [0, 0, 0, 4], "texture": "#1"},
+        "up": {"uv": [0, 0, 6, 0], "texture": "#1"},
+        "down": {"uv": [0, 2, 6, 2], "texture": "#1"}
+      }
+    }
+  ]
+}

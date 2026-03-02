@@ -10,5 +10,5 @@ import net.minecraft.world.level.gameevent.vibrations.VibrationSystem;
 
 public class SclampBlockEntity {
 
-
+    //I told you this went completely unused.
 }

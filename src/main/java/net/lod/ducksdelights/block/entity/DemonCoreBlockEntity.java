@@ -28,6 +28,11 @@ public class DemonCoreBlockEntity extends BlockEntity implements IRadiativeBlock
         super(ModBlockEntities.DEMON_CORE_BE.get(), pPos, pBlockState);
     }
 
+    //everything contained in IRadiativeBlockEntity used to exist in this class, im very happy I generalized it into an interface.
+    //thankyou to Myewphi for helping me figure out the logic and assist in making the whole system more efficient.
+    //dude was a great help.
+    //also hi Myewphi >:)
+
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
@@ -65,9 +70,9 @@ public class DemonCoreBlockEntity extends BlockEntity implements IRadiativeBlock
             IRadiativeBlockEntity.getEntitiesInRange(pLevel, pPos, pState, pBlockEntity, pBlockEntity.range, pBlockEntity.damageScale, 0.51F, 0.51F, 0.49F, 0.51F, 0.51F, 0.51F, damageSource);
             if (pLevel.getGameTime() % 40L == 0L) {
                 if (!pBlockEntity.logged) {
-                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 4.0F, 1.0F);
+                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 2.0F, 1.0F);
                 } else {
-                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 1.0F, 0.5F);
+                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, 0.5F);
                 }
             }
         }

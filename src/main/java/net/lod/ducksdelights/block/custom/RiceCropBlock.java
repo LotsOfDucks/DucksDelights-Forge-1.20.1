@@ -34,6 +34,10 @@ public class RiceCropBlock extends CropBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(GOLDEN, false));
     }
 
+    //this one was a bit of a hyperfixation, it's overcomplicated but I think it's unique enough to warrant it
+    //there is a redundant texture for a pure golden rice crop that got cut in development.
+    //I have no plans of reimplementing it but I like leaving dev history in the files.
+
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }

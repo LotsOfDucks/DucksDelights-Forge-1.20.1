@@ -12,6 +12,7 @@ import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -54,6 +55,8 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false).setValue(ANCHORED, false));
     }
 
+    //this block was really fun to code, similarly scuffed to a lot of my other blocks but fun nonetheless
+
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pState.getValue(ANCHORED)) {
             return switch (pState.getValue(FACING)) {
@@ -85,15 +88,15 @@ public class RopeLadderBlock extends Block implements SimpleWaterloggedBlock {
 
     private boolean canAttachTo(BlockGetter pBlockReader, BlockPos pPos, Direction pDirection) {
         BlockState attachedBlockState = pBlockReader.getBlockState(pPos);
-        if (attachedBlockState.hasProperty(SlabBlock.TYPE)) {
+        if (attachedBlockState.is(BlockTags.SLABS)) {
             if (attachedBlockState.getValue(SlabBlock.TYPE) == (SlabType.TOP)) {
                 return true;
             }
-        } else if (attachedBlockState.hasProperty(StairBlock.HALF)) {
+        } else if (attachedBlockState.is(BlockTags.STAIRS)) {
             if (attachedBlockState.getValue(StairBlock.HALF) == (Half.TOP)) {
                 return true;
             }
-        } else if (attachedBlockState.hasProperty(RopeLadderBlock.FACING)) {
+        } else if (attachedBlockState.is(ModBlocks.ROPE_LADDER.get())) {
             if (attachedBlockState.getValue(RopeLadderBlock.FACING) == (pDirection.getOpposite()) && attachedBlockState.getValue(RopeLadderBlock.ANCHORED)) {
                 return true;
             }

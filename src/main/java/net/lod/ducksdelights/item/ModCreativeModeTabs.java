@@ -6,7 +6,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,8 +19,16 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("itemgroup.ducksdelights.items"))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.BEDROCK_CHIPS.get());
+                output.accept(ModItems.STARBLIGHT_MOTE.get());
+                output.accept(ModItems.STARBLIGHT_SHARD.get());
+
+                output.accept(ModItems.HAUNTED_METAL_SCRAP.get());
+                output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
+                output.accept(ModItems.HAUNTED_STEEL_INGOT.get());
+
                 output.accept(ModItems.BLACKBERRIES.get());
                 output.accept(ModItems.BLACKBERRY_PIE.get());
+
                 output.accept(ModItems.RAW_RICE.get());
                 output.accept(ModItems.RAW_GOLDEN_RICE.get());
                 output.accept(ModItems.WHITE_RICE.get());
@@ -32,6 +39,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.PORK_ONIGIRI.get());
                 output.accept(ModItems.SALMON_ONIGIRI.get());
                 output.accept(ModItems.GILDED_ONIGIRI.get());
+
                 output.accept(ModItems.KIBBLESTONE.get());
                 output.accept(ModItems.PLAIN_ROCK_CANDY.get());
                 output.accept(ModItems.WHITE_ROCK_CANDY.get());
@@ -57,22 +65,29 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("itemgroup.ducksdelights.blocks"))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModBlocks.PADDY_FARMLAND.get());
+
                 output.accept(ModBlocks.ROPE_LADDER.get());
                 output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
+
                 output.accept(ModBlocks.EMPTY_BARREL.get());
                 output.accept(ModBlocks.BLAZING_BARREL.get());
                 output.accept(ModBlocks.GLOWSTONE_BARREL.get());
                 output.accept(ModBlocks.GUNPOWDER_BARREL.get());
+
+                output.accept(ModBlocks.HAUNTED_STEEL_BLOCK.get());
                 output.accept(ModBlocks.DEMON_CORE.get());
+
                 output.accept(ModBlocks.SCULK_SPEAKER.get());
                 output.accept(ModBlocks.MOON_PHASE_DETECTOR.get());
                 output.accept(ModBlocks.REDSTONE_LAMP_SLAB.get());
                 output.accept(ModBlocks.ADDER.get());
                 output.accept(ModBlocks.RESONATOR.get());
+
                 output.accept(ModBlocks.SHATTERED_BEDROCK.get());
                 output.accept(ModBlocks.BEDROCK_SAND.get());
                 output.accept(ModBlocks.REINFORCED_GLASS.get());
                 output.accept(ModBlocks.REINFORCED_GLASS_PANE.get());
+                output.accept(ModBlocks.BLIGHTED_SPAWNER_BLOCK.get());
 
             })
             .build());

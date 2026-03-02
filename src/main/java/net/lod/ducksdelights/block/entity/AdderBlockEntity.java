@@ -12,6 +12,8 @@ public class AdderBlockEntity extends BlockEntity {
         super(ModBlockEntities.ADDER_BE.get(), pPos, pBlockState);
     }
 
+    //mmmmm... data saving....
+
     protected void saveAdditional(CompoundTag pTag) {
         super.saveAdditional(pTag);
         pTag.putInt("OutputSignal", this.output);
