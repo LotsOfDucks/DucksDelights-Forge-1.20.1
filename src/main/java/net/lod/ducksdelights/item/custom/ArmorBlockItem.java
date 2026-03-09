@@ -3,11 +3,20 @@ package net.lod.ducksdelights.item.custom;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.Util;
+import net.minecraft.client.Camera;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -18,16 +27,21 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
+import org.jetbrains.annotations.Nullable;
 
+import java.nio.Buffer;
 import java.util.*;
 
-public class ArmorBlockItem extends BlockItem implements Equipable {
+public class ArmorBlockItem extends SimpleFurnaceFuelBlockItem implements Equipable {
 
     //This was used for ONE ITEM.
 
@@ -49,6 +63,7 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
     protected final ArmorMaterial material;
     private final SoundEvent equipSound;
     private final Multimap<Attribute, AttributeModifier> defaultModifiers;
+
 
     public static boolean dispenseArmor(BlockSource pSource, ItemStack pStack) {
         BlockPos blockpos = pSource.getPos().relative(pSource.getBlockState().getValue(DispenserBlock.FACING));
@@ -75,8 +90,8 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
                     .put(ModArmorMaterials.BARREL, new MobEffectInstance(MobEffects.BLINDNESS, 60, 0,
                             false, false, true)).build();
 
-    public ArmorBlockItem(Block pBlock, ArmorMaterial pMaterial, ArmorItem.Type pType,SoundEvent equipSound ,Properties pProperties) {
-        super(pBlock, pProperties);
+    public ArmorBlockItem(Block pBlock, ArmorMaterial pMaterial, ArmorItem.Type pType, SoundEvent equipSound, int burnTime, Properties pProperties) {
+        super(pBlock ,burnTime ,pProperties);
         this.material = pMaterial;
         this.equipSound = equipSound;
         this.type = pType;
@@ -93,6 +108,10 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
         }
 
         this.defaultModifiers = builder.build();
+    }
+    @Override
+    public boolean isEnderMask(ItemStack stack, Player player, EnderMan endermanEntity) {
+        return true;
     }
 
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot pEquipmentSlot) {
@@ -137,6 +156,7 @@ public class ArmorBlockItem extends BlockItem implements Equipable {
                 evaluateArmorEffects(player);
             }
         }
+
         super.onInventoryTick(stack, level, player, slotIndex, selectedIndex);
     }
 

@@ -1,14 +1,14 @@
 package net.lod.ducksdelights;
 
 import com.mojang.logging.LogUtils;
-import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.block.ModCompostables;
+import net.lod.ducksdelights.block.*;
 import net.lod.ducksdelights.block.custom.dispenser_behavior.AntiRopeLadderDispenseBehavior;
+import net.lod.ducksdelights.block.custom.dispenser_behavior.ModDispenserBehaviors;
 import net.lod.ducksdelights.block.custom.dispenser_behavior.RopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.renderer.BlazingBarrelRenderer;
-import net.lod.ducksdelights.block.custom.renderer.BlightedSpawnerRenderer;
-import net.lod.ducksdelights.block.ModBlockEntities;
+import net.lod.ducksdelights.block.custom.renderer.SoulSpawnerRenderer;
 import net.lod.ducksdelights.entity.ModEntities;
+import net.lod.ducksdelights.entity.ModEntityRenderers;
 import net.lod.ducksdelights.entity.client.DynamicFallingBlockRenderer;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItems;
@@ -62,11 +62,9 @@ public class DucksDelights {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        EntityRenderers.register(ModEntities.DYNAMIC_FALLING_BLOCK.get(), DynamicFallingBlockRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), BlazingBarrelRenderer::new);
-        BlockEntityRenderers.register(ModBlockEntities.BLIGHTED_SPAWNER_BE.get(), BlightedSpawnerRenderer::new);
-        DispenserBlock.registerBehavior(ModBlocks.ROPE_LADDER.get().asItem(), new RopeLadderDispenseBehavior());
-        DispenserBlock.registerBehavior(ModBlocks.ANTI_ROPE_LADDER.get().asItem(), new AntiRopeLadderDispenseBehavior());
+        ModEntityRenderers.register();
+        ModBlockEntityRenderers.register();
+        ModDispenserBehaviors.register();
         ModCompostables.register();
     }
 

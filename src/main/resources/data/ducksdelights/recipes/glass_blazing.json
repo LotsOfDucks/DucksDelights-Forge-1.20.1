@@ -1,0 +1,13 @@
+{
+  "type": "ducksdelights:blazing",
+  "cookingtime": 600,
+  "ingredients": [
+    {
+      "tag": "minecraft:smelts_to_glass"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "minecraft:glass"
+  }
+}

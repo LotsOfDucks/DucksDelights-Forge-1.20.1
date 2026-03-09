@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:pearling",
+    "group": "diamond",
+    "category": "misc",
+    "pearlingtime": 1000,
+    "ingredients": [
+        {
+            "tag": "minecraft:smelts_to_glass"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "minecraft:diamond"
+    }
+}

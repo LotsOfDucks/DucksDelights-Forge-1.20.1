@@ -1,6 +1,7 @@
 {
   "render_type": "minecraft:cutout",
   "parent": "minecraft:block",
+  "ambientocclusion": false,
   "texture_size": [32, 32],
   "textures": {
     "0": "ducksdelights:block/rice_crop_1",

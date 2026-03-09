@@ -1,10 +1,9 @@
 package net.lod.ducksdelights.item.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.block.entity.BlightedSpawnerBlockEntity;
+import net.lod.ducksdelights.block.entity.SoulSpawnerBlockEntity;
 import net.lod.ducksdelights.item.ModItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -139,11 +138,11 @@ public class SoulCageItem extends Item {
     public InteractionResult useOn(UseOnContext pContext) {
         BlockPos clickedPos = pContext.getClickedPos();
         Level level = pContext.getLevel();
-        if (level.getBlockState(clickedPos).is(ModBlocks.BLIGHTED_SPAWNER_BLOCK.get())) {
+        if (level.getBlockState(clickedPos).is(ModBlocks.SOUL_SPAWNER_BLOCK.get())) {
             BlockEntity targetBlockEntityGrab = level.getBlockEntity(clickedPos);
-            if (targetBlockEntityGrab instanceof BlightedSpawnerBlockEntity) {
+            if (targetBlockEntityGrab instanceof SoulSpawnerBlockEntity) {
                 ItemStack heldItem = pContext.getItemInHand();
-                BlightedSpawnerBlockEntity targetBlockEntity = (BlightedSpawnerBlockEntity) targetBlockEntityGrab;
+                SoulSpawnerBlockEntity targetBlockEntity = (SoulSpawnerBlockEntity) targetBlockEntityGrab;
                 CompoundTag storedEntity = targetBlockEntity.getSpawner().getOrCreateNextSpawnData(level, level.getRandom(), clickedPos).getEntityToSpawn();
                 if (isContainingSoul(heldItem)) {
                     if (!storedEntity.contains("id")) {

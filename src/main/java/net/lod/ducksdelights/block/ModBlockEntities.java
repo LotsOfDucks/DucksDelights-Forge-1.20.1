@@ -37,10 +37,15 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(ResonatorBlockEntity::new,
                             ModBlocks.RESONATOR.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<BlightedSpawnerBlockEntity>> BLIGHTED_SPAWNER_BE =
-            BLOCK_ENTITIES.register("blighted_spawner_entity", () ->
-                    BlockEntityType.Builder.of(BlightedSpawnerBlockEntity::new,
-                            ModBlocks.BLIGHTED_SPAWNER_BLOCK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<SoulSpawnerBlockEntity>> SOUL_SPAWNER_BE =
+            BLOCK_ENTITIES.register("soul_spawner_entity", () ->
+                    BlockEntityType.Builder.of(SoulSpawnerBlockEntity::new,
+                            ModBlocks.SOUL_SPAWNER_BLOCK.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAM_BE =
+            BLOCK_ENTITIES.register("giant_clam_block_entity", () ->
+                    BlockEntityType.Builder.of(GiantClamBlockEntity::new,
+                            ModBlocks.GIANT_CLAM_BROWN.get()).build(null));
 
     //public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAN_BE =
     //        BLOCK_ENTITIES.register("giant_clam", () ->

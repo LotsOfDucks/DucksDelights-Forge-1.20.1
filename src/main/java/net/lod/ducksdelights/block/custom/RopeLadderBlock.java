@@ -1,14 +1,9 @@
 package net.lod.ducksdelights.block.custom;
 
-import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.block.custom.dispenser_behavior.RopeLadderDispenseBehavior;
-import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
-import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,8 +11,6 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;

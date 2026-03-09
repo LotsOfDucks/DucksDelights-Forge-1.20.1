@@ -19,12 +19,13 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("itemgroup.ducksdelights.items"))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.BEDROCK_CHIPS.get());
-                output.accept(ModItems.STARBLIGHT_MOTE.get());
+                output.accept(ModItems.FISSILE_CHUNK.get());
                 output.accept(ModItems.STARBLIGHT_SHARD.get());
 
                 output.accept(ModItems.HAUNTED_METAL_SCRAP.get());
                 output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
                 output.accept(ModItems.HAUNTED_STEEL_INGOT.get());
+                output.accept(ModItems.SOUL_CAGE.get());
 
                 output.accept(ModItems.BLACKBERRIES.get());
                 output.accept(ModItems.BLACKBERRY_PIE.get());
@@ -87,7 +88,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.BEDROCK_SAND.get());
                 output.accept(ModBlocks.REINFORCED_GLASS.get());
                 output.accept(ModBlocks.REINFORCED_GLASS_PANE.get());
-                output.accept(ModBlocks.BLIGHTED_SPAWNER_BLOCK.get());
+                output.accept(ModBlocks.SOUL_SPAWNER_BLOCK.get());
 
             })
             .build());

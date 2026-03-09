@@ -5,7 +5,7 @@
 		"1": "ducksdelights:block/demon_core_shell_bottom_inside_aged",
 		"2": "ducksdelights:block/demon_core_shell_bottom_aged",
 		"3": "ducksdelights:block/demon_core_shell_top_aged",
-		"4": "ducksdelights:block/heavy_core",
+		"4": "ducksdelights:block/fission_core_starblight",
 		"particle": "ducksdelights:block/demon_core_shell_bottom_aged"
 	},
 	"display": {

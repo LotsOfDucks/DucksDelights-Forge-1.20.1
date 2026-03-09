@@ -1,9 +1,6 @@
 package net.lod.ducksdelights.block.entity.spawners;
 
 import com.mojang.logging.LogUtils;
-import net.lod.ducksdelights.block.entity.BlightedSpawnerBlockEntity;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,7 +29,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class BlightedSpawner  extends BaseSpawner{
+public class SoulSpawner extends BaseSpawner{
     private static final String SPAWN_DATA_TAG = "SpawnData";
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final int EVENT_SPAWN = 1;
@@ -52,7 +49,7 @@ public class BlightedSpawner  extends BaseSpawner{
     private int requiredPlayerRange;
     private int spawnRange;
 
-    public BlightedSpawner(int spawnCount, int maxNearbyEntities, int requiredPlayerRange, int spawnRange) {
+    public SoulSpawner(int spawnCount, int maxNearbyEntities, int requiredPlayerRange, int spawnRange) {
         this.spawnCount = spawnCount;
         this.maxNearbyEntities = maxNearbyEntities;
         this.requiredPlayerRange = requiredPlayerRange;

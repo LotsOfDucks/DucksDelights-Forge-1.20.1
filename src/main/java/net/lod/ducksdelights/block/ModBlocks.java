@@ -2,10 +2,11 @@ package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
-import net.lod.ducksdelights.damage.ModDamageTypes;
+import net.lod.ducksdelights.block.custom.blockstate_properties.enums.ClamTexture;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.lod.ducksdelights.item.custom.ModArmorMaterials;
+import net.lod.ducksdelights.item.custom.SimpleFurnaceFuelBlockItem;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
@@ -56,7 +57,7 @@ public class ModBlocks {
         return (state) -> (Boolean)state.getValue(FillableBarrelBlock.EXPLODING) ? lightValue : 0;
     }
 
-    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerArmorBlock("empty_barrel", ModArmorMaterials.BARREL, ArmorItem.Type.HELMET,
+    public static final RegistryObject<EmptyBarrelBlock> EMPTY_BARREL = registerArmorBlock("empty_barrel", ModArmorMaterials.BARREL, ArmorItem.Type.HELMET, 200,
             () -> new EmptyBarrelBlock(BlockBehaviour.Properties.copy(Blocks.BARREL)
                     .pushReaction(PushReaction.NORMAL)));
 
@@ -112,11 +113,11 @@ public class ModBlocks {
                     .lightLevel(explodingBlockEmission(15))
                     .pushReaction(PushReaction.NORMAL)));
 
-    public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerBlock("rope_ladder",
+    public static final RegistryObject<RopeLadderBlock> ROPE_LADDER = registerSimpleFurnaceFuelBlock("rope_ladder", 200,
             () -> new RopeLadderBlock(BlockBehaviour.Properties.copy(Blocks.LADDER)
                     .sound(SoundType.BAMBOO_WOOD)));
 
-    public static final RegistryObject<AntiRopeLadderBlock> ANTI_ROPE_LADDER = registerBlock("anti_rope_ladder",
+    public static final RegistryObject<AntiRopeLadderBlock> ANTI_ROPE_LADDER = registerSimpleFurnaceFuelBlock("anti_rope_ladder", 200,
             () -> new AntiRopeLadderBlock(BlockBehaviour.Properties.copy(ModBlocks.ROPE_LADDER.get())));
 
     public static final RegistryObject<LampSlabBlock> REDSTONE_LAMP_SLAB = registerBlock("redstone_lamp_slab",
@@ -207,8 +208,8 @@ public class ModBlocks {
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.NETHERITE_BLOCK)));
 
-    public static final RegistryObject<BlightedSpawnerBlock> BLIGHTED_SPAWNER_BLOCK = registerBlock("blighted_spawner",
-            () -> new BlightedSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.SPAWNER)
+    public static final RegistryObject<SoulSpawnerBlock> SOUL_SPAWNER_BLOCK = registerBlock("soul_spawner",
+            () -> new SoulSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.SPAWNER)
                     .lightLevel((state) -> 1)));
 
     public static final RegistryObject<DemonCoreBlock> DEMON_CORE = registerFireproofBlock("demon_core",
@@ -219,13 +220,15 @@ public class ModBlocks {
                     .emissiveRendering((state, world, pos) -> state.getValue(DemonCoreBlock.POWERED))
                     .mapColor(MapColor.COLOR_BLACK)));
 
-
-
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
 
     public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
+    public static final RegistryObject<GiantClamBlock> GIANT_CLAM_BROWN = registerBlock("giant_clam_brown",
+            () -> new GiantClamBlock(BlockBehaviour.Properties.copy(Blocks.BRAIN_CORAL_BLOCK)
+                    .noOcclusion()));
 
 
 
@@ -242,6 +245,16 @@ public class ModBlocks {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
+    private static <T extends Block> RegistryObject<T> registerSimpleFurnaceFuelBlock(String name , int burnTime, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerSimpleFurnaceFuelBlockItem(name , burnTime, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block>RegistryObject<Item> registerSimpleFurnaceFuelBlockItem(String name, int burnTime, RegistryObject<T> block) {
+        return ModItems.ITEMS.register(name, () -> new SimpleFurnaceFuelBlockItem(block.get(), burnTime, new Item.Properties()));
+    }
+
     private static <T extends Block> RegistryObject<T> registerFireproofBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerFireproofBlockItem(name, toReturn);
@@ -254,14 +267,14 @@ public class ModBlocks {
                 .rarity(Rarity.EPIC)));
     }
 
-    private static <T extends Block> RegistryObject<T> registerArmorBlock(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType,Supplier<T> block) {
+    private static <T extends Block> RegistryObject<T> registerArmorBlock(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType, int burnTime ,Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerArmorBlockItem(name, armorMaterial, armorType,toReturn);
+        registerArmorBlockItem(name, armorMaterial, armorType, burnTime, toReturn);
         return toReturn;
     }
 
-    private static <T extends Block>RegistryObject<Item> registerArmorBlockItem(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType,RegistryObject<T> block) {
-        return ModItems.ITEMS.register(name, () -> new ArmorBlockItem(block.get(), armorMaterial, armorType, ModSoundEvents.ARMOR_BARREL_EQUIP.get(), new Item.Properties()));
+    private static <T extends Block>RegistryObject<Item> registerArmorBlockItem(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType, int burnTime, RegistryObject<T> block) {
+        return ModItems.ITEMS.register(name, () -> new ArmorBlockItem(block.get(), armorMaterial, armorType, ModSoundEvents.ARMOR_BARREL_EQUIP.get(), burnTime, new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {

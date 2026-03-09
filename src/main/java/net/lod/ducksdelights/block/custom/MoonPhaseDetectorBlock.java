@@ -1,6 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
-import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.entity.MoonPhaseDetectorBlockEntity;
 import net.minecraft.core.BlockPos;

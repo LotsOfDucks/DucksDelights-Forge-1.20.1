@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:pearling",
+    "group": "kibblestone",
+    "category": "misc",
+    "pearlingtime": 1000,
+    "ingredients": [
+        {
+            "item": "ducksdelights:kibblestone"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "minecraft:stick"
+    }
+}

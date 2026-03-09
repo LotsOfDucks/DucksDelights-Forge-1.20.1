@@ -1,0 +1,13 @@
+{
+  "type": "ducksdelights:blazing",
+  "cookingtime": 800,
+  "ingredients": [
+    {
+      "item": "ducksdelights:bedrock_enriched_sand"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "item": "ducksdelights:reinforced_glass"
+  }
+}

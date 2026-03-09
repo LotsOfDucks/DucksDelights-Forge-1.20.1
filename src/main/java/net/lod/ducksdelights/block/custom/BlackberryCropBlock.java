@@ -1,9 +1,8 @@
 package net.lod.ducksdelights.block.custom;
 
-import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.item.ModItems;
-import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

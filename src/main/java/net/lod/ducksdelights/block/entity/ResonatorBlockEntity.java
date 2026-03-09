@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
 import net.lod.ducksdelights.block.ModBlockEntities;
-import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.ResonatorBlock;
 import net.lod.ducksdelights.item.ModItems;
@@ -192,7 +192,7 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
             level.setBlock(targetPos, ModBlocks.SHATTERED_BEDROCK.get().defaultBlockState(), 3);
             ItemEntity itemEntity = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.BEDROCK_CHIPS.get(), 2));
             if (level.random.nextInt() % 20 == 0) {
-                ItemEntity itemEntity2 = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.STARBLIGHT_MOTE.get(), 1));
+                ItemEntity itemEntity2 = new ItemEntity(level, resonatorPos.getX(), resonatorPos.getY() , resonatorPos.getZ(), new ItemStack(ModItems.FISSILE_CHUNK.get(), 1));
                 level.addFreshEntity(itemEntity2);
             }
             level.addFreshEntity(itemEntity);
@@ -201,7 +201,6 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
 
     public void spawnParticles(ServerLevel level, BlockState targetState ,BlockPos targetPos) {
         level.levelEvent(null, 2001, targetPos, Block.getId(targetState));
-        level.levelEvent(2004, targetPos, 0);
     }
 
     public VibrationSystem.Listener getListener() {

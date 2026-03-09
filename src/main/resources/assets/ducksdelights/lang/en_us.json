@@ -115,11 +115,11 @@
   "block.ducksdelights.gunpowder_barrel": "Barrel Of Gunpowder",
 
   "block.ducksdelights.haunted_steel_block": "Block of Haunted Steel",
-  "item.ducksdelights.blighted_spawner": "Blighted Spawner",
+  "item.ducksdelights.soul_spawner": "Soul Spawner",
 
-  "block.ducksdelights.blighted_spawner": "Blighted Spawner",
-  "block.ducksdelights.blighted_spawner.desc1": "Interact With Filled Soul Cage",
-  "block.ducksdelights.blighted_spawner.desc2": "Sets Mob Type",
+  "block.ducksdelights.soul_spawner": "Soul Spawner",
+  "block.ducksdelights.soul_spawner.desc1": "Interact With Filled Soul Cage",
+  "block.ducksdelights.soul_spawner.desc2": "Sets Mob Type",
 
 
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",

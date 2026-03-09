@@ -2,33 +2,27 @@ package net.lod.ducksdelights.block.custom.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.lod.ducksdelights.block.ModBlockStateProperties;
-import net.lod.ducksdelights.block.entity.BlightedSpawnerBlockEntity;
-import net.lod.ducksdelights.block.entity.spawners.BlightedSpawner;
+import net.lod.ducksdelights.block.entity.SoulSpawnerBlockEntity;
+import net.lod.ducksdelights.block.entity.spawners.SoulSpawner;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.phys.shapes.Shapes;
 
-public class BlightedSpawnerRenderer implements BlockEntityRenderer<BlightedSpawnerBlockEntity> {
+public class SoulSpawnerRenderer implements BlockEntityRenderer<SoulSpawnerBlockEntity> {
     private final EntityRenderDispatcher entityRenderer;
 
-    public BlightedSpawnerRenderer(BlockEntityRendererProvider.Context pContext) {
+    public SoulSpawnerRenderer(BlockEntityRendererProvider.Context pContext) {
         this.entityRenderer = pContext.getEntityRenderer();
     }
 
     //spawns goober
-    public void render(BlightedSpawnerBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
+    public void render(SoulSpawnerBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         pPoseStack.pushPose();
         pPoseStack.translate(0.5F, 0.0F, 0.5F);
-        BlightedSpawner spawner = pBlockEntity.getSpawner();
+        SoulSpawner spawner = pBlockEntity.getSpawner();
         Entity displayEntity = spawner.getOrCreateDisplayEntity(pBlockEntity.getLevel(), pBlockEntity.getLevel().getRandom(), pBlockEntity.getBlockPos());
         if (displayEntity != null) {
             float shrinkRate = 0.53125F;

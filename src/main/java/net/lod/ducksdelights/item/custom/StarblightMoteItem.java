@@ -12,8 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 
 public class StarblightMoteItem extends RadioactiveItem {
-    public StarblightMoteItem(Properties pProperties, ResourceKey<DamageType> damageType) {
-        super(pProperties, damageType);
+    public StarblightMoteItem(Properties pProperties, int burnTime, ResourceKey<DamageType> damageType) {
+        super(pProperties, burnTime, damageType);
     }
 
     //pretty!
@@ -23,7 +23,7 @@ public class StarblightMoteItem extends RadioactiveItem {
         BlockPos blockpos = pContext.getClickedPos();
         if (level.getBlockState(blockpos).is(Blocks.SPAWNER)) {
             if (!level.isClientSide) {
-                level.setBlock(blockpos, ModBlocks.BLIGHTED_SPAWNER_BLOCK.get().defaultBlockState(), 3);
+                level.setBlock(blockpos, ModBlocks.SOUL_SPAWNER_BLOCK.get().defaultBlockState(), 3);
                 level.playSound(null, blockpos, SoundEvents.SCULK_BLOCK_CHARGE, SoundSource.BLOCKS, 1F, 1F);
                 pContext.getItemInHand().shrink(1);
             }

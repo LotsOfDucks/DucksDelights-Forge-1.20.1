@@ -1,6 +1,6 @@
 package net.lod.ducksdelights.block.custom;
 
-import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.AdderBlockEntity;
 import net.lod.ducksdelights.block.entity.RandomizerBlockEntity;

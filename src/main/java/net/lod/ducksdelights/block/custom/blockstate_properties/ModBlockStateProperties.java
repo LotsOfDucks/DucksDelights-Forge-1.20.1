@@ -1,6 +1,9 @@
-package net.lod.ducksdelights.block;
+package net.lod.ducksdelights.block.custom.blockstate_properties;
 
+import net.lod.ducksdelights.block.custom.blockstate_properties.enums.ClamTexture;
+import net.minecraft.core.FrontAndTop;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class ModBlockStateProperties {
@@ -42,7 +45,7 @@ public class ModBlockStateProperties {
 
     //Giant Clam
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
-    public static final BooleanProperty HAS_PEARL = BooleanProperty.create("open");
+    public static final BooleanProperty PEARLING = BooleanProperty.create("pearling");
 
 
 

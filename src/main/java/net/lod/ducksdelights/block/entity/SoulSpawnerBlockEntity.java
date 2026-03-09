@@ -2,7 +2,7 @@ package net.lod.ducksdelights.block.entity;
 
 import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.ModBlocks;
-import net.lod.ducksdelights.block.entity.spawners.BlightedSpawner;
+import net.lod.ducksdelights.block.entity.spawners.SoulSpawner;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -18,17 +18,17 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
-public class BlightedSpawnerBlockEntity extends BlockEntity {
+public class SoulSpawnerBlockEntity extends BlockEntity {
 
-    public BlightedSpawnerBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.BLIGHTED_SPAWNER_BE.get(), pPos, pBlockState);
+    public SoulSpawnerBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntities.SOUL_SPAWNER_BE.get(), pPos, pBlockState);
     }
 
-    //refer to the BlightedSpawner comment.
+    //refer to the SoulSpawner comment.
 
-    private final BlightedSpawner spawner = new BlightedSpawner(4, 12, 24, 4) {
+    private final SoulSpawner spawner = new SoulSpawner(4, 12, 24, 4) {
         public void broadcastEvent(Level p_155767_, BlockPos p_155768_, int p_155769_) {
-            p_155767_.blockEvent(p_155768_, ModBlocks.BLIGHTED_SPAWNER_BLOCK.get(), p_155769_, 0);
+            p_155767_.blockEvent(p_155768_, ModBlocks.SOUL_SPAWNER_BLOCK.get(), p_155769_, 0);
         }
 
         public void setNextSpawnData(@Nullable Level p_155771_, BlockPos p_155772_, SpawnData p_155773_) {
@@ -41,7 +41,7 @@ public class BlightedSpawnerBlockEntity extends BlockEntity {
         }
 
         public @Nullable BlockEntity getSpawnerBlockEntity() {
-            return BlightedSpawnerBlockEntity.this;
+            return SoulSpawnerBlockEntity.this;
         }
     };
 
@@ -55,11 +55,11 @@ public class BlightedSpawnerBlockEntity extends BlockEntity {
         this.spawner.save(pTag);
     }
 
-    public static void clientTick(Level pLevel, BlockPos pPos, BlockState pState, BlightedSpawnerBlockEntity pBlockEntity) {
+    public static void clientTick(Level pLevel, BlockPos pPos, BlockState pState, SoulSpawnerBlockEntity pBlockEntity) {
         pBlockEntity.spawner.clientTick(pLevel, pPos);
     }
 
-    public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, BlightedSpawnerBlockEntity pBlockEntity) {
+    public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, SoulSpawnerBlockEntity pBlockEntity) {
         pBlockEntity.spawner.serverTick((ServerLevel)pLevel, pPos);
     }
 
@@ -89,7 +89,7 @@ public class BlightedSpawnerBlockEntity extends BlockEntity {
         this.spawner.clearEntityId(this.level, pRandom, this.worldPosition);
     }
 
-    public BlightedSpawner getSpawner() {
+    public SoulSpawner getSpawner() {
         return this.spawner;
     }
 

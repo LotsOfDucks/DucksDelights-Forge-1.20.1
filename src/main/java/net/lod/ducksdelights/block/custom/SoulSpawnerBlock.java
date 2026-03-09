@@ -1,8 +1,8 @@
 package net.lod.ducksdelights.block.custom;
 
-import net.lod.ducksdelights.block.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
-import net.lod.ducksdelights.block.entity.BlightedSpawnerBlockEntity;
+import net.lod.ducksdelights.block.entity.SoulSpawnerBlockEntity;
 import net.lod.ducksdelights.block.ModBlockEntities;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -35,23 +35,23 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class BlightedSpawnerBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock {
+public class SoulSpawnerBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock {
     public static final BooleanProperty WATERLOGGED;
     public static final BooleanProperty LAVALOGGED;
     public static final BooleanProperty LOGGED;
 
-    public BlightedSpawnerBlock(BlockBehaviour.Properties pProperties) {
+    public SoulSpawnerBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false));
     }
 
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new BlightedSpawnerBlockEntity(pPos, pState);
+        return new SoulSpawnerBlockEntity(pPos, pState);
     }
 
     @javax.annotation.Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.BLIGHTED_SPAWNER_BE.get(), pLevel.isClientSide ? BlightedSpawnerBlockEntity::clientTick : BlightedSpawnerBlockEntity::serverTick);
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.SOUL_SPAWNER_BE.get(), pLevel.isClientSide ? SoulSpawnerBlockEntity::clientTick : SoulSpawnerBlockEntity::serverTick);
     }
 
     public void spawnAfterBreak(BlockState pState, ServerLevel pLevel, BlockPos pPos, ItemStack pStack, boolean pDropExperience) {
@@ -69,8 +69,8 @@ public class BlightedSpawnerBlock extends BaseEntityBlock implements ISimpleWate
             pTooltip.add(optional.get());
         } else {
             pTooltip.add(CommonComponents.EMPTY);
-            pTooltip.add(Component.translatable("block.ducksdelights.blighted_spawner.desc1").withStyle(ChatFormatting.GRAY));
-            pTooltip.add(CommonComponents.space().append(Component.translatable("block.ducksdelights.blighted_spawner.desc2").withStyle(ChatFormatting.BLUE)));
+            pTooltip.add(Component.translatable("block.ducksdelights.soul_spawner.desc1").withStyle(ChatFormatting.GRAY));
+            pTooltip.add(CommonComponents.space().append(Component.translatable("block.ducksdelights.soul_spawner.desc2").withStyle(ChatFormatting.BLUE)));
         }
 
     }

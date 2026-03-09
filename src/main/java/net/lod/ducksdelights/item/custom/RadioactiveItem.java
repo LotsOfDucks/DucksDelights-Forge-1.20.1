@@ -7,16 +7,25 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 
 public class RadioactiveItem extends Item {
     private final ResourceKey<DamageType> damageType;
+    public int burnTime;
 
     private boolean hasDamaged;
 
-    public RadioactiveItem(Properties pProperties, ResourceKey<DamageType> damageType) {
+    public RadioactiveItem(Properties pProperties, int burnTime, ResourceKey<DamageType> damageType) {
         super(pProperties);
+        this.burnTime = burnTime;
         this.damageType = damageType;
+    }
+
+    @Override
+    public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+        return this.burnTime;
     }
 
     //this was a bitch to get working correct, having multiple stacks in the inventory cause so many problems

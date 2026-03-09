@@ -33,11 +33,11 @@ public class ModItems {
             () -> new BedrockChipsItem(new Item.Properties()
                     .food(ModFoods.BEDROCK_CHIPS)));
 
-    public static final RegistryObject<RadioactiveItem> STARBLIGHT_MOTE = ITEMS.register("starblight_mote",
-            () -> new StarblightMoteItem(new Item.Properties(), ModDamageTypes.FISSION));
+    public static final RegistryObject<RadioactiveItem> FISSILE_CHUNK = ITEMS.register("fissile_chunk",
+            () -> new RadioactiveItem(new Item.Properties(), 200000, ModDamageTypes.FISSION));
 
     public static final RegistryObject<RadioactiveItem> STARBLIGHT_SHARD = ITEMS.register("starblight_shard",
-            () -> new RadioactiveItem(new Item.Properties(), ModDamageTypes.FISSION));
+            () -> new RadioactiveItem(new Item.Properties(), 200000, ModDamageTypes.FISSION));
 
 
 
