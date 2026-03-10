@@ -10,7 +10,10 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -29,11 +32,11 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
 public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock {
     public static final BooleanProperty OPEN;
-    public static final BooleanProperty PEARLING;
     public static final BooleanProperty WATERLOGGED;
     public static final BooleanProperty LAVALOGGED;
     public static final BooleanProperty LOGGED;
@@ -43,7 +46,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
 
     public GiantClamBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false).setValue(PEARLING, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
     }
 
     @Override
@@ -58,6 +61,61 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
 
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
+    }
+
+    @Override
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if (pLevel.getBlockEntity(pPos) instanceof GiantClamBlockEntity) {
+            GiantClamBlockEntity blockEntity = (GiantClamBlockEntity) pLevel.getBlockEntity(pPos);
+            if (pPlayer.isCrouching()) {
+                if (pLevel.isClientSide()) {
+                    return InteractionResult.SUCCESS;
+                } else {
+                    pLevel.setBlock(pPos, pState.cycle(ModBlockStateProperties.OPEN), 3);
+                    return InteractionResult.CONSUME;
+                }
+            } else {
+                if (pHand == InteractionHand.MAIN_HAND) {
+                    boolean hasInputItem = !blockEntity.getItem(0).isEmpty();
+                    boolean hasOutputItem = !blockEntity.getItem(1).isEmpty();
+                    ItemStack heldItem = pPlayer.getItemInHand(pHand);
+                    if (isOpen(pState)) {
+                        if (hasInputItem || hasOutputItem) {
+                            if (heldItem.isEmpty()) {
+                                if (hasInputItem) {
+                                    if (pLevel.isClientSide()) {
+                                        return InteractionResult.SUCCESS;
+                                    } else {
+                                        pPlayer.addItem(blockEntity.getItem(0));
+                                        blockEntity.removeItem(0, 1);
+                                        return InteractionResult.CONSUME;
+                                    }
+                                } else {
+                                    if (pLevel.isClientSide()) {
+                                        return InteractionResult.SUCCESS;
+                                    } else {
+                                        pPlayer.addItem(blockEntity.getItem(1));
+                                        blockEntity.removeItem(1, 1);
+                                        return InteractionResult.CONSUME;
+                                    }
+                                }
+                            }
+                        } else {
+                            if (!heldItem.isEmpty()) {
+                                if (pLevel.isClientSide()) {
+                                    return InteractionResult.SUCCESS;
+                                } else {
+                                    blockEntity.setItem(0, new ItemStack(heldItem.getItem()));
+                                    heldItem.shrink(1);
+                                    return InteractionResult.CONSUME;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
     public boolean isRandomlyTicking(BlockState pState) {
@@ -90,20 +148,12 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
         }
     }
 
-    public boolean isSignalSource(BlockState pState) {
-        return true;
-    }
-
     public boolean isOpen(BlockState state) {
         return state.getValue(ModBlockStateProperties.OPEN);
     }
 
     public boolean isLogged(BlockState state) {
         return state.getValue(ModBlockStateProperties.LOGGED);
-    }
-
-    public int getSignal(BlockState pBlockState, BlockGetter pBlockAccess, BlockPos pPos, Direction pSide) {
-        return ((pBlockState.getValue(PEARLING) || pBlockState.getValue(OPEN)) && Direction.UP == pSide)  ? 15 : 0;
     }
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
@@ -137,12 +187,11 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(OPEN, PEARLING, WATERLOGGED, LAVALOGGED, LOGGED, FACING);
+        pBuilder.add(OPEN, WATERLOGGED, LAVALOGGED, LOGGED, FACING);
     }
 
     static {
         OPEN = ModBlockStateProperties.OPEN;
-        PEARLING = ModBlockStateProperties.PEARLING;
         FACING = BlockStateProperties.HORIZONTAL_FACING;
         WATERLOGGED = BlockStateProperties.WATERLOGGED;
         LAVALOGGED = ModBlockStateProperties.LAVALOGGED;

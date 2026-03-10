@@ -1,9 +1,9 @@
 package net.lod.ducksdelights.item.custom.foods;
 
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraftforge.eventbus.api.IEventBus;
 
 public class ModFoods {
     public static FoodProperties WHITE_RICE;
@@ -14,6 +14,7 @@ public class ModFoods {
     public static FoodProperties PORK_ONIGIRI;
     public static FoodProperties SALMON_ONIGIRI;
     public static FoodProperties GILDED_ONIGIRI;
+    public static FoodProperties PEARLED_APPLE;
     public static FoodProperties KIBBLESTONE;
     public static FoodProperties ROCK_CANDY;
     public static FoodProperties BLACKBERRY;
@@ -32,11 +33,16 @@ public class ModFoods {
         BEEF_ONIGIRI = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.7F).build();
         PORK_ONIGIRI = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.7F).build();
         SALMON_ONIGIRI = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
-        GILDED_ONIGIRI = (new FoodProperties.Builder()).nutrition(14).saturationMod(1.2F).build();
+        GILDED_ONIGIRI = (new FoodProperties.Builder()).nutrition(14).saturationMod(1.2F).effect(() ->  new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1).effect(() ->  new MobEffectInstance(MobEffects.ABSORPTION, 2400, 1), 1).effect(() ->  new MobEffectInstance(MobEffects.NIGHT_VISION, 4800, 0), 1).alwaysEat().build();
+
+        PEARLED_APPLE = (new FoodProperties.Builder()).nutrition(4).saturationMod(1.2F).effect(() ->  new MobEffectInstance(MobEffects.HEAL, 1, 0), 1).effect(() ->  new MobEffectInstance(MobEffects.CONDUIT_POWER, 600, 0), 1).alwaysEat().build();
+
         KIBBLESTONE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
         ROCK_CANDY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+
         BLACKBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
         BLACKBERRY_PIE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.3F).build();
-        BEDROCK_CHIPS = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.1F).build();
+
+        BEDROCK_CHIPS = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.1F).alwaysEat().build();
     }
 }

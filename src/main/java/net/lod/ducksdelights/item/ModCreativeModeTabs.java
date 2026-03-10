@@ -41,6 +41,9 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.SALMON_ONIGIRI.get());
                 output.accept(ModItems.GILDED_ONIGIRI.get());
 
+                output.accept(ModItems.PEARL.get());
+                output.accept(ModItems.PEARLED_APPLE.get());
+
                 output.accept(ModItems.KIBBLESTONE.get());
                 output.accept(ModItems.PLAIN_ROCK_CANDY.get());
                 output.accept(ModItems.WHITE_ROCK_CANDY.get());

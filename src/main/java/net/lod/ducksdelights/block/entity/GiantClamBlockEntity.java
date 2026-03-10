@@ -162,7 +162,6 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         ItemStack itemInput = pBlockEntity.getItem(0);
         boolean hasItemOutput = !pBlockEntity.getItem(1).isEmpty();
 
-        boolean isPearling = pBlockEntity.isPearling();
         boolean isOpen = pState.getValue(GiantClamBlock.OPEN);
         boolean isLogged = pState.getValue(GiantClamBlock.LOGGED);
 
@@ -215,10 +214,7 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         }
 
 
-        if ((isPearling != pBlockEntity.isPearling()) || blockShouldClose) {
-            if (isPearling != pBlockEntity.isPearling()) {
-                pState = pState.setValue(GiantClamBlock.PEARLING, pBlockEntity.isPearling());
-            }
+        if (blockShouldClose) {
             if (blockShouldClose) {
                 pState = pState.setValue(GiantClamBlock.OPEN, false);
             }
