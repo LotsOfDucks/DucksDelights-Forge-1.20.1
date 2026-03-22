@@ -1,17 +1,24 @@
 package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
+import net.lod.ducksdelights.block.custom.blockstate_properties.enums.ClamTexture;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.GiantClamBlockEntity;
 import net.lod.ducksdelights.block.ModBlockEntities;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.Nameable;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +32,7 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.LecternBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -35,7 +43,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock {
+public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock, Nameable {
     public static final BooleanProperty OPEN;
     public static final BooleanProperty WATERLOGGED;
     public static final BooleanProperty LAVALOGGED;
@@ -71,7 +79,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
                 if (pLevel.isClientSide()) {
                     return InteractionResult.SUCCESS;
                 } else {
-                    pLevel.setBlock(pPos, pState.cycle(ModBlockStateProperties.OPEN), 3);
+                    this.toggleOpen(pLevel, pPos, pState);
                     return InteractionResult.CONSUME;
                 }
             } else {
@@ -119,7 +127,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
     }
 
     public boolean isRandomlyTicking(BlockState pState) {
-        return !this.isOpen(pState) && this.isLogged(pState);
+        return this.isOpen(pState) && this.isLogged(pState);
     }
 
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
@@ -129,18 +137,10 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
                 GiantClamBlockEntity giantClamBlockEntity = (GiantClamBlockEntity) blockEntity;
                 BlockState blockState = pLevel.getBlockState(pPos.below());
                 if (blockState.is(BlockTags.SAND)) {
-                    if (giantClamBlockEntity.getItem(0).isEmpty() && giantClamBlockEntity.getItem(1).isEmpty()) {
+                    if (giantClamBlockEntity.isEmpty()) {
                         ItemStack sandItem = new ItemStack(blockState.getBlock());
                         if (giantClamBlockEntity.getPearlableRecipe(sandItem).isPresent()) {
-                            SimpleContainer container = new SimpleContainer(sandItem);
-                            ItemStack resultItem = giantClamBlockEntity.getResultItem(pLevel, container, sandItem);
-                            if (resultItem.isItemEnabled(pLevel.enabledFeatures())) {
-                                if (sandItem.hasTag()) {
-                                    CompoundTag inputTag = sandItem.getTag();
-                                    resultItem.setTag(inputTag);
-                                }
-                                giantClamBlockEntity.setItem(1, resultItem);
-                            }
+                            ((GiantClamBlockEntity) blockEntity).setItem(0, sandItem);
                         }
                     }
                 }
@@ -156,13 +156,18 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
         return state.getValue(ModBlockStateProperties.LOGGED);
     }
 
+    public void toggleOpen(Level level, BlockPos pos, BlockState state) {
+        level.setBlock(pos, state.cycle(ModBlockStateProperties.OPEN), 3);
+        level.playSound(null, pos, SoundEvents.BONE_BLOCK_STEP, SoundSource.BLOCKS, 1, 0.75F);
+    }
+
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
 
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (!pLevel.isClientSide()){
-            pLevel.setBlock(pPos, pState.cycle(ModBlockStateProperties.OPEN), 3);
+            this.toggleOpen(pLevel, pPos, pState);
         }
     }
 

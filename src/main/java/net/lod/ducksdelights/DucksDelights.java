@@ -2,21 +2,16 @@ package net.lod.ducksdelights;
 
 import com.mojang.logging.LogUtils;
 import net.lod.ducksdelights.block.*;
-import net.lod.ducksdelights.block.custom.dispenser_behavior.AntiRopeLadderDispenseBehavior;
 import net.lod.ducksdelights.block.custom.dispenser_behavior.ModDispenserBehaviors;
-import net.lod.ducksdelights.block.custom.dispenser_behavior.RopeLadderDispenseBehavior;
-import net.lod.ducksdelights.block.custom.renderer.BlazingBarrelRenderer;
-import net.lod.ducksdelights.block.custom.renderer.SoulSpawnerRenderer;
 import net.lod.ducksdelights.entity.ModEntities;
 import net.lod.ducksdelights.entity.ModEntityRenderers;
-import net.lod.ducksdelights.entity.client.DynamicFallingBlockRenderer;
+import net.lod.ducksdelights.entity.mobeffects.ModMobEffects;
+import net.lod.ducksdelights.entity.mobeffects.ModPotionRecipes;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItems;
+import net.lod.ducksdelights.item.custom.ModPotions;
 import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -42,12 +37,13 @@ public class DucksDelights {
 
         ModRecipes.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
+        ModMobEffects.register(modEventBus);
+        ModPotions.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
         ModEntities.register(modEventBus);
         ModSoundEvents.register(modEventBus);
-
 
 
 
@@ -66,6 +62,7 @@ public class DucksDelights {
         ModBlockEntityRenderers.register();
         ModDispenserBehaviors.register();
         ModCompostables.register();
+        ModPotionRecipes.register();
     }
 
     // Add the example block item to the building blocks tab

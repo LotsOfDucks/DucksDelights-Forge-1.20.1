@@ -12,7 +12,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.*;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
@@ -21,11 +20,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -215,10 +212,7 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
 
 
         if (blockShouldClose) {
-            if (blockShouldClose) {
-                pState = pState.setValue(GiantClamBlock.OPEN, false);
-            }
-            pLevel.setBlock(pPos, pState, 3);
+            pLevel.scheduleTick(pPos, pLevel.getBlockState(pPos).getBlock(), 10);
             blockHasBeenChanged = true;
         }
 

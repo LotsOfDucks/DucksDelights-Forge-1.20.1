@@ -25,6 +25,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -125,7 +127,7 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
     }
 
     protected boolean canPlantOnTop(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
-        return pState.is(BlockTags.DIRT);
+        return pState.is(BlockTags.DIRT) || pState.is(Blocks.FARMLAND);
     }
 
     public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
@@ -204,10 +206,12 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                     BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
                     BlockState dirtCheckState = world.getBlockState(pos.offset(x, y-1, z));
                     BlockState subDirtCheckState = world.getBlockState(pos.offset(x, y-2, z));
-                    if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && dirtCheckState.is(BlockTags.DIRT)) {
-                        validLocations += 1;
-                    } else if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && (dirtCheckState.is(BlockTags.FENCES) || dirtCheckState.is(BlockTags.FENCE_GATES) || dirtCheckState.is(BlockTags.WALLS) && subDirtCheckState.is(BlockTags.DIRT))) {
-                        validLocations += 1;
+                    if (plantCheckState.getFluidState().isEmpty()) {
+                        if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE) || plantCheckState.is(BlockTags.CROPS)) && (dirtCheckState.is(BlockTags.DIRT) || dirtCheckState.is(Blocks.FARMLAND))) {
+                            validLocations += 1;
+                        } else if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE)) && (dirtCheckState.is(BlockTags.FENCES) || dirtCheckState.is(BlockTags.FENCE_GATES) || dirtCheckState.is(BlockTags.WALLS) && subDirtCheckState.is(BlockTags.DIRT))) {
+                            validLocations += 1;
+                        }
                     }
                 }
             }
@@ -227,12 +231,14 @@ public class BlackberryCropBlock extends BushBlock implements BonemealableBlock 
                         BlockState plantCheckState = world.getBlockState(pos.offset(x, y, z));
                         BlockState dirtCheckState = world.getBlockState(pos.offset(x, y - 1, z));
                         BlockState subDirtCheckState = world.getBlockState(pos.offset(x, y - 2, z));
-                        if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE))) {
-                            if (dirtCheckState.is(BlockTags.DIRT)) {
-                                world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState(), 3);
-                            }
-                            if (subDirtCheckState.is(BlockTags.DIRT) && (dirtCheckState.is(BlockTags.FENCES) || dirtCheckState.is(BlockTags.FENCE_GATES) || dirtCheckState.is(BlockTags.WALLS))) {
-                                world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState().setValue(STAGE, 1).setValue(AGE, 3), 3);
+                        if (plantCheckState.getFluidState().isEmpty()) {
+                            if ((plantCheckState.is(Blocks.AIR) || plantCheckState.is(BlockTags.REPLACEABLE) || plantCheckState.is(BlockTags.CROPS))) {
+                                if (dirtCheckState.is(BlockTags.DIRT) || dirtCheckState.is(Blocks.FARMLAND)) {
+                                    world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState(), 3);
+                                }
+                                if (subDirtCheckState.is(BlockTags.DIRT) && (dirtCheckState.is(BlockTags.FENCES) || dirtCheckState.is(BlockTags.FENCE_GATES) || dirtCheckState.is(BlockTags.WALLS))) {
+                                    world.setBlock(pos.offset(x, y, z), ModBlocks.BLACKBERRY_CROP.get().defaultBlockState().setValue(STAGE, 1).setValue(AGE, 3), 3);
+                                }
                             }
                         }
                     }
