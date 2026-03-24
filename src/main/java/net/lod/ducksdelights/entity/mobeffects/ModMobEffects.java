@@ -60,9 +60,25 @@ public class ModMobEffects {
                     MobEffectCategory.HARMFUL, 4069984)
                     .addAttributeModifier(ForgeMod.ENTITY_GRAVITY.get(), "1b69802a-2305-43a1-b70b-bc5fdfc1f10a", 1.2, AttributeModifier.Operation.MULTIPLY_BASE));
 
-    public static final RegistryObject<MobEffect> ARE_YOU_READY_TO_MEET_GOD =
-            MOB_EFFECTS.register("are_you_ready_to_meet_god", () -> new ModMobEffect(
-                    MobEffectCategory.BENEFICIAL, 14997856));
+    public static final RegistryObject<MobEffect> TIME_BOMB =
+            MOB_EFFECTS.register("time_bomb", () -> new ModMobEffect(
+                    MobEffectCategory.HARMFUL, 15715670));
+
+    public static final RegistryObject<MobEffect> PLAGUE =
+            MOB_EFFECTS.register("plague", () -> new ModMobEffect(
+                    MobEffectCategory.HARMFUL, 4526678));
+
+    public static final RegistryObject<MobEffect> ENDER_TRANSFERENCE =
+            MOB_EFFECTS.register("ender_transference", () -> new ModInstantMobEffect(
+                    MobEffectCategory.HARMFUL, 1072721));
+
+    public static final RegistryObject<MobEffect> BURNING =
+            MOB_EFFECTS.register("burning", () -> new ModInstantMobEffect(
+                    MobEffectCategory.HARMFUL, 16750848));
+
+    public static final RegistryObject<MobEffect> FREEZING =
+            MOB_EFFECTS.register("freezing", () -> new ModMobEffect(
+                    MobEffectCategory.HARMFUL, 8826621));
 
 
 

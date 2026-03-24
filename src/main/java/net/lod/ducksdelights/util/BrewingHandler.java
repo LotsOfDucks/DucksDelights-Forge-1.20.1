@@ -18,4 +18,13 @@ public class BrewingHandler {
                 resultPotionStack
         ));
     }
+
+    public static void addBrewingRecipe(Ingredient base, Ingredient ingredient, Potion resultPotion) {
+        ItemStack resultPotionStack = PotionUtils.setPotion(new ItemStack(Items.POTION), resultPotion);
+        BrewingRecipeRegistry.addRecipe(new MiddlemanBrewingRecipe(
+                base,
+                ingredient,
+                resultPotionStack
+        ));
+    }
 }

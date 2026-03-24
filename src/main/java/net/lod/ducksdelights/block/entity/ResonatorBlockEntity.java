@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.entity;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.Dynamic;
+import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
@@ -134,12 +135,14 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
                 case (15) -> 50.0F;
                 default -> -0.1F;
             };
-            if ((level.getBlockState(targetPos).is(Blocks.BEDROCK) || level.getBlockState(targetPos).is(ModBlocks.SHATTERED_BEDROCK.get())) && (getLastVibrationFrequency() == 15)) {
-                return true;
+            if (Config.RESONATOR_CAN_MINE_BEDROCK.get()) {
+                if ((level.getBlockState(targetPos).is(Blocks.BEDROCK) || level.getBlockState(targetPos).is(ModBlocks.SHATTERED_BEDROCK.get())) && (getLastVibrationFrequency() == 15)) {
+                    return true;
+                }
             }
             if (getLastVibrationFrequency() < 15) {
                 return (resonanceLowerThreshhold < targetDestroyTime && targetDestroyTime <= resonanceThreshhold);
-            } else {
+            } else if (Config.RESONATOR_CAN_MINE_UNMINEABLES.get()) {
                 return (50 < targetDestroyTime && targetDestroyTime < 100);
             }
         }
