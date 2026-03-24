@@ -31,10 +31,6 @@ public class ModMobEffects {
             MOB_EFFECTS.register("asphyxiation", () -> new ModMobEffect(
                     MobEffectCategory.HARMFUL, 2675));
 
-    public static final RegistryObject<MobEffect> PROGENITOR =
-            MOB_EFFECTS.register("progenitor", () -> new ModMobEffect(
-                    MobEffectCategory.NEUTRAL, 14667419));
-
     public static final RegistryObject<MobEffect> LOVE =
             MOB_EFFECTS.register("love", () -> new ModInstantMobEffect(
                     MobEffectCategory.NEUTRAL, 16262179));

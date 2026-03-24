@@ -108,11 +108,11 @@ public class ModPotions {
 
     public static final RegistryObject<Potion> EXPLODING =
             POTIONS.register("exploding", () ->
-                    new Potion(new MobEffectInstance(ModMobEffects.TIME_BOMB.get(), 200)));
+                    new Potion(new MobEffectInstance(ModMobEffects.TIME_BOMB.get(), 600)));
 
     public static final RegistryObject<Potion> SHORT_EXPLODING =
             POTIONS.register("short_exploding", () ->
-                    new Potion("exploding", new MobEffectInstance(ModMobEffects.TIME_BOMB.get(), 140)));
+                    new Potion("exploding", new MobEffectInstance(ModMobEffects.TIME_BOMB.get(), 300)));
 
     public static final RegistryObject<Potion> PLAGUE =
             POTIONS.register("plague", () ->
@@ -121,18 +121,6 @@ public class ModPotions {
     public static final RegistryObject<Potion> LOVE =
             POTIONS.register("love", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.LOVE.get(), 1)));
-
-    public static final RegistryObject<Potion> PROGENITOR =
-            POTIONS.register("progenitor", () ->
-                    new Potion(new MobEffectInstance(ModMobEffects.PROGENITOR.get(), 6000)));
-
-    public static final RegistryObject<Potion> LONG_PROGENITOR =
-            POTIONS.register("long_progenitor", () ->
-                    new Potion("progenitor", new MobEffectInstance(ModMobEffects.PROGENITOR.get(), 12000)));
-
-    public static final RegistryObject<Potion> STRONG_PROGENITOR =
-            POTIONS.register("strong_progenitor", () ->
-                    new Potion("progenitor", new MobEffectInstance(ModMobEffects.PROGENITOR.get(), 6000, 1)));
 
     public static final RegistryObject<Potion> ENDER_TRANSFERENCE =
             POTIONS.register("ender_transference", () ->

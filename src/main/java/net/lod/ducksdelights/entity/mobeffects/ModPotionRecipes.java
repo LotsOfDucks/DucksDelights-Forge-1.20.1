@@ -29,10 +29,6 @@ public class ModPotionRecipes {
         BrewingHandler.addBrewingRecipe(ModPotions.GAMBLING.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_GAMBLING.get());
         BrewingHandler.addBrewingRecipe(ModPotions.STRONG_GAMBLING.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONGER_GAMBLING.get());
 
-        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.EGG), ModPotions.PROGENITOR.get());
-        BrewingHandler.addBrewingRecipe(ModPotions.PROGENITOR.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_PROGENITOR.get());
-        BrewingHandler.addBrewingRecipe(ModPotions.PROGENITOR.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_PROGENITOR.get());
-
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.IRON_BLOCK), ModPotions.BULWARK.get());
         BrewingHandler.addBrewingRecipe(ModPotions.BULWARK.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_BULWARK.get());
         BrewingHandler.addBrewingRecipe(ModPotions.BULWARK.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.GREATER_BULWARK.get());
@@ -55,12 +51,16 @@ public class ModPotionRecipes {
 
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.BLAZE_POWDER), ModPotions.BURNING.get());
         BrewingHandler.addBrewingRecipe(ModPotions.BURNING.get(), Ingredient.of(Items.REDSTONE), ModPotions.STRONG_BURNING.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.FREEZING.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), ModPotions.BURNING.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.STRONG_FREEZING.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), ModPotions.STRONG_BURNING.get());
 
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.ICE), ModPotions.FREEZING.get());
         BrewingHandler.addBrewingRecipe(ModPotions.FREEZING.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_FREEZING.get());
         BrewingHandler.addBrewingRecipe(ModPotions.FREEZING.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_FREEZING.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.BURNING.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), ModPotions.FREEZING.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.STRONG_BURNING.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), ModPotions.STRONG_FREEZING.get());
 
-
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.ENDER_PEARL), ModPotions.ENDER_TRANSFERENCE.get());
 
 
 

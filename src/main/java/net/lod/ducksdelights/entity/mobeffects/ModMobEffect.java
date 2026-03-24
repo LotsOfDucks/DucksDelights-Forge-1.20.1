@@ -1,8 +1,9 @@
 package net.lod.ducksdelights.entity.mobeffects;
 
 import net.lod.ducksdelights.Config;
-import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -11,24 +12,30 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.gossip.GossipType;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.FlyingAnimal;
-import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ChorusFruitItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
+import java.util.UUID;
 
 public class ModMobEffect extends MobEffect {
     protected ModMobEffect(MobEffectCategory pCategory, int pColor) {
@@ -47,6 +54,10 @@ public class ModMobEffect extends MobEffect {
         }
         if (pLivingEntity.hasEffect(MobEffects.LEVITATION) && pLivingEntity.hasEffect(ModMobEffects.GRAVITATION.get())) {
             pLivingEntity.removeEffect(MobEffects.LEVITATION);
+            pLivingEntity.removeEffect(ModMobEffects.GRAVITATION.get());
+        }
+        if (pLivingEntity.isOnFire() && pLivingEntity.hasEffect(ModMobEffects.FREEZING.get())) {
+            pLivingEntity.removeEffect(ModMobEffects.FREEZING.get());
         }
         if (this == ModMobEffects.PURIFICATION.get()) {
             for (MobEffectInstance mobEffectInstance : pLivingEntity.getActiveEffects()) {
@@ -63,18 +74,29 @@ public class ModMobEffect extends MobEffect {
                 }
             }
         } else if (this == ModMobEffects.ASPHYXIATION.get()) {
-            if (pLivingEntity.getAirSupply() > 1) {
-                pLivingEntity.setAirSupply(pLivingEntity.getAirSupply() - (5 + pAmplifier));
-            } else {
-                if (!pLivingEntity.isUnderWater()) {
-                    pLivingEntity.setAirSupply(pLivingEntity.getAirSupply() - (5));
+            if (pLivingEntity.getMobType() != MobType.UNDEAD) {
+                if (pLivingEntity.getAirSupply() > 1) {
+                    pLivingEntity.setAirSupply(pLivingEntity.getAirSupply() - (5 + pAmplifier));
+                } else {
+                    if (!pLivingEntity.isUnderWater()) {
+                        pLivingEntity.setAirSupply(pLivingEntity.getAirSupply() - (5));
+                    }
                 }
-            }
-        } else if (this == ModMobEffects.PROGENITOR.get()) {
-            if (pLivingEntity.level().random.nextIntBetweenInclusive(1, 20) == 20) {
-                pLivingEntity.playSound(SoundEvents.CHICKEN_EGG, 1.0F, (pLivingEntity.level().random.nextFloat() - pLivingEntity.level().random.nextFloat()) * 0.2F + 1.0F);
-                pLivingEntity.spawnAtLocation(Items.EGG);
-                pLivingEntity.gameEvent(GameEvent.ENTITY_PLACE);
+            } else {
+                if (pLivingEntity instanceof Zombie zombie) {
+                    if (!(zombie instanceof Drowned)) {
+                        if (pLivingEntity.getEffect(this).endsWithin(1)) {
+                            zombie.convertTo(EntityType.DROWNED, true);
+                            if (!zombie.isSilent()) {
+                                zombie.level().levelEvent(null, 1040, zombie.blockPosition(), 0);
+                            }
+                        }
+                    } else {
+                        pLivingEntity.removeEffect(this);
+                    }
+                } else {
+                    pLivingEntity.removeEffect(this);
+                }
             }
         } else if (this == ModMobEffects.GRAVITATION.get()) {
             if (pLivingEntity instanceof Player player) {
@@ -127,12 +149,23 @@ public class ModMobEffect extends MobEffect {
         } else if (this == ModMobEffects.BURNING.get()) {
             this.applyInstantenousEffect(null, null, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.FREEZING.get()) {
-            if (pLivingEntity.canFreeze()) {
-                pLivingEntity.setIsInPowderSnow(true);
-                if (pLivingEntity.getTicksFrozen() < 60) {
-                    pLivingEntity.setTicksFrozen(pLivingEntity.getTicksFrozen() + (60 + (20 * pAmplifier)));
+            if (pLivingEntity.getType() != EntityType.STRAY) {
+                if (pLivingEntity.canFreeze()) {
+                    pLivingEntity.setIsInPowderSnow(true);
+                    if (pLivingEntity.getTicksFrozen() < 60) {
+                        pLivingEntity.setTicksFrozen(pLivingEntity.getTicksFrozen() + (60 + (20 * pAmplifier)));
+                    }
+                    pLivingEntity.setTicksFrozen(pLivingEntity.getTicksFrozen() + pAmplifier);
                 }
-                pLivingEntity.setTicksFrozen(pLivingEntity.getTicksFrozen() + pAmplifier);
+                if (pLivingEntity.getType() == EntityType.SKELETON) {
+                    pLivingEntity.setIsInPowderSnow(true);
+                    if (pLivingEntity.getTicksFrozen() < 60) {
+                        pLivingEntity.setTicksFrozen(pLivingEntity.getTicksFrozen() + (60 + (20 * pAmplifier)));
+                    }
+                    pLivingEntity.setTicksFrozen(pLivingEntity.getTicksFrozen() + pAmplifier);
+                }
+            } else {
+                pLivingEntity.removeEffect(this);
             }
         }
     }
@@ -175,6 +208,10 @@ public class ModMobEffect extends MobEffect {
             if (!pLivingEntity.fireImmune()) {
                 pLivingEntity.setSecondsOnFire(6 * (pAmplifier + 1));
             }
+            if (pLivingEntity.hasEffect(ModMobEffects.FREEZING.get())) {
+                    pLivingEntity.removeEffect(ModMobEffects.FREEZING.get());
+                    pLivingEntity.clearFire();
+            }
         }
     }
 
@@ -187,13 +224,6 @@ public class ModMobEffect extends MobEffect {
             return true;
         } else if (this == ModMobEffects.GREATER_BULWARK.get()) {
             return true;
-        } else if (this == ModMobEffects.PROGENITOR.get()) {
-            rate = 20 >> pAmplifier;
-            if (rate > 0) {
-                return pDuration % rate == 0;
-            } else {
-                return true;
-            }
         } else if (this == ModMobEffects.GRAVITATION.get()) {
             return true;
         } else if (this == ModMobEffects.TIME_BOMB.get()) {
@@ -207,18 +237,25 @@ public class ModMobEffect extends MobEffect {
             }
         } else if (this == ModMobEffects.FREEZING.get()) {
             return true;
-        }
+        } else
         return this == ModMobEffects.BEFOULING.get();
     }
 
     public void activateGamble(LivingEntity pLivingEntity, List<MobEffect> effectList) {
-        int target = pLivingEntity.level().random.nextInt(0, effectList.size());
-        int amplifier = pLivingEntity.level().random.nextIntBetweenInclusive(0, 2);
-        if (effectList.get(target).isInstantenous()) {
-            pLivingEntity.addEffect(new MobEffectInstance(effectList.get(target), 1, amplifier));
+        int target = pLivingEntity.level().getRandom().nextInt(0, effectList.size());
+        MobEffect targetEffect = effectList.get(target);
+        int amplifier = pLivingEntity.level().getRandom().nextIntBetweenInclusive(0, 2);
+        if (targetEffect.isInstantenous()) {
+            pLivingEntity.addEffect(new MobEffectInstance(targetEffect, 1, amplifier));
         } else {
-            int duration = pLivingEntity.level().random.nextIntBetweenInclusive(200, 3600);
-            pLivingEntity.addEffect(new MobEffectInstance(effectList.get(target), duration, amplifier));
+            if (pLivingEntity.hasEffect(targetEffect)) {
+                int presentAmplifier = pLivingEntity.getEffect(targetEffect).getAmplifier();
+                if (presentAmplifier < amplifier) {
+                    pLivingEntity.removeEffect(targetEffect);
+                }
+            }
+            int duration = pLivingEntity.level().getRandom().nextIntBetweenInclusive(200, 3600);
+            pLivingEntity.addEffect(new MobEffectInstance(targetEffect, duration, amplifier));
         }
         effectList.remove(target);
     }
@@ -228,26 +265,36 @@ public class ModMobEffect extends MobEffect {
             Vec3 targetPosition = new Vec3(pLivingEntity.position().toVector3f());
             Vec3 throwerPosition = new Vec3(pIndirectSource.position().toVector3f());
 
-            if (pIndirectSource.isPassenger()) {
-                Entity vehicle = pIndirectSource.getVehicle();
-                vehicle.ejectPassengers();
-            }
-            if (pLivingEntity.isPassenger()) {
-                Entity vehicle = pLivingEntity.getVehicle();
-                vehicle.ejectPassengers();
-            }
-            if (pIndirectSource.isVehicle()) {
-                pIndirectSource.ejectPassengers();
-            }
-            if (pLivingEntity.isVehicle()) {
-                pLivingEntity.ejectPassengers();
-            }
+            if (pIndirectSource == pLivingEntity) {
+                pIndirectSource.resetFallDistance();
+                pIndirectSource.level().playSound(null, throwerPosition.x(), throwerPosition.y(), throwerPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
+                pIndirectSource.hurt(pIndirectSource.damageSources().fall(), 2);
+            } else {
+                if (pIndirectSource.isPassenger()) {
+                    Entity vehicle = pIndirectSource.getVehicle();
+                    vehicle.ejectPassengers();
+                }
+                if (pLivingEntity.isPassenger()) {
+                    Entity vehicle = pLivingEntity.getVehicle();
+                    vehicle.ejectPassengers();
+                }
+                if (pIndirectSource.isVehicle()) {
+                    pIndirectSource.ejectPassengers();
+                }
+                if (pLivingEntity.isVehicle()) {
+                    pLivingEntity.ejectPassengers();
+                }
 
-            pIndirectSource.teleportTo(targetPosition.x(), targetPosition.y(), targetPosition.z());
-            pIndirectSource.level().playSound(null, throwerPosition.x(), throwerPosition.y(), throwerPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
+                pIndirectSource.teleportTo(targetPosition.x(), targetPosition.y(), targetPosition.z());
+                pIndirectSource.resetFallDistance();
+                pIndirectSource.level().playSound(null, throwerPosition.x(), throwerPosition.y(), throwerPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
+                pIndirectSource.hurt(pIndirectSource.damageSources().fall(), 2);
 
-            pLivingEntity.teleportTo(throwerPosition.x(), throwerPosition.y(), throwerPosition.z());
-            pLivingEntity.level().playSound(null, targetPosition.x(), targetPosition.y(), targetPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
+                pLivingEntity.teleportTo(throwerPosition.x(), throwerPosition.y(), throwerPosition.z());
+                pLivingEntity.resetFallDistance();
+                pLivingEntity.level().playSound(null, targetPosition.x(), targetPosition.y(), targetPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
+                pLivingEntity.hurt(pIndirectSource.damageSources().fall(), 2);
+            }
         }
     }
 }
