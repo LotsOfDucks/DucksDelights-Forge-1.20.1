@@ -18,6 +18,9 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> DUCKSDELIGHTS_ITEMS = CREATIVE_MODE_TABS.register("ducksdelights_items", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.WHITE_RICE.get()))
             .title(Component.translatable("itemgroup.ducksdelights.items"))
             .displayItems((itemDisplayParameters, output) -> {
+                output.accept(ModItems.HOME_POTION.get());
+                output.accept(ModItems.RECOVERY_POTION.get());
+
                 output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.FISSILE_CHUNK.get());
                 output.accept(ModItems.STARBLIGHT_SHARD.get());

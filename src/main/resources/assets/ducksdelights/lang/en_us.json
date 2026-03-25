@@ -3,6 +3,30 @@
   "itemgroup.ducksdelights.blocks": "Ducks' Delights Blocks",
   "itemgroup.ducksdelights.misc": "Ducks' Delights Misc",
 
+
+  "item.ducksdelights.home_potion": "Potion of Home",
+  "item.ducksdelights.home_potion.failed_respawn": "Home Bed does not exist or is unsafe.",
+  "item.ducksdelights.home_potion.failed_dimension": "Home Bed lies beyond this world...",
+  "item.ducksdelights.home_potion.desc1": "Drink to Return to Home Bed.",
+  "item.ducksdelights.home_potion.desc2": "This can Teleport across Dimensions.",
+  "item.ducksdelights.home_potion.desc3": "This cannot Teleport across Dimensions.",
+
+  "item.ducksdelights.recovery_potion": "Potion of Recovery",
+  "item.ducksdelights.recovery_potion.failed_teleport": "Death Point does not exist. Nicely Done!",
+  "item.ducksdelights.recovery_potion.failed_dimension": "You died beyond this world...",
+  "item.ducksdelights.recovery_potion.desc1": "Drink to Return to previous death.",
+  "item.ducksdelights.recovery_potion.desc2": "This can Teleport across Dimensions.",
+  "item.ducksdelights.recovery_potion.desc3": "This cannot Teleport across Dimensions.",
+
+  "item.ducksdelights.wormhole_potion": "Wormhole Potion",
+  "item.ducksdelights.wormhole_potion.failed_teleport": "Target's position cannot be found.",
+  "item.ducksdelights.wormhole_potion.failed_teleport_no_player_present": "Target does not exist or is untargetable.",
+  "item.ducksdelights.wormhole_potion.failed_dimension": "Target lies beyond this world...",
+  "item.ducksdelights.wormhole_potion.desc1": "Rename with Target's Username to Teleport.",
+  "item.ducksdelights.wormhole_potion.desc2": "This can Teleport across Dimensions.",
+  "item.ducksdelights.wormhole_potion.desc3": "This cannot Teleport across Dimensions.",
+
+
   "tag.item.ducksdelights.onigiri": "Onigiri",
   "tag.item.ducksdelights.haunted_tool_materials": "Haunted Tool Materials",
   "tag.item.ducksdelights.repairs_haunted_armor": "Repairs Haunted Armor",

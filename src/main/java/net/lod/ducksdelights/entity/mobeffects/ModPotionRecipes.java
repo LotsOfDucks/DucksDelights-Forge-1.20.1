@@ -3,6 +3,7 @@ package net.lod.ducksdelights.entity.mobeffects;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ModPotions;
 import net.lod.ducksdelights.util.BrewingHandler;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -62,7 +63,10 @@ public class ModPotionRecipes {
 
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.ENDER_PEARL), ModPotions.ENDER_TRANSFERENCE.get());
 
-
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.COMPASS), new ItemStack(ModItems.HOME_POTION.get()));
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.RECOVERY_COMPASS), new ItemStack(ModItems.RECOVERY_POTION.get()));
+        BrewingHandler.addBrewingRecipe(Ingredient.of(ModItems.HOME_POTION.get()), Ingredient.of(Items.ECHO_SHARD), new ItemStack(ModItems.RECOVERY_POTION.get()));
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.NAME_TAG), new ItemStack(ModItems.WORMHOLE_POTION.get()));
 
     }
 }

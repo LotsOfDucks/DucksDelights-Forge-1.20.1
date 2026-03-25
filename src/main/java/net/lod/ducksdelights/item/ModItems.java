@@ -167,6 +167,18 @@ public class ModItems {
 
 
 
+    public static final RegistryObject<Item> HOME_POTION = ITEMS.register("home_potion",
+            () -> new HomePotionItem(new Item.Properties()
+                    .stacksTo(1)));
+
+    public static final RegistryObject<Item> RECOVERY_POTION = ITEMS.register("recovery_potion",
+            () -> new RecoveryPotionItem(new Item.Properties()
+                    .stacksTo(1)));
+
+    public static final RegistryObject<Item> WORMHOLE_POTION = ITEMS.register("wormhole_potion",
+            () -> new WormholePotionItem(new Item.Properties()
+                    .stacksTo(16)));
+
     public static final RegistryObject<Item> PEARL = ITEMS.register("pearl",
             () -> new Item(new Item.Properties()));
 

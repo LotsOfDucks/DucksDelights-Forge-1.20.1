@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block.entity;
 
 import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.block.ModBlockEntities;
+import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.DemonCoreBlock;
 import net.lod.ducksdelights.block.custom.interfaces.IRadiativeBlockEntity;
 import net.lod.ducksdelights.damage.ModDamageTypes;
@@ -45,36 +46,40 @@ public class DemonCoreBlockEntity extends BlockEntity implements IRadiativeBlock
 
     public static void clientTick(Level pLevel, BlockPos pPos, BlockState pState, DemonCoreBlockEntity pBlockEntity) {
         ++pBlockEntity.ticks;
-        pBlockEntity.powered = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.POWERED);
-        pBlockEntity.waterlogged = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.WATERLOGGED);
-        if (pBlockEntity.waterlogged && pBlockEntity.powered) {
-            double x = pPos.getCenter().x();
-            double y = pPos.getCenter().y();
-            double z = pPos.getCenter().z();
-            pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (0.5 *Math.random()), y + 0.02, z + (0.5 *Math.random()), Math.random(), 0.02, Math.random());
-            pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (-0.5 *Math.random()), y + 0.02, z + (-0.5 *Math.random()), (-1 *Math.random()), 0.02, (-1 * Math.random()));
-            pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (-0.5 *Math.random()), y + 0.02, z + (0.5 *Math.random()), (-1 *Math.random()), 0.02, Math.random());
-            pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (0.5 *Math.random()), y + 0.02, z + (-0.5 *Math.random()), Math.random(), 0.02, (-1 * Math.random()));
+        if (pLevel.getBlockState(pPos).is(ModBlocks.DEMON_CORE.get())) {
+            pBlockEntity.powered = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.POWERED);
+            pBlockEntity.waterlogged = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.WATERLOGGED);
+            if (pBlockEntity.waterlogged && pBlockEntity.powered) {
+                double x = pPos.getCenter().x();
+                double y = pPos.getCenter().y();
+                double z = pPos.getCenter().z();
+                pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (0.5 * Math.random()), y + 0.02, z + (0.5 * Math.random()), Math.random(), 0.02, Math.random());
+                pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (-0.5 * Math.random()), y + 0.02, z + (-0.5 * Math.random()), (-1 * Math.random()), 0.02, (-1 * Math.random()));
+                pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (-0.5 * Math.random()), y + 0.02, z + (0.5 * Math.random()), (-1 * Math.random()), 0.02, Math.random());
+                pLevel.addParticle(ParticleTypes.BUBBLE_COLUMN_UP, x + (0.5 * Math.random()), y + 0.02, z + (-0.5 * Math.random()), Math.random(), 0.02, (-1 * Math.random()));
+            }
         }
 
     }
 
     public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, DemonCoreBlockEntity pBlockEntity) {
         ++pBlockEntity.ticks;
-        pBlockEntity.powered = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.POWERED);
-        pBlockEntity.logged = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.LOGGED);
-        if (pBlockEntity.powered) {
-            DamageSource damageSource = new DamageSource(
-                    pLevel.registryAccess()
-                            .registryOrThrow(Registries.DAMAGE_TYPE)
-                            .getHolder(ModDamageTypes.FISSION).get()
-            );
-            IRadiativeBlockEntity.getEntitiesInRange(pLevel, pPos, pState, pBlockEntity, pBlockEntity.range, pBlockEntity.damageScale, 0.51F, 0.51F, 0.49F, 0.51F, 0.51F, 0.51F, damageSource);
-            if (pLevel.getGameTime() % 40L == 0L) {
-                if (!pBlockEntity.logged) {
-                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 2.0F, 1.0F);
-                } else {
-                    pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, 0.5F);
+        if (pLevel.getBlockState(pPos).is(ModBlocks.DEMON_CORE.get())) {
+            pBlockEntity.powered = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.POWERED);
+            pBlockEntity.logged = pLevel.getBlockState(pPos).getValue(DemonCoreBlock.LOGGED);
+            if (pBlockEntity.powered) {
+                DamageSource damageSource = new DamageSource(
+                        pLevel.registryAccess()
+                                .registryOrThrow(Registries.DAMAGE_TYPE)
+                                .getHolder(ModDamageTypes.FISSION).get()
+                );
+                IRadiativeBlockEntity.getEntitiesInRange(pLevel, pPos, pState, pBlockEntity, pBlockEntity.range, pBlockEntity.damageScale, 0.51F, 0.51F, 0.49F, 0.51F, 0.51F, 0.51F, damageSource);
+                if (pLevel.getGameTime() % 40L == 0L) {
+                    if (!pBlockEntity.logged) {
+                        pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 2.0F, 1.0F);
+                    } else {
+                        pLevel.playSound(null, pPos, ModSoundEvents.DEMON_CORE_AMBIENT.get(), SoundSource.BLOCKS, 0.5F, 0.5F);
+                    }
                 }
             }
         }
