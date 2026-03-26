@@ -52,6 +52,10 @@
   "item.ducksdelights.blackberries": "Blackberries",
   "item.ducksdelights.blackberry_pie": "Blackberry Pie",
 
+  "item.ducksdelights.cold_frog_leg": "Frog Leg",
+  "item.ducksdelights.warm_frog_leg": "Frog Leg",
+  "item.ducksdelights.temperate_frog_leg": "Frog Leg",
+
   "item.ducksdelights.kibblestone": "Kibblestone",
   "item.ducksdelights.plain_rock_candy": "Plain Rock Candy",
   "item.ducksdelights.white_rock_candy": "White Rock Candy",
@@ -183,6 +187,8 @@
   "effect.ducksdelights.ender_transference": "Ender Transference",
   "effect.ducksdelights.burning": "Burning",
   "effect.ducksdelights.freezing": "Freezing",
+  "effect.ducksdelights.green_thumb": "Green Thumb",
+  "effect.ducksdelights.step_up": "Step Up",
 
 
   "item.minecraft.potion.effect.sweet": "Sweet Potion",
@@ -194,6 +200,21 @@
   "item.minecraft.splash_potion.effect.purification": "Splash Potion of Purification",
   "item.minecraft.lingering_potion.effect.purification": "Lingering Potion of Purification",
   "item.minecraft.tipped_arrow.effect.purification": "Arrow of Purification",
+
+  "item.minecraft.potion.effect.vaulting": "Potion of Vaulting",
+  "item.minecraft.splash_potion.effect.vaulting": "Splash Potion of Vaulting",
+  "item.minecraft.lingering_potion.effect.vaulting": "Lingering Potion of Vaulting",
+  "item.minecraft.tipped_arrow.effect.vaulting": "Arrow of Vaulting",
+
+  "item.minecraft.potion.effect.green_thumb": "Potion of The Green Thumb",
+  "item.minecraft.splash_potion.effect.green_thumb": "Splash Potion of The Green Thumb",
+  "item.minecraft.lingering_potion.effect.green_thumb": "Lingering Potion of The Green Thumb",
+  "item.minecraft.tipped_arrow.effect.green_thumb": "Arrow of The Green Thumb",
+
+  "item.minecraft.potion.effect.haste": "Potion of Haste",
+  "item.minecraft.splash_potion.effect.haste": "Splash Potion of Haste",
+  "item.minecraft.lingering_potion.effect.haste": "Lingering Potion of Haste",
+  "item.minecraft.tipped_arrow.effect.haste": "Arrow of Haste",
 
   "item.minecraft.potion.effect.burning": "Potion of Burning",
   "item.minecraft.splash_potion.effect.burning": "Splash Potion of Burning",

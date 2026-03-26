@@ -54,6 +54,18 @@ public class ModPotions {
             POTIONS.register("long_befouling", () ->
                     new Potion("befouling", new MobEffectInstance(ModMobEffects.BEFOULING.get(), 1800)));
 
+    public static final RegistryObject<Potion> GREEN_THUMB =
+            POTIONS.register("green_thumb", () ->
+                    new Potion(new MobEffectInstance(ModMobEffects.GREEN_THUMB.get(), 1200)));
+
+    public static final RegistryObject<Potion> LONG_GREEN_THUMB =
+            POTIONS.register("long_green_thumb", () ->
+                    new Potion("green_thumb", new MobEffectInstance(ModMobEffects.GREEN_THUMB.get(), 3600)));
+
+    public static final RegistryObject<Potion> STRONG_GREEN_THUMB =
+            POTIONS.register("strong_green_thumb", () ->
+                    new Potion("green_thumb", new MobEffectInstance(ModMobEffects.GREEN_THUMB.get(), 800, 2)));
+
     public static final RegistryObject<Potion> ASPHYXIATION =
             POTIONS.register("asphyxiation", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.ASPHYXIATION.get(), 500)));
@@ -61,6 +73,18 @@ public class ModPotions {
     public static final RegistryObject<Potion> LONG_ASPHYXIATION =
             POTIONS.register("long_asphyxiation", () ->
                     new Potion("asphyxiation", new MobEffectInstance(ModMobEffects.ASPHYXIATION.get(), 700)));
+
+    public static final RegistryObject<Potion> HASTE =
+            POTIONS.register("haste", () ->
+                    new Potion(new MobEffectInstance(MobEffects.DIG_SPEED, 3600)));
+
+    public static final RegistryObject<Potion> LONG_HASTE =
+            POTIONS.register("long_haste", () ->
+                    new Potion("haste", new MobEffectInstance(MobEffects.DIG_SPEED, 9600)));
+
+    public static final RegistryObject<Potion> STRONG_HASTE =
+            POTIONS.register("strong_haste", () ->
+                    new Potion("haste", new MobEffectInstance(MobEffects.DIG_SPEED, 1800, 1)));
 
     public static final RegistryObject<Potion> GAMBLING =
             POTIONS.register("gambling", () ->
@@ -106,6 +130,14 @@ public class ModPotions {
             POTIONS.register("long_gravitation", () ->
                     new Potion("gravitation", new MobEffectInstance(ModMobEffects.GRAVITATION.get(), 4000)));
 
+    public static final RegistryObject<Potion> VAULTING =
+            POTIONS.register("vaulting", () ->
+                    new Potion(new MobEffectInstance(ModMobEffects.STEP_UP.get(), 3600)));
+
+    public static final RegistryObject<Potion> LONG_VAULTING =
+            POTIONS.register("long_vaulting", () ->
+                    new Potion("vaulting", new MobEffectInstance(ModMobEffects.STEP_UP.get(), 9600)));
+
     public static final RegistryObject<Potion> EXPLODING =
             POTIONS.register("exploding", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.TIME_BOMB.get(), 600)));
@@ -125,6 +157,8 @@ public class ModPotions {
     public static final RegistryObject<Potion> ENDER_TRANSFERENCE =
             POTIONS.register("ender_transference", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.ENDER_TRANSFERENCE.get(), 1)));
+
+
 
 
 

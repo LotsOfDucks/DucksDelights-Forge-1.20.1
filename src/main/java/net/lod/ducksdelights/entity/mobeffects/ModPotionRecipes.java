@@ -3,10 +3,12 @@ package net.lod.ducksdelights.entity.mobeffects;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ModPotions;
 import net.lod.ducksdelights.util.BrewingHandler;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.data.ForgeItemTagsProvider;
 
 public class ModPotionRecipes {
 
@@ -67,6 +69,14 @@ public class ModPotionRecipes {
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.RECOVERY_COMPASS), new ItemStack(ModItems.RECOVERY_POTION.get()));
         BrewingHandler.addBrewingRecipe(Ingredient.of(ModItems.HOME_POTION.get()), Ingredient.of(Items.ECHO_SHARD), new ItemStack(ModItems.RECOVERY_POTION.get()));
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.NAME_TAG), new ItemStack(ModItems.WORMHOLE_POTION.get()));
+
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.POWERED_RAIL), ModPotions.HASTE.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.HASTE.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_HASTE.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.HASTE.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_HASTE.get());
+
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(ItemTags.VILLAGER_PLANTABLE_SEEDS), ModPotions.GREEN_THUMB.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.GREEN_THUMB.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_GREEN_THUMB.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.GREEN_THUMB.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_GREEN_THUMB.get());
 
     }
 }

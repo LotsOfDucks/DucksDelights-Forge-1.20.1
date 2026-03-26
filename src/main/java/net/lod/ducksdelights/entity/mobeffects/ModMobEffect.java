@@ -1,44 +1,31 @@
 package net.lod.ducksdelights.entity.mobeffects;
 
 import net.lod.ducksdelights.Config;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.network.chat.Component;
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.gossip.GossipType;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Chicken;
-import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ChorusFruitItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 public class ModMobEffect extends MobEffect {
     protected ModMobEffect(MobEffectCategory pCategory, int pColor) {
@@ -170,6 +157,8 @@ public class ModMobEffect extends MobEffect {
             } else {
                 pLivingEntity.removeEffect(this);
             }
+        } else if (this == ModMobEffects.GREEN_THUMB.get()) {
+            this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         }
     }
 
@@ -189,7 +178,9 @@ public class ModMobEffect extends MobEffect {
                     villager.getGossips().add(player.getUUID(), GossipType.MINOR_POSITIVE, 25);
                 }
             } else if (pLivingEntity instanceof Mob mob) {
-                if (mob.getTarget() == pIndirectSource) {
+                if (mob instanceof NeutralMob neutralMob) {
+                    neutralMob.forgetCurrentTargetAndRefreshUniversalAnger();
+                } else if (mob.getTarget() == pIndirectSource) {
                     mob.setAggressive(false);
                     mob.setTarget(null);
                 }
@@ -206,6 +197,10 @@ public class ModMobEffect extends MobEffect {
         } else if (this == ModMobEffects.ENDER_TRANSFERENCE.get()) {
             if (!pLivingEntity.level().isClientSide()) {
                 this.performTeleportSwap(pIndirectSource, pLivingEntity);
+            }
+        } else if (this == ModMobEffects.GREEN_THUMB.get()) {
+            if (!pLivingEntity.level().isClientSide()) {
+                this.applyGreenThumb(pLivingEntity, pAmplifier);
             }
         } else if (this == ModMobEffects.BURNING.get()) {
             if (!pLivingEntity.fireImmune()) {
@@ -229,8 +224,12 @@ public class ModMobEffect extends MobEffect {
             return true;
         } else if (this == ModMobEffects.GRAVITATION.get()) {
             return true;
+        } else if (this == ModMobEffects.STEP_UP.get()) {
+            return true;
         } else if (this == ModMobEffects.TIME_BOMB.get()) {
             return pDuration == 1;
+        } else if (this == ModMobEffects.GREEN_THUMB.get()) {
+            return true;
         } else if (this == ModMobEffects.PLAGUE.get()) {
             rate = 40 >> pAmplifier;
             if (rate > 0) {
@@ -297,6 +296,28 @@ public class ModMobEffect extends MobEffect {
                 pLivingEntity.resetFallDistance();
                 pLivingEntity.level().playSound(null, targetPosition.x(), targetPosition.y(), targetPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
                 pLivingEntity.hurt(pIndirectSource.damageSources().fall(), 2);
+            }
+        }
+    }
+
+    public void applyGreenThumb(LivingEntity livingEntity, int amplifier) {
+        Vec3 entityPos = livingEntity.position();
+        Level level = livingEntity.level();
+        if (level instanceof ServerLevel serverLevel) {
+            if (amplifier >= 9) {
+                amplifier = 8;
+            }
+            if (serverLevel.getRandom().nextInt(0, 10) >= (9 - amplifier)) {
+                for (int roll = 1; roll <= 4; roll++) {
+                    BlockPos targetPos = new BlockPos((int) Math.floor(entityPos.x()) + serverLevel.getRandom().nextIntBetweenInclusive(-4, 4), (int) Math.floor(entityPos.y()) + serverLevel.getRandom().nextIntBetweenInclusive(-2, 2), (int) Math.floor(entityPos.z()) + serverLevel.getRandom().nextIntBetweenInclusive(-4, 4));
+                    BlockState targetState = serverLevel.getBlockState(targetPos);
+                    Block targetBlock = targetState.getBlock();
+                    if (targetBlock instanceof BonemealableBlock bonemealableBlock) {
+                        if (bonemealableBlock.isValidBonemealTarget(serverLevel, targetPos, targetState, false)) {
+                            bonemealableBlock.performBonemeal(serverLevel, serverLevel.getRandom(), targetPos, targetState);
+                        }
+                    }
+                }
             }
         }
     }

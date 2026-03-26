@@ -20,10 +20,10 @@ public class ModCreativeModeTabs {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModItems.HOME_POTION.get());
                 output.accept(ModItems.RECOVERY_POTION.get());
+                output.accept(ModItems.WORMHOLE_POTION.get());
 
                 output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.FISSILE_CHUNK.get());
-                output.accept(ModItems.STARBLIGHT_SHARD.get());
 
                 output.accept(ModItems.HAUNTED_METAL_SCRAP.get());
                 output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
@@ -32,6 +32,10 @@ public class ModCreativeModeTabs {
 
                 output.accept(ModItems.BLACKBERRIES.get());
                 output.accept(ModItems.BLACKBERRY_PIE.get());
+
+                output.accept(ModItems.COLD_FROG_LEG.get());
+                output.accept(ModItems.WARM_FROG_LEG.get());
+                output.accept(ModItems.TEMPERATE_FROG_LEG.get());
 
                 output.accept(ModItems.RAW_RICE.get());
                 output.accept(ModItems.RAW_GOLDEN_RICE.get());

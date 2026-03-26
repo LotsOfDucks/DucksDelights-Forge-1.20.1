@@ -20,6 +20,8 @@ public class ModFoods {
     public static FoodProperties ROCK_CANDY;
     public static FoodProperties BLACKBERRY;
     public static FoodProperties BLACKBERRY_PIE;
+    public static FoodProperties FROG_LEG;
+    public static FoodProperties COOKED_FROG_LEG;
     public static FoodProperties BEDROCK_CHIPS;
 
 
@@ -39,10 +41,13 @@ public class ModFoods {
         PEARLED_APPLE = (new FoodProperties.Builder()).nutrition(4).saturationMod(1.2F).effect(() ->  new MobEffectInstance(MobEffects.HEAL, 1, 0), 1).effect(() ->  new MobEffectInstance(MobEffects.CONDUIT_POWER, 600, 0), 1).effect(() ->  new MobEffectInstance(ModMobEffects.PURIFICATION.get(), 200, 0), 1).alwaysEat().build();
 
         KIBBLESTONE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-        ROCK_CANDY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+        ROCK_CANDY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).alwaysEat().build();
 
-        BLACKBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+        BLACKBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).fast().build();
         BLACKBERRY_PIE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.3F).build();
+
+        FROG_LEG = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).effect(() ->  new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).fast().meat().build();
+        COOKED_FROG_LEG = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).fast().meat().build();
 
         BEDROCK_CHIPS = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.1F).alwaysEat().build();
     }

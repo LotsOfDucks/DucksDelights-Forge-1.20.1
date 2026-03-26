@@ -1,9 +1,9 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.GiantClamBlockEntity;
-import net.lod.ducksdelights.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -34,7 +34,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock, Nameable {
+public class GiantNetherClamBlock extends BaseEntityBlock implements ISimpleWaterAndLavaloggedBlock, Nameable {
     public static final BooleanProperty OPEN;
     public static final BooleanProperty WATERLOGGED;
     public static final BooleanProperty LAVALOGGED;
@@ -43,7 +43,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
 
 
 
-    public GiantClamBlock(Properties pProperties) {
+    public GiantNetherClamBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
     }

@@ -54,7 +54,12 @@ public class ModMobEffects {
     public static final RegistryObject<MobEffect> GRAVITATION =
             MOB_EFFECTS.register("gravitation", () -> new ModMobEffect(
                     MobEffectCategory.HARMFUL, 4069984)
-                    .addAttributeModifier(ForgeMod.ENTITY_GRAVITY.get(), "1b69802a-2305-43a1-b70b-bc5fdfc1f10a", 1.2, AttributeModifier.Operation.MULTIPLY_BASE));
+                    .addAttributeModifier(ForgeMod.ENTITY_GRAVITY.get(), "1b69802a-2305-43a1-b70b-bc5fdfc1f10a", 0.75, AttributeModifier.Operation.MULTIPLY_BASE));
+
+    public static final RegistryObject<MobEffect> STEP_UP =
+            MOB_EFFECTS.register("step_up", () -> new ModMobEffect(
+                    MobEffectCategory.BENEFICIAL, 3134362)
+                    .addAttributeModifier(ForgeMod.STEP_HEIGHT_ADDITION.get(), "3f3e4532-4a4c-4883-abac-20d8b3bef55d", 0.5, AttributeModifier.Operation.ADDITION));
 
     public static final RegistryObject<MobEffect> TIME_BOMB =
             MOB_EFFECTS.register("time_bomb", () -> new ModMobEffect(
@@ -75,6 +80,10 @@ public class ModMobEffects {
     public static final RegistryObject<MobEffect> FREEZING =
             MOB_EFFECTS.register("freezing", () -> new ModMobEffect(
                     MobEffectCategory.HARMFUL, 8826621));
+
+    public static final RegistryObject<MobEffect> GREEN_THUMB =
+            MOB_EFFECTS.register("green_thumb", () -> new ModMobEffect(
+                    MobEffectCategory.BENEFICIAL, 4895570));
 
 
 

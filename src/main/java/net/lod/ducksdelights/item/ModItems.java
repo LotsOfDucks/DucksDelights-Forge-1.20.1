@@ -49,6 +49,19 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .food(ModFoods.BLACKBERRY_PIE)));
 
+    public static final RegistryObject<Item> COLD_FROG_LEG = ITEMS.register("cold_frog_leg",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.FROG_LEG)));
+
+    public static final RegistryObject<Item> WARM_FROG_LEG = ITEMS.register("warm_frog_leg",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.FROG_LEG)));
+
+    public static final RegistryObject<Item> TEMPERATE_FROG_LEG = ITEMS.register("temperate_frog_leg",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.FROG_LEG)));
+
+
 
 
     public static final RegistryObject<Item> RAW_RICE = ITEMS.register("raw_rice",
