@@ -64,18 +64,6 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
         return this.calculateOutputSignalUnreduced(pLevel, pPos, pState) > 0;
     }
 
-    protected int getInputSignal(Level pLevel, BlockPos pPos, BlockState pState) {
-        int i = super.getInputSignal(pLevel, pPos, pState);
-        Direction direction = pState.getValue(FACING);
-        BlockPos blockpos = pPos.relative(direction);
-        BlockState blockstate = pLevel.getBlockState(blockpos);
-        if (blockstate.hasAnalogOutputSignal()) {
-            i = blockstate.getAnalogOutputSignal(pLevel, blockpos);
-        }
-
-        return i;
-    }
-
     protected void checkTickOnNeighbor(Level pLevel, BlockPos pPos, BlockState pState) {
         if (!pLevel.getBlockTicks().willTickThisTick(pPos, this)) {
             int outputSignal = this.calculateOutputSignal(pLevel, pPos, pState);
@@ -102,10 +90,8 @@ public class AdderBlock extends DiodeBlock implements EntityBlock {
         if (blockEntityOutput != outputSignal || (pState.getValue(POWERED) != this.shouldTurnOn(pLevel, pPos, pState))) {
             boolean turnOn = this.shouldTurnOn(pLevel, pPos, pState);
             boolean isOn = pState.getValue(POWERED);
-            if (isOn && !turnOn) {
-                pLevel.setBlock(pPos, pState.setValue(POWERED, false), 2);
-            } else if (!isOn && turnOn) {
-                pLevel.setBlock(pPos, pState.setValue(POWERED, true), 2);
+            if (isOn != turnOn) {
+                pLevel.setBlock(pPos, pState.setValue(POWERED, turnOn), 2);
             }
 
             this.updateNeighborsInFront(pLevel, pPos, pState);

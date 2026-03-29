@@ -1,0 +1,391 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "ducksdelights:empty_barrel"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 1
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 2
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 3
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 3
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 4
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 4
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 5
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 5
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 6
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 6
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 7
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 7
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 8
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 8
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 9
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 9
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 10
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 10
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 11
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 11
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 12
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 12
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 13
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 13
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 14
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 14
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "ducksdelights:blazing_barrel",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "fullness": 15
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:blaze_powder",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 15
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "ducksdelights:blocks/blazing_barrel"
+}

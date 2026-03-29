@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:pearling",
+    "group": "pearl_axe",
+    "category": "misc",
+    "pearlingtime": 1200,
+    "ingredients": [
+        {
+            "item": "minecraft:golden_axe"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "ducksdelights:pearl_axe"
+    }
+}

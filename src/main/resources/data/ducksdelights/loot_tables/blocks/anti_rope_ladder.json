@@ -16,5 +16,7 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+
+  "random_sequence": "ducksdelights:blocks/anti_rope_ladder"
 }

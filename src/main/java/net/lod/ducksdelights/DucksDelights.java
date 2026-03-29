@@ -12,13 +12,13 @@ import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ModPotions;
 import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
+import net.minecraft.client.color.block.BlockColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -89,7 +89,6 @@ public class DucksDelights {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
         }
     }
 }

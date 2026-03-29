@@ -125,8 +125,22 @@
   "item.ducksdelights.pearl": "Pearl",
   "item.ducksdelights.pearled_apple": "Pearled Apple",
 
+  "item.ducksdelights.pearl_sword": "Pearled Sword",
+  "item.ducksdelights.pearl_shovel": "Pearled Shovel",
+  "item.ducksdelights.pearl_axe": "Pearled Axe",
+  "item.ducksdelights.pearl_pickaxe": "Pearled Pickaxe",
+  "item.ducksdelights.pearl_hoe": "Pearled Hoe",
+
+  "block.ducksdelights.pearl_block": "Pearl Block",
+  "block.ducksdelights.chiseled_pearl_block": "Chiseled Pearl Block",
+  "block.ducksdelights.pearl_bricks": "Pearl Bricks",
+  "block.ducksdelights.mossy_pearl_bricks": "Mossy Pearl Bricks",
+  "block.ducksdelights.cracked_pearl_bricks": "Cracked Pearl Bricks",
+  "block.ducksdelights.pearl_lamp": "Pearl Lamp",
+
   "block.ducksdelights.sculk_speaker": "Sculk Speaker",
   "block.ducksdelights.adder": "Redstone Adder",
+  "block.ducksdelights.randomizer": "Redstone Randomizer",
   "block.ducksdelights.demon_core": "Demon Core",
   "block.ducksdelights.moon_phase_detector": "Moon Phase Detector",
   "block.ducksdelights.redstone_lamp_slab": "Redstone Lamp Slab",
@@ -170,6 +184,8 @@
   "death.attack.shattered_bedrock.player": "%2$s crushed %1$s with the stone to end all stone.",
 
   "trim_material.ducksdelights.bedrock_chips": "Bedrock Material",
+
+  "potion.ducksdelights.remaining_applications": "Remaining Uses:",
 
   "effect.ducksdelights.purification": "Purification",
   "effect.ducksdelights.befouling": "Befouling",

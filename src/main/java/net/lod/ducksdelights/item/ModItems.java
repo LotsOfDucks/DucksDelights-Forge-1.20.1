@@ -2,9 +2,12 @@ package net.lod.ducksdelights.item;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.ModBlocks;
+import net.lod.ducksdelights.item.custom.PearlSwordItem;
 import net.lod.ducksdelights.damage.ModDamageTypes;
 import net.lod.ducksdelights.item.custom.*;
 import net.lod.ducksdelights.item.custom.foods.ModFoods;
+import net.lod.ducksdelights.item.custom.PearlShovelItem;
+import net.lod.ducksdelights.item.custom.tiers.ModTiers;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,6 +26,22 @@ public class ModItems {
 
     public static final RegistryObject<Item> HAUNTED_STEEL_INGOT = ITEMS.register("haunted_steel_ingot",
             () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_SWORD = ITEMS.register("haunted_steel_sword",
+            () -> new SwordItem(ModTiers.HAUNTED_STEEL, 3, -2.4F, new Item.Properties()
+                    .setNoRepair()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_SHOVEL = ITEMS.register("haunted_steel_shovel",
+            () -> new ShovelItem(ModTiers.HAUNTED_STEEL, 2, -3.0F, new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_PICKAXE = ITEMS.register("haunted_steel_pickaxe",
+            () -> new PickaxeItem(ModTiers.HAUNTED_STEEL, 2, -2.8F, new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_AXE = ITEMS.register("haunted_steel_axe",
+            () -> new AxeItem(ModTiers.HAUNTED_STEEL, 6.5F, -3.0F, new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_HOE = ITEMS.register("haunted_steel_hoe",
+            () -> new HoeItem(ModTiers.HAUNTED_STEEL, -2, -3.0F, new Item.Properties()));
 
 
 
@@ -199,6 +218,22 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .food(ModFoods.PEARLED_APPLE)
                     .rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> PEARL_SWORD = ITEMS.register("pearl_sword",
+            () -> new PearlSwordItem(ModTiers.PEARL, 3, -2.4F, new Item.Properties()
+                    .setNoRepair()));
+
+    public static final RegistryObject<Item> PEARL_SHOVEL = ITEMS.register("pearl_shovel",
+            () -> new PearlShovelItem(ModTiers.PEARL, 1.5F, -3.0F, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEARL_PICKAXE = ITEMS.register("pearl_pickaxe",
+            () -> new PearlPickaxeItem(ModTiers.PEARL, 1, -2.8F, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEARL_AXE = ITEMS.register("pearl_axe",
+            () -> new PearlAxeItem(ModTiers.PEARL, 6, -3.0F, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEARL_HOE = ITEMS.register("pearl_hoe",
+            () -> new PearlHoeItem(ModTiers.PEARL, -2, -3.0F, new Item.Properties()));
 
 
 

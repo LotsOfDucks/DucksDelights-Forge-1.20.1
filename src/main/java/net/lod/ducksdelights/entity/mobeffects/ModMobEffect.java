@@ -3,6 +3,7 @@ package net.lod.ducksdelights.entity.mobeffects;
 import net.lod.ducksdelights.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
@@ -95,15 +97,12 @@ public class ModMobEffect extends MobEffect {
                         player.stopFallFlying();
                     }
                 }
-                if (player.getAbilities().flying && !player.isCreative()) {
-                    player.move(MoverType.SELF, new Vec3(0, -1, 0));
-                }
             }
             if (!pLivingEntity.onGround() && !pLivingEntity.onClimbable()) {
                 pLivingEntity.fallDistance += 0.5F;
             }
             if (pLivingEntity instanceof FlyingMob flyingMob) {
-                flyingMob.move(MoverType.SELF, new Vec3(0, -1, 0));
+                flyingMob.push(0, -0.4, 0);
             }
         } else if (this == ModMobEffects.TIME_BOMB.get()) {
             pLivingEntity.level().explode(null, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(), pAmplifier + 2, Level.ExplosionInteraction.MOB);
@@ -136,6 +135,8 @@ public class ModMobEffect extends MobEffect {
             this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.ENDER_TRANSFERENCE.get()) {
             this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
+        } else if (this == ModMobEffects.LAUNCHING.get()) {
+            this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.BURNING.get()) {
             this.applyInstantenousEffect(null, null, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.FREEZING.get()) {
@@ -163,26 +164,28 @@ public class ModMobEffect extends MobEffect {
     }
 
     @Override
-    public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, LivingEntity pLivingEntity, int pAmplifier, double pHealth) {
+    public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, @NotNull LivingEntity pLivingEntity, int pAmplifier, double pHealth) {
         if (this == ModMobEffects.LOVE.get()) {
-            if (pLivingEntity instanceof Animal animal) {
-                if (animal.canFallInLove() && !animal.isBaby()) {
-                    if (pIndirectSource instanceof Player player) {
-                        animal.setInLove(player);
-                    } else {
-                        animal.setInLove(null);
+            if (pIndirectSource != null) {
+                if (pLivingEntity instanceof Animal animal) {
+                    if (animal.canFallInLove() && !animal.isBaby()) {
+                        if (pIndirectSource instanceof Player player) {
+                            animal.setInLove(player);
+                        } else {
+                            animal.setInLove(null);
+                        }
                     }
-                }
-            } else if (pLivingEntity instanceof Villager villager) {
-                if (pIndirectSource instanceof Player player) {
-                    villager.getGossips().add(player.getUUID(), GossipType.MINOR_POSITIVE, 25);
-                }
-            } else if (pLivingEntity instanceof Mob mob) {
-                if (mob instanceof NeutralMob neutralMob) {
-                    neutralMob.forgetCurrentTargetAndRefreshUniversalAnger();
-                } else if (mob.getTarget() == pIndirectSource) {
-                    mob.setAggressive(false);
-                    mob.setTarget(null);
+                } else if (pLivingEntity instanceof Villager villager) {
+                    if (pIndirectSource instanceof Player player) {
+                        villager.getGossips().add(player.getUUID(), GossipType.MINOR_POSITIVE, 25);
+                    }
+                } else if (pLivingEntity instanceof Mob mob) {
+                    if (mob instanceof NeutralMob neutralMob) {
+                        neutralMob.forgetCurrentTargetAndRefreshUniversalAnger();
+                    } else if (mob.getTarget() == pIndirectSource) {
+                        mob.setAggressive(false);
+                        mob.setTarget(null);
+                    }
                 }
             }
         } else if (this == ModMobEffects.GAMBLING.get()) {
@@ -197,6 +200,10 @@ public class ModMobEffect extends MobEffect {
         } else if (this == ModMobEffects.ENDER_TRANSFERENCE.get()) {
             if (!pLivingEntity.level().isClientSide()) {
                 this.performTeleportSwap(pIndirectSource, pLivingEntity);
+            }
+        } else if (this == ModMobEffects.LAUNCHING.get()) {
+            if (!pLivingEntity.level().isClientSide()) {
+                this.performLaunch(pIndirectSource, pLivingEntity, pAmplifier);
             }
         } else if (this == ModMobEffects.GREEN_THUMB.get()) {
             if (!pLivingEntity.level().isClientSide()) {
@@ -262,11 +269,26 @@ public class ModMobEffect extends MobEffect {
         effectList.remove(target);
     }
 
-    public void performTeleportSwap (Entity pIndirectSource, LivingEntity pLivingEntity) {
+    public void performLaunch(Entity pIndirectSource, LivingEntity pLivingEntity, int amplifier) {
+        if (pIndirectSource != null) {
+            if (pIndirectSource == pLivingEntity) {
+                pIndirectSource.hurt(pIndirectSource.damageSources().fall(), 1);
+                pIndirectSource.push(0, 1 + amplifier, 0);
+            } else {
+                pLivingEntity.hurt(pLivingEntity.damageSources().fall(), 1);
+                pLivingEntity.push(0, 1 + amplifier, 0);
+            }
+        } else {
+            pLivingEntity.hurt(pLivingEntity.damageSources().fall(), 1);
+            pLivingEntity.push(0, 1 + amplifier, 0);
+        }
+    }
+
+    public void performTeleportSwap(Entity pIndirectSource, LivingEntity pLivingEntity) {
         if (pIndirectSource != null) {
             Vec3 targetPosition = new Vec3(pLivingEntity.position().toVector3f());
             Vec3 throwerPosition = new Vec3(pIndirectSource.position().toVector3f());
-
+            
             if (pIndirectSource == pLivingEntity) {
                 pIndirectSource.resetFallDistance();
                 pIndirectSource.level().playSound(null, throwerPosition.x(), throwerPosition.y(), throwerPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
@@ -291,6 +313,7 @@ public class ModMobEffect extends MobEffect {
                 pIndirectSource.resetFallDistance();
                 pIndirectSource.level().playSound(null, throwerPosition.x(), throwerPosition.y(), throwerPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
                 pIndirectSource.hurt(pIndirectSource.damageSources().fall(), 2);
+
 
                 pLivingEntity.teleportTo(throwerPosition.x(), throwerPosition.y(), throwerPosition.z());
                 pLivingEntity.resetFallDistance();

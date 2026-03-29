@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:pearling",
+    "group": "pearl_hoe",
+    "category": "misc",
+    "pearlingtime": 1200,
+    "ingredients": [
+        {
+            "item": "minecraft:golden_hoe"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "ducksdelights:pearl_hoe"
+    }
+}

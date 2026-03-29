@@ -10,7 +10,7 @@ public class RandomizerBlockEntity extends BlockEntity {
     private int output;
 
     public RandomizerBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.ADDER_BE.get(), pPos, pBlockState);
+        super(ModBlockEntities.RANDOMIZER_BE.get(), pPos, pBlockState);
     }
 
     protected void saveAdditional(CompoundTag pTag) {

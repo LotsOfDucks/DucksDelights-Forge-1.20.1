@@ -1,10 +1,8 @@
 package net.lod.ducksdelights.entity.mobeffects;
 
 import net.lod.ducksdelights.DucksDelights;
-import net.minecraft.world.effect.InstantenousMobEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.common.ForgeMod;
@@ -12,8 +10,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.UUID;
 
 public class ModMobEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =
@@ -72,6 +68,10 @@ public class ModMobEffects {
     public static final RegistryObject<MobEffect> ENDER_TRANSFERENCE =
             MOB_EFFECTS.register("ender_transference", () -> new ModInstantMobEffect(
                     MobEffectCategory.HARMFUL, 1072721));
+
+    public static final RegistryObject<MobEffect> LAUNCHING =
+            MOB_EFFECTS.register("launching", () -> new ModInstantMobEffect(
+                    MobEffectCategory.NEUTRAL, 16697942));
 
     public static final RegistryObject<MobEffect> BURNING =
             MOB_EFFECTS.register("burning", () -> new ModInstantMobEffect(

@@ -32,6 +32,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(AdderBlockEntity::new,
                             ModBlocks.ADDER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<RandomizerBlockEntity>> RANDOMIZER_BE =
+            BLOCK_ENTITIES.register("randomizer_block_entity", () ->
+                    BlockEntityType.Builder.of(RandomizerBlockEntity::new,
+                            ModBlocks.RANDOMIZER.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<ResonatorBlockEntity>> RESONATOR_BE =
             BLOCK_ENTITIES.register("resonator_entity", () ->
                     BlockEntityType.Builder.of(ResonatorBlockEntity::new,

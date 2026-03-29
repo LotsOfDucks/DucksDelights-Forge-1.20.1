@@ -85,7 +85,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
                                     if (pLevel.isClientSide()) {
                                         return InteractionResult.SUCCESS;
                                     } else {
-                                        pPlayer.addItem(blockEntity.getItem(0));
+                                        pPlayer.addItem(blockEntity.getItem(0).copy()) ;
                                         blockEntity.removeItem(0, 1);
                                         return InteractionResult.CONSUME;
                                     }
@@ -93,7 +93,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
                                     if (pLevel.isClientSide()) {
                                         return InteractionResult.SUCCESS;
                                     } else {
-                                        pPlayer.addItem(blockEntity.getItem(1));
+                                        pPlayer.addItem(blockEntity.getItem(1).copy());
                                         blockEntity.removeItem(1, 1);
                                         return InteractionResult.CONSUME;
                                     }
@@ -104,7 +104,7 @@ public class GiantClamBlock extends BaseEntityBlock implements ISimpleWaterAndLa
                                 if (pLevel.isClientSide()) {
                                     return InteractionResult.SUCCESS;
                                 } else {
-                                    blockEntity.setItem(0, new ItemStack(heldItem.getItem()));
+                                    blockEntity.setItem(0, heldItem.copy());
                                     heldItem.shrink(1);
                                     return InteractionResult.CONSUME;
                                 }

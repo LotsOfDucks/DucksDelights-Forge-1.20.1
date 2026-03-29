@@ -223,6 +223,27 @@ public class ModBlocks {
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
 
+    public static final RegistryObject<RandomizerBlock> RANDOMIZER = registerBlock("randomizer",
+            () -> new RandomizerBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
+
+    public static final RegistryObject<Block> PEARL_BLOCK = registerBlock("pearl_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)));
+
+    public static final RegistryObject<Block> CHISELED_PEARL_BLOCK = registerBlock("chiseled_pearl_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)));
+
+    public static final RegistryObject<Block> PEARL_BRICKS = registerBlock("pearl_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)));
+
+    public static final RegistryObject<Block> MOSSY_PEARL_BRICKS = registerBlock("mossy_pearl_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)));
+
+    public static final RegistryObject<Block> CRACKED_PEARL_BRICKS = registerBlock("cracked_pearl_bricks",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)));
+
+    public static final RegistryObject<PearlLampBlock> PEARL_LAMP = registerBlock("pearl_lamp",
+            () -> new PearlLampBlock(BlockBehaviour.Properties.copy(Blocks.REDSTONE_LAMP)));
+
     public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 

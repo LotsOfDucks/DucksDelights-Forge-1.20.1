@@ -28,6 +28,11 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_METAL_SCRAP.get());
                 output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
                 output.accept(ModItems.HAUNTED_STEEL_INGOT.get());
+                output.accept(ModItems.HAUNTED_STEEL_SWORD.get());
+                output.accept(ModItems.HAUNTED_STEEL_PICKAXE.get());
+                output.accept(ModItems.HAUNTED_STEEL_AXE.get());
+                output.accept(ModItems.HAUNTED_STEEL_SHOVEL.get());
+                output.accept(ModItems.HAUNTED_STEEL_HOE.get());
                 output.accept(ModItems.SOUL_CAGE.get());
 
                 output.accept(ModItems.BLACKBERRIES.get());
@@ -49,6 +54,11 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.GILDED_ONIGIRI.get());
 
                 output.accept(ModItems.PEARL.get());
+                output.accept(ModItems.PEARL_SWORD.get());
+                output.accept(ModItems.PEARL_PICKAXE.get());
+                output.accept(ModItems.PEARL_AXE.get());
+                output.accept(ModItems.PEARL_SHOVEL.get());
+                output.accept(ModItems.PEARL_HOE.get());
                 output.accept(ModItems.PEARLED_APPLE.get());
 
                 output.accept(ModItems.KIBBLESTONE.get());
@@ -75,6 +85,13 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> DUCKSDELIGHTS_BLOCKS = CREATIVE_MODE_TABS.register("ducksdelights_blocks", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.DEMON_CORE.get()))
             .title(Component.translatable("itemgroup.ducksdelights.blocks"))
             .displayItems((itemDisplayParameters, output) -> {
+                output.accept(ModBlocks.PEARL_BLOCK.get());
+                output.accept(ModBlocks.CHISELED_PEARL_BLOCK.get());
+                output.accept(ModBlocks.PEARL_BRICKS.get());
+                output.accept(ModBlocks.MOSSY_PEARL_BRICKS.get());
+                output.accept(ModBlocks.CRACKED_PEARL_BRICKS.get());
+                output.accept(ModBlocks.PEARL_LAMP.get());
+
                 output.accept(ModBlocks.PADDY_FARMLAND.get());
 
                 output.accept(ModBlocks.ROPE_LADDER.get());

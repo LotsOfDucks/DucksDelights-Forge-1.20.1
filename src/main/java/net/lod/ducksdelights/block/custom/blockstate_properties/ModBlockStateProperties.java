@@ -41,7 +41,7 @@ public class ModBlockStateProperties {
     public static final BooleanProperty GOLDEN = BooleanProperty.create("golden");
 
     //Randomizer
-    public static final IntegerProperty VALUE = IntegerProperty.create("value", 1, 15);
+    public static final BooleanProperty BINARY = BooleanProperty.create("binary");
 
     //Giant Clam
     public static final BooleanProperty OPEN = BooleanProperty.create("open");

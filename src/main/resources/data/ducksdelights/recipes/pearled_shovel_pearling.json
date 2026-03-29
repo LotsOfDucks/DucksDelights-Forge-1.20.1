@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:pearling",
+    "group": "pearl_shovel",
+    "category": "misc",
+    "pearlingtime": 1200,
+    "ingredients": [
+        {
+            "item": "minecraft:golden_shovel"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "ducksdelights:pearl_shovel"
+    }
+}

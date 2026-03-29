@@ -158,6 +158,10 @@ public class ModPotions {
             POTIONS.register("ender_transference", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.ENDER_TRANSFERENCE.get(), 1)));
 
+    static final RegistryObject<Potion> LAUNCHING =
+            POTIONS.register("launching", () ->
+                    new Potion(new MobEffectInstance(ModMobEffects.LAUNCHING.get(), 1)));
+
 
 
 

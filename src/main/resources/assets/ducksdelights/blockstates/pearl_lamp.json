@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "ducksdelights:block/pearl_lamp"
+    },
+    "lit=true": {
+      "model": "ducksdelights:block/pearl_lamp_on"
+    }
+  }
+}

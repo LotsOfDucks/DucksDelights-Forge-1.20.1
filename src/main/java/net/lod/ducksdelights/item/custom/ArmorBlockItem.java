@@ -3,20 +3,11 @@ package net.lod.ducksdelights.item.custom;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.Util;
-import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -30,15 +21,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
-import org.jetbrains.annotations.Nullable;
 
-import java.nio.Buffer;
 import java.util.*;
 
 public class ArmorBlockItem extends SimpleFurnaceFuelBlockItem implements Equipable {
