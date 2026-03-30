@@ -198,6 +198,14 @@ public class ModItems {
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
 
+    public static final RegistryObject<Item> MARSHMALLOW = ITEMS.register("marshmallow",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.MARSHMALLOW)));
+
+    public static final RegistryObject<Item> MARSHMALLOW_STICK = ITEMS.register("marshmallow_stick",
+            () -> new RemainderItem(new Item.Properties()
+                    .food(ModFoods.MARSHMALLOW), Items.STICK));
+
 
     public static final RegistryObject<Item> HOME_POTION = ITEMS.register("home_potion",
             () -> new HomePotionItem(new Item.Properties()

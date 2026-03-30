@@ -247,6 +247,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
+    public static final RegistryObject<Block> GIANT_MARSHMALLOW = registerBlock("giant_marshmallow",
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
     public static final RegistryObject<GiantClamBlock> GIANT_CLAM_BROWN = registerBlock("giant_clam_brown",
             () -> new GiantClamBlock(BlockBehaviour.Properties.copy(Blocks.BRAIN_CORAL_BLOCK)
                     .noOcclusion()));

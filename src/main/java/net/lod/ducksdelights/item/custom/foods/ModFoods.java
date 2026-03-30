@@ -23,6 +23,8 @@ public class ModFoods {
     public static FoodProperties FROG_LEG;
     public static FoodProperties COOKED_FROG_LEG;
     public static FoodProperties BEDROCK_CHIPS;
+    public static FoodProperties MARSHMALLOW;
+    public static FoodProperties GIANT_MARSHMALLOW;
 
 
     public ModFoods() {
@@ -50,5 +52,8 @@ public class ModFoods {
         COOKED_FROG_LEG = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).fast().meat().build();
 
         BEDROCK_CHIPS = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.1F).alwaysEat().build();
+
+        MARSHMALLOW = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).alwaysEat().build();
+        GIANT_MARSHMALLOW = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).alwaysEat().build();
     }
 }

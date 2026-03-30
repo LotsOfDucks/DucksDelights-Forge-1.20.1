@@ -79,6 +79,10 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.PURPLE_ROCK_CANDY.get());
                 output.accept(ModItems.MAGENTA_ROCK_CANDY.get());
                 output.accept(ModItems.PINK_ROCK_CANDY.get());
+
+                output.accept(ModItems.MARSHMALLOW.get());
+                output.accept(ModItems.MARSHMALLOW_STICK.get());
+                output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
             })
             .build());
 
@@ -93,6 +97,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.PEARL_LAMP.get());
 
                 output.accept(ModBlocks.PADDY_FARMLAND.get());
+
+                output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
 
                 output.accept(ModBlocks.ROPE_LADDER.get());
                 output.accept(ModBlocks.ANTI_ROPE_LADDER.get());

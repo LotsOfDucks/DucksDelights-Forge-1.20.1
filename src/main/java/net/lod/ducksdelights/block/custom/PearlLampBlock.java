@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RedstoneLampBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.ticks.TickPriority;
 
 public class PearlLampBlock extends RedstoneLampBlock {
     public PearlLampBlock(Properties pProperties) {
@@ -15,22 +16,25 @@ public class PearlLampBlock extends RedstoneLampBlock {
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
-            boolean $$6 = pState.getValue(LIT);
-            if ($$6 != pLevel.hasNeighborSignal(pPos)) {
-                if ($$6) {
-                    pLevel.scheduleTick(pPos, this, 1);
-                } else {
-                    pLevel.setBlock(pPos, pState.cycle(LIT), 2);
-                }
+            boolean wasLit = pState.getValue(LIT);
+            if (wasLit != pLevel.hasNeighborSignal(pPos)) {
+                pLevel.scheduleTick(pPos, this, 1);
             }
-
         }
     }
 
-    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (pState.getValue(LIT) && !pLevel.hasNeighborSignal(pPos)) {
-            pLevel.setBlock(pPos, pState.cycle(LIT), 2);
-        }
+    public boolean hasAnalogOutputSignal(BlockState pState) {
+        return true;
+    }
 
+    public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+        return pLevel.getBlockState(pPos).getValue(LIT) ? 15 : 0;
+    }
+
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        boolean wasLit = pState.getValue(LIT);
+        if (wasLit != pLevel.hasNeighborSignal(pPos)) {
+            pLevel.setBlock(pPos, pState.cycle(LIT), 3);
+        }
     }
 }
