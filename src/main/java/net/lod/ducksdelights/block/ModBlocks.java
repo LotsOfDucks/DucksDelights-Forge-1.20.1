@@ -7,9 +7,11 @@ import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.lod.ducksdelights.item.custom.ModArmorMaterials;
 import net.lod.ducksdelights.item.custom.SimpleFurnaceFuelBlockItem;
+import net.lod.ducksdelights.item.custom.foods.ModFoods;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
@@ -247,7 +249,87 @@ public class ModBlocks {
     public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
-    public static final RegistryObject<Block> GIANT_MARSHMALLOW = registerBlock("giant_marshmallow",
+    public static final RegistryObject<Block> GIANT_MARSHMALLOW = registerFoodBlock("giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> WHITE_GIANT_MARSHMALLOW = registerFoodBlock("white_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> LIGHT_GRAY_GIANT_MARSHMALLOW = registerFoodBlock("light_gray_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> GRAY_GIANT_MARSHMALLOW = registerFoodBlock("gray_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> BLACK_GIANT_MARSHMALLOW = registerFoodBlock("black_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> BROWN_GIANT_MARSHMALLOW = registerFoodBlock("brown_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> RED_GIANT_MARSHMALLOW = registerFoodBlock("red_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> ORANGE_GIANT_MARSHMALLOW = registerFoodBlock("orange_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> YELLOW_GIANT_MARSHMALLOW = registerFoodBlock("yellow_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> LIME_GIANT_MARSHMALLOW = registerFoodBlock("lime_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> GREEN_GIANT_MARSHMALLOW = registerFoodBlock("green_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> CYAN_GIANT_MARSHMALLOW = registerFoodBlock("cyan_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> LIGHT_BLUE_GIANT_MARSHMALLOW = registerFoodBlock("light_blue_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> BLUE_GIANT_MARSHMALLOW = registerFoodBlock("blue_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> PURPLE_GIANT_MARSHMALLOW = registerFoodBlock("purple_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> MAGENTA_GIANT_MARSHMALLOW = registerFoodBlock("magenta_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
+                    .strength(0.2F)
+                    .sound(SoundType.WOOL)));
+
+    public static final RegistryObject<Block> PINK_GIANT_MARSHMALLOW = registerFoodBlock("pink_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
                     .strength(0.2F)
                     .sound(SoundType.WOOL)));
@@ -301,6 +383,17 @@ public class ModBlocks {
 
     private static <T extends Block>RegistryObject<Item> registerArmorBlockItem(String name, ArmorMaterial armorMaterial, ArmorItem.Type armorType, int burnTime, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new ArmorBlockItem(block.get(), armorMaterial, armorType, ModSoundEvents.ARMOR_BARREL_EQUIP.get(), burnTime, new Item.Properties()));
+    }
+
+    private static <T extends Block> RegistryObject<T> registerFoodBlock(String name, FoodProperties foodProperties, Supplier<T> block) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        registerFoodBlockItem(name, foodProperties, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block>RegistryObject<Item> registerFoodBlockItem(String name, FoodProperties foodProperties, RegistryObject<T> block) {
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()
+                .food(foodProperties)));
     }
 
     public static void register(IEventBus eventBus) {

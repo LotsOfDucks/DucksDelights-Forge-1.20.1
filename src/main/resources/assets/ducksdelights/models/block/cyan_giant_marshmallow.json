@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "ducksdelights:block/cyan_giant_marshmallow_bottom",
+    "east": "ducksdelights:block/cyan_giant_marshmallow_side",
+    "north": "ducksdelights:block/cyan_giant_marshmallow_side",
+    "particle": "ducksdelights:block/cyan_giant_marshmallow_side",
+    "south": "ducksdelights:block/cyan_giant_marshmallow_side",
+    "up": "ducksdelights:block/cyan_giant_marshmallow_top",
+    "west": "ducksdelights:block/cyan_giant_marshmallow_side"
+  }
+}

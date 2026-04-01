@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.item.custom;
 
 import net.lod.ducksdelights.DucksDelights;
+import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
@@ -14,8 +15,11 @@ import java.util.EnumMap;
 import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
-    BARREL("barrel", 3, new int[]{1, 3, 2, 1}, 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0F, 0F, () -> Ingredient.of(ItemTags.PLANKS));
+    BARREL("barrel", 3, new int[]{1, 3, 2, 1}, 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0F, 0F, () -> Ingredient.of(ItemTags.PLANKS)),
+    HAUNTED_STEEL("haunted_steel", 3, new int[]{1, 3, 2, 1}, 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0F, 0F, () -> Ingredient.of(ModItems.HAUNTED_STEEL_INGOT.get()))
+    ;
     //barrel
+
 
     private static final int[] BASE_DURABILITY = {11, 16, 15, 13};
     private final String name;

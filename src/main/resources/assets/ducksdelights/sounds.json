@@ -1,4 +1,10 @@
 {
+  "giant_marshmallow_boowoop": {
+    "subtitle": "sounds.ducksdelights.giant_marshmallow_boowoop",
+    "sounds": [
+      "ducksdelights:giant_marshmallow_boowoop"
+    ]
+  },
   "demon_core_ambient": {
     "subtitle": "sounds.ducksdelights.demon_core_ambient",
     "sounds": [

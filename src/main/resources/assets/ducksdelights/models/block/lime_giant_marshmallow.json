@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "ducksdelights:block/lime_giant_marshmallow_bottom",
+    "east": "ducksdelights:block/lime_giant_marshmallow_side",
+    "north": "ducksdelights:block/lime_giant_marshmallow_side",
+    "particle": "ducksdelights:block/lime_giant_marshmallow_side",
+    "south": "ducksdelights:block/lime_giant_marshmallow_side",
+    "up": "ducksdelights:block/lime_giant_marshmallow_top",
+    "west": "ducksdelights:block/lime_giant_marshmallow_side"
+  }
+}

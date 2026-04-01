@@ -12,6 +12,8 @@ public class ModSoundEvents {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
             DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, DucksDelights.MOD_ID);
 
+    public static final RegistryObject<SoundEvent> GIANT_MARSHMALLOW_BOOWOOP = registerSoundEvents("giant_marshmallow_boowoop");
+
     public static final RegistryObject<SoundEvent> DEMON_CORE_TINK = registerSoundEvents("demon_core_tink");
 
     public static final RegistryObject<SoundEvent> DEMON_CORE_AMBIENT = registerSoundEvents("demon_core_ambient");

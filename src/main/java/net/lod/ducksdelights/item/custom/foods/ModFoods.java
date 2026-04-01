@@ -53,7 +53,7 @@ public class ModFoods {
 
         BEDROCK_CHIPS = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.1F).alwaysEat().build();
 
-        MARSHMALLOW = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).alwaysEat().build();
+        MARSHMALLOW = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().alwaysEat().build();
         GIANT_MARSHMALLOW = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).alwaysEat().build();
     }
 }
