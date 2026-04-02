@@ -2,7 +2,6 @@ package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
-import net.lod.ducksdelights.block.custom.blockstate_properties.enums.ClamTexture;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.lod.ducksdelights.item.custom.ModArmorMaterials;
@@ -248,6 +247,12 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
+    public static final RegistryObject<Block> MARSHMALLOW_ROOT_CROP = registerFoodBlock("marshmallow_root_crop", ModFoods.GIANT_MARSHMALLOW,
+            () -> new MarshmallowCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+
+    public static final RegistryObject<Block> MARSHMALLOW_ROOT_FLOWER = registerFoodBlock("marshmallow_root_flower", ModFoods.GIANT_MARSHMALLOW,
+            () -> new MarshmallowFlowerBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
     public static final RegistryObject<Block> GIANT_MARSHMALLOW = registerFoodBlock("giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
