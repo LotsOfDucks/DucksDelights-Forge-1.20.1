@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "#": {
+            "item": "ducksdelights:giant_marshmallow"
+        },
+        "%": {
+            "item": "minecraft:red_dye"
+        }
+    },
+    "pattern": [
+        "###",
+        "#%#",
+        "###"
+    ],
+    "group": "giant_marshmallow",
+    "result": {
+        "item": "ducksdelights:red_giant_marshmallow",
+        "count": 8
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "ducksdelights:block/marshmallow_root_crop_5_top"
+    },
+    "age=1": {
+      "model": "ducksdelights:block/marshmallow_root_crop_6_top"
+    },
+    "age=2": {
+      "model": "ducksdelights:block/marshmallow_root_crop_7_top"
+    }
+  }
+}

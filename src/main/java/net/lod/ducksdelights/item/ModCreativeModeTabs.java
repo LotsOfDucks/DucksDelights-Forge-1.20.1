@@ -102,13 +102,6 @@ public class ModCreativeModeTabs {
     public static final RegistryObject<CreativeModeTab> DUCKSDELIGHTS_FOOD = CREATIVE_MODE_TABS.register("ducksdelights_food", () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.RAW_RICE.get()))
             .title(Component.translatable("itemgroup.ducksdelights.food"))
             .displayItems((itemDisplayParameters, output) -> {
-                output.accept(ModItems.MARSHMALLOW.get());
-                output.accept(ModItems.MARSHMALLOW_STICK.get());
-                output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
-
-                output.accept(ModItems.BLACKBERRIES.get());
-                output.accept(ModItems.BLACKBERRY_PIE.get());
-
                 output.accept(ModItems.RAW_RICE.get());
                 output.accept(ModItems.RAW_GOLDEN_RICE.get());
                 output.accept(ModItems.WHITE_RICE.get());
@@ -119,6 +112,15 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.PORK_ONIGIRI.get());
                 output.accept(ModItems.SALMON_ONIGIRI.get());
                 output.accept(ModItems.GILDED_ONIGIRI.get());
+
+                output.accept(ModItems.MARSHMALLOW_ROOTS.get());
+                output.accept(ModItems.MARSHMALLOW.get());
+                output.accept(ModItems.MARSHMALLOW_STICK.get());
+                output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
+
+                output.accept(ModItems.BLACKBERRIES.get());
+                output.accept(ModItems.BLACKBERRY_PIE.get());
+
 
                 output.accept(ModItems.COLD_FROG_LEG.get());
                 output.accept(ModItems.WARM_FROG_LEG.get());

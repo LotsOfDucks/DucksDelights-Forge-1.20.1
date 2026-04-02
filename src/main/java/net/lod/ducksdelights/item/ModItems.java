@@ -197,6 +197,8 @@ public class ModItems {
             () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.ROCK_CANDY), Items.STICK));
 
+    public static final RegistryObject<Item> MARSHMALLOW_ROOTS = ITEMS.register("marshmallow_roots",
+            () -> new ItemNameBlockItem(ModBlocks.MARSHMALLOW_ROOT_CROP.get(),new Item.Properties()));
 
     public static final RegistryObject<Item> MARSHMALLOW = ITEMS.register("marshmallow",
             () -> new Item(new Item.Properties()

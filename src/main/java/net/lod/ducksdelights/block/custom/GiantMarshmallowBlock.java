@@ -3,18 +3,15 @@ package net.lod.ducksdelights.block.custom;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -33,6 +30,11 @@ public class GiantMarshmallowBlock extends Block {
 
     @Override
     public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
+        return true;
+    }
+
+    @Override
+    public boolean isSlimeBlock(BlockState state) {
         return true;
     }
 
@@ -58,27 +60,26 @@ public class GiantMarshmallowBlock extends Block {
 
     private void launch(Entity pEntity) {
         Vec3 entityMovement = pEntity.getDeltaMovement();
+        double xSpeed = entityMovement.x;
+        double zSpeed = entityMovement.z;
+        float newYSpeed = 0.8F;
+        if (pEntity instanceof AbstractMinecart) {
+            xSpeed *= 10;
+            newYSpeed *= 2;
+            zSpeed *= 10;
+        }
         if (pEntity.getFeetBlockState().getBlock() instanceof GiantMarshmallowBlock) {
             if (pEntity.level().hasNeighborSignal(pEntity.blockPosition())) {
-                float newSpeed = pEntity.level().getBestNeighborSignal(pEntity.blockPosition());
-                if (pEntity instanceof AbstractMinecart) {
-                    pEntity.setDeltaMovement(entityMovement.x, (Math.log1p(newSpeed) + 1), entityMovement.z);
-                } else {
-                    pEntity.setDeltaMovement(entityMovement.x, (Math.log1p(newSpeed) + 1) / 2, entityMovement.z);
+                double newYSpeedPowered = Math.log1p(pEntity.level().getBestNeighborSignal(pEntity.blockPosition())) + 1;
+                if (!(pEntity instanceof AbstractMinecart)) {
+                    newYSpeedPowered /= 2;
                 }
+                pEntity.setDeltaMovement(xSpeed, newYSpeedPowered, zSpeed);
             } else {
-                if (pEntity instanceof AbstractMinecart) {
-                    pEntity.setDeltaMovement(entityMovement.x, 1.6F, entityMovement.z);
-                } else {
-                    pEntity.setDeltaMovement(entityMovement.x, 0.8F, entityMovement.z);
-                }
+                pEntity.setDeltaMovement(xSpeed, newYSpeed, zSpeed);
             }
         } else {
-            if (pEntity instanceof AbstractMinecart) {
-                pEntity.setDeltaMovement(entityMovement.x, 1.6F, entityMovement.z);
-            } else {
-                pEntity.setDeltaMovement(entityMovement.x, 0.8F, entityMovement.z);
-            }
+            pEntity.setDeltaMovement(xSpeed, newYSpeed, zSpeed);
         }
     }
 }
