@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "ducksdelights:althaea"
+    }
+  ],
+  "group": "magenta_dye",
+  "result": {
+    "item": "minecraft:magenta_dye",
+    "count": 1
+  }
+}

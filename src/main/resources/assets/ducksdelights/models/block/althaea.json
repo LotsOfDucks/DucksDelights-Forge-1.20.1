@@ -1,0 +1,7 @@
+{
+  "render_type": "minecraft:cutout",
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "ducksdelights:block/marshmallow_root_crop_7_top"
+  }
+}

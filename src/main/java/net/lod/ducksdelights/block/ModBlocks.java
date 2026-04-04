@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
+import net.lod.ducksdelights.entity.mobeffects.ModMobEffects;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.lod.ducksdelights.item.custom.ModArmorMaterials;
@@ -9,7 +10,9 @@ import net.lod.ducksdelights.item.custom.SimpleFurnaceFuelBlockItem;
 import net.lod.ducksdelights.item.custom.foods.ModFoods;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.BlockGetter;
@@ -24,6 +27,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.intellij.lang.annotations.Flow;
 
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
@@ -254,6 +258,11 @@ public class ModBlocks {
     public static final RegistryObject<Block> MARSHMALLOW_ROOT_FLOWER = registerFoodBlock("marshmallow_root_flower", ModFoods.GIANT_MARSHMALLOW,
             () -> new MarshmallowFlowerBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
+    public static final RegistryObject<Block> ALTHAEA = registerBlock("althaea",
+            () -> new FlowerBlock(MobEffects.HEAL, 1, BlockBehaviour.Properties.copy(Blocks.POPPY)));
+
+    public static final RegistryObject<Block> POTTED_ALTHAEA = registerBlock("potted_althaea", () -> flowerPot(ALTHAEA.get()));
+
     public static final RegistryObject<Block> GIANT_MARSHMALLOW = registerFoodBlock("giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
                     .strength(0.2F)
@@ -399,6 +408,15 @@ public class ModBlocks {
     private static <T extends Block>RegistryObject<Item> registerFoodBlockItem(String name, FoodProperties foodProperties, RegistryObject<T> block) {
         return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()
                 .food(foodProperties)));
+    }
+
+    private static FlowerPotBlock flowerPot(Block pContent, FeatureFlag... pRequiredFeatures) {
+        BlockBehaviour.Properties blockbehaviour$properties = BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);
+        if (pRequiredFeatures.length > 0) {
+            blockbehaviour$properties = blockbehaviour$properties.requiredFeatures(pRequiredFeatures);
+        }
+
+        return new FlowerPotBlock(pContent, blockbehaviour$properties);
     }
 
     public static void register(IEventBus eventBus) {

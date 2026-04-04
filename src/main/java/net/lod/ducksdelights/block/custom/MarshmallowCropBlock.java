@@ -98,7 +98,7 @@ public class MarshmallowCropBlock extends BushBlock implements BonemealableBlock
         boolean addTop = false;
         int i = this.getAge(pState) + this.getBonemealAgeIncrease(pLevel);
         int j = this.getMaxAge();
-        if (i > j) {
+        if (i >= j) {
             i = j;
             if (pLevel.getBlockState(pPos.above()).getBlock() instanceof AirBlock) {
                 addTop = true;

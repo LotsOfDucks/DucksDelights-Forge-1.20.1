@@ -150,11 +150,11 @@ public class MarshmallowFlowerBlock extends BushBlock implements BonemealableBlo
     }
 
     public ItemStack getCloneItemStack(BlockGetter pLevel, BlockPos pPos, BlockState pState) {
-        return new ItemStack(ModItems.MARSHMALLOW.get());
+        return new ItemStack(ModBlocks.ALTHAEA.get());
     }
 
     public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
-        return !this.isMaxAge(pState);
+        return true;
     }
 
     public boolean isBonemealSuccess(Level pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
@@ -162,7 +162,11 @@ public class MarshmallowFlowerBlock extends BushBlock implements BonemealableBlo
     }
 
     public void performBonemeal(ServerLevel pLevel, RandomSource pRandom, BlockPos pPos, BlockState pState) {
-        this.growCrops(pLevel, pPos, pState);
+        if (this.getAge(pState) != this.getMaxAge()) {
+            this.growCrops(pLevel, pPos, pState);
+        } else {
+            popResource(pLevel, pPos, new ItemStack(ModBlocks.ALTHAEA.get()));
+        }
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {

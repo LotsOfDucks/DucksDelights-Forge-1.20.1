@@ -114,6 +114,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.GILDED_ONIGIRI.get());
 
                 output.accept(ModItems.MARSHMALLOW_ROOTS.get());
+                output.accept(ModBlocks.ALTHAEA.get());
                 output.accept(ModItems.MARSHMALLOW.get());
                 output.accept(ModItems.MARSHMALLOW_STICK.get());
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
