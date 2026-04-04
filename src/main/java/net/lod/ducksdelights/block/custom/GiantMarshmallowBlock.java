@@ -62,6 +62,7 @@ public class GiantMarshmallowBlock extends Block {
             if (pEntity instanceof Boat) {
                 pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
             }
+
         }
     }
 

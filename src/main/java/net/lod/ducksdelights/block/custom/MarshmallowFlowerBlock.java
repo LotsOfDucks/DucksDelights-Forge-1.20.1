@@ -146,6 +146,7 @@ public class MarshmallowFlowerBlock extends BushBlock implements BonemealableBlo
             pLevel.destroyBlock(pPos, true, pEntity);
         }
 
+
         super.entityInside(pState, pLevel, pPos, pEntity);
     }
 
