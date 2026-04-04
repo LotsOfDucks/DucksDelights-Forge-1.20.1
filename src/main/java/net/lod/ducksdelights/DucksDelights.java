@@ -53,6 +53,7 @@ public class DucksDelights {
         ModSoundEvents.register(modEventBus);
 
 
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
