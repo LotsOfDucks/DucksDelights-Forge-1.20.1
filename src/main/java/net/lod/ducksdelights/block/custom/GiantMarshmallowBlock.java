@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,6 +24,16 @@ public class GiantMarshmallowBlock extends Block {
 
     public GiantMarshmallowBlock(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public VoxelShape getBlockSupportShape(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+        return Shapes.block();
+    }
+
+    @Override
+    public VoxelShape getVisualShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Shapes.block();
     }
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -40,33 +51,19 @@ public class GiantMarshmallowBlock extends Block {
     }
 
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        if (pEntity.isSuppressingBounce()) {
-            super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
-        } else {
-            pEntity.causeFallDamage(pFallDistance, 0.0F, pLevel.damageSources().fall());
-        }
-
+        pEntity.resetFallDistance();
     }
 
     public void updateEntityAfterFallOn(BlockGetter pLevel, Entity pEntity) {
         if (pEntity.isSuppressingBounce()) {
-            super.updateEntityAfterFallOn(pLevel, pEntity);
+            this.bounceUp(pEntity);
         } else {
             this.launch(pEntity);
-            if (pEntity instanceof LivingEntity) {
-                pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
-            }
-            if (pEntity instanceof AbstractMinecart) {
-                pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
-            }
-            if (pEntity instanceof Boat) {
-                pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
-            }
-
+            this.doSound(pEntity);
         }
     }
 
-    private void launch(Entity pEntity) {
+    public void launch(Entity pEntity) {
         Vec3 entityMovement = pEntity.getDeltaMovement();
         double xSpeed = entityMovement.x;
         double zSpeed = entityMovement.z;
@@ -88,6 +85,32 @@ public class GiantMarshmallowBlock extends Block {
             }
         } else {
             pEntity.setDeltaMovement(xSpeed, newYSpeed, zSpeed);
+        }
+    }
+
+    public void bounceUp(Entity pEntity) {
+        Vec3 motion = pEntity.getDeltaMovement();
+        if (motion.y < 0.0) {
+            double motionChange = pEntity instanceof LivingEntity ? 1.0 : 0.8;
+            pEntity.setDeltaMovement(motion.x, -motion.y * motionChange, motion.z);
+
+        }
+        if (motion.y >= 0.1) {
+            this.doSound(pEntity);
+        } else if (motion.y <= -0.1) {
+            this.doSound(pEntity);
+        }
+    }
+
+    public void doSound(Entity pEntity) {
+        if (pEntity instanceof LivingEntity) {
+            pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
+        }
+        if (pEntity instanceof AbstractMinecart) {
+            pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
+        }
+        if (pEntity instanceof Boat) {
+            pEntity.level().playSound(null, pEntity, ModSoundEvents.GIANT_MARSHMALLOW_BOOWOOP.get(), SoundSource.BLOCKS, 1, 1);
         }
     }
 }

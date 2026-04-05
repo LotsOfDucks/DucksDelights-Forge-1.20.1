@@ -252,10 +252,13 @@ public class ModBlocks {
     public static final RegistryObject<Block> STARBLIGHT_BRIDGE = registerBlock("starblight_bridge",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
-    public static final RegistryObject<Block> MARSHMALLOW_ROOT_CROP = registerFoodBlock("marshmallow_root_crop", ModFoods.GIANT_MARSHMALLOW,
+    public static final RegistryObject<Block> WILD_MARSHMALLOW_ROOT = registerBlock("wild_marshmallow_root",
+            () -> new WildMarshmallowRootBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
+
+    public static final RegistryObject<Block> MARSHMALLOW_ROOT_CROP = registerBlock("marshmallow_root_crop",
             () -> new MarshmallowCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
-    public static final RegistryObject<Block> MARSHMALLOW_ROOT_FLOWER = registerFoodBlock("marshmallow_root_flower", ModFoods.GIANT_MARSHMALLOW,
+    public static final RegistryObject<Block> MARSHMALLOW_ROOT_FLOWER = registerBlock("marshmallow_root_flower",
             () -> new MarshmallowFlowerBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));
 
     public static final RegistryObject<Block> ALTHAEA = registerBlock("althaea",
@@ -265,88 +268,60 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> GIANT_MARSHMALLOW = registerFoodBlock("giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+                    .sound(SoundType.WOOL)
+                    .instrument(NoteBlockInstrument.DIDGERIDOO)
+                    .instabreak()
+                    .isRedstoneConductor(ModBlocks::always)
+                    .isViewBlocking(ModBlocks::always)
+                    .isSuffocating(ModBlocks::always)));
 
     public static final RegistryObject<Block> WHITE_GIANT_MARSHMALLOW = registerFoodBlock("white_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> LIGHT_GRAY_GIANT_MARSHMALLOW = registerFoodBlock("light_gray_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> GRAY_GIANT_MARSHMALLOW = registerFoodBlock("gray_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> BLACK_GIANT_MARSHMALLOW = registerFoodBlock("black_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> BROWN_GIANT_MARSHMALLOW = registerFoodBlock("brown_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> RED_GIANT_MARSHMALLOW = registerFoodBlock("red_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> ORANGE_GIANT_MARSHMALLOW = registerFoodBlock("orange_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> YELLOW_GIANT_MARSHMALLOW = registerFoodBlock("yellow_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> LIME_GIANT_MARSHMALLOW = registerFoodBlock("lime_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> GREEN_GIANT_MARSHMALLOW = registerFoodBlock("green_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> CYAN_GIANT_MARSHMALLOW = registerFoodBlock("cyan_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> LIGHT_BLUE_GIANT_MARSHMALLOW = registerFoodBlock("light_blue_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> BLUE_GIANT_MARSHMALLOW = registerFoodBlock("blue_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> PURPLE_GIANT_MARSHMALLOW = registerFoodBlock("purple_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> MAGENTA_GIANT_MARSHMALLOW = registerFoodBlock("magenta_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<Block> PINK_GIANT_MARSHMALLOW = registerFoodBlock("pink_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
-            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
-                    .strength(0.2F)
-                    .sound(SoundType.WOOL)));
+            () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.copy(ModBlocks.GIANT_MARSHMALLOW.get())));
 
     public static final RegistryObject<GiantClamBlock> GIANT_CLAM_BROWN = registerBlock("giant_clam_brown",
             () -> new GiantClamBlock(BlockBehaviour.Properties.copy(Blocks.BRAIN_CORAL_BLOCK)

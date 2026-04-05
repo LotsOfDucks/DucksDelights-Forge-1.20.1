@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "ducksdelights:block/wild_marshmallow_root_bottom"
+    },
+    "half=upper": {
+      "model": "ducksdelights:block/wild_marshmallow_root_top"
+    }
+  }
+}
