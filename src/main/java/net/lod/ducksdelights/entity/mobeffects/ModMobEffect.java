@@ -338,6 +338,7 @@ public class ModMobEffect extends MobEffect {
                     if (targetBlock instanceof BonemealableBlock bonemealableBlock) {
                         if (bonemealableBlock.isValidBonemealTarget(serverLevel, targetPos, targetState, false)) {
                             bonemealableBlock.performBonemeal(serverLevel, serverLevel.getRandom(), targetPos, targetState);
+                            level.levelEvent(1505, targetPos, 0);
                         }
                     }
                 }

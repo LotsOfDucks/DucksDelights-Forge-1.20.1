@@ -208,6 +208,9 @@ public class ModItems {
             () -> new RemainderItem(new Item.Properties()
                     .food(ModFoods.MARSHMALLOW), Items.STICK));
 
+    public static final RegistryObject<Item> MARSHMALLOW_CREME = ITEMS.register("marshmallow_creme",
+            () -> new MarshmallowCremeItem(new Item.Properties()
+                    .food(ModFoods.MARSHMALLOW).craftRemainder(Items.BOWL), Items.BOWL));
 
     public static final RegistryObject<Item> HOME_POTION = ITEMS.register("home_potion",
             () -> new HomePotionItem(new Item.Properties()

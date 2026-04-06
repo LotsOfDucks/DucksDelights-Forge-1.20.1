@@ -118,6 +118,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ALTHAEA.get());
                 output.accept(ModItems.MARSHMALLOW.get());
                 output.accept(ModItems.MARSHMALLOW_STICK.get());
+                output.accept(ModItems.MARSHMALLOW_CREME.get());
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
 
                 output.accept(ModItems.BLACKBERRIES.get());
@@ -157,6 +158,10 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ADDER.get());
                 output.accept(ModBlocks.RANDOMIZER.get());
                 output.accept(ModBlocks.RESONATOR.get());
+
+                output.accept(ModBlocks.ENTITY_DETECTOR.get());
+                output.accept(ModBlocks.MOB_DETECTOR.get());
+                output.accept(ModBlocks.PLAYER_DETECTOR.get());
 
                 output.accept(ModBlocks.SCULK_SPEAKER.get());
                 output.accept(ModBlocks.MOON_PHASE_DETECTOR.get());

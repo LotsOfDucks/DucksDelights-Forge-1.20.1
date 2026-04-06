@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "power=0": {
+      "model": "ducksdelights:block/entity_detector"
+    },
+    "power=1": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=2": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=3": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=4": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=5": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=6": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=7": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=8": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=9": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=10": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=11": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=12": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=13": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=14": {
+      "model": "ducksdelights:block/entity_detector_on"
+    },
+    "power=15": {
+      "model": "ducksdelights:block/entity_detector_on"
+    }
+  }
+}

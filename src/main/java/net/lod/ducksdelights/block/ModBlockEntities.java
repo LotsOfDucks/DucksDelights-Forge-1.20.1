@@ -22,6 +22,21 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(MoonPhaseDetectorBlockEntity::new,
                             ModBlocks.MOON_PHASE_DETECTOR.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<EntityDetectorBlockEntity>> ENTITY_DETECTOR_BE =
+            BLOCK_ENTITIES.register("entity_detector_block_entity", () ->
+                    BlockEntityType.Builder.of(EntityDetectorBlockEntity::new,
+                            ModBlocks.ENTITY_DETECTOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<MobDetectorBlockEntity>> MOB_DETECTOR_BE =
+            BLOCK_ENTITIES.register("mob_detector_block_entity", () ->
+                    BlockEntityType.Builder.of(MobDetectorBlockEntity::new,
+                            ModBlocks.MOB_DETECTOR.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<PlayerDetectorBlockEntity>> PLAYER_DETECTOR_BE =
+            BLOCK_ENTITIES.register("player_block_entity", () ->
+                    BlockEntityType.Builder.of(PlayerDetectorBlockEntity::new,
+                            ModBlocks.PLAYER_DETECTOR.get()).build(null));
+
     public static final RegistryObject<BlockEntityType<BlazingBarrelBlockEntity>> BLAZING_BARREL_DETECTOR_BE =
             BLOCK_ENTITIES.register("blazing_barrel_block_entity", () ->
                     BlockEntityType.Builder.of(BlazingBarrelBlockEntity::new,
