@@ -74,7 +74,8 @@ public class ModPotionRecipes {
         BrewingHandler.addBrewingRecipe(ModPotions.HASTE.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_HASTE.get());
         BrewingHandler.addBrewingRecipe(ModPotions.HASTE.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_HASTE.get());
 
-        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(ItemTags.VILLAGER_PLANTABLE_SEEDS), ModPotions.GREEN_THUMB.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.TORCHFLOWER_SEEDS), ModPotions.GREEN_THUMB.get());
+        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.PITCHER_POD), ModPotions.GREEN_THUMB.get());
         BrewingHandler.addBrewingRecipe(ModPotions.GREEN_THUMB.get(), Ingredient.of(Items.REDSTONE), ModPotions.LONG_GREEN_THUMB.get());
         BrewingHandler.addBrewingRecipe(ModPotions.GREEN_THUMB.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_GREEN_THUMB.get());
 

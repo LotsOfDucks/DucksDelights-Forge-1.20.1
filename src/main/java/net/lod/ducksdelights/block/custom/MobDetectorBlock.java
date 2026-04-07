@@ -1,9 +1,11 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.entity.MobDetectorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
@@ -45,7 +47,7 @@ public class MobDetectorBlock extends BaseEntityBlock {
     }
 
     private static void tickEntity(Level world, BlockPos blockPos, BlockState blockState, MobDetectorBlockEntity blockEntity) {
-        if (world.getGameTime() % 10L == 0L) {
+        if (world.getGameTime() % 5L == 0L) {
             getEntitiesInRange(world, blockPos, blockState);
         }
     }
@@ -54,14 +56,16 @@ public class MobDetectorBlock extends BaseEntityBlock {
         int boxX = pos.getX();
         int boxY = pos.getY();
         int boxZ = pos.getZ();
-        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(10);
+        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.MONSTER_DETECTOR_RANGE.get());
         List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box, LivingEntity::attackable);
         if (!list.isEmpty()) {
             int targets = 0;
             for (LivingEntity livingEntity : list) {
                 if (livingEntity instanceof Enemy) {
-                    if (pos.getCenter().closerThan(livingEntity.position(), 10) && livingEntity.isAlive()) {
-                        targets++;
+                    if (!livingEntity.hasEffect(MobEffects.INVISIBILITY)) {
+                        if (pos.getCenter().closerThan(livingEntity.position(), Config.MONSTER_DETECTOR_RANGE.get()) && livingEntity.isAlive()) {
+                            targets++;
+                        }
                     }
                 }
             }
