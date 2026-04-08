@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -54,13 +55,19 @@ public class EntityDetectorBlock extends BaseEntityBlock {
         int boxX = pos.getX();
         int boxY = pos.getY();
         int boxZ = pos.getZ();
-        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.ENTITY_DETECTOR_RANGE.get());
+        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.entity_detector_range);
         List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box, LivingEntity::attackable);
         if (!list.isEmpty()) {
             int targets = 0;
             for (LivingEntity livingEntity : list) {
                 if (!livingEntity.hasEffect(MobEffects.INVISIBILITY)) {
-                    if (pos.getCenter().closerThan(livingEntity.position(), Config.ENTITY_DETECTOR_RANGE.get()) && livingEntity.isAlive()) {
+                    if (livingEntity instanceof Player player) {
+                        if (!player.isSpectator()) {
+                            if (pos.getCenter().closerThan(livingEntity.position(), Config.entity_detector_range) && livingEntity.isAlive()) {
+                                targets++;
+                            }
+                        }
+                    } else if (pos.getCenter().closerThan(livingEntity.position(), Config.ENTITY_DETECTOR_RANGE.get()) && livingEntity.isAlive()) {
                         targets++;
                     }
                 }

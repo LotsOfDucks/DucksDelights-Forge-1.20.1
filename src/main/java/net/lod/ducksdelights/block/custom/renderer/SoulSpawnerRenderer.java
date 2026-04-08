@@ -13,7 +13,6 @@ import net.minecraft.world.entity.Entity;
 
 public class SoulSpawnerRenderer implements BlockEntityRenderer<SoulSpawnerBlockEntity> {
     private final EntityRenderDispatcher entityRenderer;
-
     public SoulSpawnerRenderer(BlockEntityRendererProvider.Context pContext) {
         this.entityRenderer = pContext.getEntityRenderer();
     }

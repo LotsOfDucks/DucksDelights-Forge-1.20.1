@@ -3,7 +3,6 @@ package net.lod.ducksdelights.item.custom;
 import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.item.ModItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -15,10 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.entity.EntityTeleportEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -53,7 +49,7 @@ public class HomePotionItem extends Item {
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving) {
         if (!level.isClientSide && entityLiving instanceof ServerPlayer serverPlayer) {
-            boolean interDimensional = Config.HOME_POTION_CROSS_DIMENSIONS.get();
+            boolean interDimensional = Config.home_potion_cross_dimensions;
             ResourceKey<net.minecraft.world.level.Level> currentDimension = level.dimension();
             ResourceKey<Level> respawnDimension = serverPlayer.getRespawnDimension();
             ServerLevel serverWorld = interDimensional ? serverPlayer.server.getLevel(respawnDimension) : (currentDimension == respawnDimension ? Objects.requireNonNull(level.getServer()).getLevel(currentDimension) : null);
@@ -71,7 +67,7 @@ public class HomePotionItem extends Item {
                         serverWorld.playSound(null, respawnVec.x, respawnVec.y, respawnVec.z, SoundEvents.CHORUS_FRUIT_TELEPORT, serverPlayer.getSoundSource(), 1.0F, 1.0F);
                         serverPlayer.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
                         serverPlayer.hurt(serverPlayer.damageSources().fall(), 2);
-                        serverPlayer.getCooldowns().addCooldown(ModItems.HOME_POTION.get(), 20 * Config.HOME_POTION_COOLDOWN.get()); // 20 ticks = 1 second
+                        serverPlayer.getCooldowns().addCooldown(ModItems.HOME_POTION.get(), 20 * Config.home_potion_cooldown); // 20 ticks = 1 second
                     } else {
                         serverPlayer.displayClientMessage(Component.translatable("item.ducksdelights.home_potion.failed_respawn"), true);
                     }
@@ -88,7 +84,7 @@ public class HomePotionItem extends Item {
     public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
         pTooltip.add(Component.translatable("item.ducksdelights.home_potion.desc1").withStyle(ChatFormatting.GRAY));
-        if (Config.HOME_POTION_CROSS_DIMENSIONS.get()) {
+        if (Config.home_potion_cross_dimensions) {
             pTooltip.add(Component.translatable("item.ducksdelights.home_potion.desc2").withStyle(ChatFormatting.BLUE));
         } else {
             pTooltip.add(Component.translatable("item.ducksdelights.home_potion.desc3").withStyle(ChatFormatting.RED));

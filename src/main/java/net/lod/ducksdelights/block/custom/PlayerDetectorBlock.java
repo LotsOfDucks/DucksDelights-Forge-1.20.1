@@ -55,14 +55,14 @@ public class PlayerDetectorBlock extends BaseEntityBlock {
         int boxX = pos.getX();
         int boxY = pos.getY();
         int boxZ = pos.getZ();
-        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.PLAYER_DETECTOR_RANGE.get());
+        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.player_detector_range);
         List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box, LivingEntity::attackable);
         if (!list.isEmpty()) {
             int targets = 0;
             for (LivingEntity livingEntity : list) {
-                if (livingEntity instanceof Player) {
-                    if (!livingEntity.hasEffect(MobEffects.INVISIBILITY)) {
-                        if (pos.getCenter().closerThan(livingEntity.position(), Config.PLAYER_DETECTOR_RANGE.get()) && livingEntity.isAlive()) {
+                if (livingEntity instanceof Player player) {
+                    if (!livingEntity.hasEffect(MobEffects.INVISIBILITY) && !player.isSpectator()) {
+                        if (pos.getCenter().closerThan(livingEntity.position(), Config.player_detector_range) && livingEntity.isAlive()) {
                             targets++;
                         }
                     }

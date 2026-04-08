@@ -82,9 +82,9 @@ public class Config {
         RESONATOR_CAN_MINE_BEDROCK = BUILDER.comment("Can The Resonator Break Bedrock").define("Break Bedrock", true);
         RESONATOR_CAN_MINE_UNMINEABLES = BUILDER.comment("Can The Resonator Break Unmineables").define("Break Unbreakable", false);
 
-        ENTITY_DETECTOR_RANGE = BUILDER.comment("Entity Detector Range in Blocks").define("Block Radius", 10);
-        MONSTER_DETECTOR_RANGE = BUILDER.comment("Monster Detector Range in Blocks").define("Block Radius", 10);
-        PLAYER_DETECTOR_RANGE = BUILDER.comment("Player Detector Range in Blocks").define("Block Radius", 7);
+        ENTITY_DETECTOR_RANGE = BUILDER.comment("Entity Detector Range in Blocks").define("Entity Detector Block Radius", 10);
+        MONSTER_DETECTOR_RANGE = BUILDER.comment("Monster Detector Range in Blocks").define("Monster Detector Block Radius", 10);
+        PLAYER_DETECTOR_RANGE = BUILDER.comment("Player Detector Range in Blocks").define("Player Detector Block Radius", 7);
 
         GRAVITATION_ELYTRA_LOCK =BUILDER.comment("Gravitation Potion Locks Elytra").define("Gravitation Elytra Lock", true);
 

@@ -56,14 +56,14 @@ public class MobDetectorBlock extends BaseEntityBlock {
         int boxX = pos.getX();
         int boxY = pos.getY();
         int boxZ = pos.getZ();
-        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.MONSTER_DETECTOR_RANGE.get());
+        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.monster_detector_range);
         List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box, LivingEntity::attackable);
         if (!list.isEmpty()) {
             int targets = 0;
             for (LivingEntity livingEntity : list) {
                 if (livingEntity instanceof Enemy) {
                     if (!livingEntity.hasEffect(MobEffects.INVISIBILITY)) {
-                        if (pos.getCenter().closerThan(livingEntity.position(), Config.MONSTER_DETECTOR_RANGE.get()) && livingEntity.isAlive()) {
+                        if (pos.getCenter().closerThan(livingEntity.position(), Config.monster_detector_range) && livingEntity.isAlive()) {
                             targets++;
                         }
                     }

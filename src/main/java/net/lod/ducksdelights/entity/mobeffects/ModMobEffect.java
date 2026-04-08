@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -92,7 +93,7 @@ public class ModMobEffect extends MobEffect {
             }
         } else if (this == ModMobEffects.GRAVITATION.get()) {
             if (pLivingEntity instanceof Player player) {
-                if (Config.GRAVITATION_ELYTRA_LOCK.get()) {
+                if (Config.gravitation_elytra_lock) {
                     if (player.isFallFlying()) {
                         player.stopFallFlying();
                     }
@@ -309,13 +310,16 @@ public class ModMobEffect extends MobEffect {
                     pLivingEntity.ejectPassengers();
                 }
 
+
                 pIndirectSource.teleportTo(targetPosition.x(), targetPosition.y(), targetPosition.z());
+                pIndirectSource.level().gameEvent(GameEvent.TELEPORT, targetPosition, GameEvent.Context.of(pIndirectSource));
                 pIndirectSource.resetFallDistance();
                 pIndirectSource.level().playSound(null, throwerPosition.x(), throwerPosition.y(), throwerPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
                 pIndirectSource.hurt(pIndirectSource.damageSources().fall(), 2);
 
 
                 pLivingEntity.teleportTo(throwerPosition.x(), throwerPosition.y(), throwerPosition.z());
+                pLivingEntity.level().gameEvent(GameEvent.TELEPORT, throwerPosition, GameEvent.Context.of(pIndirectSource));
                 pLivingEntity.resetFallDistance();
                 pLivingEntity.level().playSound(null, targetPosition.x(), targetPosition.y(), targetPosition.z(), SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.NEUTRAL, 1F, 1F);
                 pLivingEntity.hurt(pIndirectSource.damageSources().fall(), 2);

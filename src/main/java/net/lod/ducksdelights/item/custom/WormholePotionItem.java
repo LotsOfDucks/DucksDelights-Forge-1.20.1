@@ -50,7 +50,7 @@ public class WormholePotionItem extends Item {
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving) {
         if (!level.isClientSide && entityLiving instanceof ServerPlayer serverPlayer) {
             boolean targetFoundFlag = false;
-            boolean interDimensional = Config.WORMHOLE_POTION_CROSS_DIMENSIONS.get();
+            boolean interDimensional = Config.wormhole_potion_cross_dimensions;
             String targetName = stack.getDisplayName().toFlatList().get(1).getString();
             List<String> possibleTargetsList = Arrays.stream((Objects.requireNonNull(level.getServer())).getPlayerNames()).toList();
 
@@ -86,7 +86,7 @@ public class WormholePotionItem extends Item {
                         serverWorld.playSound(null, respawnVec.x, respawnVec.y, respawnVec.z, SoundEvents.CHORUS_FRUIT_TELEPORT, serverPlayer.getSoundSource(), 1.0F, 1.0F);
                         serverPlayer.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
                         serverPlayer.hurt(serverPlayer.damageSources().fall(), 2);
-                        serverPlayer.getCooldowns().addCooldown(ModItems.WORMHOLE_POTION.get(), 20 * Config.WORMHOLE_POTION_COOLDOWN.get()); // 20 ticks = 1 second
+                        serverPlayer.getCooldowns().addCooldown(ModItems.WORMHOLE_POTION.get(), 20 * Config.wormhole_potion_cooldown); // 20 ticks = 1 second
                     } catch (Exception e) {
                         serverPlayer.displayClientMessage(Component.translatable("item.ducksdelights.wormhole_potion.failed_teleport"), true);
                     }
@@ -103,7 +103,7 @@ public class WormholePotionItem extends Item {
     public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
         pTooltip.add(Component.translatable("item.ducksdelights.wormhole_potion.desc1").withStyle(ChatFormatting.GRAY));
-        if (Config.WORMHOLE_POTION_CROSS_DIMENSIONS.get()) {
+        if (Config.wormhole_potion_cross_dimensions) {
             pTooltip.add(Component.translatable("item.ducksdelights.wormhole_potion.desc2").withStyle(ChatFormatting.BLUE));
         } else {
             pTooltip.add(Component.translatable("item.ducksdelights.wormhole_potion.desc3").withStyle(ChatFormatting.RED));

@@ -135,14 +135,14 @@ public class ResonatorBlockEntity extends BlockEntity implements GameEventListen
                 case (15) -> 50.0F;
                 default -> -0.1F;
             };
-            if (Config.RESONATOR_CAN_MINE_BEDROCK.get()) {
+            if (Config.resonator_mine_bedrock) {
                 if ((level.getBlockState(targetPos).is(Blocks.BEDROCK) || level.getBlockState(targetPos).is(ModBlocks.SHATTERED_BEDROCK.get())) && (getLastVibrationFrequency() == 15)) {
                     return true;
                 }
             }
             if (getLastVibrationFrequency() < 15) {
                 return (resonanceLowerThreshhold < targetDestroyTime && targetDestroyTime <= resonanceThreshhold);
-            } else if (Config.RESONATOR_CAN_MINE_UNMINEABLES.get()) {
+            } else if (Config.resonator_mine_unmineables) {
                 return (50 < targetDestroyTime && targetDestroyTime < 100);
             }
         }
