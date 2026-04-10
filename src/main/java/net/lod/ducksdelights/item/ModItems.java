@@ -248,6 +248,9 @@ public class ModItems {
     public static final RegistryObject<Item> PEARL_HOE = ITEMS.register("pearl_hoe",
             () -> new PearlHoeItem(ModTiers.PEARL, -2, -3.0F, new Item.Properties()));
 
+    public static final RegistryObject<Item> PEARL_FISHING_ROD = ITEMS.register("pearl_fishing_rod",
+            () -> new PearlFishingRodItem(new Item.Properties().durability(128)));
+
 
 
 

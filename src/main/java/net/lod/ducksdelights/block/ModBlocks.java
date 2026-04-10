@@ -230,23 +230,23 @@ public class ModBlocks {
             () -> new RandomizerBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
 
     public static final RegistryObject<Block> PEARL_BLOCK = registerBlock("pearl_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
+            () -> new PearlBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
                     .mapColor(DyeColor.WHITE)));
 
     public static final RegistryObject<Block> CHISELED_PEARL_BLOCK = registerBlock("chiseled_pearl_block",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
+            () -> new PearlBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
                     .mapColor(DyeColor.WHITE)));
 
     public static final RegistryObject<Block> PEARL_BRICKS = registerBlock("pearl_bricks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
+            () -> new PearlBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
                     .mapColor(DyeColor.WHITE)));
 
     public static final RegistryObject<Block> MOSSY_PEARL_BRICKS = registerBlock("mossy_pearl_bricks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
+            () -> new PearlBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
                     .mapColor(DyeColor.WHITE)));
 
     public static final RegistryObject<Block> CRACKED_PEARL_BRICKS = registerBlock("cracked_pearl_bricks",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
+            () -> new PearlBlock(BlockBehaviour.Properties.copy(Blocks.SANDSTONE)
                     .mapColor(DyeColor.WHITE)));
 
     public static final RegistryObject<PearlLampBlock> PEARL_LAMP = registerBlock("pearl_lamp",
@@ -277,7 +277,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.LIGHT_GRAY)));
+                    .mapColor(DyeColor.LIGHT_GRAY)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> WHITE_GIANT_MARSHMALLOW = registerFoodBlock("white_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -286,7 +287,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.WHITE)));
+                    .mapColor(DyeColor.WHITE)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> LIGHT_GRAY_GIANT_MARSHMALLOW = registerFoodBlock("light_gray_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -295,7 +297,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.LIGHT_GRAY)));
+                    .mapColor(DyeColor.LIGHT_GRAY)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> GRAY_GIANT_MARSHMALLOW = registerFoodBlock("gray_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -304,7 +307,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.GRAY)));
+                    .mapColor(DyeColor.GRAY)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> BLACK_GIANT_MARSHMALLOW = registerFoodBlock("black_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -313,7 +317,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.BLACK)));
+                    .mapColor(DyeColor.BLACK)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> BROWN_GIANT_MARSHMALLOW = registerFoodBlock("brown_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -322,7 +327,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.BROWN)));
+                    .mapColor(DyeColor.BROWN)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> RED_GIANT_MARSHMALLOW = registerFoodBlock("red_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -331,7 +337,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.RED)));
+                    .mapColor(DyeColor.RED)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> ORANGE_GIANT_MARSHMALLOW = registerFoodBlock("orange_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -340,7 +347,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.ORANGE)));
+                    .mapColor(DyeColor.ORANGE)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> YELLOW_GIANT_MARSHMALLOW = registerFoodBlock("yellow_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -349,7 +357,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.YELLOW)));
+                    .mapColor(DyeColor.YELLOW)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> LIME_GIANT_MARSHMALLOW = registerFoodBlock("lime_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -358,7 +367,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.LIME)));
+                    .mapColor(DyeColor.LIME)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> GREEN_GIANT_MARSHMALLOW = registerFoodBlock("green_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -367,7 +377,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.GREEN)));
+                    .mapColor(DyeColor.GREEN)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> CYAN_GIANT_MARSHMALLOW = registerFoodBlock("cyan_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -376,7 +387,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.CYAN)));
+                    .mapColor(DyeColor.CYAN)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> LIGHT_BLUE_GIANT_MARSHMALLOW = registerFoodBlock("light_blue_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -385,7 +397,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.LIGHT_BLUE)));
+                    .mapColor(DyeColor.LIGHT_BLUE)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> BLUE_GIANT_MARSHMALLOW = registerFoodBlock("blue_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -394,7 +407,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.BLUE)));
+                    .mapColor(DyeColor.BLUE)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> PURPLE_GIANT_MARSHMALLOW = registerFoodBlock("purple_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -403,7 +417,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.PURPLE)));
+                    .mapColor(DyeColor.PURPLE)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> MAGENTA_GIANT_MARSHMALLOW = registerFoodBlock("magenta_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -412,7 +427,8 @@ public class ModBlocks {
                     .instabreak()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.MAGENTA)));
+                    .mapColor(DyeColor.MAGENTA)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> PINK_GIANT_MARSHMALLOW = registerFoodBlock("pink_giant_marshmallow", ModFoods.GIANT_MARSHMALLOW,
             () -> new GiantMarshmallowBlock(BlockBehaviour.Properties.of()
@@ -422,7 +438,8 @@ public class ModBlocks {
                     .forceSolidOn()
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
-                    .mapColor(DyeColor.PINK)));
+                    .mapColor(DyeColor.PINK)
+                    .ignitedByLava()));
 
     public static final RegistryObject<Block> ENTITY_DETECTOR = registerBlock("entity_detector",
             () -> new EntityDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)));

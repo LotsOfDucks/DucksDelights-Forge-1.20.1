@@ -1,4 +1,5 @@
 {
   "replace": false,
-  "values": ["ducksdelights:bedrock_chips"]
+  "values": ["ducksdelights:bedrock_chips",
+    "ducksdelights:pearl"]
 }

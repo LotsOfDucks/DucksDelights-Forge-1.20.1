@@ -1,15 +1,15 @@
 {
     "type": "ducksdelights:pearling",
-    "group": "pearl_sword",
+    "group": "pearl_pickaxe",
     "category": "misc",
     "pearlingtime": 4200,
     "ingredients": [
         {
-            "item": "minecraft:golden_sword"
+            "item": "minecraft:golden_pickaxe"
         }
     ],
     "result": {
         "count": 1,
-        "item": "ducksdelights:pearl_sword"
+        "item": "ducksdelights:pearl_fishing_rod"
     }
 }

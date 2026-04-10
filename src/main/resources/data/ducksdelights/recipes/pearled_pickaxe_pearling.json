@@ -2,7 +2,7 @@
     "type": "ducksdelights:pearling",
     "group": "pearl_pickaxe",
     "category": "misc",
-    "pearlingtime": 1200,
+    "pearlingtime": 4200,
     "ingredients": [
         {
             "item": "minecraft:golden_pickaxe"

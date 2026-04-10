@@ -38,6 +38,7 @@
   "item.ducksdelights.moon_phase_detector": "Moon Phase Detector",
 
   "item.ducksdelights.bedrock_chips": "Bedrock Chips",
+  "item.ducksdelights.fissile_chunk": "Fissile Chunk",
 
   "item.ducksdelights.paddy_farmland": "Paddy",
   "item.ducksdelights.raw_rice": "Paddy Rice",
@@ -85,7 +86,7 @@
   "item.ducksdelights.marshmallow_stick": "Marshmallow On A Stick",
   "item.ducksdelights.marshmallow_creme": "Marshmallow Crème",
   "block.ducksdelights.giant_marshmallow": "Giant Marshmallow",
-  "block.ducksdelights.white_giant_marshmallow": "Milk Chocolate Giant Marshmallow",
+  "block.ducksdelights.white_giant_marshmallow": "White Chocolate Giant Marshmallow",
   "block.ducksdelights.light_gray_giant_marshmallow": "Saltwater Giant Marshmallow",
   "block.ducksdelights.gray_giant_marshmallow": "Paste Giant Marshmallow",
   "block.ducksdelights.black_giant_marshmallow": "Black Licorice Giant Marshmallow",
@@ -99,7 +100,7 @@
   "block.ducksdelights.light_blue_giant_marshmallow": "Blue Flavor Giant Marshmallow",
   "block.ducksdelights.blue_giant_marshmallow": "Blue-Raspberry Giant Marshmallow",
   "block.ducksdelights.purple_giant_marshmallow": "Grape Giant Marshmallow",
-  "block.ducksdelights.magenta_giant_marshmallow": "Raspberry Giant Marshmallow",
+  "block.ducksdelights.magenta_giant_marshmallow": "Bubblegum Giant Marshmallow",
   "block.ducksdelights.pink_giant_marshmallow": "Cotton Candy Giant Marshmallow",
 
 
@@ -158,6 +159,7 @@
   "item.ducksdelights.pearl_axe": "Pearled Axe",
   "item.ducksdelights.pearl_pickaxe": "Pearled Pickaxe",
   "item.ducksdelights.pearl_hoe": "Pearled Hoe",
+  "item.ducksdelights.pearl_fishing_rod": "Pearled Fishing Rod",
 
   "block.ducksdelights.pearl_block": "Pearl Block",
   "block.ducksdelights.chiseled_pearl_block": "Chiseled Pearl Block",
@@ -217,6 +219,7 @@
   "death.attack.shattered_bedrock.player": "%2$s crushed %1$s with the stone to end all stone.",
 
   "trim_material.ducksdelights.bedrock_chips": "Bedrock Material",
+  "trim_material.ducksdelights.pearl": "Pearl Material",
 
   "potion.ducksdelights.remaining_applications": "Remaining Uses:",
 

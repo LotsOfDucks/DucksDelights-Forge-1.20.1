@@ -9,6 +9,7 @@ import net.lod.ducksdelights.entity.ModEntityRenderers;
 import net.lod.ducksdelights.entity.mobeffects.ModMobEffects;
 import net.lod.ducksdelights.entity.mobeffects.ModPotionRecipes;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
+import net.lod.ducksdelights.item.ModItemProperties;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ModPotions;
 import net.lod.ducksdelights.recipe.ModRecipes;
@@ -57,6 +58,8 @@ public class DucksDelights {
 
 
 
+
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -72,6 +75,7 @@ public class DucksDelights {
     private void commonSetup(final FMLCommonSetupEvent event) {
         ModEntityRenderers.register();
         ModBlockEntityRenderers.register();
+        ModItemProperties.register();
         ModDispenserBehaviors.register();
         ModCompostables.register();
         ModPotionRecipes.register();

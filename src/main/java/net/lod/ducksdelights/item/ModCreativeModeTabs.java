@@ -80,6 +80,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.PEARL_AXE.get());
                 output.accept(ModItems.PEARL_SHOVEL.get());
                 output.accept(ModItems.PEARL_HOE.get());
+                output.accept(ModItems.PEARL_FISHING_ROD.get());
                 output.accept(ModItems.PEARLED_APPLE.get());
 
                 output.accept(ModItems.HAUNTED_METAL_SCRAP.get());

@@ -2,7 +2,7 @@
     "type": "ducksdelights:pearling",
     "group": "pearled_apple",
     "category": "misc",
-    "pearlingtime": 1000,
+    "pearlingtime": 2000,
     "ingredients": [
         {
             "item": "minecraft:golden_apple"
