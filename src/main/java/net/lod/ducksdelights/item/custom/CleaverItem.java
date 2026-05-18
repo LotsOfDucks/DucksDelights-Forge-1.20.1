@@ -33,9 +33,13 @@ public class CleaverItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
-        if (player.getLookAngle().normalize().dot(entity.getLookAngle().normalize()) >= 0.4) {
-            player.crit(entity);
-            player.addEffect(new MobEffectInstance(ModMobEffects.VANITY.get(), 100));
+        if (entity instanceof LivingEntity) {
+            if (((LivingEntity) entity).attackable()) {
+                if (player.getLookAngle().normalize().dot(entity.getLookAngle().normalize()) >= 0.4) {
+                    player.crit(entity);
+                    player.addEffect(new MobEffectInstance(ModMobEffects.VANITY.get(), 100));
+                }
+            }
         }
 
         return super.onLeftClickEntity(stack, player, entity);
