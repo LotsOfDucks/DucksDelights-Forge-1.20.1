@@ -62,10 +62,35 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(SoulSpawnerBlockEntity::new,
                             ModBlocks.SOUL_SPAWNER_BLOCK.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAM_BE =
-            BLOCK_ENTITIES.register("giant_clam_block_entity", () ->
-                    BlockEntityType.Builder.of(GiantClamBlockEntity::new,
+    public static final RegistryObject<BlockEntityType<BrownGiantClamBlockEntity>> GIANT_CLAM_BROWN_BE =
+            BLOCK_ENTITIES.register("giant_clam_brown_block_entity", () ->
+                    BlockEntityType.Builder.of(BrownGiantClamBlockEntity::new,
                             ModBlocks.GIANT_CLAM_BROWN.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BlueGiantClamBlockEntity>> GIANT_CLAM_BLUE_BE =
+            BLOCK_ENTITIES.register("giant_clam_blue_block_entity", () ->
+                    BlockEntityType.Builder.of(BlueGiantClamBlockEntity::new,
+                            ModBlocks.GIANT_CLAM_BLUE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<GreenGiantClamBlockEntity>> GIANT_CLAM_GREEN_BE =
+            BLOCK_ENTITIES.register("giant_clam_green_block_entity", () ->
+                    BlockEntityType.Builder.of(GreenGiantClamBlockEntity::new,
+                            ModBlocks.GIANT_CLAM_GREEN.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<WhiteGiantClamBlockEntity>> GIANT_CLAM_WHITE_BE =
+            BLOCK_ENTITIES.register("giant_clam_white_block_entity", () ->
+                    BlockEntityType.Builder.of(WhiteGiantClamBlockEntity::new,
+                            ModBlocks.GIANT_CLAM_WHITE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<NetherGiantClamBlockEntity>> GIANT_CLAM_NETHER_BE =
+            BLOCK_ENTITIES.register("giant_clam_nether_block_entity", () ->
+                    BlockEntityType.Builder.of(NetherGiantClamBlockEntity::new,
+                            ModBlocks.GIANT_CLAM_NETHER.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<EnderGiantClamBlockEntity>> GIANT_CLAM_ENDER_BE =
+            BLOCK_ENTITIES.register("giant_clam_ender_block_entity", () ->
+                    BlockEntityType.Builder.of(EnderGiantClamBlockEntity::new,
+                            ModBlocks.GIANT_CLAM_ENDER.get()).build(null));
 
     //public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAN_BE =
     //        BLOCK_ENTITIES.register("giant_clam", () ->

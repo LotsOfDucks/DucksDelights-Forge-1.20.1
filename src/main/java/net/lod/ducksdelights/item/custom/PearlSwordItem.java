@@ -1,13 +1,17 @@
 package net.lod.ducksdelights.item.custom;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectListIterator;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
@@ -15,13 +19,18 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.MendingEnchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SpongeBlock;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import javax.annotation.Nullable;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class PearlSwordItem extends SwordItem {
     public PearlSwordItem(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
@@ -58,6 +67,7 @@ public class PearlSwordItem extends SwordItem {
                 player.displayClientMessage(Component.translatable("potion.ducksdelights.remaining_applications").append(" ").append(String.valueOf(this.getRemainingPotions(pStack))), true);
             }
         }
+
         pStack.hurtAndBreak(1, pAttacker, (entity) -> {
             Containers.dropContents(pAttacker.level(), pAttacker, new SimpleContainer(this.getRemainderItem(pStack)));
             entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
@@ -127,6 +137,15 @@ public class PearlSwordItem extends SwordItem {
         PotionUtils.addPotionTooltip(pStack, pTooltip, 0.25F);
         if (!PotionUtils.getCustomEffects(pStack).isEmpty()) {
             pTooltip.add(Component.translatable("potion.ducksdelights.remaining_applications").append(" ").append(String.valueOf(this.getRemainingPotions(pStack))).withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == Enchantments.MENDING) {
+            return false;
+        } else {
+            return super.canApplyAtEnchantingTable(stack, enchantment);
         }
     }
 }

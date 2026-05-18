@@ -1,27 +1,26 @@
 package net.lod.ducksdelights.block.entity;
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.lod.ducksdelights.block.ModBlockEntities;
-import net.lod.ducksdelights.block.custom.GiantClamBlock;
+import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
+import net.lod.ducksdelights.block.custom.AbstractGiantEnderClamBlock;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
-import net.lod.ducksdelights.recipe.PearlingRecipe;
+import net.lod.ducksdelights.recipe.EndPearlingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.*;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -34,42 +33,37 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.Optional;
 
-public class GiantClamBlockEntity extends BlockEntity implements WorldlyContainer {
+public class AbstractGiantClamEnderBlockEntity extends BlockEntity implements WorldlyContainer {
     protected static final int SLOT_INPUT = 0;
     protected static final int SLOT_RESULT = 1;
     public static final int[] SLOTS_FOR_UP = new int[]{0};
     public static final int[] SLOTS_FOR_DOWN = new int[]{0,1};
-    @Nullable
-    public Component name;
     public LockCode lockKey;
     public NonNullList<ItemStack> items;
     int pearlingProgress;
     int pearlingTotalTime;
-    public final RecipeType<? extends PearlingRecipe> recipeType;
+    public final RecipeType<? extends EndPearlingRecipe> recipeType;
     public final Object2IntOpenHashMap<ResourceLocation> recipesUsed;
-    public final RecipeManager.CachedCheck<Container, PearlingRecipe> quickCheck;
+    public final RecipeManager.CachedCheck<Container, EndPearlingRecipe> quickCheck;
     LazyOptional<? extends IItemHandler>[] itemHandler;
     protected final ContainerData dataAccess;
 
 
-
-
-
-    public GiantClamBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.GIANT_CLAM_BE.get(), pPos, pBlockState);
+    public AbstractGiantClamEnderBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
         this.items = NonNullList.withSize(2, ItemStack.EMPTY);
-        this.recipeType = PearlingRecipe.Type.INSTANCE;
-        this.quickCheck = RecipeManager.createCheck(PearlingRecipe.Type.INSTANCE);
+        this.recipeType = EndPearlingRecipe.Type.INSTANCE;
+        this.quickCheck = RecipeManager.createCheck(EndPearlingRecipe.Type.INSTANCE);
         this.lockKey = LockCode.NO_LOCK;
         this.recipesUsed = new Object2IntOpenHashMap();
         this.dataAccess = new ContainerData() {
             public int get(int p_58431_) {
                 switch (p_58431_) {
                     case 0 -> {
-                        return GiantClamBlockEntity.this.pearlingProgress;
+                        return AbstractGiantClamEnderBlockEntity.this.pearlingProgress;
                     }
                     case 1 -> {
-                        return GiantClamBlockEntity.this.pearlingTotalTime;
+                        return AbstractGiantClamEnderBlockEntity.this.pearlingTotalTime;
                     }
                     default -> {
                         return 0;
@@ -79,8 +73,8 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
 
             public void set(int p_58433_, int p_58434_) {
                 switch (p_58433_) {
-                    case 0 -> GiantClamBlockEntity.this.pearlingProgress = p_58434_;
-                    case 1 -> GiantClamBlockEntity.this.pearlingTotalTime = p_58434_;
+                    case 0 -> AbstractGiantClamEnderBlockEntity.this.pearlingProgress = p_58434_;
+                    case 1 -> AbstractGiantClamEnderBlockEntity.this.pearlingTotalTime = p_58434_;
                 }
 
             }
@@ -96,6 +90,10 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         return (this.pearlingProgress > 0);
     }
 
+    public boolean isInEnd(Level level) {
+        return level.dimension() == Level.END;
+    }
+
     @SuppressWarnings("removal")
     public void load(CompoundTag pTag) {
         super.load(pTag);
@@ -104,9 +102,6 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         ContainerHelper.loadAllItems(pTag, this.items);
         this.pearlingProgress = pTag.getInt("PearlingTime");
         this.pearlingTotalTime = pTag.getInt("PearlingTimeTotal");
-        if (pTag.contains("CustomName", 8)) {
-            this.name = Component.Serializer.fromJson(pTag.getString("CustomName"));
-        }
         CompoundTag compoundtag = pTag.getCompound("RecipesUsed");
         Iterator compoundTag = compoundtag.getAllKeys().iterator();
         while(compoundTag.hasNext()) {
@@ -122,9 +117,6 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         ContainerHelper.saveAllItems(pTag, this.items, true);
         pTag.putInt("PearlingTime", this.pearlingProgress);
         pTag.putInt("PearlingTimeTotal", this.pearlingTotalTime);
-        if (this.name != null) {
-            pTag.putString("CustomName", Component.Serializer.toJson(this.name));
-        }
         CompoundTag compoundtag = new CompoundTag();
         this.recipesUsed.forEach((p_187449_, p_187450_) -> {
             compoundtag.putInt(p_187449_.toString(), p_187450_);
@@ -145,7 +137,7 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
 
     public boolean itemHasRecipe(int index) {
         if (!this.getItem(0).isEmpty()) {
-            Optional<PearlingRecipe> hasRecipe = this.getPearlableRecipe(getItem(index));
+            Optional<EndPearlingRecipe> hasRecipe = this.getPearlableRecipe(getItem(index));
             return hasRecipe.isPresent();
         } else return false;
     }
@@ -154,26 +146,19 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         return this.quickCheck.getRecipeFor(container, level).map((p_270054_) -> p_270054_.assemble(container, level.registryAccess())).orElse(itemStack);
     }
 
-    public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, GiantClamBlockEntity pBlockEntity) {
+    public static void serverTick(Level pLevel, BlockPos pPos, BlockState pState, AbstractGiantClamEnderBlockEntity pBlockEntity) {
         boolean hasItemInput = !pBlockEntity.getItem(0).isEmpty();
         ItemStack itemInput = pBlockEntity.getItem(0);
         boolean hasItemOutput = !pBlockEntity.getItem(1).isEmpty();
 
-        boolean isOpen = pState.getValue(GiantClamBlock.OPEN);
-        boolean isLogged = pState.getValue(GiantClamBlock.LOGGED);
+        boolean isOpen = pState.getValue(AbstractGiantClamBlock.OPEN);
+        boolean isInEnd = pLevel.dimension() == Level.END;
 
         boolean blockHasBeenChanged = false;
         boolean blockShouldClose = false;
 
-        if (pLevel.dimension() == Level.END) {
-            if (isLogged) {
-                if (pLevel.random.nextInt(20) == 0) {
-                    pLevel.setBlock(pPos, Blocks.GRASS_BLOCK.defaultBlockState(), 3);
-                }
-            }
-        }
         if (!isOpen) {
-            if (isLogged) {
+            if (isInEnd) {
                 if (hasItemInput && !hasItemOutput) {
                     if (pBlockEntity.itemHasRecipe(0)) {
                         blockHasBeenChanged = true;
@@ -197,9 +182,10 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
                 }
             }
         } else {
-            if (isLogged) {
+            if (isInEnd) {
                 if (hasItemInput && !hasItemOutput) {
                     if (pBlockEntity.itemHasRecipe(0)) {
+                        pBlockEntity.pearlingProgress--;
                         blockShouldClose = true;
                     }
                 }
@@ -221,15 +207,26 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         }
     }
 
-    public static void clientTick(Level pLevel, BlockPos pPos, BlockState pState, GiantClamBlockEntity pBlockEntity) {
-
+    public static void clientTick(Level pLevel, BlockPos pPos, BlockState pState, AbstractGiantClamEnderBlockEntity pBlockEntity) {
+        if (pLevel.getBlockState(pPos).getBlock() instanceof AbstractGiantEnderClamBlock) {
+            boolean open = pState.getValue(AbstractGiantEnderClamBlock.OPEN);
+            boolean isInEnd = pLevel.dimension() == Level.END;
+            if (isInEnd && open) {
+                if (pLevel.random.nextIntBetweenInclusive(1, 16) == 1) {
+                    double x = pPos.getCenter().x();
+                    double y = pPos.getCenter().y() + 0.1;
+                    double z = pPos.getCenter().z();
+                    pLevel.addParticle(ParticleTypes.REVERSE_PORTAL, x + (0.5 * (Math.random() - Math.random())), y + 0.02, z + (0.5 * (Math.random() - Math.random())), 0, 0.02, 0);
+                }
+            }
+        }
     }
 
     public void resetPearlingProgress() {
         this.pearlingProgress = 0;
     }
 
-    public Optional<PearlingRecipe> getPearlableRecipe(ItemStack pStack) {
+    public Optional<EndPearlingRecipe> getPearlableRecipe(ItemStack pStack) {
         return this.items.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.quickCheck.getRecipeFor(new SimpleContainer(pStack), this.level);
     }
 
@@ -268,13 +265,13 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
     @Override
     public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
         if (pDirection == Direction.DOWN && pIndex == 0) {
-            return isDryAndClosed();
+            return isClosed() && this.getPearlableRecipe(pStack).isEmpty();
         }
         return true;
     }
 
-    public boolean isDryAndClosed() {
-        return (!this.getBlockState().getValue(ModBlockStateProperties.OPEN) && !this.getBlockState().getValue(ModBlockStateProperties.LOGGED));
+    public boolean isClosed() {
+        return (!this.getBlockState().getValue(ModBlockStateProperties.OPEN));
     }
 
     @Override
@@ -321,8 +318,8 @@ public class GiantClamBlockEntity extends BlockEntity implements WorldlyContaine
         this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);
     }
 
-    private static int getTotalPearlingTime(Level pLevel, GiantClamBlockEntity pBlockEntity) {
-        return pBlockEntity.quickCheck.getRecipeFor(pBlockEntity, pLevel).map(PearlingRecipe::getPearlingTime).orElse(200);
+    private static int getTotalPearlingTime(Level pLevel, AbstractGiantClamEnderBlockEntity pBlockEntity) {
+        return pBlockEntity.quickCheck.getRecipeFor(pBlockEntity, pLevel).map(EndPearlingRecipe::getPearlingTime).orElse(200);
     }
 
     @Override

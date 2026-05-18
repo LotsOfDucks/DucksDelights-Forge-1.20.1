@@ -1,0 +1,7 @@
+{
+	"parent": "ducksdelights:block/giant_clam_open",
+	"textures": {
+		"0": "ducksdelights:block/giant_clam_blue",
+		"particle": "ducksdelights:block/blue_giant_clam_particle"
+	}
+}

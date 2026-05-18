@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.custom.*;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ArmorBlockItem;
 import net.lod.ducksdelights.item.custom.ModArmorMaterials;
@@ -450,9 +451,74 @@ public class ModBlocks {
     public static final RegistryObject<Block> PLAYER_DETECTOR = registerBlock("player_detector",
             () -> new PlayerDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)));
 
-    public static final RegistryObject<GiantClamBlock> GIANT_CLAM_BROWN = registerBlock("giant_clam_brown",
-            () -> new GiantClamBlock(BlockBehaviour.Properties.copy(Blocks.BRAIN_CORAL_BLOCK)
-                    .noOcclusion()));
+    public static final RegistryObject<BrownGiantClamBlock> GIANT_CLAM_BROWN = registerBlock("giant_clam_brown",
+            () -> new BrownGiantClamBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BROWN)
+                    .strength(1.5F, 6.0F)
+                    .sound(SoundType.CORAL_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverSpawn)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)));
+
+    public static final RegistryObject<BlueGiantClamBlock> GIANT_CLAM_BLUE = registerBlock("giant_clam_blue",
+            () -> new BlueGiantClamBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLUE)
+                    .strength(1.5F, 6.0F)
+                    .sound(SoundType.CORAL_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverSpawn)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)));
+
+    public static final RegistryObject<GreenGiantClamBlock> GIANT_CLAM_GREEN = registerBlock("giant_clam_green",
+            () -> new GreenGiantClamBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_GREEN)
+                    .strength(1.5F, 6.0F)
+                    .sound(SoundType.CORAL_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverSpawn)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)));
+
+    public static final RegistryObject<WhiteGiantClamBlock> GIANT_CLAM_WHITE = registerBlock("giant_clam_white",
+            () -> new WhiteGiantClamBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .strength(1.5F, 6.0F)
+                    .sound(SoundType.CORAL_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverSpawn)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)));
+
+    public static final RegistryObject<NetherGiantClamBlock> GIANT_CLAM_NETHER = registerBlock("giant_clam_nether",
+            () -> new NetherGiantClamBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SNOW)
+                    .strength(1.5F, 6.0F)
+                    .sound(SoundType.CORAL_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverSpawn)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)
+                    .lightLevel((state) -> state.getValue(ModBlockStateProperties.OPEN) ? 15 : 0)));
+
+    public static final RegistryObject<EnderGiantClamBlock> GIANT_CLAM_ENDER = registerBlock("giant_clam_ender",
+            () -> new EnderGiantClamBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .strength(1.5F, 6.0F)
+                    .sound(SoundType.CORAL_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverSpawn)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)));
+
+
 
 
 

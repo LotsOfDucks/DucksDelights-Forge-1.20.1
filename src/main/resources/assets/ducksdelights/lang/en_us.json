@@ -150,13 +150,30 @@
   "item.ducksdelights.overflowing_water_bucket": "Overflowing Water Bucket",
   "item.ducksdelights.overflowing_lava_bucket": "Overflowing Lava Bucket",
 
-  "block.ducksdelights.giant_clam": "Giant Clam",
+  "block.ducksdelights.giant_clam_brown": "Brown Giant Clam",
+  "block.ducksdelights.giant_clam_blue": "Blue Giant Clam",
+  "block.ducksdelights.giant_clam_green": "Green Giant Clam",
+  "block.ducksdelights.giant_clam_white": "White Giant Clam",
+  "block.ducksdelights.giant_clam_nether": "Giant Nether Clam",
+  "block.ducksdelights.giant_clam_ender": "Giant Ender Clam",
+
+  "item.ducksdelights.giant_clam_meat": "Giant Clam Meat",
+  "item.ducksdelights.cooked_giant_clam_meat": "Cooked Giant Clam Meat",
+
+  "item.ducksdelights.wooden_cleaver": "Wooden Cleaver",
+  "item.ducksdelights.stone_cleaver": "Stone Cleaver",
+  "item.ducksdelights.iron_cleaver": "Iron Cleaver",
+  "item.ducksdelights.golden_cleaver": "Golden Cleaver",
+  "item.ducksdelights.diamond_cleaver": "Diamond Cleaver",
+  "item.ducksdelights.netherite_cleaver": "Netherite Cleaver",
+
   "item.ducksdelights.pearl": "Pearl",
   "item.ducksdelights.pearled_apple": "Pearled Apple",
 
   "item.ducksdelights.pearl_sword": "Pearled Sword",
   "item.ducksdelights.pearl_shovel": "Pearled Shovel",
   "item.ducksdelights.pearl_axe": "Pearled Axe",
+  "item.ducksdelights.pearl_cleaver": "Pearled Cleaver",
   "item.ducksdelights.pearl_pickaxe": "Pearled Pickaxe",
   "item.ducksdelights.pearl_hoe": "Pearled Hoe",
   "item.ducksdelights.pearl_fishing_rod": "Pearled Fishing Rod",
@@ -241,6 +258,7 @@
   "effect.ducksdelights.freezing": "Freezing",
   "effect.ducksdelights.green_thumb": "Green Thumb",
   "effect.ducksdelights.step_up": "Step Up",
+  "effect.ducksdelights.vanity": "Vanity",
 
 
   "item.minecraft.potion.effect.sweet": "Sweet Potion",

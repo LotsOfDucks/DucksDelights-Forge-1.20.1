@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:nether_pearling",
+    "group": "nether_star",
+    "category": "misc",
+    "pearlingtime": 300,
+    "ingredients": [
+        {
+            "item": "minecraft:soul_sand"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "minecraft:nether_star"
+    }
+}

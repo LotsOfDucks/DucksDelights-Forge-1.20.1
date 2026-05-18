@@ -1,0 +1,15 @@
+{
+    "type": "ducksdelights:end_pearling",
+    "group": "chorus_fruit",
+    "category": "misc",
+    "pearlingtime": 600,
+    "ingredients": [
+        {
+            "item": "minecraft:apple"
+        }
+    ],
+    "result": {
+        "count": 1,
+        "item": "minecraft:chorus_fruit"
+    }
+}

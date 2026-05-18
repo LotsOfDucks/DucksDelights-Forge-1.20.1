@@ -74,10 +74,18 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.RECOVERY_POTION.get());
                 output.accept(ModItems.WORMHOLE_POTION.get());
 
+                output.accept(ModItems.WOODEN_CLEAVER.get());
+                output.accept(ModItems.STONE_CLEAVER.get());
+                output.accept(ModItems.GOLDEN_CLEAVER.get());
+                output.accept(ModItems.IRON_CLEAVER.get());
+                output.accept(ModItems.DIAMOND_CLEAVER.get());
+                output.accept(ModItems.NETHERITE_CLEAVER.get());
+
                 output.accept(ModItems.PEARL.get());
                 output.accept(ModItems.PEARL_SWORD.get());
                 output.accept(ModItems.PEARL_PICKAXE.get());
                 output.accept(ModItems.PEARL_AXE.get());
+                output.accept(ModItems.PEARL_CLEAVER.get());
                 output.accept(ModItems.PEARL_SHOVEL.get());
                 output.accept(ModItems.PEARL_HOE.get());
                 output.accept(ModItems.PEARL_FISHING_ROD.get());
@@ -125,6 +133,14 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.BLACKBERRIES.get());
                 output.accept(ModItems.BLACKBERRY_PIE.get());
 
+                output.accept(ModItems.GIANT_CLAM_MEAT.get());
+                output.accept(ModItems.COOKED_GIANT_CLAM_MEAT.get());
+                output.accept(ModBlocks.GIANT_CLAM_BROWN.get());
+                output.accept(ModBlocks.GIANT_CLAM_BLUE.get());
+                output.accept(ModBlocks.GIANT_CLAM_GREEN.get());
+                output.accept(ModBlocks.GIANT_CLAM_WHITE.get());
+                output.accept(ModBlocks.GIANT_CLAM_NETHER.get());
+                output.accept(ModBlocks.GIANT_CLAM_ENDER.get());
 
                 output.accept(ModItems.COLD_FROG_LEG.get());
                 output.accept(ModItems.WARM_FROG_LEG.get());

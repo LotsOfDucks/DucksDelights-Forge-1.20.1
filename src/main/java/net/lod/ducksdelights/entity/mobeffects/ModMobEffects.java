@@ -11,6 +11,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.UUID;
+
 public class ModMobEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, DucksDelights.MOD_ID);
@@ -84,6 +86,11 @@ public class ModMobEffects {
     public static final RegistryObject<MobEffect> GREEN_THUMB =
             MOB_EFFECTS.register("green_thumb", () -> new ModMobEffect(
                     MobEffectCategory.BENEFICIAL, 4895570));
+
+    public static final RegistryObject<MobEffect> VANITY =
+            MOB_EFFECTS.register("vanity", () -> new ModMobEffect(
+                    MobEffectCategory.BENEFICIAL, 11206656)
+                    .addAttributeModifier(Attributes.ATTACK_DAMAGE, "4748ef1e-b50d-46c4-bfce-f4a33ba79ff0", 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
 
 
 

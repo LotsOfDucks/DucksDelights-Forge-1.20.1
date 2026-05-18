@@ -16,6 +16,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SpongeBlock;
 
@@ -124,6 +126,15 @@ public class PearlPickaxeItem extends PickaxeItem {
         PotionUtils.addPotionTooltip(pStack, pTooltip, 0.25F);
         if (!PotionUtils.getCustomEffects(pStack).isEmpty()) {
             pTooltip.add(Component.translatable("potion.ducksdelights.remaining_applications").append(" ").append(String.valueOf(this.getRemainingPotions(pStack))).withStyle(ChatFormatting.GRAY));
+        }
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        if (enchantment == Enchantments.MENDING) {
+            return false;
+        } else {
+            return super.canApplyAtEnchantingTable(stack, enchantment);
         }
     }
 }

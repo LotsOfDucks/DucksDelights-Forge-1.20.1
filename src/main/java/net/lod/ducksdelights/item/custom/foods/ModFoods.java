@@ -25,6 +25,8 @@ public class ModFoods {
     public static FoodProperties BEDROCK_CHIPS;
     public static FoodProperties MARSHMALLOW;
     public static FoodProperties GIANT_MARSHMALLOW;
+    public static FoodProperties GIANT_CLAM_MEAT;
+    public static FoodProperties COOKED_GIANT_CLAM_MEAT;
 
 
     public ModFoods() {
@@ -55,5 +57,9 @@ public class ModFoods {
 
         MARSHMALLOW = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().alwaysEat().build();
         GIANT_MARSHMALLOW = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).alwaysEat().build();
+
+        GIANT_CLAM_MEAT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).effect(() ->  new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).fast().meat().build();
+        COOKED_GIANT_CLAM_MEAT = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.5F).fast().meat().build();
+
     }
 }

@@ -251,6 +251,34 @@ public class ModItems {
     public static final RegistryObject<Item> PEARL_FISHING_ROD = ITEMS.register("pearl_fishing_rod",
             () -> new PearlFishingRodItem(new Item.Properties().durability(128)));
 
+    public static final RegistryObject<Item> GIANT_CLAM_MEAT = ITEMS.register("giant_clam_meat",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.GIANT_CLAM_MEAT)));
+
+    public static final RegistryObject<Item> COOKED_GIANT_CLAM_MEAT = ITEMS.register("cooked_giant_clam_meat",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.COOKED_GIANT_CLAM_MEAT)));
+
+    public static final RegistryObject<Item> WOODEN_CLEAVER = ITEMS.register("wooden_cleaver",
+            () -> new CleaverItem(Tiers.WOOD, 4, -3.0F, new Item.Properties()));
+
+    public static final RegistryObject<Item> STONE_CLEAVER = ITEMS.register("stone_cleaver",
+            () -> new CleaverItem(Tiers.STONE, 4, -2.9F, new Item.Properties()));
+
+    public static final RegistryObject<Item> GOLDEN_CLEAVER = ITEMS.register("golden_cleaver",
+            () -> new CleaverItem(Tiers.GOLD, 4, -2.8F, new Item.Properties()));
+
+    public static final RegistryObject<Item> IRON_CLEAVER = ITEMS.register("iron_cleaver",
+            () -> new CleaverItem(Tiers.IRON, 4, -2.9F, new Item.Properties()));
+
+    public static final RegistryObject<Item> DIAMOND_CLEAVER = ITEMS.register("diamond_cleaver",
+            () -> new CleaverItem(Tiers.DIAMOND, 3, -2.8F, new Item.Properties()));
+
+    public static final RegistryObject<Item> NETHERITE_CLEAVER = ITEMS.register("netherite_cleaver",
+            () -> new CleaverItem(Tiers.NETHERITE, 3, -2.8F, new Item.Properties()));
+
+    public static final RegistryObject<Item> PEARL_CLEAVER = ITEMS.register("pearl_cleaver",
+            () -> new PearlCleaverItem(ModTiers.PEARL, 3, -2.8F, new Item.Properties()));
 
 
 

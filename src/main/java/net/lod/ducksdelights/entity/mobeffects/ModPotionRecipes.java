@@ -13,7 +13,7 @@ import net.minecraftforge.common.data.ForgeItemTagsProvider;
 public class ModPotionRecipes {
 
     public static void register() {
-        BrewingHandler.addBrewingRecipe(Potions.STRONG_HEALING, Ingredient.of(Items.REDSTONE), ModPotions.LOVE.get());
+        BrewingHandler.addBrewingRecipe(Potions.STRONG_HEALING, Ingredient.of(Items.POPPY), ModPotions.LOVE.get());
 
         BrewingHandler.addBrewingRecipe(Ingredient.of(Items.HONEY_BOTTLE), Ingredient.of(Items.NETHER_WART), ModPotions.SWEET.get());
 
@@ -62,8 +62,6 @@ public class ModPotionRecipes {
         BrewingHandler.addBrewingRecipe(ModPotions.FREEZING.get(), Ingredient.of(Items.GLOWSTONE), ModPotions.STRONG_FREEZING.get());
         BrewingHandler.addBrewingRecipe(ModPotions.BURNING.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), ModPotions.FREEZING.get());
         BrewingHandler.addBrewingRecipe(ModPotions.STRONG_BURNING.get(), Ingredient.of(Items.FERMENTED_SPIDER_EYE), ModPotions.STRONG_FREEZING.get());
-
-        BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.ENDER_PEARL), ModPotions.ENDER_TRANSFERENCE.get());
 
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.COMPASS), new ItemStack(ModItems.HOME_POTION.get()));
         BrewingHandler.addBrewingRecipe(ModPotions.SWEET.get(), Ingredient.of(Items.RECOVERY_COMPASS), new ItemStack(ModItems.RECOVERY_POTION.get()));

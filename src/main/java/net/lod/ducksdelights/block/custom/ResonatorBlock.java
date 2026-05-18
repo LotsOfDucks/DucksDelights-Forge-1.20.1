@@ -82,12 +82,15 @@ public class ResonatorBlock extends BaseEntityBlock implements ISimpleWaterAndLa
         return blockState.getValue(BREAKING);
     }
 
-    public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pPos, BlockPos pNeighborPos) {
+    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
         if (pState.getValue(WATERLOGGED)) {
-            pLevel.scheduleTick(pPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+        }
+        if (pState.getValue(LAVALOGGED)) {
+            pLevel.scheduleTick(pCurrentPos, Fluids.LAVA, Fluids.LAVA.getTickDelay(pLevel));
         }
 
-        return super.updateShape(pState, pDirection, pNeighborState, pLevel, pPos, pNeighborPos);
+        return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 
     @Nullable

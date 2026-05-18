@@ -17,6 +17,12 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<PearlingRecipe>> PEARLING_RECIPE_SERIALIZER =
             SERIALIZERS.register("pearling", () -> PearlingRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<NetherPearlingRecipe>> NETHER_PEARLING_RECIPE_SERIALIZER =
+            SERIALIZERS.register("nether_pearling", () -> NetherPearlingRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<EndPearlingRecipe>> END_PEARLING_RECIPE_SERIALIZER =
+            SERIALIZERS.register("end_pearling", () -> EndPearlingRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

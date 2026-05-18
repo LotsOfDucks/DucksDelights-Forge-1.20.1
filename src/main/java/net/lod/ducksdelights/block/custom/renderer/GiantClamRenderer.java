@@ -2,26 +2,22 @@ package net.lod.ducksdelights.block.custom.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.lod.ducksdelights.block.custom.GiantClamBlock;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
-import net.lod.ducksdelights.block.custom.blockstate_properties.enums.ClamTexture;
-import net.lod.ducksdelights.block.entity.GiantClamBlockEntity;
+import net.lod.ducksdelights.block.entity.AbstractGiantClamBlockEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class GiantClamRenderer implements BlockEntityRenderer<GiantClamBlockEntity> {
+public class GiantClamRenderer implements BlockEntityRenderer<AbstractGiantClamBlockEntity> {
     private final ItemRenderer itemRenderer;
 
 
@@ -29,7 +25,7 @@ public class GiantClamRenderer implements BlockEntityRenderer<GiantClamBlockEnti
         this.itemRenderer = pContext.getItemRenderer();
     }
 
-    public void render(GiantClamBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
+    public void render(AbstractGiantClamBlockEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         if (pBlockEntity.getBlockState().getValue(ModBlockStateProperties.OPEN)) {
             NonNullList<ItemStack> itemList = pBlockEntity.getItems();
             int blockPos = (int) pBlockEntity.getBlockPos().asLong();
