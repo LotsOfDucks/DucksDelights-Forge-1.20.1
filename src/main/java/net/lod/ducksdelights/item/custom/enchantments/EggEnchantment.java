@@ -1,18 +1,20 @@
 package net.lod.ducksdelights.item.custom.enchantments;
 
 import net.lod.ducksdelights.item.custom.CleaverItem;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class BoneCollectionEnchantment extends Enchantment {
-    public BoneCollectionEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
+public class EggEnchantment extends Enchantment {
+    public EggEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
     public int getMinCost(int pEnchantmentLevel) {
-        return 15 + (pEnchantmentLevel - 1) * 9;
+        return 5 + (pEnchantmentLevel - 1) * 9;
     }
 
     public int getMaxCost(int pEnchantmentLevel) {
@@ -20,8 +22,10 @@ public class BoneCollectionEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 3;
+        return 5;
     }
+
+
 
     public boolean canEnchant(ItemStack pStack) {
         return pStack.getItem() instanceof CleaverItem;

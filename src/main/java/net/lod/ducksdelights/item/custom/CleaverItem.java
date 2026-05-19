@@ -41,7 +41,10 @@ public class CleaverItem extends SwordItem {
                 if (player.getLookAngle().normalize().dot(entity.getLookAngle().normalize()) >= 0.4 && player.getAttackStrengthScale(0.5F) > 0.9F) {
                     player.crit(entity);
                     player.sweepAttack();
-                    player.addEffect(new MobEffectInstance(ModMobEffects.VANITY.get(), 100));
+
+                    int enchantLevel = EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.BLOODLUST.get(), stack);
+
+                    player.addEffect(new MobEffectInstance(ModMobEffects.VANITY.get(), 20 + (enchantLevel * 20)));
                 }
             }
         }

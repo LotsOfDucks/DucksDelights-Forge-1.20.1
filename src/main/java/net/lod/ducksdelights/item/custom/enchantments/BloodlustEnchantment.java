@@ -6,13 +6,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 
-public class BoneCollectionEnchantment extends Enchantment {
-    public BoneCollectionEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
+public class BloodlustEnchantment extends Enchantment {
+    public BloodlustEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 
     public int getMinCost(int pEnchantmentLevel) {
-        return 15 + (pEnchantmentLevel - 1) * 9;
+        return 5 + (pEnchantmentLevel - 1) * 9;
     }
 
     public int getMaxCost(int pEnchantmentLevel) {
@@ -20,7 +20,7 @@ public class BoneCollectionEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 3;
+        return 5;
     }
 
     public boolean canEnchant(ItemStack pStack) {

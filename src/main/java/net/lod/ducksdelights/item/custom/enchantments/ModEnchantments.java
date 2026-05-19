@@ -11,13 +11,21 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModEnchantments {
+    private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
+
     static EnchantmentCategory CLEAVER = EnchantmentCategory.create("cleaver", item -> item instanceof CleaverItem);
 
     public static final DeferredRegister<Enchantment> ENCHANTMENTS =
             DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, DucksDelights.MOD_ID);
 
     public static final RegistryObject<Enchantment> BONE_COLLECTION = ENCHANTMENTS.register("waste_not_want_not", () ->
-            new BoneCollectionEnchantment(Enchantment.Rarity.UNCOMMON, CLEAVER, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+            new BoneCollectionEnchantment(Enchantment.Rarity.COMMON, CLEAVER, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+
+    public static final RegistryObject<Enchantment> BLOODLUST = ENCHANTMENTS.register("bloodlust", () ->
+            new BloodlustEnchantment(Enchantment.Rarity.VERY_RARE, CLEAVER, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
+
+    public static final RegistryObject<Enchantment> FROSTBITE = ENCHANTMENTS.register("frostbite", () ->
+            new FrostbiteEnchant(Enchantment.Rarity.UNCOMMON, EnchantmentCategory.ARMOR, ARMOR_SLOTS));
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
