@@ -2,6 +2,8 @@ package net.lod.ducksdelights.item.custom;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.lod.ducksdelights.entity.mobeffects.ModMobEffects;
+import net.lod.ducksdelights.item.custom.enchantments.ModEnchantments;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -16,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
@@ -35,8 +38,9 @@ public class CleaverItem extends SwordItem {
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (entity instanceof LivingEntity) {
             if (((LivingEntity) entity).attackable()) {
-                if (player.getLookAngle().normalize().dot(entity.getLookAngle().normalize()) >= 0.4) {
+                if (player.getLookAngle().normalize().dot(entity.getLookAngle().normalize()) >= 0.4 && player.getAttackStrengthScale(0.5F) > 0.9F) {
                     player.crit(entity);
+                    player.sweepAttack();
                     player.addEffect(new MobEffectInstance(ModMobEffects.VANITY.get(), 100));
                 }
             }
@@ -50,7 +54,7 @@ public class CleaverItem extends SwordItem {
     public boolean hurtEnemy(ItemStack pStack, LivingEntity pTarget, LivingEntity pAttacker) {
         if (pTarget.level() instanceof ServerLevel serverLevel) {
             if (pTarget.getHealth() <= 0) {
-                SimpleContainer dropsContainer = getCustomDrops(serverLevel, pTarget, pAttacker);
+                SimpleContainer dropsContainer = getCustomDrops(serverLevel, pTarget, pStack);
                 Containers.dropContents(pAttacker.level(), pTarget, dropsContainer);
                 if (pTarget instanceof Player player) {
                     SimpleContainer skullContainer = new SimpleContainer(1);
@@ -70,7 +74,7 @@ public class CleaverItem extends SwordItem {
         return true;
     }
 
-    public SimpleContainer getCustomDrops(ServerLevel serverLevel, LivingEntity pTarget, LivingEntity pAttacker) {
+    public SimpleContainer getCustomDrops(ServerLevel serverLevel, LivingEntity pTarget, ItemStack weapon) {
         LootTable lootTable = serverLevel.getServer().getLootData().getLootTable(pTarget.getLootTable());
         LootParams.Builder lootparams$builder = (new LootParams.Builder(serverLevel)).withParameter(LootContextParams.THIS_ENTITY, pTarget).withParameter(LootContextParams.ORIGIN, pTarget.position()).withParameter(LootContextParams.DAMAGE_SOURCE, pTarget.getLastDamageSource()).withOptionalParameter(LootContextParams.KILLER_ENTITY, pTarget.getLastDamageSource().getEntity()).withOptionalParameter(LootContextParams.DIRECT_KILLER_ENTITY, pTarget.getLastDamageSource().getDirectEntity());
         if (pTarget.getLastHurtByMob() != null) {
@@ -82,11 +86,20 @@ public class CleaverItem extends SwordItem {
         LootParams lootparams = lootparams$builder.create(LootContextParamSets.ENTITY);
 
         ObjectArrayList<ItemStack> lootList = lootTable.getRandomItems(lootparams);
-        SimpleContainer dropsContainer = new SimpleContainer(lootList.size());
+        SimpleContainer dropsContainer = new SimpleContainer(lootList.size() * 2);
+
+        int enchantLevel = EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.BONE_COLLECTION.get(), weapon);
+        boolean hasBoneCollecting = enchantLevel > 0;
+
         for (ItemStack lootItemStack : lootList) {
             if (lootItemStack.isEdible()) {
                 if (lootItemStack.getFoodProperties(null).isMeat()) {
                     dropsContainer.addItem(lootItemStack);
+
+                    if (hasBoneCollecting) {
+                        int count = serverLevel.random.nextInt(0, enchantLevel + 1);
+                        dropsContainer.addItem(new ItemStack(Items.BONE, count));
+                    }
                 }
             }
         }

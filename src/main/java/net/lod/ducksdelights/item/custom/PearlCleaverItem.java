@@ -2,6 +2,7 @@ package net.lod.ducksdelights.item.custom;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -68,8 +69,17 @@ public class PearlCleaverItem extends CleaverItem {
 
         if (pTarget.level() instanceof ServerLevel serverLevel) {
             if (pTarget.getHealth() <= 0) {
-                SimpleContainer dropsContainer = getCustomDrops(serverLevel, pTarget, pAttacker);
+                SimpleContainer dropsContainer = getCustomDrops(serverLevel, pTarget, pStack);
                 Containers.dropContents(pAttacker.level(), pTarget, dropsContainer);
+                if (pTarget instanceof Player player) {
+                    SimpleContainer skullContainer = new SimpleContainer(1);
+                    ItemStack itemToDrop = new ItemStack(Items.PLAYER_HEAD);
+                    CompoundTag dropTag = itemToDrop.getOrCreateTag();
+                    dropTag.putString("SkullOwner", player.getGameProfile().getName());
+                    itemToDrop.setTag(dropTag);
+                    skullContainer.addItem(itemToDrop);
+                    Containers.dropContents(pAttacker.level(), player, skullContainer);
+                }
             }
         }
 
