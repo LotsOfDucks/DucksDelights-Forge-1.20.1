@@ -14,8 +14,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 import java.util.Map;
 
-public class FrostbiteEnchant extends Enchantment {
-    protected FrostbiteEnchant(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
+public class FrostbiteEnchantment extends Enchantment {
+    protected FrostbiteEnchantment(Rarity pRarity, EnchantmentCategory pCategory, EquipmentSlot[] pApplicableSlots) {
         super(pRarity, pCategory, pApplicableSlots);
     }
 

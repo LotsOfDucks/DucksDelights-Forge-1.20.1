@@ -25,7 +25,10 @@ public class ModEnchantments {
             new BloodlustEnchantment(Enchantment.Rarity.VERY_RARE, CLEAVER, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static final RegistryObject<Enchantment> FROSTBITE = ENCHANTMENTS.register("frostbite", () ->
-            new FrostbiteEnchant(Enchantment.Rarity.UNCOMMON, EnchantmentCategory.ARMOR, ARMOR_SLOTS));
+            new FrostbiteEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentCategory.ARMOR, ARMOR_SLOTS));
+
+    public static final RegistryObject<Enchantment> VAMPYRISM = ENCHANTMENTS.register("vampyrism", () ->
+            new VampyrismEnchantment(Enchantment.Rarity.RARE, EnchantmentCategory.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND}));
 
     public static void register(IEventBus eventBus) {
         ENCHANTMENTS.register(eventBus);
