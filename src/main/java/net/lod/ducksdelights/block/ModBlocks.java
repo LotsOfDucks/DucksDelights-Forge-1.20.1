@@ -224,6 +224,13 @@ public class ModBlocks {
                     .emissiveRendering((state, world, pos) -> state.getValue(DemonCoreBlock.POWERED))
                     .mapColor(MapColor.COLOR_BLACK)));
 
+    public static final RegistryObject<FissileCoreBlock> FISSILE_CORE = registerFireproofBlock("fissile_core",
+            () -> new FissileCoreBlock(BlockBehaviour.Properties.of()
+                    .strength(50.0F, 1200.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .mapColor(MapColor.COLOR_GRAY)));
+
     public static final RegistryObject<AdderBlock> ADDER = registerBlock("adder",
             () -> new AdderBlock(BlockBehaviour.Properties.copy(Blocks.REPEATER)));
 

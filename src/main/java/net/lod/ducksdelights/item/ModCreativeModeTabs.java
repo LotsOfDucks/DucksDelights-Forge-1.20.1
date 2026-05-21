@@ -191,6 +191,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.GLOWSTONE_BARREL.get());
                 output.accept(ModBlocks.GUNPOWDER_BARREL.get());
 
+                output.accept(ModBlocks.FISSILE_CORE.get());
                 output.accept(ModBlocks.DEMON_CORE.get());
 
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());

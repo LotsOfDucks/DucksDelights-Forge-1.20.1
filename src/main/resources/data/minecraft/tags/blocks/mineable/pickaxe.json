@@ -1,6 +1,20 @@
 {
   "replace": false,
   "values": [
-    "ducksdelights:demon_core"
+    "ducksdelights:demon_core",
+    "ducksdelights:fissile_core",
+    "ducksdelights:pearl_block",
+    "ducksdelights:chiseled_pearl_block",
+    "ducksdelights:pearl_bricks",
+    "ducksdelights:mossy_pearl_bricks",
+    "ducksdelights:cracked_pearl_bricks",
+    "ducksdelights:pearl_lamp",
+    "ducksdelights:soul_spawner",
+    "ducksdelights:haunted_steel_block",
+    "ducksdelights:redstone_lamp_slab",
+    "ducksdelights:resonator",
+    "ducksdelights:entity_detector",
+    "ducksdelights:monster_detector",
+    "ducksdelights:player_detector"
   ]
 }

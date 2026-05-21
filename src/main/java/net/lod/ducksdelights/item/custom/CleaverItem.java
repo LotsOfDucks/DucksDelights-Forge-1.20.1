@@ -3,7 +3,7 @@ package net.lod.ducksdelights.item.custom;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.lod.ducksdelights.entity.mobeffects.ModMobEffects;
 import net.lod.ducksdelights.item.custom.enchantments.ModEnchantments;
-import net.minecraft.core.particles.ParticleTypes;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -113,12 +113,12 @@ public class CleaverItem extends SwordItem {
         if (pState.is(Blocks.BONE_BLOCK)) {
             return 15.0F;
         } else {
-            return pState.is(BlockTags.SWORD_EFFICIENT) ? 1.5F : 1.0F;
+            return pState.is(ModTags.Blocks.CLEAVER_EFFICIENT) ? 1.5F : 1.0F;
         }
     }
 
     public boolean isCorrectToolForDrops(BlockState pBlock) {
-        return pBlock.is(Blocks.BONE_BLOCK);
+        return pBlock.is(ModTags.Blocks.CLEAVER_DROPS);
     }
 
     public boolean canDisableShield(ItemStack stack, ItemStack shield, LivingEntity entity, LivingEntity attacker) {

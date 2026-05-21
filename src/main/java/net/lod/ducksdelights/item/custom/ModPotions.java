@@ -130,14 +130,6 @@ public class ModPotions {
             POTIONS.register("long_gravitation", () ->
                     new Potion("gravitation", new MobEffectInstance(ModMobEffects.GRAVITATION.get(), 4000)));
 
-    public static final RegistryObject<Potion> VAULTING =
-            POTIONS.register("vaulting", () ->
-                    new Potion(new MobEffectInstance(ModMobEffects.STEP_UP.get(), 3600)));
-
-    public static final RegistryObject<Potion> LONG_VAULTING =
-            POTIONS.register("long_vaulting", () ->
-                    new Potion("vaulting", new MobEffectInstance(ModMobEffects.STEP_UP.get(), 9600)));
-
     public static final RegistryObject<Potion> EXPLODING =
             POTIONS.register("exploding", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.TIME_BOMB.get(), 600)));
@@ -158,9 +150,6 @@ public class ModPotions {
             POTIONS.register("ender_transference", () ->
                     new Potion(new MobEffectInstance(ModMobEffects.ENDER_TRANSFERENCE.get(), 1)));
 
-    static final RegistryObject<Potion> LAUNCHING =
-            POTIONS.register("launching", () ->
-                    new Potion(new MobEffectInstance(ModMobEffects.LAUNCHING.get(), 1)));
 
 
 

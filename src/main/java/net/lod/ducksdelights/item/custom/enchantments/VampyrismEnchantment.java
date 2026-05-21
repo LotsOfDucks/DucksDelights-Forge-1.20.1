@@ -2,6 +2,7 @@ package net.lod.ducksdelights.item.custom.enchantments;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -40,8 +41,8 @@ public class VampyrismEnchantment extends Enchantment {
     public float getDamageBonus(int level, MobType mobType, ItemStack enchantedItem) {
         if (enchantedItem.getItem() instanceof TieredItem tieredItem) {
             float attackBonus = tieredItem.getTier().getAttackDamageBonus();
-            if (attackBonus > 0) {
-                return -(attackBonus);
+            if (attackBonus > 1) {
+                return (float) -(Math.floor(attackBonus / 2));
             } else {
                 return -1;
             }
@@ -54,6 +55,8 @@ public class VampyrismEnchantment extends Enchantment {
     }
 
     public void doPostAttack(LivingEntity pUser, Entity pTarget, int pLevel) {
-        pUser.heal(pLevel);
+        if (pUser.level().random.nextFloat() < 0.25F * (float)pLevel) {
+            pUser.heal(pLevel);
+        }
     }
 }

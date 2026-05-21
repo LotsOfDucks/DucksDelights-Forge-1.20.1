@@ -136,8 +136,6 @@ public class ModMobEffect extends MobEffect {
             this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.ENDER_TRANSFERENCE.get()) {
             this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
-        } else if (this == ModMobEffects.LAUNCHING.get()) {
-            this.applyInstantenousEffect(null, source, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.BURNING.get()) {
             this.applyInstantenousEffect(null, null, pLivingEntity, pAmplifier, pLivingEntity.getHealth());
         } else if (this == ModMobEffects.FREEZING.get()) {
@@ -202,10 +200,6 @@ public class ModMobEffect extends MobEffect {
             if (!pLivingEntity.level().isClientSide()) {
                 this.performTeleportSwap(pIndirectSource, pLivingEntity);
             }
-        } else if (this == ModMobEffects.LAUNCHING.get()) {
-            if (!pLivingEntity.level().isClientSide()) {
-                this.performLaunch(pIndirectSource, pLivingEntity, pAmplifier);
-            }
         } else if (this == ModMobEffects.GREEN_THUMB.get()) {
             if (!pLivingEntity.level().isClientSide()) {
                 this.applyGreenThumb(pLivingEntity, pAmplifier);
@@ -231,8 +225,6 @@ public class ModMobEffect extends MobEffect {
         } else if (this == ModMobEffects.GREATER_BULWARK.get()) {
             return true;
         } else if (this == ModMobEffects.GRAVITATION.get()) {
-            return true;
-        } else if (this == ModMobEffects.STEP_UP.get()) {
             return true;
         } else if (this == ModMobEffects.TIME_BOMB.get()) {
             return pDuration == 1;
@@ -268,21 +260,6 @@ public class ModMobEffect extends MobEffect {
             pLivingEntity.addEffect(new MobEffectInstance(targetEffect, duration, amplifier));
         }
         effectList.remove(target);
-    }
-
-    public void performLaunch(Entity pIndirectSource, LivingEntity pLivingEntity, int amplifier) {
-        if (pIndirectSource != null) {
-            if (pIndirectSource == pLivingEntity) {
-                pIndirectSource.hurt(pIndirectSource.damageSources().fall(), 1);
-                pIndirectSource.push(0, 1 + amplifier, 0);
-            } else {
-                pLivingEntity.hurt(pLivingEntity.damageSources().fall(), 1);
-                pLivingEntity.push(0, 1 + amplifier, 0);
-            }
-        } else {
-            pLivingEntity.hurt(pLivingEntity.damageSources().fall(), 1);
-            pLivingEntity.push(0, 1 + amplifier, 0);
-        }
     }
 
     public void performTeleportSwap(Entity pIndirectSource, LivingEntity pLivingEntity) {

@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.custom;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.item.ModItems;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -93,14 +94,14 @@ public class RiceCropBlock extends CropBlock {
         int gold = 1;
         for (int below = 2; below <= 6; ++below) {
             BlockState getGold = world.getBlockState(pos.below(below));
-            if (getGold.is(Blocks.GOLD_BLOCK) || getGold.is(Blocks.RAW_GOLD_BLOCK)) {
+            if (getGold.is(ModTags.Blocks.RICE_CROP_GOLD_STRONG)) {
                 gold *= 3;
             }
-            if (getGold.is(Blocks.GOLD_ORE) || getGold.is(Blocks.DEEPSLATE_GOLD_ORE)) {
+            if (getGold.is(ModTags.Blocks.RICE_CROP_GOLD_AVERAGE)) {
                 gold *= 3;
                 gold -= 1;
             }
-            if (getGold.is(Blocks.NETHER_GOLD_ORE)) {
+            if (getGold.is(ModTags.Blocks.RICE_CROP_GOLD_WEAK)) {
                 gold *= 2;
             }
         }

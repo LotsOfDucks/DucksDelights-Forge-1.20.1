@@ -3,6 +3,11 @@
   "values": [
     "ducksdelights:sculk_speaker",
     "ducksdelights:moon_phase_detector",
-    "ducksdelights:rope_ladder"
+    "ducksdelights:rope_ladder",
+    "ducksdelights:anti_rope_ladder",
+    "ducksdelights:empty_barrel",
+    "ducksdelights:glowstone_barrel",
+    "ducksdelights:blazing_barrel",
+    "ducksdelights:gunpowder_barrel"
   ]
 }
