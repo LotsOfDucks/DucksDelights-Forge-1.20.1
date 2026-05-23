@@ -3,11 +3,9 @@
     "group": "pearl_hoe",
     "category": "misc",
     "pearlingtime": 4200,
-    "ingredients": [
-        {
-            "item": "minecraft:golden_hoe"
-        }
-    ],
+    "ingredient": {
+        "item": "minecraft:golden_hoe"
+    },
     "result": {
         "count": 1,
         "item": "ducksdelights:pearl_hoe"

@@ -5,6 +5,7 @@ import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.spawners.SoulSpawner;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -93,15 +94,12 @@ public class SoulSpawnerBlockEntity extends BlockEntity {
         return this.spawner;
     }
 
-    public void spawnParticles(BlockPos pos) {
-        if (this.level instanceof ClientLevel) {
-            for(int k = 0; k < 20; ++k) {
-                double x = (double)pos.getX() + 0.5 + (this.getLevel().random.nextDouble() - 0.5) * 2.0;
-                double y = (double)pos.getY() + 0.5 + (this.getLevel().random.nextDouble() - 0.5) * 2.0;
-                double z = (double)pos.getZ() + 0.5 + (this.getLevel().random.nextDouble() - 0.5) * 2.0;
-                assert this.level != null;
-                this.level.addParticle(ParticleTypes.SOUL, x, y, z, 0.0, 0.0, 0.0);
-            }
+    public void spawnParticles(ServerLevel level,BlockPos pos) {
+        for(int k = 0; k < 20; ++k) {
+            double x = (double)pos.getX() + 0.5 + (level.random.nextDouble() - 0.5) * 2.0;
+            double y = (double)pos.getY() + 0.5 + (level.random.nextDouble() - 0.5) * 2.0;
+            double z = (double)pos.getZ() + 0.5 + (level.random.nextDouble() - 0.5) * 2.0;
+            level.addParticle(ParticleTypes.SOUL, x, y, z, 0.0, 0.0, 0.0);
         }
     }
 }

@@ -1,13 +1,13 @@
 {
     "type": "ducksdelights:pearling",
-    "group": "pearl_pickaxe",
+    "group": "pearl_cleaver",
     "category": "misc",
     "pearlingtime": 4200,
     "ingredient": {
-        "item": "minecraft:golden_pickaxe"
+        "item": "ducksdelights:golden_cleaver"
     },
     "result": {
         "count": 1,
-        "item": "ducksdelights:pearl_pickaxe"
+        "item": "ducksdelights:pearl_cleaver"
     }
 }

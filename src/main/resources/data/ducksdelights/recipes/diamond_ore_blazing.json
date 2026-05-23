@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 1000,
-  "ingredients": [
-    {
-      "item": "minecraft:diamond_ore"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:diamond"
-  }
+  "group": "diamond",
+  "ingredient": {
+    "tag": "minecraft:diamond_ores"
+  },
+  "result": "minecraft:diamond"
 }

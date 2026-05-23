@@ -40,6 +40,8 @@ public class SoulSpawner extends BaseSpawner{
     public SpawnData nextSpawnData;
     private double spin;
     private double oSpin;
+    private double itemSpin;
+    private double itemOSpin;
     private int minSpawnDelay = 200;
     private int maxSpawnDelay = 400;
     private int spawnCount;
@@ -104,6 +106,10 @@ public class SoulSpawner extends BaseSpawner{
         this.displayEntity = null;
     }
 
+    public int getMaxSpawnDelay() {
+        return this.maxSpawnDelay;
+    }
+
     private boolean isNearPlayer(Level pLevel, BlockPos pPos) {
         return pLevel.hasNearbyAlivePlayer((double)pPos.getX() + 0.5, (double)pPos.getY() + 0.5, (double)pPos.getZ() + 0.5, (double)this.requiredPlayerRange);
     }
@@ -118,6 +124,9 @@ public class SoulSpawner extends BaseSpawner{
             double d2 = (double)pPos.getZ() + randomsource.nextDouble();
             pLevel.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0, 0.0, 0.0);
             pLevel.addParticle(ParticleTypes.SOUL_FIRE_FLAME, d0, d1, d2, 0.0, 0.0, 0.0);
+
+
+
             if (this.spawnDelay > 0) {
                 --this.spawnDelay;
             } else if (this.spawnDelay == 0){
@@ -134,6 +143,8 @@ public class SoulSpawner extends BaseSpawner{
             this.spin = (this.spin + (double)(1000.0F / ((float)this.spawnDelay + 200.0F))) % 360.0;
         }
 
+        this.itemOSpin = this.itemSpin;
+        this.itemSpin = (this.itemSpin + 0.5F);
     }
 
     public void serverTick(ServerLevel pServerLevel, BlockPos pPos) {
@@ -235,7 +246,7 @@ public class SoulSpawner extends BaseSpawner{
 
     }
 
-    private void delay(Level pLevel, BlockPos pPos) {
+    public void delay(Level pLevel, BlockPos pPos) {
         RandomSource randomsource = pLevel.random;
         if (this.maxSpawnDelay <= this.minSpawnDelay) {
             this.spawnDelay = this.minSpawnDelay;
@@ -360,6 +371,14 @@ public class SoulSpawner extends BaseSpawner{
 
     public double getoSpin() {
         return this.oSpin;
+    }
+
+    public double getItemSpin() {
+        return this.itemSpin;
+    }
+
+    public double getItemOSpin() {
+        return this.itemOSpin;
     }
 
     @Nullable

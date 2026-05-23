@@ -82,6 +82,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.NETHERITE_CLEAVER.get());
 
                 output.accept(ModItems.PEARL.get());
+                output.accept(ModItems.SOUL_PEARL.get());
                 output.accept(ModItems.PEARL_SWORD.get());
                 output.accept(ModItems.PEARL_PICKAXE.get());
                 output.accept(ModItems.PEARL_AXE.get());

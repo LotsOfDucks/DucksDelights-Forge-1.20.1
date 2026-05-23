@@ -3,11 +3,9 @@
     "group": "pearl_sword",
     "category": "misc",
     "pearlingtime": 4200,
-    "ingredients": [
-        {
-            "item": "minecraft:golden_sword"
-        }
-    ],
+    "ingredient": {
+        "item": "minecraft:golden_sword"
+    },
     "result": {
         "count": 1,
         "item": "ducksdelights:pearl_sword"

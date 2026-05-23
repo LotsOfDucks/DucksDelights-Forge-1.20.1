@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 1000,
-  "ingredients": [
-    {
-      "item": "minecraft:gold_ore"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:gold_ingot"
-  }
+  "group": "gold_ingot",
+  "ingredient": {
+    "tag": "minecraft:gold_ores"
+  },
+  "result": "minecraft:gold_ingot"
 }

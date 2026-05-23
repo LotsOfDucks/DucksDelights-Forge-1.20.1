@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:gunpowder"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:fire_charge"
-  }
+  "group": "fire_charge",
+  "ingredient": {
+    "item": "minecraft:gunpowder"
+  },
+  "result": "minecraft:fire_charge"
 }

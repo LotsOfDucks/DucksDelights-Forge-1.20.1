@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
-  "cookingtime": 1000,
-  "ingredients": [
-    {
-      "item": "minecraft:iron_ore"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:iron_ingot"
-  }
+  "category": "misc",
+  "cookingtime": 100,
+  "group": "iron_ingot",
+  "ingredient": {
+    "tag": "minecraft:iron_ores"
+  },
+  "result": "minecraft:iron_ingot"
 }

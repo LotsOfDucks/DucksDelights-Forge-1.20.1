@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:rabbit"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:cooked_rabbit"
-  }
+  "group": "cooked_rabbit",
+  "ingredient": {
+    "item": "minecraft:rabbit"
+  },
+  "result": "minecraft:cooked_rabbit"
 }

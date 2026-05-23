@@ -3,11 +3,9 @@
     "group": "end_stone",
     "category": "misc",
     "pearlingtime": 1200,
-    "ingredients": [
-        {
-            "item": "minecraft:cobblestone"
-        }
-    ],
+    "ingredient": {
+        "item": "minecraft:cobblestone"
+    },
     "result": {
         "count": 1,
         "item": "minecraft:end_stone"

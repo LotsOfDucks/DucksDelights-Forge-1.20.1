@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:cod"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:cooked_cod"
-  }
+  "group": "cooked_cod",
+  "ingredient": {
+    "item": "minecraft:cod"
+  },
+  "result": "minecraft:cooked_cod"
 }

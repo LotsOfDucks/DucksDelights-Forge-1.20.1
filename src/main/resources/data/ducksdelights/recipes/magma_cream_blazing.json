@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 400,
-  "ingredients": [
-    {
-      "item": "minecraft:slime_ball"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:magma_cream"
-  }
+  "group": "magma_cream",
+  "ingredient": {
+    "item": "minecraft:slime_ball"
+  },
+  "result": "minecraft:magma_cream"
 }

@@ -3,11 +3,9 @@
     "group": "ender_pearl",
     "category": "misc",
     "pearlingtime": 600,
-    "ingredients": [
-        {
-            "tag": "minecraft:sand"
-        }
-    ],
+    "ingredient": {
+        "tag": "minecraft:smelts_to_glass"
+    },
     "result": {
         "count": 1,
         "item": "minecraft:ender_pearl"

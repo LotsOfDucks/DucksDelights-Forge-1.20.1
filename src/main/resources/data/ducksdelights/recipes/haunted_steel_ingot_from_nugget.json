@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "haunted_steel_ingot",
+  "key": {
+    "#": {
+      "item": "ducksdelights:haunted_steel_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "ducksdelights:haunted_steel_ingot"
+  },
+  "show_notification": true
+}

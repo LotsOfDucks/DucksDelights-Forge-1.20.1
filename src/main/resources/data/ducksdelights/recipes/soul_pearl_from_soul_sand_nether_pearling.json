@@ -1,0 +1,10 @@
+{
+    "type": "ducksdelights:nether_pearling",
+    "group": "soul_pearl",
+    "category": "misc",
+    "pearlingtime": 600,
+    "ingredient": {
+        "item": "minecraft:soul_sand"
+    },
+    "result": "ducksdelights:soul_pearl"
+}

@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:beef"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:cooked_beef"
-  }
+  "group": "cooked_beef",
+  "ingredient": {
+    "item": "minecraft:beef"
+  },
+  "result": "minecraft:cooked_beef"
 }

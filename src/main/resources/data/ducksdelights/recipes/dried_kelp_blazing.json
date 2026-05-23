@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 400,
-  "ingredients": [
-    {
-      "item": "minecraft:kelp"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:dried_kelp"
-  }
+  "group": "dried_kelp",
+  "ingredient": {
+    "item": "minecraft:kelp"
+  },
+  "result": "minecraft:dried_kelp"
 }

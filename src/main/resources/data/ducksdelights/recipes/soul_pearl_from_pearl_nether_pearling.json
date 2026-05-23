@@ -1,13 +1,13 @@
 {
     "type": "ducksdelights:nether_pearling",
-    "group": "pearl",
+    "group": "soul_pearl",
     "category": "misc",
     "pearlingtime": 600,
     "ingredient": {
-        "tag": "minecraft:smelts_to_glass"
+        "item": "ducksdelights:pearl"
     },
     "result": {
         "count": 1,
-        "item": "ducksdelights:pearl"
+        "item": "minecraft:soul_pearl"
     }
 }

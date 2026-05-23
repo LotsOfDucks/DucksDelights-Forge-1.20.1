@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 1000,
-  "ingredients": [
-    {
-      "item": "minecraft:emerald_ore"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:emerald"
-  }
+  "group": "emerald",
+  "ingredient": {
+    "tag": "minecraft:emerald_ores"
+  },
+  "result": "minecraft:emerald"
 }

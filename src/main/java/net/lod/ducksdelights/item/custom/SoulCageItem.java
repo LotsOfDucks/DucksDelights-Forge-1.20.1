@@ -151,6 +151,7 @@ public class SoulCageItem extends Item {
                             EntityType<?> newEntity = this.getType(heldItem.getTag());
                             targetBlockEntity.setEntityId(newEntity, level.getRandom());
                             targetBlockEntity.getSpawner().setEntityHealth(heldItem.getTag());
+                            targetBlockEntity.getSpawner().delay(level, clickedPos);
                             targetBlockEntity.setChanged();
                             level.sendBlockUpdated(clickedPos, targetBlockEntity.getBlockState(), targetBlockEntity.getBlockState(), 3);
                             level.gameEvent(pContext.getPlayer(), GameEvent.BLOCK_CHANGE, clickedPos);

@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:porkchop"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:cooked_porkchop"
-  }
+  "group": "cooked_porkchop",
+  "ingredient": {
+    "item": "minecraft:porkchop"
+  },
+  "result": "minecraft:cooked_porkchop"
 }

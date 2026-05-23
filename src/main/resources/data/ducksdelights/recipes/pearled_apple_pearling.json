@@ -3,11 +3,9 @@
     "group": "pearled_apple",
     "category": "misc",
     "pearlingtime": 2000,
-    "ingredients": [
-        {
-            "item": "minecraft:golden_apple"
-        }
-    ],
+    "ingredient": {
+        "item": "minecraft:golden_apple"
+    },
     "result": {
         "count": 1,
         "item": "ducksdelights:pearled_apple"

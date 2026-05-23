@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 3600,
-  "ingredients": [
-    {
-      "item": "minecraft:raw_iron_block"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:iron_block"
-  }
+  "group": "iron_block",
+  "ingredient": {
+    "item": "minecraft:raw_iron_block"
+  },
+  "result": "minecraft:iron_block"
 }

@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:mutton"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:cooked_mutton"
-  }
+  "group": "cooked_mutton",
+  "ingredient": {
+    "item": "minecraft:mutton"
+  },
+  "result": "minecraft:cooked_mutton"
 }
