@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.entity;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
+import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.recipe.PearlingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -53,8 +54,8 @@ public abstract class AbstractGiantClamBlockEntity extends BlockEntity implement
     public AbstractGiantClamBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
         super(pType, pPos, pBlockState);
         this.items = NonNullList.withSize(2, ItemStack.EMPTY);
-        this.recipeType = PearlingRecipe.Type.INSTANCE;
-        this.quickCheck = RecipeManager.createCheck(PearlingRecipe.Type.INSTANCE);
+        this.recipeType = ModRecipes.PEARLING_RECIPE_TYPE.get();
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.PEARLING_RECIPE_TYPE.get());
         this.lockKey = LockCode.NO_LOCK;
         this.recipesUsed = new Object2IntOpenHashMap();
         this.dataAccess = new ContainerData() {

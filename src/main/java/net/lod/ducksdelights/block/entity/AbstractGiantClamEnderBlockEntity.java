@@ -5,6 +5,7 @@ import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
 import net.lod.ducksdelights.block.custom.AbstractGiantEnderClamBlock;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.recipe.EndPearlingRecipe;
+import net.lod.ducksdelights.recipe.ModRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -52,8 +53,8 @@ public class AbstractGiantClamEnderBlockEntity extends BlockEntity implements Wo
     public AbstractGiantClamEnderBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
         super(pType, pPos, pBlockState);
         this.items = NonNullList.withSize(2, ItemStack.EMPTY);
-        this.recipeType = EndPearlingRecipe.Type.INSTANCE;
-        this.quickCheck = RecipeManager.createCheck(EndPearlingRecipe.Type.INSTANCE);
+        this.recipeType = ModRecipes.END_PEARLING_RECIPE_TYPE.get();
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.END_PEARLING_RECIPE_TYPE.get());
         this.lockKey = LockCode.NO_LOCK;
         this.recipesUsed = new Object2IntOpenHashMap();
         this.dataAccess = new ContainerData() {

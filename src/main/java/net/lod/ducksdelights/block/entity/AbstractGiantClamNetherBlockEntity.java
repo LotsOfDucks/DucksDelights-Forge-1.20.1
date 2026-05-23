@@ -4,7 +4,9 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
 import net.lod.ducksdelights.block.custom.AbstractGiantNetherClamBlock;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
+import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.recipe.NetherPearlingRecipe;
+import net.lod.ducksdelights.recipe.PearlingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -52,8 +54,8 @@ public class AbstractGiantClamNetherBlockEntity extends BlockEntity implements W
     public AbstractGiantClamNetherBlockEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
         super(pType, pPos, pBlockState);
         this.items = NonNullList.withSize(2, ItemStack.EMPTY);
-        this.recipeType = NetherPearlingRecipe.Type.INSTANCE;
-        this.quickCheck = RecipeManager.createCheck(NetherPearlingRecipe.Type.INSTANCE);
+        this.recipeType = ModRecipes.NETHER_PEARLING_RECIPE_TYPE.get();
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.NETHER_PEARLING_RECIPE_TYPE.get());
         this.lockKey = LockCode.NO_LOCK;
         this.recipesUsed = new Object2IntOpenHashMap();
         this.dataAccess = new ContainerData() {

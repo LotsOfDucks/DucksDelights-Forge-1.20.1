@@ -9,7 +9,7 @@
       "item": "minecraft:lapis_lazuli"
     },
     "W": {
-      "item": "#minecraft:wooden_slabs"
+      "item": "minecraft:wooden_slabs"
     }
   },
   "pattern": [

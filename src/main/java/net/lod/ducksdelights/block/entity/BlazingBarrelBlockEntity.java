@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.entity;
 import net.lod.ducksdelights.block.ModBlockEntities;
 import net.lod.ducksdelights.block.custom.BlazingBarrelBlock;
 import net.lod.ducksdelights.recipe.BlazingRecipe;
+import net.lod.ducksdelights.recipe.ModRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -29,14 +30,14 @@ public class BlazingBarrelBlockEntity extends BlockEntity implements Clearable {
     private final NonNullList<ItemStack> items;
     private final int[] cookingProgress;
     private final int[] cookingTime;
-    private final RecipeManager.CachedCheck<SimpleContainer, BlazingRecipe> quickCheck;
+    private final RecipeManager.CachedCheck<Container, BlazingRecipe> quickCheck;
 
     public BlazingBarrelBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.BLAZING_BARREL_DETECTOR_BE.get(), pPos, pBlockState);
         this.items = NonNullList.withSize(4, ItemStack.EMPTY);
         this.cookingProgress = new int[4];
         this.cookingTime = new int[4];
-        this.quickCheck = RecipeManager.createCheck(BlazingRecipe.Type.INSTANCE);
+        this.quickCheck = RecipeManager.createCheck(ModRecipes.BLAZING_RECIPE_TYPE.get());
     }
 
     //yeah this is modified campfire code and im not ashamed of that

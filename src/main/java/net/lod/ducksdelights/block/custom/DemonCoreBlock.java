@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -90,6 +91,15 @@ public class DemonCoreBlock extends BaseEntityBlock implements ISimpleWaterAndLa
         }
 
         return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+    }
+
+    public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
+        if (!pState.getValue(POWERED) && !pState.getValue(FORCE_POWERED)) {
+            BlockState blockState = pState.cycle(POWERED).cycle(FORCE_POWERED);
+            pLevel.setBlock(pHit.getBlockPos(), blockState, 3);
+            pLevel.playSound(null, pHit.getBlockPos(), ModSoundEvents.DEMON_CORE_TINK.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
+        super.onProjectileHit(pLevel, pState, pHit, pProjectile);
     }
 
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {

@@ -1,13 +1,10 @@
 {
   "type": "ducksdelights:blazing",
+  "category": "misc",
   "cookingtime": 600,
-  "ingredients": [
-    {
-      "item": "minecraft:potato"
-    }
-  ],
-  "result": {
-    "count": 1,
-    "item": "minecraft:baked_potato"
-  }
+  "group": "baked_potato",
+  "ingredient": {
+    "item": "minecraft:potato"
+  },
+  "result": "minecraft:baked_potato"
 }

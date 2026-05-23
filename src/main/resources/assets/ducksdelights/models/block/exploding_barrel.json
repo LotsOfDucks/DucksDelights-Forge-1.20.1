@@ -7,7 +7,7 @@
     "top": "ducksdelights:block/exploding_barrel_top",
     "filler": "ducksdelights:block/white",
     "flash": "ducksdelights:block/exploding_flash",
-    "particle": "ducksdelights:block/barrel_side"
+    "particle": "ducksdelights:block/exploding_barrel_side"
   },
   "elements": [
     {
