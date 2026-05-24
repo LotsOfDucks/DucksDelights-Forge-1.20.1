@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.item.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Containers;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SpongeBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -61,6 +63,17 @@ public class PearlAxeItem extends AxeItem {
             Containers.dropContents(pAttacker.level(), pAttacker, new SimpleContainer(this.getRemainderItem(pStack)));
             entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
+        return true;
+    }
+
+    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
+        if (!pLevel.isClientSide && pState.getDestroySpeed(pLevel, pPos) != 0.0F) {
+            pStack.hurtAndBreak(1, pEntityLiving, (p_40992_) -> {
+                Containers.dropContents(pLevel, pEntityLiving, new SimpleContainer(this.getRemainderItem(pStack)));
+                p_40992_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
+        }
+
         return true;
     }
 

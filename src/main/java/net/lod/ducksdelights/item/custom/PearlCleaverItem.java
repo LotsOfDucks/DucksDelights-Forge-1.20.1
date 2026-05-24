@@ -2,6 +2,7 @@ package net.lod.ducksdelights.item.custom;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -23,6 +24,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SpongeBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -87,6 +89,17 @@ public class PearlCleaverItem extends CleaverItem {
             Containers.dropContents(pAttacker.level(), pAttacker, new SimpleContainer(this.getRemainderItem(pStack)));
             entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
+        return true;
+    }
+
+    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
+        if (!pLevel.isClientSide && pState.getDestroySpeed(pLevel, pPos) != 0.0F) {
+            pStack.hurtAndBreak(1, pEntityLiving, (p_40992_) -> {
+                Containers.dropContents(pLevel, pEntityLiving, new SimpleContainer(this.getRemainderItem(pStack)));
+                p_40992_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
+        }
+
         return true;
     }
 

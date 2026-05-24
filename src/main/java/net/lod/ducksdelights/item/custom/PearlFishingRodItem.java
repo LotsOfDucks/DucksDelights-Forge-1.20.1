@@ -1,12 +1,15 @@
 package net.lod.ducksdelights.item.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -24,6 +27,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SpongeBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
@@ -98,6 +102,24 @@ public class PearlFishingRodItem extends FishingRodItem {
             entity.broadcastBreakEvent(EquipmentSlot.MAINHAND);
         });
         return true;
+    }
+
+    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
+        if (!pLevel.isClientSide && pState.getDestroySpeed(pLevel, pPos) != 0.0F) {
+            pStack.hurtAndBreak(1, pEntityLiving, (p_40992_) -> {
+                Containers.dropContents(pLevel, pEntityLiving, new SimpleContainer(this.getRemainderItem(pStack)));
+                p_40992_.broadcastBreakEvent(EquipmentSlot.MAINHAND);
+            });
+        }
+
+        return true;
+    }
+
+    public ItemStack getRemainderItem(ItemStack oldStack) {
+        ItemStack remainderItem = new ItemStack(Items.GOLDEN_SWORD);
+        remainderItem.setTag(oldStack.getTag());
+        remainderItem.setDamageValue(0);
+        return remainderItem;
     }
 
     @Override
