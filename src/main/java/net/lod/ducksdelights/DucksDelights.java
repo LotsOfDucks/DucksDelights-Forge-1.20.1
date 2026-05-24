@@ -14,6 +14,7 @@ import net.lod.ducksdelights.item.ModItemProperties;
 import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.item.custom.ModPotions;
 import net.lod.ducksdelights.item.custom.enchantments.ModEnchantments;
+import net.lod.ducksdelights.loot.ModLootModifiers;
 import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.client.Minecraft;
@@ -60,6 +61,7 @@ public class DucksDelights {
         ModBlockEntities.register(modEventBus);
         ModEntities.register(modEventBus);
         ModSoundEvents.register(modEventBus);
+        ModLootModifiers.register(modEventBus);
 
 
 

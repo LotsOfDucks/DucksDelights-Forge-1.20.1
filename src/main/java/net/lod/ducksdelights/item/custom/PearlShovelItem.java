@@ -95,7 +95,7 @@ public class PearlShovelItem extends ShovelItem {
                         if (!newPotion.getEffects().isEmpty()) {
                             PotionUtils.setCustomEffects(pStack, PotionUtils.getPotion(pOther).getEffects());
                             this.playInsertSound(pPlayer);
-                            this.setRemainingPotions(pStack, 4);
+                            this.setRemainingPotions(pStack, 8);
                             if (!pPlayer.isCreative()) {
                                 if (pOther.getItem() instanceof ThrowablePotionItem) {
                                     this.playShatterInsertSound(pPlayer);
