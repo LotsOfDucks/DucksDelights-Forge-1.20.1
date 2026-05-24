@@ -449,14 +449,21 @@ public class ModBlocks {
                     .mapColor(DyeColor.PINK)
                     .ignitedByLava()));
 
+    public static final RegistryObject<Block> DETECTOR_CASING = registerBlock("detector_casing",
+            () -> new DetectorCasingBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.DEEPSLATE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(2.0F, 6.0F)
+                    .sound(SoundType.DEEPSLATE)));
+
     public static final RegistryObject<Block> ENTITY_DETECTOR = registerBlock("entity_detector",
-            () -> new EntityDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)));
+            () -> new EntityDetectorBlock(BlockBehaviour.Properties.copy(ModBlocks.DETECTOR_CASING.get())));
 
     public static final RegistryObject<Block> MOB_DETECTOR = registerBlock("monster_detector",
-            () -> new MobDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)));
+            () -> new MobDetectorBlock(BlockBehaviour.Properties.copy(ModBlocks.DETECTOR_CASING.get())));
 
     public static final RegistryObject<Block> PLAYER_DETECTOR = registerBlock("player_detector",
-            () -> new PlayerDetectorBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_TILES)));
+            () -> new PlayerDetectorBlock(BlockBehaviour.Properties.copy(ModBlocks.DETECTOR_CASING.get())));
 
     public static final RegistryObject<BrownGiantClamBlock> GIANT_CLAM_BROWN = registerBlock("giant_clam_brown",
             () -> new BrownGiantClamBlock(BlockBehaviour.Properties.of()

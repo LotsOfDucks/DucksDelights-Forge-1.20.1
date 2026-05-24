@@ -227,8 +227,8 @@ public class ModItems {
     public static final RegistryObject<Item> PEARL = ITEMS.register("pearl",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> SOUL_PEARL = ITEMS.register("soul_pearl",
-            () -> new Item(new Item.Properties()));
+    public static final RegistryObject<SoulPearlItem> SOUL_PEARL = ITEMS.register("soul_pearl",
+            () -> new SoulPearlItem(new Item.Properties()));
 
     public static final RegistryObject<Item> PEARLED_APPLE = ITEMS.register("pearled_apple",
             () -> new Item(new Item.Properties()

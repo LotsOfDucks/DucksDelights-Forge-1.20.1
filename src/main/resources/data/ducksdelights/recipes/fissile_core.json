@@ -3,19 +3,19 @@
     "category": "redstone",
     "key": {
         "#": {
-            "item": "minecraft:netherite_ingot"
+            "item": "minecraft:iron_ingot"
         },
         "$": {
-            "item": "ducksdelights:fissile_core"
+            "item": "ducksdelights:fissile_chunk"
         }
     },
     "pattern": [
-        " # ",
         "#$#",
-        "###"
+        "$#$",
+        "#$#"
     ],
     "result": {
-        "item": "ducksdelights:demon_core",
+        "item": "ducksdelights:fissile_core",
         "count": 1
     }
 }

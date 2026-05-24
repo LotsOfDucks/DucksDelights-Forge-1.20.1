@@ -177,6 +177,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.RANDOMIZER.get());
                 output.accept(ModBlocks.RESONATOR.get());
 
+                output.accept(ModBlocks.DETECTOR_CASING.get());
                 output.accept(ModBlocks.ENTITY_DETECTOR.get());
                 output.accept(ModBlocks.MOB_DETECTOR.get());
                 output.accept(ModBlocks.PLAYER_DETECTOR.get());

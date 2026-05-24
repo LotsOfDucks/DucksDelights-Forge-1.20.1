@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "paddy_farmland",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:dirt"
+    }
+  },
+  "pattern": [
+    "III"
+  ],
+  "result": {
+    "item": "ducksdelights:paddy_farmland",
+    "count": 6
+  }
+}

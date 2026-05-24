@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -90,6 +91,12 @@ public class SoulSpawnerBlock extends BaseEntityBlock implements ISimpleWaterAnd
         }
 
         return Optional.empty();
+    }
+
+    @org.jetbrains.annotations.Nullable
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        FluidState fluidState = pContext.getLevel().getFluidState(pContext.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(LAVALOGGED, fluidState.getType() == Fluids.LAVA).setValue(LOGGED, (fluidState.getType() == (Fluids.LAVA) || fluidState.getType() == (Fluids.WATER)));
     }
 
     public FluidState getFluidState(BlockState pState) {

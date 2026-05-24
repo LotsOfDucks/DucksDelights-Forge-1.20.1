@@ -2,6 +2,7 @@ package net.lod.ducksdelights.entity;
 
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.entity.custom.DynamicFallingBlockEntity;
+import net.lod.ducksdelights.entity.projectile.ThrownSoulpearl;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,12 @@ public class ModEntities {
                     .sized(0.98F, 0.98F)
                     .clientTrackingRange(10)
                     .updateInterval(20).build("dynamic_falling_block"));
+
+    public static final RegistryObject<EntityType<ThrownSoulpearl>> THROWN_SOULPEARL =
+            ENTITY_TYPES.register("thrown_soulpearl", () -> EntityType.Builder.<ThrownSoulpearl>of(ThrownSoulpearl::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F)
+                    .clientTrackingRange(4)
+                    .updateInterval(10).build("thrown_soulpearl"));
 
 
     public static void register(IEventBus eventBus) {

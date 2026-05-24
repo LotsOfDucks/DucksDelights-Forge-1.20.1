@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "ducksdelights:paddy_farmland",
-    "ducksdelights:bedrock_enriched_sand"
+    "ducksdelights:bedrock_enriched_sand",
+    "ducksdelights:blackberry_crop"
   ]
 }

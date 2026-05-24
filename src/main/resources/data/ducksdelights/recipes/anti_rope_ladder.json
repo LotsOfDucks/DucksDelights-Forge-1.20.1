@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "misc",
+    "key": {
+        "S": {
+            "item": "minecraft:light_blue_dye"
+        },
+        "L": {
+            "item": "ducksdelights:rope_ladder"
+        }
+    },
+    "pattern": [
+        "S",
+        "L",
+        "S"
+    ],
+    "result": {
+        "item": "ducksdelights:anti_rope_ladder",
+        "count": 1
+    }
+}

@@ -8,6 +8,7 @@ import net.lod.ducksdelights.entity.ModEntities;
 import net.lod.ducksdelights.entity.ModEntityRenderers;
 import net.lod.ducksdelights.entity.mobeffects.ModMobEffects;
 import net.lod.ducksdelights.entity.mobeffects.ModPotionRecipes;
+import net.lod.ducksdelights.entity.projectile.ThrownSoulpearl;
 import net.lod.ducksdelights.item.ModCreativeModeTabs;
 import net.lod.ducksdelights.item.ModItemProperties;
 import net.lod.ducksdelights.item.ModItems;
@@ -17,6 +18,8 @@ import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -101,6 +104,7 @@ public class DucksDelights {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.THROWN_SOULPEARL.get(), ThrownItemRenderer::new);
         }
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "soul_cage",
+  "category": "redstone",
+  "key": {
+    "I": {
+      "item": "ducksdelights:haunted_steel_nugget"
+    },
+    "X": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "pattern": [
+    "III",
+    "I I",
+    "IXI"
+  ],
+  "result": {
+    "item": "ducksdelights:soul_cage"
+  }
+}

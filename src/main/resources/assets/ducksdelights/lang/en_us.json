@@ -216,6 +216,7 @@
   "block.ducksdelights.soul_spawner.desc1": "Interact With Filled Soul Cage",
   "block.ducksdelights.soul_spawner.desc2": "Sets Mob Type",
 
+  "block.ducksdelights.detector_casing": "Detector Casing",
   "block.ducksdelights.entity_detector": "Entity Detector",
   "block.ducksdelights.monster_detector": "Monster Detector",
   "block.ducksdelights.player_detector": "Player Detector",

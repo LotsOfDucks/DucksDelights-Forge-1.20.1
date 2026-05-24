@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "soul_spawner",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "ducksdelights:soul_pearl"
+    },
+    "I": {
+      "item": "ducksdelights:haunted_steel_ingot"
+    },
+    "X": {
+      "item": "minecraft:soul_sand"
+    }
+  },
+  "pattern": [
+    "III",
+    "I#I",
+    "IXI"
+  ],
+  "result": {
+    "item": "ducksdelights:soul_spawner"
+  }
+}

@@ -13,6 +13,9 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.WitherSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -89,10 +92,11 @@ public class CleaverItem extends SwordItem {
         LootParams lootparams = lootparams$builder.create(LootContextParamSets.ENTITY);
 
         ObjectArrayList<ItemStack> lootList = lootTable.getRandomItems(lootparams);
-        SimpleContainer dropsContainer = new SimpleContainer(lootList.size() * 2);
+        SimpleContainer dropsContainer = new SimpleContainer(lootList.size() * 3);
 
         int enchantLevel = EnchantmentHelper.getTagEnchantmentLevel(ModEnchantments.BONE_COLLECTION.get(), weapon);
         boolean hasBoneCollecting = enchantLevel > 0;
+        boolean hasDroppedWitherSkull = lootList.contains(new ItemStack(Items.WITHER_SKELETON_SKULL));
 
         for (ItemStack lootItemStack : lootList) {
             if (lootItemStack.isEdible()) {
@@ -106,6 +110,19 @@ public class CleaverItem extends SwordItem {
                 }
             }
         }
+
+        if (pTarget instanceof WitherSkeleton) {
+            if (!hasDroppedWitherSkull && serverLevel.getRandom().nextIntBetweenInclusive(1, 4) == 1) {
+                ItemStack itemToDrop = new ItemStack(Items.WITHER_SKELETON_SKULL);
+                dropsContainer.addItem(itemToDrop);
+            }
+        } else if (pTarget instanceof AbstractSkeleton) {
+            if (serverLevel.getRandom().nextIntBetweenInclusive(1, 20) == 1) {
+                ItemStack itemToDrop = new ItemStack(Items.SKELETON_SKULL);
+                dropsContainer.addItem(itemToDrop);
+            }
+        }
+
         return dropsContainer;
     }
 
