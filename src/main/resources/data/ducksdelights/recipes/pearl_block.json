@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pearl_block",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "ducksdelights:pearl"
+    }
+  },
+  "pattern": [
+    "II",
+    "II"
+  ],
+  "result": {
+    "item": "ducksdelights:pearl_block"
+  }
+}

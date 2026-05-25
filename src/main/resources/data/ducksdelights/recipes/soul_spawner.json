@@ -11,11 +11,14 @@
     },
     "X": {
       "item": "minecraft:soul_sand"
+    },
+    "Y": {
+      "item": "ducksdelights:haunted_steel_bars"
     }
   },
   "pattern": [
-    "III",
-    "I#I",
+    "IYI",
+    "Y#Y",
     "IXI"
   ],
   "result": {

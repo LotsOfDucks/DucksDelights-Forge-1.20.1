@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "detector_casing",
+  "category": "redstone",
+  "key": {
+    "X": {
+      "item": "minecraft:deepslate"
+    },
+    "Y": {
+      "item": "minecraft:redstone_dust"
+    }
+  },
+  "pattern": [
+    "YXY",
+    "X X",
+    "YXY"
+  ],
+  "result": {
+    "item": "ducksdelights:detector_casing"
+  }
+}

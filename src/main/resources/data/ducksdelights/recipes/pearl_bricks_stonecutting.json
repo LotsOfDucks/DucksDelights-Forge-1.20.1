@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 4,
+  "ingredient": {
+    "item": "ducksdelights:pearl_block"
+  },
+  "result": "ducksdelights:pearl_bricks"
+}

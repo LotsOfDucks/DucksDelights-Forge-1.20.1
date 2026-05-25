@@ -212,6 +212,9 @@ public class ModBlocks {
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.NETHERITE_BLOCK)));
 
+    public static final RegistryObject<IronBarsBlock> HAUNTED_STEEL_BARS = registerBlock("haunted_steel_bars",
+            () -> new IronBarsBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS)));
+
     public static final RegistryObject<SoulSpawnerBlock> SOUL_SPAWNER_BLOCK = registerBlock("soul_spawner",
             () -> new SoulSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.SPAWNER)
                     .lightLevel((state) -> 1)));

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "mossy_pearl_bricks",
+  "ingredients": [
+    {
+      "item": "ducksdelights:pearl_bricks"
+    },
+    {
+      "item": "monecraft:vines"
+    }
+  ],
+  "result": {
+    "item": "ducksdelights:mossy_pearl_bricks"
+  }
+}

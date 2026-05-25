@@ -17,6 +17,8 @@ public class ModTags {
 
         public static final TagKey<Block> GIANT_MARSHMALLOWS = tag("giant_marshmallows");
 
+        public static final TagKey<Block> GIANT_CLAMS = tag("giant_clams");
+
         public static final TagKey<Block> CLEAVER_EFFICIENT = tag("cleaver_efficient");
         public static final TagKey<Block> CLEAVER_DROPS = tag("cleaver_drops");
 

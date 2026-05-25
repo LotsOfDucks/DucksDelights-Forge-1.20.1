@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "haunted_steel_bars",
+  "key": {
+    "#": {
+      "item": "ducksdelights:haunted_steel_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "ducksdelights:haunted_steel_bars",
+    "count": 12
+  },
+  "show_notification": true
+}

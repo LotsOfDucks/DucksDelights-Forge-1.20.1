@@ -19,6 +19,9 @@ public class ModCreativeModeTabs {
             .title(Component.translatable("itemgroup.ducksdelights.blocks"))
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModBlocks.HAUNTED_STEEL_BLOCK.get());
+                output.accept(ModBlocks.HAUNTED_STEEL_BARS.get());
+                output.accept(ModBlocks.SOUL_SPAWNER_BLOCK.get());
+
                 output.accept(ModBlocks.DEMON_CORE.get());
 
                 output.accept(ModBlocks.PEARL_BLOCK.get());
@@ -29,6 +32,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.PEARL_LAMP.get());
 
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
+
+                output.accept(ModBlocks.PADDY_FARMLAND.get());
 
                 output.accept(ModBlocks.ROPE_LADDER.get());
                 output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
@@ -42,9 +47,6 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.BEDROCK_SAND.get());
                 output.accept(ModBlocks.REINFORCED_GLASS.get());
                 output.accept(ModBlocks.REINFORCED_GLASS_PANE.get());
-                output.accept(ModBlocks.SOUL_SPAWNER_BLOCK.get());
-
-                output.accept(ModBlocks.PADDY_FARMLAND.get());
 
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
                 output.accept(ModBlocks.WHITE_GIANT_MARSHMALLOW.get());
@@ -95,12 +97,12 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_METAL_SCRAP.get());
                 output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
                 output.accept(ModItems.HAUNTED_STEEL_INGOT.get());
+                output.accept(ModItems.SOUL_CAGE.get());
                 output.accept(ModItems.HAUNTED_STEEL_SWORD.get());
                 output.accept(ModItems.HAUNTED_STEEL_PICKAXE.get());
                 output.accept(ModItems.HAUNTED_STEEL_AXE.get());
                 output.accept(ModItems.HAUNTED_STEEL_SHOVEL.get());
                 output.accept(ModItems.HAUNTED_STEEL_HOE.get());
-                output.accept(ModItems.SOUL_CAGE.get());
 
                 output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.FISSILE_CHUNK.get());
@@ -197,11 +199,6 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.DEMON_CORE.get());
 
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
-
-                output.accept(ModBlocks.ROPE_LADDER.get());
-                output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
-
-
             })
             .build());
 

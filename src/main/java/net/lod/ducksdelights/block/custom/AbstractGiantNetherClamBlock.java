@@ -51,7 +51,7 @@ public abstract class AbstractGiantNetherClamBlock extends BaseEntityBlock imple
 
     public AbstractGiantNetherClamBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, true).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
     }
 
     public RenderShape getRenderShape(BlockState pState) {

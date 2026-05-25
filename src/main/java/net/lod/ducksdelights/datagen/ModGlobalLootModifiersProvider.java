@@ -28,7 +28,15 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/village/village_taiga_house")).build(),
                 LootItemRandomChanceCondition.randomChance(0.75F).build()}, ModItems.BLACKBERRIES.get()));
 
+        add("blackberries_from_taiga_village_again", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("chests/village/village_taiga_house")).build(),
+                LootItemRandomChanceCondition.randomChance(0.75F).build()}, ModItems.BLACKBERRIES.get()));
+
         add("kibblestone_from_silverfish", new AddItemModifier(new LootItemCondition[] {
+                new LootTableIdCondition.Builder(new ResourceLocation("entities/silverfish")).build(),
+                LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 2F).build()}, ModItems.KIBBLESTONE.get()));
+
+        add("kibblestone_from_silverfish_again", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/silverfish")).build(),
                 LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 2F).build()}, ModItems.KIBBLESTONE.get()));
 

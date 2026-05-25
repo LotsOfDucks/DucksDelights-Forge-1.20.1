@@ -1,9 +1,9 @@
 package net.lod.ducksdelights.block.custom;
 
+import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.AbstractGiantClamBlockEntity;
-import net.lod.ducksdelights.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,7 +16,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -25,10 +24,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -56,7 +52,7 @@ public abstract class AbstractGiantClamBlock extends BaseEntityBlock implements 
 
     public AbstractGiantClamBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, false).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(OPEN, true).setValue(WATERLOGGED, false).setValue(LAVALOGGED, false).setValue(LOGGED, false).setValue(FACING, Direction.NORTH));
     }
 
     public RenderShape getRenderShape(BlockState pState) {
@@ -158,6 +154,12 @@ public abstract class AbstractGiantClamBlock extends BaseEntityBlock implements 
                         }
                     }
                 }
+            }
+        } else {
+            //conversion is a temporary solution
+            if (pLevel.getBlockState(pPos.below()).is(BlockTags.SOUL_SPEED_BLOCKS)) {
+                BlockState newBlockstate = ModBlocks.GIANT_CLAM_NETHER.get().defaultBlockState().setValue(AbstractGiantClamBlock.FACING, pState.getValue(FACING)).setValue(AbstractGiantClamBlock.OPEN, pState.getValue(OPEN)).setValue(AbstractGiantClamBlock.WATERLOGGED, false).setValue(AbstractGiantClamBlock.LOGGED, false).setValue(AbstractGiantClamBlock.LAVALOGGED, false);
+                pLevel.setBlockAndUpdate(pPos, newBlockstate);
             }
         }
     }

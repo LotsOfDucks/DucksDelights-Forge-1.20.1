@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "monster_detector",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "ducksdelights:detector_casing"
+    },
+    "X": {
+      "item": "ducksdelights:soul_pearl"
+    },
+    "I": {
+      "item": "minecraft:skeleton_skull"
+    },
+    "Y": {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "pattern": [
+    "YIY",
+    "I#I",
+    "YXY"
+  ],
+  "result": {
+    "item": "ducksdelights:monster_detector"
+  }
+}
