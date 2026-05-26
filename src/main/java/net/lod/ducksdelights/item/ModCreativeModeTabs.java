@@ -101,6 +101,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_STEEL_SWORD.get());
                 output.accept(ModItems.HAUNTED_STEEL_PICKAXE.get());
                 output.accept(ModItems.HAUNTED_STEEL_AXE.get());
+                output.accept(ModItems.HAUNTED_STEEL_CLEAVER.get());
                 output.accept(ModItems.HAUNTED_STEEL_SHOVEL.get());
                 output.accept(ModItems.HAUNTED_STEEL_HOE.get());
 

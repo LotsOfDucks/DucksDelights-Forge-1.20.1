@@ -38,7 +38,7 @@ public class ModItems {
             () -> new PickaxeItem(ModTiers.HAUNTED_STEEL, 2, -2.8F, new Item.Properties()));
 
     public static final RegistryObject<Item> HAUNTED_STEEL_AXE = ITEMS.register("haunted_steel_axe",
-            () -> new AxeItem(ModTiers.HAUNTED_STEEL, 6.5F, -3.0F, new Item.Properties()));
+            () -> new AxeItem(ModTiers.HAUNTED_STEEL, 6.0F, -3.0F, new Item.Properties()));
 
     public static final RegistryObject<Item> HAUNTED_STEEL_HOE = ITEMS.register("haunted_steel_hoe",
             () -> new HoeItem(ModTiers.HAUNTED_STEEL, -2, -3.0F, new Item.Properties()));
@@ -273,6 +273,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> IRON_CLEAVER = ITEMS.register("iron_cleaver",
             () -> new CleaverItem(Tiers.IRON, 4, -2.9F, new Item.Properties()));
+
+    public static final RegistryObject<Item> HAUNTED_STEEL_CLEAVER = ITEMS.register("haunted_steel_cleaver",
+            () -> new CleaverItem(Tiers.IRON, 4, -2.8F, new Item.Properties()));
 
     public static final RegistryObject<Item> DIAMOND_CLEAVER = ITEMS.register("diamond_cleaver",
             () -> new CleaverItem(Tiers.DIAMOND, 3, -2.8F, new Item.Properties()));
