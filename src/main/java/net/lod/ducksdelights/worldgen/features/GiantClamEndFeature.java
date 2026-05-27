@@ -3,8 +3,10 @@ package net.lod.ducksdelights.worldgen.features;
 import com.mojang.serialization.Codec;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -32,7 +34,7 @@ public class GiantClamEndFeature extends Feature<RandomPatchConfiguration> {
         for(int rolls = 0; rolls < config.tries(); ++rolls) {
             BlockState placementState = ModBlocks.GIANT_CLAM_ENDER.get().defaultBlockState().setValue(AbstractGiantClamBlock.FACING, getRandomDirection(random));
             mutableBlockPos.setWithOffset(originPos, random.nextInt(xzSpread) - random.nextInt(xzSpread), random.nextInt(ySpread) - random.nextInt(ySpread), random.nextInt(xzSpread) - random.nextInt(xzSpread));
-            if (level.getBlockState(mutableBlockPos).is(Blocks.AIR) && level.getBlockState(mutableBlockPos.below()).is(Tags.Blocks.END_STONES)) {
+            if (level.getBlockState(mutableBlockPos).is(BlockTags.REPLACEABLE) && level.getBlockState(mutableBlockPos.below()).is(ModTags.Blocks.GIANT_CLAM_END_SPAWNABLE)) {
                 level.setBlock(mutableBlockPos, placementState, 2);
                 ++successes;
             }

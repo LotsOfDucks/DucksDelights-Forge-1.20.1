@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 0.35,
+  "ingredient": {
+    "item": "ducksdelights:giant_clam_meat"
+  },
+  "result": "ducksdelights:cooked_giant_clam_meat"
+}

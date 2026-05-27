@@ -1,0 +1,34 @@
+{
+  "parent": "ducksdelights:ducksdelights/craft_rope_ladder",
+  "criteria": {
+    "rope_ladder": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:anti_rope_ladder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_anti_rope_ladder.description"
+    },
+    "icon": {
+      "item": "ducksdelights:anti_rope_ladder"
+    },
+    "title": {
+      "translate": "advancements.ducksdelights.craft_anti_rope_ladder.title"
+    }
+  },
+  "requirements": [
+    [
+      "rope_ladder"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

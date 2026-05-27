@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_heavy_core": {
+    "has_fissile_chunk": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:chiseled_stone_bricks"
+            "items": [
+              "ducksdelights:fissile_chunk"
+            ]
           }
         ]
       },
@@ -21,11 +23,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_heavy_core"
+      "has_fissile_chunk"
     ]
   ],
   "rewards": {
     "recipes": [
+      "ducksdelights:fissile_core",
       "ducksdelights:demon_core"
     ]
   }

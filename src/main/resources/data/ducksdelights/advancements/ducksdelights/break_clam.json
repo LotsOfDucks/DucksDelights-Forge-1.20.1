@@ -1,0 +1,35 @@
+{
+  "parent": "ducksdelights:ducksdelights/find_pearl",
+  "criteria": {
+    "break_clam": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:giant_clam_meat"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.break_clam.description"
+    },
+    "icon": {
+      "item": "ducksdelights:giant_clam_brown"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.ducksdelights.break_clam.title"
+    }
+  },
+  "requirements": [
+    [
+      "break_clam"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

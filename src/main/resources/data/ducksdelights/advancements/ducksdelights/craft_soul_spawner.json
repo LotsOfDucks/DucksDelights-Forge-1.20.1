@@ -1,0 +1,38 @@
+{
+  "parent": "ducksdelights:ducksdelights/find_haunted_metal_scrap",
+  "criteria": {
+    "soul_spawner": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:soul_spawner"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_soul_spawner.description"
+    },
+    "icon": {
+      "item": "ducksdelights:soul_spawner"
+    },
+    "hidden": true,
+    "title": {
+      "translate": "advancements.ducksdelights.craft_soul_spawner.title"
+    }
+  },
+  "requirements": [
+    [
+      "soul_spawner"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

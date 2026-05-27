@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:gilded_onigiri"
+            "items": [
+              "ducksdelights:gilded_onigiri"
+            ]
           }
         ]
       },
@@ -17,7 +19,6 @@
       "translate": "advancements.ducksdelights.craft_gilded_onigiri.description"
     },
     "icon": {
-      "count": 1,
       "item": "ducksdelights:gilded_onigiri"
     },
     "frame": "challenge",

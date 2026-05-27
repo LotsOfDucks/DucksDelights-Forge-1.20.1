@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:demon_core"
+            "items": [
+              "ducksdelights:demon_core"
+            ]
           }
         ]
       },
@@ -17,7 +19,6 @@
       "translate": "advancements.ducksdelights.craft_demon_core.description"
     },
     "icon": {
-      "count": 1,
       "item": "ducksdelights:demon_core"
     },
     "frame": "challenge",

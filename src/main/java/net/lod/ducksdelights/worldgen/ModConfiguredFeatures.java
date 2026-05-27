@@ -35,14 +35,14 @@ public class ModConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> MARSHMALLOW_ROOT_KEY = registerKey("marshmallow_root_key");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_KEY = registerKey("giant_clam_key");
-    //public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_NETHER_KEY = registerKey("giant_clam_nether_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_NETHER_KEY = registerKey("giant_clam_nether_key");
     public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_END_KEY = registerKey("giant_clam_end_key");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, MARSHMALLOW_ROOT_KEY, Feature.FLOWER, new RandomPatchConfiguration(48, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.WILD_MARSHMALLOW_ROOT.get())))));
-        register(context, GIANT_CLAM_KEY, ModFeatures.GIANT_CLAM_FEATURE.get(), new CountConfiguration(8));
-        //register(context, GIANT_CLAM_NETHER_KEY, Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GIANT_CLAM_NETHER.get())), List.of(Blocks.SOUL_SOIL, Blocks.SOUL_SAND)));
-        register(context, GIANT_CLAM_END_KEY, ModFeatures.GIANT_CLAM_END_FEATURE.get(), new RandomPatchConfiguration(24, 4, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GIANT_CLAM_ENDER.get())))));
+        register(context, GIANT_CLAM_KEY, ModFeatures.GIANT_CLAM_FEATURE.get(), new CountConfiguration(2));
+        register(context, GIANT_CLAM_NETHER_KEY, ModFeatures.GIANT_CLAM_NETHER_FEATURE.get(), new RandomPatchConfiguration(24, 6, 3, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GIANT_CLAM_NETHER.get())))));
+        register(context, GIANT_CLAM_END_KEY, ModFeatures.GIANT_CLAM_END_FEATURE.get(), new RandomPatchConfiguration(16, 4, 4, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GIANT_CLAM_ENDER.get())))));
     }
 
     @SuppressWarnings("removal")

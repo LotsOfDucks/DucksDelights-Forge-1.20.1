@@ -35,7 +35,7 @@ import java.util.List;
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> MARSHMALLOW_ROOT_PLACED_KEY = registerKey("marshmallow_root_placed");
     public static final ResourceKey<PlacedFeature> GIANT_CLAM_PLACED_KEY = registerKey("giant_clam_placed");
-    //public static final ResourceKey<PlacedFeature> GIANT_CLAM_NETHER_PLACED_KEY = registerKey("giant_clam_nether_placed");
+    public static final ResourceKey<PlacedFeature> GIANT_CLAM_NETHER_PLACED_KEY = registerKey("giant_clam_nether_placed");
     public static final ResourceKey<PlacedFeature> GIANT_CLAM_END_PLACED_KEY = registerKey("giant_clam_end_placed");
 
 
@@ -47,12 +47,13 @@ public class ModPlacedFeatures {
                 List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()}));
 
         register(context, GIANT_CLAM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GIANT_CLAM_KEY),
-                List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(64), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome()}));
+                List.of(new PlacementModifier[]{NoiseBasedCountPlacement.of(2, 400.0, 0.0), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome()}));
 
-        //register(context, GIANT_CLAM_NETHER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GIANT_CLAM_NETHER_KEY), getNetherClamPlacement(256, null));
+        register(context, GIANT_CLAM_NETHER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GIANT_CLAM_NETHER_KEY),
+                List.of(new PlacementModifier[]{PlacementUtils.FULL_RANGE}));
 
         register(context, GIANT_CLAM_END_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GIANT_CLAM_END_KEY),
-                List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(512), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()}));
+                List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()}));
     }
 
     @SuppressWarnings("removal")
@@ -63,21 +64,5 @@ public class ModPlacedFeatures {
     private static void register(BootstapContext<PlacedFeature> context, ResourceKey<PlacedFeature> key, Holder<ConfiguredFeature<?, ?>> configuration,
                                  List<PlacementModifier> modifiers) {
         context.register(key, new PlacedFeature(configuration, List.copyOf(modifiers)));
-    }
-
-    private static List<PlacementModifier> getNetherClamPlacement(int pRarity, @Nullable PlacementModifier pPlacement) {
-        ImmutableList.Builder<PlacementModifier> builder = ImmutableList.builder();
-        if (pPlacement != null) {
-            builder.add(pPlacement);
-        }
-
-        if (pRarity != 0) {
-            builder.add(RarityFilter.onAverageOnceEvery(pRarity));
-        }
-
-        builder.add(InSquarePlacement.spread());
-        builder.add(PlacementUtils.HEIGHTMAP);
-        builder.add(BiomeFilter.biome());
-        return builder.build();
     }
 }

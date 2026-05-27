@@ -5,6 +5,7 @@ import net.lod.ducksdelights.item.ModItems;
 import net.lod.ducksdelights.loot.AddItemModifier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
@@ -32,6 +33,8 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/village/village_taiga_house")).build(),
                 LootItemRandomChanceCondition.randomChance(0.75F).build()}, ModItems.BLACKBERRIES.get()));
 
+
+
         add("kibblestone_from_silverfish", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/silverfish")).build(),
                 LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 2F).build()}, ModItems.KIBBLESTONE.get()));
@@ -40,6 +43,20 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
                 new LootTableIdCondition.Builder(new ResourceLocation("entities/silverfish")).build(),
                 LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 2F).build()}, ModItems.KIBBLESTONE.get()));
 
+
+
+        add("haunted_steel_from_spawner1", new AddItemModifier(new LootItemCondition[] {
+                LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.SPAWNER).build(),
+                LootItemRandomChanceCondition.randomChance(1F).build()}, ModItems.HAUNTED_METAL_SCRAP.get()));
+
+        add("haunted_steel_from_spawner2", new AddItemModifier(new LootItemCondition[] {
+                LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.SPAWNER).build(),
+                LootItemRandomChanceCondition.randomChance(5F).build()}, ModItems.HAUNTED_METAL_SCRAP.get()));
+
+        add("haunted_steel_from_spawner_bonus", new AddItemModifier(new LootItemCondition[] {
+                LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.SPAWNER).build(),
+                LootItemRandomChanceCondition.randomChance(0.25F).build()}, ModItems.HAUNTED_METAL_SCRAP.get()));
+
         add("haunted_metal_scrap_from_dungeon_loot", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/simple_dungeon")).build(),
                 LootItemRandomChanceCondition.randomChance(0.5F).build()}, ModItems.HAUNTED_METAL_SCRAP.get()));
@@ -47,6 +64,8 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
         add("haunted_metal_scrap_from_stronghold_crossing_loot", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("chests/stronghold_crossing")).build(),
                 LootItemRandomChanceCondition.randomChance(0.75F).build()}, ModItems.HAUNTED_METAL_SCRAP.get()));
+
+
 
         add("pearl_from_archaeology", new AddItemModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(new ResourceLocation("archaeology/ocean_ruin_warm")).build(),

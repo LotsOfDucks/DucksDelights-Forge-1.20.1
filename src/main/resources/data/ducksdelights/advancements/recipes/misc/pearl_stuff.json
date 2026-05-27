@@ -1,0 +1,42 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pearl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:pearl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ducksdelights:pearl_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pearl"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ducksdelights:pearl_block",
+      "ducksdelights:pearl_from_block",
+      "ducksdelights:chiseled_pearl_block",
+      "ducksdelights:chiseled_pearl_block_stonecutting",
+      "ducksdelights:pearl_bricks",
+      "ducksdelights:mossy_pearl_bricks",
+      "ducksdelights:cracked_pearl_bricks",
+      "ducksdelights:cracked_pearl_bricks_stonecutting",
+      "ducksdelights:pearl_lamp"
+    ]
+  }
+}

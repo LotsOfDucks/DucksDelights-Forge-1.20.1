@@ -1,0 +1,61 @@
+{
+  "parent": "ducksdelights:ducksdelights/craft_cleavers",
+  "criteria": {
+    "kill_villager": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:villager"
+        },
+        "killing_blow": {
+          "tags": [],
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "ducksdelights:cleavers"
+              }
+            }
+          }
+        }
+      }
+    },
+    "kill_player": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "minecraft:player"
+        },
+        "killing_blow": {
+          "tags": [],
+          "source_entity": {
+            "equipment": {
+              "mainhand": {
+                "tag": "ducksdelights:cleavers"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.kill_person_using_cleaver.description"
+    },
+    "icon": {
+      "item": "ducksdelights:diamond_cleaver"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "title": {
+      "translate": "advancements.ducksdelights.kill_person_using_cleaver.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_villager",
+      "kill_player"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

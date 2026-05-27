@@ -5,12 +5,15 @@
   "key": {
     "#": {
       "item": "ducksdelights:haunted_steel_nugget"
+    },
+    "$": {
+      "item": "minecraft:iron_ingot"
     }
   },
   "pattern": [
-    "###",
-    "###",
-    "###"
+    " # ",
+    "#$#",
+    " # "
   ],
   "result": {
     "item": "ducksdelights:haunted_steel_ingot"

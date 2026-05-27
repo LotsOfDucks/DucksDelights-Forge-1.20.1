@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:rope_ladder"
+            "items": [
+              "ducksdelights:rope_ladder"
+            ]
           }
         ]
       },
@@ -17,9 +19,9 @@
       "translate": "advancements.ducksdelights.craft_rope_ladder.description"
     },
     "icon": {
-      "count": 1,
       "item": "ducksdelights:rope_ladder"
     },
+    "hidden": false,
     "title": {
       "translate": "advancements.ducksdelights.craft_rope_ladder.title"
     }
@@ -29,8 +31,5 @@
       "rope_ladder"
     ]
   ],
-  "rewards": {
-    "experience": 100
-  },
   "sends_telemetry_event": true
 }

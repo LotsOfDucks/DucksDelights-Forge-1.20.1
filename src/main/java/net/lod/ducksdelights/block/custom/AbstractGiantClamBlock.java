@@ -155,12 +155,6 @@ public abstract class AbstractGiantClamBlock extends BaseEntityBlock implements 
                     }
                 }
             }
-        } else {
-            //conversion is a temporary solution
-            if (pLevel.getBlockState(pPos.below()).is(BlockTags.SOUL_SPEED_BLOCKS)) {
-                BlockState newBlockstate = ModBlocks.GIANT_CLAM_NETHER.get().defaultBlockState().setValue(AbstractGiantClamBlock.FACING, pState.getValue(FACING)).setValue(AbstractGiantClamBlock.OPEN, pState.getValue(OPEN)).setValue(AbstractGiantClamBlock.WATERLOGGED, false).setValue(AbstractGiantClamBlock.LOGGED, false).setValue(AbstractGiantClamBlock.LAVALOGGED, false);
-                pLevel.setBlockAndUpdate(pPos, newBlockstate);
-            }
         }
     }
 

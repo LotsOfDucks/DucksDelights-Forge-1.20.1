@@ -7,7 +7,7 @@
           {
             "items": [
               "ducksdelights:raw_rice"
-              ]
+            ]
           }
         ]
       },
@@ -19,7 +19,7 @@
           {
             "items": [
               "ducksdelights:raw_golden_rice"
-              ]
+            ]
           }
         ]
       },
@@ -27,6 +27,7 @@
     }
   },
   "display": {
+    "announce_to_chat": true,
     "description": {
       "translate": "advancements.ducksdelights.find_rice.description"
     },

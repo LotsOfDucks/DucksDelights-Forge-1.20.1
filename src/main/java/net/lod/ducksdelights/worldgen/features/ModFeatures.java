@@ -20,8 +20,8 @@ public class ModFeatures {
     public static final RegistryObject<GiantClamFeature> GIANT_CLAM_FEATURE = registerFeature("giant_clam_feature",
             () -> new GiantClamFeature(CountConfiguration.CODEC));
 
-    //public static final RegistryObject<GiantClamNetherFeature> GIANT_CLAM_NETHER_FEATURE = registerFeature("giant_clam_nether_feature",
-    //        () -> new GiantClamNetherFeature(CountConfiguration.CODEC));
+    public static final RegistryObject<GiantClamNetherFeature> GIANT_CLAM_NETHER_FEATURE = registerFeature("giant_clam_nether_feature",
+            () -> new GiantClamNetherFeature(RandomPatchConfiguration.CODEC));
 
     public static final RegistryObject<GiantClamEndFeature> GIANT_CLAM_END_FEATURE = registerFeature("giant_clam_end_feature",
             () -> new GiantClamEndFeature(RandomPatchConfiguration.CODEC));

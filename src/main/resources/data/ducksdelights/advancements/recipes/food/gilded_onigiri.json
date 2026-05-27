@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:golden_rice"
+            "items": [
+                "ducksdelights:golden_rice"
+              ]
           }
         ]
       },

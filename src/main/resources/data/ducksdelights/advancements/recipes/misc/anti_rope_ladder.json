@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rope_ladder": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:rope_ladder"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ducksdelights:anti_rope_ladder"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rope_ladder"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ducksdelights:anti_rope_ladder"
+    ]
+  }
+}

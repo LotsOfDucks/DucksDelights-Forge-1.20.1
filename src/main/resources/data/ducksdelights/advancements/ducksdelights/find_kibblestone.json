@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:kibblestone"
+            "items": [
+              "ducksdelights:kibblestone"
+            ]
           }
         ]
       },
@@ -17,9 +19,9 @@
       "translate": "advancements.ducksdelights.find_kibblestone.description"
     },
     "icon": {
-      "count": 1,
       "item": "ducksdelights:kibblestone"
     },
+    "hidden": true,
     "title": {
       "translate": "advancements.ducksdelights.find_kibblestone.title"
     }

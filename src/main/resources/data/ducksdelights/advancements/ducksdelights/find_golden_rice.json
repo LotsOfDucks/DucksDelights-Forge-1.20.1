@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:raw_golden_rice"
+            "items": [
+              "ducksdelights:raw_golden_rice"
+            ]
           }
         ]
       },
@@ -17,7 +19,6 @@
       "translate": "advancements.ducksdelights.find_golden_rice.description"
     },
     "icon": {
-      "count": 1,
       "item": "ducksdelights:raw_golden_rice"
     },
     "hidden": true,

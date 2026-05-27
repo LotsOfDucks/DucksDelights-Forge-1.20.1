@@ -1,0 +1,52 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_root": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+                "ducksdelights:marshmallow_roots"
+              ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ducksdelights:marshmallow"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_root"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ducksdelights:marshmallow",
+      "ducksdelights:marshmallow_creme",
+      "ducksdelights:giant_marshmallow",
+      "ducksdelights:white_giant_marshmallow",
+      "ducksdelights:light_gray_giant_marshmallow",
+      "ducksdelights:gray_giant_marshmallow",
+      "ducksdelights:black_giant_marshmallow",
+      "ducksdelights:brown_giant_marshmallow",
+      "ducksdelights:red_giant_marshmallow",
+      "ducksdelights:orange_giant_marshmallow",
+      "ducksdelights:yellow_giant_marshmallow",
+      "ducksdelights:lime_giant_marshmallow",
+      "ducksdelights:green_giant_marshmallow",
+      "ducksdelights:cyan_giant_marshmallow",
+      "ducksdelights:light_blue_giant_marshmallow",
+      "ducksdelights:blue_giant_marshmallow",
+      "ducksdelights:purple_giant_marshmallow",
+      "ducksdelights:magenta_giant_marshmallow",
+      "ducksdelights:pink_giant_marshmallow"
+    ]
+  }
+}

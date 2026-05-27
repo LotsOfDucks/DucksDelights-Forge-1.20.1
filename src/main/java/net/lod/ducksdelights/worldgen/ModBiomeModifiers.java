@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.worldgen;
 
 import net.lod.ducksdelights.DucksDelights;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -29,22 +30,22 @@ public class ModBiomeModifiers {
         var biomes = context.lookup(Registries.BIOME);
         //Doin great :D
         context.register(ADD_MARSHMALLOW_ROOT_SWAMP, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
+                biomes.getOrThrow(ModTags.Biomes.MARSHMALLOW_ROOT_SPAWNABLE),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.MARSHMALLOW_ROOT_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
         context.register(ADD_GIANT_CLAM_BROWN_WARM_OCEAN, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL),
+                biomes.getOrThrow(ModTags.Biomes.GIANT_CLAM_SPAWNABLE),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GIANT_CLAM_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
-        //cant get it to work
-        //context.register(ADD_GIANT_CLAM_NETHER_SOUL_VALLEY, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-        //        biomes.getOrThrow(BiomeTags.IS_NETHER),
-        //        HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GIANT_CLAM_NETHER_PLACED_KEY)),
-        //        GenerationStep.Decoration.VEGETAL_DECORATION));
-        //generating in the air. Uh Oh.
+
+        context.register(ADD_GIANT_CLAM_NETHER_SOUL_VALLEY, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(ModTags.Biomes.GIANT_CLAM_NETHER_SPAWNABLE),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GIANT_CLAM_NETHER_PLACED_KEY)),
+                GenerationStep.Decoration.UNDERGROUND_DECORATION));
+
         context.register(ADD_GIANT_CLAM_END, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(BiomeTags.IS_END),
+                biomes.getOrThrow(ModTags.Biomes.GIANT_CLAM_END_SPAWNABLE),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.GIANT_CLAM_END_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
     }

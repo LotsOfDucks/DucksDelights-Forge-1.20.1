@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_soul_pearl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:soul_pearl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ducksdelights:soul_cage"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_soul_pearl"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ducksdelights:soul_cage",
+      "ducksdelights:soul_spawner"
+    ]
+  }
+}

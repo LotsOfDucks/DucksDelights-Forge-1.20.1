@@ -10,6 +10,8 @@
     "description": {
       "translate": "advancements.ducksdelights.root.description"
     },
+    "frame": "task",
+    "hidden": false,
     "icon": {
       "item": "ducksdelights:sculk_speaker"
     },

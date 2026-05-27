@@ -1,0 +1,35 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "haunted_metal_scrap": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:haunted_metal_scrap"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_haunted_metal_scrap.description"
+    },
+    "icon": {
+      "item": "ducksdelights:haunted_metal_scrap"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.find_haunted_metal_scrap.title"
+    }
+  },
+  "requirements": [
+    [
+      "haunted_metal_scrap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

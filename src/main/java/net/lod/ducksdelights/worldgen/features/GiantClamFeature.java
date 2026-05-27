@@ -3,6 +3,7 @@ package net.lod.ducksdelights.worldgen.features;
 import com.mojang.serialization.Codec;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -16,6 +17,8 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.CountConfiguration;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.common.Tags;
 
 public class GiantClamFeature extends Feature<CountConfiguration> {
     public GiantClamFeature(Codec<CountConfiguration> configurationCodec) {
@@ -30,12 +33,12 @@ public class GiantClamFeature extends Feature<CountConfiguration> {
         int count = context.config().count().sample(random);
 
         for(int roll = 0; roll < count; ++roll) {
-            int xOffset = random.nextInt(8) - random.nextInt(8);
-            int zOffset = random.nextInt(8) - random.nextInt(8);
+            int xOffset = random.nextInt(4) - random.nextInt(4);
+            int zOffset = random.nextInt(4) - random.nextInt(4);
             int yHeight = level.getHeight(Heightmap.Types.OCEAN_FLOOR, originPos.getX() + xOffset, originPos.getZ() + zOffset);
             BlockPos placementPos = new BlockPos(originPos.getX() + xOffset, yHeight, originPos.getZ() + zOffset);
             BlockState placementState = getRandomClam(random).setValue(AbstractGiantClamBlock.WATERLOGGED, true).setValue(AbstractGiantClamBlock.LOGGED, true).setValue(AbstractGiantClamBlock.FACING, getRandomDirection(random));
-            if (level.getBlockState(placementPos).is(Blocks.WATER) && level.getBlockState(placementPos.below()).is(BlockTags.SAND)) {
+            if (level.getBlockState(placementPos).is(ModTags.Blocks.GIANT_CLAM_REPLACEABLE) && !level.getBlockState(placementPos).is(Blocks.AIR) && level.getBlockState(placementPos.below()).is(ModTags.Blocks.GIANT_CLAM_SPAWNABLE)) {
                 level.setBlock(placementPos, placementState, 2);
                 ++successes;
             }

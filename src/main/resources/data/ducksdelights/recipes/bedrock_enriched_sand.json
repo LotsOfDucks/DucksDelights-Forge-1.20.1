@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "ducksdelights:bedrock_chips"
+    },
+    "$": {
+      "item": "minecraft:sand"
+    }
+  },
+  "pattern": [
+    "$#$",
+    "#$#",
+    "$#$"
+  ],
+  "result": {
+    "item": "ducksdelights:bedrock_enriched_sand",
+    "count": 6
+  }
+}

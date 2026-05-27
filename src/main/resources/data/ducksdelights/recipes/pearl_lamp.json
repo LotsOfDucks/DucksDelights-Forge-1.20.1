@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pearl_lamp",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "ducksdelights:pearl"
+    },
+    "X": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#X#",
+    " # "
+  ],
+  "result": {
+    "item": "ducksdelights:pearl_lamp"
+  }
+}

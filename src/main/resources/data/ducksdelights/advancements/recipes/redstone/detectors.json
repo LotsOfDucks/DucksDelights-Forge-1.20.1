@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:skeleton_skull"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "ducksdelights:detector_casing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_skull"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "ducksdelights:detector_casing",
+      "ducksdelights:entity_detector",
+      "ducksdelights:monster_detector",
+      "ducksdelights:player_detector"
+    ]
+  }
+}

@@ -3,6 +3,7 @@ package net.lod.ducksdelights.worldgen.features;
 import com.mojang.serialization.Codec;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.AbstractGiantClamBlock;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -15,39 +16,33 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.CountConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraftforge.common.Tags;
 
-public class GiantClamNetherFeature extends Feature<CountConfiguration> {
-    public GiantClamNetherFeature(Codec<CountConfiguration> configurationCodec) {
-        super(configurationCodec);
+public class GiantClamNetherFeature extends Feature<RandomPatchConfiguration> {
+    public GiantClamNetherFeature(Codec<RandomPatchConfiguration> pCodec) {
+        super(pCodec);
     }
 
-    public boolean place(FeaturePlaceContext<CountConfiguration> context) {
-        int successes = 0;
+    public boolean place(FeaturePlaceContext<RandomPatchConfiguration> context) {
+        RandomPatchConfiguration config = context.config();
         RandomSource random = context.random();
-        WorldGenLevel level = context.level();
         BlockPos originPos = context.origin();
-        BlockPos belowPos = context.origin().below();
+        WorldGenLevel level = context.level();
+        int successes = 0;
+        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+        int xzSpread = config.xzSpread() + 1;
+        int ySpread = config.ySpread() + 1;
 
-        if (!level.getBlockState(belowPos).is(BlockTags.SOUL_SPEED_BLOCKS)) {
-            return false;
-        } else {
-            int count = context.config().count().sample(random);
-
-            for (int roll = 0; roll < count; ++roll) {
-                int xOffset = random.nextInt(12) - random.nextInt(12);
-                int yOffset = random.nextInt(12) - random.nextInt(12);
-                int zOffset = random.nextInt(12) - random.nextInt(12);
-                int yHeightMod = level.getHeight(Heightmap.Types.WORLD_SURFACE_WG, originPos.getX() + xOffset, originPos.getZ() + zOffset);
-                BlockPos placementPos = new BlockPos(originPos.getX() + xOffset, yHeightMod + yOffset, originPos.getZ() + zOffset);
-                BlockState placementState = ModBlocks.GIANT_CLAM_NETHER.get().defaultBlockState().setValue(AbstractGiantClamBlock.OPEN, true).setValue(AbstractGiantClamBlock.WATERLOGGED, true).setValue(AbstractGiantClamBlock.LOGGED, true).setValue(AbstractGiantClamBlock.FACING, getRandomDirection(random));
-                if ((level.getBlockState(placementPos).is(Blocks.AIR) || level.getBlockState(placementPos).is(Blocks.CAVE_AIR)) && (level.getBlockState(placementPos.below()).is(BlockTags.SOUL_SPEED_BLOCKS) || level.getBlockState(placementPos.below()).is(Blocks.BEDROCK))) {
-                    level.setBlock(placementPos, placementState, 2);
-                    ++successes;
-                }
+        for(int rolls = 0; rolls < config.tries(); ++rolls) {
+            BlockState placementState = ModBlocks.GIANT_CLAM_NETHER.get().defaultBlockState().setValue(AbstractGiantClamBlock.FACING, getRandomDirection(random));
+            mutableBlockPos.setWithOffset(originPos, random.nextInt(xzSpread) - random.nextInt(xzSpread), random.nextInt(ySpread) - random.nextInt(ySpread), random.nextInt(xzSpread) - random.nextInt(xzSpread));
+            if (level.getBlockState(mutableBlockPos).is(BlockTags.REPLACEABLE) && level.getBlockState(mutableBlockPos.below()).is(ModTags.Blocks.GIANT_CLAM_NETHER_SPAWNABLE)) {
+                level.setBlock(mutableBlockPos, placementState, 2);
+                ++successes;
             }
-
-            return successes > 0;
         }
+        return successes > 0;
     }
 
     public Direction getRandomDirection(RandomSource random) {

@@ -1,0 +1,35 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "pearl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:pearl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_pearl.description"
+    },
+    "icon": {
+      "item": "ducksdelights:pearl"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.find_pearl.title"
+    }
+  },
+  "requirements": [
+    [
+      "pearl"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

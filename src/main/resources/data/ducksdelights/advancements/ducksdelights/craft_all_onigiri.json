@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:onigiri"
+            "items": [
+              "ducksdelights:onigiri"
+            ]
           }
         ]
       },
@@ -15,7 +17,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:beef_onigiri"
+            "items": [
+              "ducksdelights:beef_onigiri"
+            ]
           }
         ]
       },
@@ -25,7 +29,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:chicken_onigiri"
+            "items": [
+              "ducksdelights:chicken_onigiri"
+            ]
           }
         ]
       },
@@ -35,7 +41,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:pork_onigiri"
+            "items": [
+              "ducksdelights:pork_onigiri"
+            ]
           }
         ]
       },
@@ -45,7 +53,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:salmon_onigiri"
+            "items": [
+              "ducksdelights:salmon_onigiri"
+            ]
           }
         ]
       },
@@ -57,7 +67,6 @@
       "translate": "advancements.ducksdelights.craft_all_onigiri.description"
     },
     "icon": {
-      "count": 1,
       "item": "ducksdelights:beef_onigiri"
     },
     "title": {
@@ -81,5 +90,8 @@
       "salmon_onigiri"
     ]
   ],
+  "rewards": {
+    "experience": 10
+  },
   "sends_telemetry_event": true
 }

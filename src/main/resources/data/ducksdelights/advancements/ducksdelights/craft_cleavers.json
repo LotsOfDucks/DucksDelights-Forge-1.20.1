@@ -1,0 +1,33 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "cleavers": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "ducksdelights:cleavers"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_cleavers.description"
+    },
+    "icon": {
+      "item": "ducksdelights:iron_cleaver"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.craft_cleavers.title"
+    }
+  },
+  "requirements": [
+    [
+      "cleavers"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "ducksdelights:ducksdelights/find_rice",
+  "criteria": {
+    "paddy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:paddy_farmland"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.make_paddy_farmland.description"
+    },
+    "icon": {
+      "item": "ducksdelights:paddy_farmland"
+    },
+    "title": {
+      "translate": "advancements.ducksdelights.make_paddy_farmland.title"
+    }
+  },
+  "requirements": [
+    [
+      "paddy"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,10 @@
+{
+  "type": "ducksdelights:blazing",
+  "category": "misc",
+  "cookingtime": 600,
+  "group": "cooked_giant_clam_meat",
+  "ingredient": {
+    "item": "ducksdelights:giant_clam_meat"
+  },
+  "result": "ducksdelights:cooked_giant_clam_meat"
+}

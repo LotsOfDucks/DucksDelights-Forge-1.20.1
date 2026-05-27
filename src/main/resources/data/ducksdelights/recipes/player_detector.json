@@ -13,7 +13,7 @@
       "item": "minecraft:skeleton_skull"
     },
     "Y": {
-      "item": "minecraft:nametag"
+      "item": "minecraft:name_tag"
     }
   },
   "pattern": [

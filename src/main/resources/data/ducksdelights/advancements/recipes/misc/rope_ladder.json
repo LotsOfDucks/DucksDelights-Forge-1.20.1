@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "minecraft:ladder"
+            "items": [
+              "minecraft:ladder"
+            ]
           }
         ]
       },
@@ -21,7 +23,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_rope_ladder"
+      "has_ladder"
     ]
   ],
   "rewards": {

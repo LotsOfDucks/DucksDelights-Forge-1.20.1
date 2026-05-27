@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "items": "ducksdelights:kibblestone"
+            "items": [
+              "ducksdelights:kibblestone"
+            ]
           }
         ]
       },
