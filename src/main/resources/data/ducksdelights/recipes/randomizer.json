@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "randomizer",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "item": "minecraft:redstone_torch"
+    },
+    "I": {
+      "item": "minecraft:deepslate"
+    },
+    "X": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "#X#",
+    "III"
+  ],
+  "result": {
+    "item": "ducksdelights:randomizer"
+  }
+}
