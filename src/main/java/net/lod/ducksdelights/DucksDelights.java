@@ -82,12 +82,7 @@ public class DucksDelights {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        ModEntityRenderers.register();
-        ModBlockEntityRenderers.register();
-        ModItemProperties.register();
-        ModDispenserBehaviors.register();
-        ModCompostables.register();
-        ModPotionRecipes.register();
+
     }
 
     // Add the example block item to the building blocks tab
@@ -109,6 +104,12 @@ public class DucksDelights {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             EntityRenderers.register(ModEntities.THROWN_SOULPEARL.get(), ThrownItemRenderer::new);
+            ModEntityRenderers.register();
+            ModBlockEntityRenderers.register();
+            ModItemProperties.register();
+            ModDispenserBehaviors.register();
+            ModCompostables.register();
+            ModPotionRecipes.register();
         }
     }
 }
