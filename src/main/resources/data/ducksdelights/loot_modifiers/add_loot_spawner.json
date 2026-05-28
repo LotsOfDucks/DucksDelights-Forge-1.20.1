@@ -1,0 +1,10 @@
+{
+  "type": "ducksdelights:add_loot_table",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:blocks/spawner"
+    }
+  ],
+  "lootTable": "ducksdelights:blocks/vanilla/dd_spawner"
+}
