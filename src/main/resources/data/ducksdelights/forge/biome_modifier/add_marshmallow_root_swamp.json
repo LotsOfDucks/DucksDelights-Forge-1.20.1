@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#ducksdelights:marshmallow_root_spawnable",
+  "features": "ducksdelights:marshmallow_root_placed",
+  "step": "vegetal_decoration"
+}

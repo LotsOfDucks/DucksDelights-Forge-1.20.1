@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#ducksdelights:giant_clam_nether_spawnable",
+  "features": "ducksdelights:giant_clam_nether_placed",
+  "step": "underground_decoration"
+}

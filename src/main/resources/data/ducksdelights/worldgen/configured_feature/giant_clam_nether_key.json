@@ -1,0 +1,37 @@
+{
+  "type": "ducksdelights:giant_clam_nether_feature",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "ducksdelights:giant_clam_nether",
+              "Properties": {
+                "facing": "north",
+                "lavalogged": "false",
+                "logged": "false",
+                "open": "true",
+                "waterlogged": "false"
+              }
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "tries": 24,
+    "xz_spread": 6,
+    "y_spread": 3
+  }
+}
