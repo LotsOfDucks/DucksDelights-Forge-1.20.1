@@ -32,7 +32,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "ducksdelights:haunted_steel_scrap"
+          "name": "ducksdelights:haunted_metal_scrap"
         }
       ],
       "rolls": 1.0
@@ -58,7 +58,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "ducksdelights:haunted_steel_scrap"
+          "name": "ducksdelights:haunted_metal_scrap"
         }
       ],
       "rolls": 1.0

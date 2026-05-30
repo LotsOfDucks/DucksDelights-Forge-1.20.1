@@ -6,6 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "weight": 4,
           "functions": [
             {
               "add": false,
@@ -18,29 +19,15 @@
             }
           ],
           "name": "ducksdelights:blackberries"
-        },
+        }
+      ,
         {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "farmersdelight:rice"
+          "type": "minecraft:empty",
+          "weight": 4
         }
       ],
-      "rolls": {
-        "type": "minecraft:uniform",
-        "max": 3.0,
-        "min": 1.0
-      }
+      "rolls": 1.0
     }
   ],
-  "random_sequence": "ducksdelights:chests/fd_village_taiga_house"
+  "random_sequence": "ducksdelights:chests/dd_village_taiga_house"
 }
