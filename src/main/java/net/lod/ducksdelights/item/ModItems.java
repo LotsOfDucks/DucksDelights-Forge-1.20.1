@@ -221,11 +221,11 @@ public class ModItems {
 
     public static final RegistryObject<Item> HOME_POTION = ITEMS.register("home_potion",
             () -> new HomePotionItem(new Item.Properties()
-                    .stacksTo(1)));
+                    .stacksTo(8)));
 
     public static final RegistryObject<Item> RECOVERY_POTION = ITEMS.register("recovery_potion",
             () -> new RecoveryPotionItem(new Item.Properties()
-                    .stacksTo(1)));
+                    .stacksTo(8)));
 
     public static final RegistryObject<Item> WORMHOLE_POTION = ITEMS.register("wormhole_potion",
             () -> new WormholePotionItem(new Item.Properties()

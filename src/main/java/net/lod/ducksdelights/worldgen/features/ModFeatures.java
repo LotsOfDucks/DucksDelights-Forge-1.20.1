@@ -3,6 +3,7 @@ package net.lod.ducksdelights.worldgen.features;
 import net.lod.ducksdelights.DucksDelights;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.CountConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,7 +16,8 @@ public class ModFeatures {
     public static final DeferredRegister<Feature<?>> FEATURES =
             DeferredRegister.create(ForgeRegistries.FEATURES, DucksDelights.MOD_ID);
 
-
+    public static final RegistryObject<DemonCoreRoomOverworldFeature> DEMON_CORE_OVERWORLD_ROOM_FEATURE = registerFeature("demon_core_overworld_room_feature",
+            () -> new DemonCoreRoomOverworldFeature(NoneFeatureConfiguration.CODEC));
 
     public static final RegistryObject<GiantClamFeature> GIANT_CLAM_FEATURE = registerFeature("giant_clam_feature",
             () -> new GiantClamFeature(CountConfiguration.CODEC));

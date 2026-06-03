@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -34,10 +35,13 @@ import java.util.List;
 
 public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> MARSHMALLOW_ROOT_PLACED_KEY = registerKey("marshmallow_root_placed");
+
     public static final ResourceKey<PlacedFeature> GIANT_CLAM_PLACED_KEY = registerKey("giant_clam_placed");
     public static final ResourceKey<PlacedFeature> GIANT_CLAM_NETHER_PLACED_KEY = registerKey("giant_clam_nether_placed");
     public static final ResourceKey<PlacedFeature> GIANT_CLAM_END_PLACED_KEY = registerKey("giant_clam_end_placed");
 
+    public static final ResourceKey<PlacedFeature> DEMON_CORE_OVERWORLD_ROOM_PLACED_KEY = registerKey("demon_core_overworld_room_placed");
+    public static final ResourceKey<PlacedFeature> DEMON_CORE_OVERWORLD_ROOM_DEEP_PLACED_KEY = registerKey("demon_core_overworld_deep_room_placed");
 
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
@@ -54,7 +58,15 @@ public class ModPlacedFeatures {
 
         register(context, GIANT_CLAM_END_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.GIANT_CLAM_END_KEY),
                 List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()}));
+
+        register(context, DEMON_CORE_OVERWORLD_ROOM_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEMON_CORE_OVERWORLD_ROOM_KEY),
+                List.of(new PlacementModifier[]{CountPlacement.of(5), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.top()), BiomeFilter.biome()}));
+
+        register(context, DEMON_CORE_OVERWORLD_ROOM_DEEP_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEMON_CORE_OVERWORLD_ROOM_KEY),
+                List.of(new PlacementModifier[]{CountPlacement.of(4), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(-1)), BiomeFilter.biome()}));
     }
+
+
 
     @SuppressWarnings("removal")
     private static ResourceKey<PlacedFeature> registerKey(String name) {

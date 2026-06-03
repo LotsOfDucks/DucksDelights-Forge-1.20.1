@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "ducksdelights:demon_core_overworld_deep_room_placed",
+  "step": "underground_structures"
+}
