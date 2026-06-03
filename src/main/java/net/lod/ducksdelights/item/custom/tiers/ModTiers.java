@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public enum ModTiers implements Tier {
     PEARL(3, 950, 12.0F, 2.0F, 10, () ->
             Ingredient.of(ModItems.PEARL.get())),
-    HAUNTED_STEEL(3, 500, 7.0F, 2.0F, 14, () ->
+    HAUNTED_STEEL(4, 750, 7.0F, 3.0F, 14, () ->
             Ingredient.of(ModItems.HAUNTED_STEEL_INGOT.get()));
 
     private final int level;

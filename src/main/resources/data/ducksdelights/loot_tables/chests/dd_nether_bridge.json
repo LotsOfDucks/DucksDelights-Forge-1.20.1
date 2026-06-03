@@ -83,32 +83,18 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
-            },
-            {
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "ducksdelights:diamond_cleaver"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "ducksdelights:diamond_cleaver",
-          "weight": 6
+          "name": "ducksdelights:golden_cleaver"
         },
         {
           "type": "minecraft:empty",
-          "weight": 6
+          "weight": 3
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "ducksdelights:chests/dd_bastion_treasure"
+  "random_sequence": "ducksdelights:chests/dd_simple_dungeon"
 }

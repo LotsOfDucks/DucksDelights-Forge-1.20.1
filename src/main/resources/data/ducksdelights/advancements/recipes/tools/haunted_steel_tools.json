@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "ducksdelights:haunted_steel_sword"
+        "recipe": "ducksdelights:haunted_steel_sword_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,12 +28,13 @@
   ],
   "rewards": {
     "recipes": [
-      "ducksdelights:haunted_steel_sword",
-      "ducksdelights:haunted_steel_pickaxe",
-      "ducksdelights:haunted_steel_axe",
-      "ducksdelights:haunted_steel_cleaver",
-      "ducksdelights:haunted_steel_shovel",
-      "ducksdelights:haunted_steel_hoe"
+      "ducksdelights:haunted_steel_sword_smithing",
+      "ducksdelights:haunted_steel_pickaxe_smithing",
+      "ducksdelights:haunted_steel_axe_smithing",
+      "ducksdelights:haunted_steel_cleaver_smithing",
+      "ducksdelights:haunted_steel_shovel_smithing",
+      "ducksdelights:haunted_steel_hoe_smithing",
+      "ducksdelights:haunted_steel_upgrade_template"
     ]
   }
 }

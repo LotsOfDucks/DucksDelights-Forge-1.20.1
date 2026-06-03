@@ -98,6 +98,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
                 output.accept(ModItems.HAUNTED_STEEL_INGOT.get());
                 output.accept(ModItems.SOUL_CAGE.get());
+                output.accept(ModItems.HAUNTED_STEEL_UPGRADE_TEMPLATE.get());
                 output.accept(ModItems.HAUNTED_STEEL_SWORD.get());
                 output.accept(ModItems.HAUNTED_STEEL_PICKAXE.get());
                 output.accept(ModItems.HAUNTED_STEEL_AXE.get());
@@ -131,6 +132,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ALTHAEA.get());
                 output.accept(ModItems.MARSHMALLOW.get());
                 output.accept(ModItems.MARSHMALLOW_STICK.get());
+                output.accept(ModItems.BURNT_MARSHMALLOW_STICK.get());
                 output.accept(ModItems.MARSHMALLOW_CREME.get());
                 output.accept(ModBlocks.GIANT_MARSHMALLOW.get());
 

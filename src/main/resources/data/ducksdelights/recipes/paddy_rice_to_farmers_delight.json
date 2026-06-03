@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "rice",
+  "ingredients": [
+    {
+      "item": "ducksdelights:raw_rice"
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:rice"
+  }
+}

@@ -49,6 +49,7 @@ public class ModTags {
 
     public static class Items {
 
+        public static final TagKey<Item> DETECTORS = tag("detectors");
         public static final TagKey<Item> CLEAVERS = tag("cleavers");
         public static final TagKey<Item> ONIGIRI = tag("onigiri");
 

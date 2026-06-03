@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "ducksdelights:haunted_steel_ingot"
+  },
+  "base": {
+    "item": "minecraft:iron_smithing"
+  },
+  "result": {
+    "item": "ducksdelights:haunted_steel_smithing"
+  },
+  "template": {
+    "item": "ducksdelights:haunted_steel_upgrade_template"
+  }
+}

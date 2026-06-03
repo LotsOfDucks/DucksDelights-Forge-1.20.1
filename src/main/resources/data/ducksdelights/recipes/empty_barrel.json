@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "empty_barrel",
+  "ingredients": [
+    {
+      "item": "minecraft:barrel"
+    }
+  ],
+  "result": {
+    "item": "ducksdelights:empty_barrel"
+  }
+}

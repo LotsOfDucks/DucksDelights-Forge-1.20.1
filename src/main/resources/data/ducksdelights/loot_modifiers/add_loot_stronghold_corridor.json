@@ -1,0 +1,10 @@
+{
+  "type": "ducksdelights:add_loot_table",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/stronghold_corridor"
+    }
+  ],
+  "lootTable": "ducksdelights:chests/dd_stronghold_corridor"
+}

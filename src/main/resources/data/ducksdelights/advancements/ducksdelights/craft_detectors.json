@@ -1,0 +1,33 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "detectors": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "ducksdelights:detectors"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.craft_detectors.description"
+    },
+    "icon": {
+      "item": "ducksdelights:entity_detector"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.craft_detectors.title"
+    }
+  },
+  "requirements": [
+    [
+      "detectors"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

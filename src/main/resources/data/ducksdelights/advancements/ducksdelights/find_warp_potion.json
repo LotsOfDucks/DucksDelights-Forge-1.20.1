@@ -1,0 +1,61 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "home_potion": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:home_potion"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "recovery_potion": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:recovery_potion"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wormhole_potion": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:wormhole_potion"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_warp_potion.description"
+    },
+    "icon": {
+      "item": "ducksdelights:home_potion"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.find_warp_potion.title"
+    }
+  },
+  "requirements": [
+    [
+      "home_potion",
+      "recovery_potion",
+      "wormhole_potion"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "ducksdelights:ducksdelights/root",
+  "criteria": {
+    "marshmallow_roots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:marshmallow_roots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_marshmallow_roots.description"
+    },
+    "icon": {
+      "item": "ducksdelights:marshmallow_roots"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.find_marshmallow_roots.title"
+    }
+  },
+  "requirements": [
+    [
+      "marshmallow_roots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

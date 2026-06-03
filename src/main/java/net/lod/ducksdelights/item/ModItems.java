@@ -18,6 +18,9 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, DucksDelights.MOD_ID);
 
+    public static final RegistryObject<Item> HAUNTED_STEEL_UPGRADE_TEMPLATE = ITEMS.register("haunted_steel_upgrade_template",
+            CustomSmithingTemplateItem::createHauntedSteelUpgrade);
+
     public static final RegistryObject<Item> HAUNTED_METAL_SCRAP = ITEMS.register("haunted_metal_scrap",
             () -> new Item(new Item.Properties()));
 
@@ -27,21 +30,21 @@ public class ModItems {
     public static final RegistryObject<Item> HAUNTED_STEEL_INGOT = ITEMS.register("haunted_steel_ingot",
             () -> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> HAUNTED_STEEL_SWORD = ITEMS.register("haunted_steel_sword",
-            () -> new SwordItem(ModTiers.HAUNTED_STEEL, 3, -2.4F, new Item.Properties()
+    public static final RegistryObject<HauntedSteelSwordItem> HAUNTED_STEEL_SWORD = ITEMS.register("haunted_steel_sword",
+            () -> new HauntedSteelSwordItem(ModTiers.HAUNTED_STEEL, 3, -2.4F, new Item.Properties()
                     .setNoRepair()));
 
-    public static final RegistryObject<Item> HAUNTED_STEEL_SHOVEL = ITEMS.register("haunted_steel_shovel",
-            () -> new ShovelItem(ModTiers.HAUNTED_STEEL, 2, -3.0F, new Item.Properties()));
+    public static final RegistryObject<HauntedSteelShovelItem> HAUNTED_STEEL_SHOVEL = ITEMS.register("haunted_steel_shovel",
+            () -> new HauntedSteelShovelItem(ModTiers.HAUNTED_STEEL, 2, -3.0F, new Item.Properties()));
 
-    public static final RegistryObject<Item> HAUNTED_STEEL_PICKAXE = ITEMS.register("haunted_steel_pickaxe",
-            () -> new PickaxeItem(ModTiers.HAUNTED_STEEL, 2, -2.8F, new Item.Properties()));
+    public static final RegistryObject<HauntedSteelPickaxeItem> HAUNTED_STEEL_PICKAXE = ITEMS.register("haunted_steel_pickaxe",
+            () -> new HauntedSteelPickaxeItem(ModTiers.HAUNTED_STEEL, 2, -2.8F, new Item.Properties()));
 
-    public static final RegistryObject<Item> HAUNTED_STEEL_AXE = ITEMS.register("haunted_steel_axe",
-            () -> new AxeItem(ModTiers.HAUNTED_STEEL, 6.0F, -3.0F, new Item.Properties()));
+    public static final RegistryObject<HauntedSteelAxeItem> HAUNTED_STEEL_AXE = ITEMS.register("haunted_steel_axe",
+            () -> new HauntedSteelAxeItem(ModTiers.HAUNTED_STEEL, 6.0F, -3.0F, new Item.Properties()));
 
-    public static final RegistryObject<Item> HAUNTED_STEEL_HOE = ITEMS.register("haunted_steel_hoe",
-            () -> new HoeItem(ModTiers.HAUNTED_STEEL, -2, -3.0F, new Item.Properties()));
+    public static final RegistryObject<HauntedSteelHoeItem> HAUNTED_STEEL_HOE = ITEMS.register("haunted_steel_hoe",
+            () -> new HauntedSteelHoeItem(ModTiers.HAUNTED_STEEL, -2, -3.0F, new Item.Properties()));
 
 
 
@@ -130,72 +133,72 @@ public class ModItems {
                     .food(ModFoods.KIBBLESTONE)));
 
     public static final RegistryObject<Item> PLAIN_ROCK_CANDY = ITEMS.register("plain_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> WHITE_ROCK_CANDY = ITEMS.register("white_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> LIGHT_GRAY_ROCK_CANDY = ITEMS.register("light_gray_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> GRAY_ROCK_CANDY = ITEMS.register("gray_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> BLACK_ROCK_CANDY = ITEMS.register("black_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> BROWN_ROCK_CANDY = ITEMS.register("brown_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> RED_ROCK_CANDY = ITEMS.register("red_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> ORANGE_ROCK_CANDY = ITEMS.register("orange_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> YELLOW_ROCK_CANDY = ITEMS.register("yellow_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> LIME_ROCK_CANDY = ITEMS.register("lime_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> GREEN_ROCK_CANDY = ITEMS.register("green_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> CYAN_ROCK_CANDY = ITEMS.register("cyan_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> LIGHT_BLUE_ROCK_CANDY = ITEMS.register("light_blue_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> BLUE_ROCK_CANDY = ITEMS.register("blue_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> PURPLE_ROCK_CANDY = ITEMS.register("purple_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> MAGENTA_ROCK_CANDY = ITEMS.register("magenta_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> PINK_ROCK_CANDY = ITEMS.register("pink_rock_candy",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.ROCK_CANDY), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.ROCK_CANDY)));
 
     public static final RegistryObject<Item> MARSHMALLOW_ROOTS = ITEMS.register("marshmallow_roots",
             () -> new ItemNameBlockItem(ModBlocks.MARSHMALLOW_ROOT_CROP.get(),new Item.Properties()));
@@ -205,8 +208,12 @@ public class ModItems {
                     .food(ModFoods.MARSHMALLOW)));
 
     public static final RegistryObject<Item> MARSHMALLOW_STICK = ITEMS.register("marshmallow_stick",
-            () -> new RemainderItem(new Item.Properties()
-                    .food(ModFoods.MARSHMALLOW), Items.STICK));
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.MARSHMALLOW)));
+
+    public static final RegistryObject<Item> BURNT_MARSHMALLOW_STICK = ITEMS.register("burnt_marshmallow_stick",
+            () -> new StickRemainderItem(new Item.Properties()
+                    .food(ModFoods.BURNT_MARSHMALLOW)));
 
     public static final RegistryObject<Item> MARSHMALLOW_CREME = ITEMS.register("marshmallow_creme",
             () -> new MarshmallowCremeItem(new Item.Properties()
@@ -274,8 +281,8 @@ public class ModItems {
     public static final RegistryObject<Item> IRON_CLEAVER = ITEMS.register("iron_cleaver",
             () -> new CleaverItem(Tiers.IRON, 4, -2.9F, new Item.Properties()));
 
-    public static final RegistryObject<Item> HAUNTED_STEEL_CLEAVER = ITEMS.register("haunted_steel_cleaver",
-            () -> new CleaverItem(Tiers.IRON, 4, -2.8F, new Item.Properties()));
+    public static final RegistryObject<HauntedSteelCleaverItem> HAUNTED_STEEL_CLEAVER = ITEMS.register("haunted_steel_cleaver",
+            () -> new HauntedSteelCleaverItem(Tiers.IRON, 4, -2.8F, new Item.Properties()));
 
     public static final RegistryObject<Item> DIAMOND_CLEAVER = ITEMS.register("diamond_cleaver",
             () -> new CleaverItem(Tiers.DIAMOND, 3, -2.8F, new Item.Properties()));

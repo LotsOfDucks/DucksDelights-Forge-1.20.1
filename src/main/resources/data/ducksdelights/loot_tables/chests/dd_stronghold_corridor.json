@@ -81,34 +81,14 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 1.0,
-                "min": 0.8
-              },
-              "function": "minecraft:set_damage"
-            },
-            {
-              "function": "minecraft:enchant_randomly"
-            }
-          ],
-          "name": "ducksdelights:diamond_cleaver"
+          "name": "ducksdelights:haunted_steel_upgrade_template"
         },
         {
-          "type": "minecraft:item",
-          "name": "ducksdelights:diamond_cleaver",
-          "weight": 6
-        },
-        {
-          "type": "minecraft:empty",
-          "weight": 6
+          "type": "minecraft:empty"
         }
       ],
-      "rolls": 1.0
+      "rolls": 2.0
     }
   ],
-  "random_sequence": "ducksdelights:chests/dd_bastion_treasure"
+  "random_sequence": "ducksdelights:chests/dd_stronghold_corridor"
 }

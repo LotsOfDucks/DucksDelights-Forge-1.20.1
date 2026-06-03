@@ -1,0 +1,35 @@
+{
+  "parent": "ducksdelights:ducksdelights/find_pearl",
+  "criteria": {
+    "pearl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ducksdelights:soul_pearl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.ducksdelights.find_soul_pearl.description"
+    },
+    "icon": {
+      "item": "ducksdelights:soul_pearl"
+    },
+    "hidden": false,
+    "title": {
+      "translate": "advancements.ducksdelights.find_soul_pearl.title"
+    }
+  },
+  "requirements": [
+    [
+      "pearl"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

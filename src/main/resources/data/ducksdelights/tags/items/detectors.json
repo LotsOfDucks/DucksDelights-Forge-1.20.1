@@ -1,0 +1,7 @@
+{
+  "values": [
+    "ducksdelights:entity_detector",
+    "ducksdelights:monster_detector",
+    "ducksdelights:player_detector"
+  ]
+}
