@@ -26,6 +26,7 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_GIANT_CLAM_END = registerKey("add_giant_clam_end");
     public static final ResourceKey<BiomeModifier> DEMON_CORE_OVERWORLD_ROOM = registerKey("add_demon_core_room_overworld");
     public static final ResourceKey<BiomeModifier> DEMON_CORE_OVERWORLD_ROOM_DEEP = registerKey("add_demon_core_room_overworld_deep");
+    public static final ResourceKey<BiomeModifier> MONOLITH = registerKey("add_monolith_overworld");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -60,6 +61,11 @@ public class ModBiomeModifiers {
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.DEMON_CORE_OVERWORLD_ROOM_DEEP_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_STRUCTURES));
+
+        context.register(MONOLITH, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.MONOLITH_PLACED_KEY)),
+                GenerationStep.Decoration.SURFACE_STRUCTURES));
     }
 
     @SuppressWarnings("removal")

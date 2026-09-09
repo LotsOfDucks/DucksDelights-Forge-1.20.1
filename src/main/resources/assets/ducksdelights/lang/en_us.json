@@ -224,6 +224,8 @@
   "block.ducksdelights.monster_detector": "Monster Detector",
   "block.ducksdelights.player_detector": "Player Detector",
 
+  "block.ducksdelights.monolith": "Monolith",
+
   "sounds.ducksdelights.giant_marshmallow_boowoop": "Marshmallow Boowoops",
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",
   "sounds.ducksdelights.demon_core_tink": "Demon Core Opens/Closes",
@@ -268,7 +270,7 @@
 
   "enchantment.ducksdelights.waste_not_want_not": "Waste Not Want Not",
   "enchantment.ducksdelights.bloodlust": "Bloodlust",
-  "enchantment.ducksdelights.frostbite": "Frostbite",
+  "enchantment.ducksdelights.frostbite": "Frost Thorns",
   "enchantment.ducksdelights.vampyrism": "Vampyrism",
 
 

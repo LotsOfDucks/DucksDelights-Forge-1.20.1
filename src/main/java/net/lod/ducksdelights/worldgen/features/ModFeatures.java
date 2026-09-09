@@ -28,6 +28,9 @@ public class ModFeatures {
     public static final RegistryObject<GiantClamEndFeature> GIANT_CLAM_END_FEATURE = registerFeature("giant_clam_end_feature",
             () -> new GiantClamEndFeature(RandomPatchConfiguration.CODEC));
 
+    public static final RegistryObject<MonolithFeature> MONOLITH_FEATURE = registerFeature("monolith_feature",
+            () -> new MonolithFeature(NoneFeatureConfiguration.CODEC));
+
 
     private static <T extends Feature<?>> RegistryObject<T> registerFeature(String name, Supplier<T> feature) {
         RegistryObject<T> toReturn = FEATURES.register(name, feature);

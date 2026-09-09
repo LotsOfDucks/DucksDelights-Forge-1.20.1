@@ -25,6 +25,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEMON_CORE_OVERWORLD_ROOM_KEY = registerKey("demon_core_overworld_room_key");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DEMON_CORE_OVERWORLD_DEEP_ROOM_KEY = registerKey("demon_core_overworld_deep_room_key");
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MONOLITH_KEY = registerKey("monolith_key");
+
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, MARSHMALLOW_ROOT_KEY, Feature.FLOWER, new RandomPatchConfiguration(48, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.WILD_MARSHMALLOW_ROOT.get())))));
         register(context, GIANT_CLAM_KEY, ModFeatures.GIANT_CLAM_FEATURE.get(), new CountConfiguration(2));
@@ -32,6 +34,7 @@ public class ModConfiguredFeatures {
         register(context, GIANT_CLAM_END_KEY, ModFeatures.GIANT_CLAM_END_FEATURE.get(), new RandomPatchConfiguration(16, 4, 4, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.GIANT_CLAM_ENDER.get())))));
         register(context, DEMON_CORE_OVERWORLD_ROOM_KEY, ModFeatures.DEMON_CORE_OVERWORLD_ROOM_FEATURE.get(), new NoneFeatureConfiguration());
         register(context, DEMON_CORE_OVERWORLD_DEEP_ROOM_KEY, ModFeatures.DEMON_CORE_OVERWORLD_ROOM_FEATURE.get(), new NoneFeatureConfiguration());
+        register(context, MONOLITH_KEY, ModFeatures.MONOLITH_FEATURE.get(), new NoneFeatureConfiguration());
     }
 
     @SuppressWarnings("removal")

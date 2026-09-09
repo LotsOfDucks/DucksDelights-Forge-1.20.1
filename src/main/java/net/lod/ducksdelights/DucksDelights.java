@@ -43,6 +43,7 @@ public class DucksDelights {
         IEventBus modEventBus = context.getModEventBus();
 
         context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        context.registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
 
         ModRecipes.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
@@ -74,7 +75,11 @@ public class DucksDelights {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        event.enqueueWork(() -> {
+            ModCompostables.register();
+            ModDispenserBehaviors.register();
+            ModPotionRecipes.register();
+        });
     }
 
     // Add the example block item to the building blocks tab
@@ -99,9 +104,6 @@ public class DucksDelights {
             ModEntityRenderers.register();
             ModBlockEntityRenderers.register();
             ModItemProperties.register();
-            ModDispenserBehaviors.register();
-            ModCompostables.register();
-            ModPotionRecipes.register();
         }
     }
 }

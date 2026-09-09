@@ -66,6 +66,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.MAGENTA_GIANT_MARSHMALLOW.get());
                 output.accept(ModBlocks.PINK_GIANT_MARSHMALLOW.get());
 
+                output.accept(ModBlocks.MONOLITH.get());
+
             })
             .build());
 

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "minecraft:pearl_block",
-    "minecraft:haunted_steel_block"
+    "ducksdelights:pearl_block",
+    "ducksdelights:haunted_steel_block"
   ]
 }

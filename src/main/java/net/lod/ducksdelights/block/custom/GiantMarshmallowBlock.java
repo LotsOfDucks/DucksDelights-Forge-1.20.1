@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.sound.ModSoundEvents;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -121,10 +122,10 @@ public class GiantMarshmallowBlock extends Block {
     }
 
     public boolean canStickTo(BlockState state, BlockState other) {
-        if (other.getBlock() == Blocks.SLIME_BLOCK || other.getBlock() == Blocks.HONEY_BLOCK) {
-            return false;
+        if (other.is(ModTags.Blocks.GIANT_MARSHMALLOWS)) {
+            return state.getBlock() == other.getBlock();
         } else {
-            return state.isStickyBlock() || other.isStickyBlock();
+            return !other.isStickyBlock();
         }
     }
 

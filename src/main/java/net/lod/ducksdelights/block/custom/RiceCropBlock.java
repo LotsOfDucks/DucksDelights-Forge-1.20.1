@@ -67,18 +67,22 @@ public class RiceCropBlock extends CropBlock {
 
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (pLevel.getRawBrightness(pPos, 0) >= 9) {
-            int age = this.getAge(pState);
-            if (age < this.getMaxAge()) {
-                float f = getAvailableMoisture(this, pLevel, pPos);
-                if (pRandom.nextInt((int)(25.0F / f) + 1) == 0) {
-                    if (age == 5 && !pState.getValue(GOLDEN)) {
-                        if (pRandom.nextInt(getAvailableGold(pLevel, pPos)) == 0) {
-                            pLevel.setBlock(pPos, this.withAge(age + 1, pState.setValue(GOLDEN,true)), 3);
+            if (!pLevel.getBlockState(pPos.below()).is(ModBlocks.PADDY_FARMLAND.get())) {
+                pLevel.destroyBlock(pPos, true);
+            } else {
+                int age = this.getAge(pState);
+                if (age < this.getMaxAge()) {
+                    float f = getAvailableMoisture(this, pLevel, pPos);
+                    if (pRandom.nextInt((int) (25.0F / f) + 1) == 0) {
+                        if (age == 5 && !pState.getValue(GOLDEN)) {
+                            if (pRandom.nextInt(getAvailableGold(pLevel, pPos)) == 0) {
+                                pLevel.setBlock(pPos, this.withAge(age + 1, pState.setValue(GOLDEN, true)), 3);
+                            } else {
+                                pLevel.setBlock(pPos, this.withAge(age + 1, pState), 3);
+                            }
                         } else {
-                            pLevel.setBlock(pPos, this.withAge(age + 1,pState), 3);
+                            pLevel.setBlock(pPos, this.withAge(age + 1, pState), 3);
                         }
-                    } else {
-                        pLevel.setBlock(pPos, this.withAge(age + 1,pState), 3);
                     }
                 }
             }

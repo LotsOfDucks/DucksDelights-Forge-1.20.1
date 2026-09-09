@@ -22,6 +22,7 @@ import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -43,6 +44,7 @@ public class ModPlacedFeatures {
     public static final ResourceKey<PlacedFeature> DEMON_CORE_OVERWORLD_ROOM_PLACED_KEY = registerKey("demon_core_overworld_room_placed");
     public static final ResourceKey<PlacedFeature> DEMON_CORE_OVERWORLD_ROOM_DEEP_PLACED_KEY = registerKey("demon_core_overworld_deep_room_placed");
 
+    public static final ResourceKey<PlacedFeature> MONOLITH_PLACED_KEY = registerKey("monolith_placed");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -64,6 +66,9 @@ public class ModPlacedFeatures {
 
         register(context, DEMON_CORE_OVERWORLD_ROOM_DEEP_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DEMON_CORE_OVERWORLD_ROOM_KEY),
                 List.of(new PlacementModifier[]{CountPlacement.of(4), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(-1)), BiomeFilter.biome()}));
+
+        register(context, MONOLITH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MONOLITH_KEY),
+                List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(100000), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.bottom()), BiomeFilter.biome()}));
     }
 
 
