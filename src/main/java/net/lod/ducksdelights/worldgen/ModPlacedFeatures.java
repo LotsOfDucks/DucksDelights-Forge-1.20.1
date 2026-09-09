@@ -68,7 +68,7 @@ public class ModPlacedFeatures {
                 List.of(new PlacementModifier[]{CountPlacement.of(4), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.aboveBottom(6), VerticalAnchor.absolute(-1)), BiomeFilter.biome()}));
 
         register(context, MONOLITH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MONOLITH_KEY),
-                List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(100000), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.bottom()), BiomeFilter.biome()}));
+                List.of(new PlacementModifier[]{RarityFilter.onAverageOnceEvery(50000), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.bottom()), BiomeFilter.biome()}));
     }
 
 

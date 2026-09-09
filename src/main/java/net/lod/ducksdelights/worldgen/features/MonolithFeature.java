@@ -25,12 +25,13 @@ public class MonolithFeature extends Feature<NoneFeatureConfiguration> {
         WorldGenLevel worldgenlevel = featurePlaceContext.level();
         int xScale = randomsource.nextIntBetweenInclusive(3, 6);
         int zScale = randomsource.nextIntBetweenInclusive(3, 6);
-        int minHeight = worldgenlevel.getMinBuildHeight();
-        int maxHeight = Math.max(minHeight, worldgenlevel.getMaxBuildHeight() - (randomsource.nextIntBetweenInclusive(0, 50)));
+        int minHeight = worldgenlevel.getMinBuildHeight() + 1;
+        int maxHeight = Math.max(minHeight + 50, worldgenlevel.getMaxBuildHeight() - (randomsource.nextIntBetweenInclusive(0, 50)));
         for (int xPos = -xScale; xPos <= xScale; ++xPos) {
             for (int zPos = -zScale; zPos <= zScale; ++zPos) {
                 for (int yPos = minHeight; yPos <= maxHeight; ++yPos) {
-                    this.setBlock(worldgenlevel, blockpos.offset(xPos, yPos, zPos), ModBlocks.MONOLITH.get().defaultBlockState());
+                    BlockPos placementPos = new BlockPos(blockpos.getX() + xPos, yPos, blockpos.getZ() + zPos);
+                    this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
                 }
             }
         }
