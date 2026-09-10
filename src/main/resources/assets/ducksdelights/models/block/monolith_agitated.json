@@ -2,8 +2,8 @@
   "parent": "minecraft:block/block",
   "ambientocclusion": false,
   "textures": {
-    "all": "ducksdelights:block/monolith",
-    "particle": "ducksdelights:block/monolith"
+    "all": "ducksdelights:block/monolith_agitated",
+    "particle": "ducksdelights:block/monolith_agitated"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

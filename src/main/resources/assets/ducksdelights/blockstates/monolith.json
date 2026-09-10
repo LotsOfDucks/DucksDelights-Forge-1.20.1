@@ -1,7 +1,16 @@
 {
   "variants": {
-    "": {
+    "lit=false,agitated=false": {
       "model": "ducksdelights:block/monolith"
+    },
+    "lit=false,agitated=true": {
+      "model": "ducksdelights:block/monolith_agitated"
+    },
+    "lit=true,agitated=false": {
+      "model": "ducksdelights:block/monolith"
+    },
+    "lit=true,agitated=true": {
+      "model": "ducksdelights:block/monolith_agitated"
     }
   }
 }

@@ -47,6 +47,9 @@ public class ModBlockStateProperties {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
     public static final BooleanProperty PEARLING = BooleanProperty.create("pearling");
 
+    //Monolith
+    public static final BooleanProperty AGITATED = BooleanProperty.create("agitated");
+
 
 
 

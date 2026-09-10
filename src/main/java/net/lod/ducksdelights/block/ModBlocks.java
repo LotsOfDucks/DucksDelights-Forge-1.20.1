@@ -535,9 +535,9 @@ public class ModBlocks {
                     .isSuffocating(ModBlocks::never)
                     .isViewBlocking(ModBlocks::never)));
 
-    public static final RegistryObject<Block> MONOLITH = registerBlock("monolith",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
-                    .lightLevel((state) -> 5)
+    public static final RegistryObject<MonolithBlock> MONOLITH = registerBlock("monolith",
+            () -> new MonolithBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
+                    .lightLevel((state) -> state.getValue(ModBlockStateProperties.AGITATED) ? 15 : 0)
                     .mapColor(MapColor.COLOR_BLACK)));
 
 

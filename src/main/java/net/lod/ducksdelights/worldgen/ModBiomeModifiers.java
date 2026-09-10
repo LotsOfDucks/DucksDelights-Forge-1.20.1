@@ -65,7 +65,7 @@ public class ModBiomeModifiers {
         context.register(MONOLITH, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.MONOLITH_PLACED_KEY)),
-                GenerationStep.Decoration.SURFACE_STRUCTURES));
+                GenerationStep.Decoration.TOP_LAYER_MODIFICATION));
     }
 
     @SuppressWarnings("removal")
