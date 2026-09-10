@@ -537,8 +537,13 @@ public class ModBlocks {
 
     public static final RegistryObject<MonolithBlock> MONOLITH = registerBlock("monolith",
             () -> new MonolithBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
+                    .strength(-1.0F, 9.0F)
                     .lightLevel((state) -> state.getValue(ModBlockStateProperties.AGITATED) ? 15 : 0)
                     .mapColor(MapColor.COLOR_BLACK)));
+
+    public static final RegistryObject<FleshBlock> FLESH_BLOCK = registerBlock("flesh_block",
+            () -> new FleshBlock(BlockBehaviour.Properties.copy(Blocks.WET_SPONGE)
+                    .mapColor(MapColor.COLOR_RED)));
 
 
 

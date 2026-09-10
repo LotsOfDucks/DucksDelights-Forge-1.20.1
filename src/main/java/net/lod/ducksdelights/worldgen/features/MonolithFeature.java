@@ -31,7 +31,15 @@ public class MonolithFeature extends Feature<NoneFeatureConfiguration> {
             for (int zPos = -zScale; zPos <= zScale; ++zPos) {
                 for (int yPos = minHeight; yPos <= maxHeight; ++yPos) {
                     BlockPos placementPos = new BlockPos(blockpos.getX() + xPos, yPos, blockpos.getZ() + zPos);
-                    this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                    if ((placementPos.getX() == blockpos.getX() + xScale) || (placementPos.getX() == blockpos.getX() - xScale)) {
+                        this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                    } else if ((placementPos.getZ() == blockpos.getZ() + zScale) || (placementPos.getZ() == blockpos.getZ() - zScale)) {
+                        this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                    } else if (placementPos.getY() == maxHeight) {
+                        this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                    } else {
+                        this.setBlock(worldgenlevel, placementPos, ModBlocks.FLESH_BLOCK.get().defaultBlockState());
+                    }
                 }
             }
         }

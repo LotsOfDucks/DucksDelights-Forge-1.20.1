@@ -12,8 +12,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RedstoneTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -45,6 +47,14 @@ public class MonolithBlock extends Block {
     public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
         this.changeToLitBlock(pLevel, pHit.getBlockPos(), pState);
         super.onProjectileHit(pLevel, pState, pHit, pProjectile);
+    }
+
+    public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
+        for (Direction directions : Direction.values()) {
+            this.checkAndLightMonolith(level, pos.relative(directions));
+            level.playSound(null, pos.getCenter().x(), pos.getCenter().y(), pos.getCenter().z(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.BLOCKS, 0.1F, 0.1F);
+        }
+        super.onBlockExploded(state, level, pos, explosion);
     }
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {

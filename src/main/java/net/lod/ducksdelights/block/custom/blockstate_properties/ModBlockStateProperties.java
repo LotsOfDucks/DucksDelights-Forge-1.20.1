@@ -49,6 +49,7 @@ public class ModBlockStateProperties {
 
     //Monolith
     public static final BooleanProperty AGITATED = BooleanProperty.create("agitated");
+    public static final BooleanProperty IS_SPREADING_FLESH = BooleanProperty.create("is_spreading_flesh");
 
 
 
