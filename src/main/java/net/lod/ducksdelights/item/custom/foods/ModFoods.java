@@ -28,6 +28,8 @@ public class ModFoods {
     public static FoodProperties GIANT_MARSHMALLOW;
     public static FoodProperties GIANT_CLAM_MEAT;
     public static FoodProperties COOKED_GIANT_CLAM_MEAT;
+    public static FoodProperties FLESH_CLUMP;
+    public static FoodProperties COOKED_FLESH_CLUMP;
 
 
     public ModFoods() {
@@ -63,5 +65,7 @@ public class ModFoods {
         GIANT_CLAM_MEAT = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).effect(() ->  new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).fast().meat().build();
         COOKED_GIANT_CLAM_MEAT = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.5F).fast().meat().build();
 
+        FLESH_CLUMP = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.5F).effect(() ->  new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+        COOKED_FLESH_CLUMP = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).effect(() ->  new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.15F).meat().build();
     }
 }

@@ -112,6 +112,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.FISSILE_CHUNK.get());
 
+                output.accept(ModItems.MONOLITHIC_CHITIN.get());
+
 
             })
             .build());
@@ -174,6 +176,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.MAGENTA_ROCK_CANDY.get());
                 output.accept(ModItems.PINK_ROCK_CANDY.get());
 
+                output.accept(ModItems.FLESH_CLUMP.get());
+                output.accept(ModItems.COOKED_FLESH_CLUMP.get());
 
             })
             .build());

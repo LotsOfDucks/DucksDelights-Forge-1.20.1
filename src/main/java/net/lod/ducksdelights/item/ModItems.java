@@ -293,6 +293,17 @@ public class ModItems {
     public static final RegistryObject<Item> PEARL_CLEAVER = ITEMS.register("pearl_cleaver",
             () -> new PearlCleaverItem(ModTiers.PEARL, 3, -2.8F, new Item.Properties()));
 
+    public static final RegistryObject<Item> FLESH_CLUMP = ITEMS.register("flesh_clump",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.FLESH_CLUMP)));
+
+    public static final RegistryObject<Item> COOKED_FLESH_CLUMP = ITEMS.register("cooked_flesh_clump",
+            () -> new Item(new Item.Properties()
+                    .food(ModFoods.COOKED_FLESH_CLUMP)));
+
+    public static final RegistryObject<Item> MONOLITHIC_CHITIN = ITEMS.register("monolithic_chitin",
+            () -> new Item(new Item.Properties()));
+
 
 
 

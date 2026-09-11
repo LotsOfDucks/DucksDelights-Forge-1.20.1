@@ -7,20 +7,35 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FleshBlock extends Block {
+    protected static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 14.0, 16.0);
     public static final BooleanProperty IS_SPREADING;
 
     public FleshBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(IS_SPREADING, false));
+    }
+
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return SHAPE;
+    }
+
+    public VoxelShape getBlockSupportShape(BlockState pState, BlockGetter pReader, BlockPos pPos) {
+        return Shapes.block();
+    }
+
+    public VoxelShape getVisualShape(BlockState pState, BlockGetter pReader, BlockPos pPos, CollisionContext pContext) {
+        return Shapes.block();
     }
 
     public boolean isRandomlyTicking(BlockState pState) {
@@ -62,7 +77,7 @@ public class FleshBlock extends Block {
         if (pState.getValue(IS_SPREADING)) {
             if (!this.canSpread(pLevel, pPos)) {
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(IS_SPREADING, false));
-            } else if (pRandom.nextIntBetweenInclusive(1, 10) == 10) {
+            } else if (pRandom.nextIntBetweenInclusive(1, 5) == 5) {
                 for (Direction directions : Direction.values()) {
                     this.trySpread(pLevel, pPos.relative(directions), pRandom);
                 }

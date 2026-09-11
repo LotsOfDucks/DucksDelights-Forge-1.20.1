@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -36,6 +37,10 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, DucksDelights.MOD_ID);
 
     private static boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
+        return true;
+    }
+
+    private static boolean alwaysEntity(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
         return true;
     }
 
@@ -542,8 +547,17 @@ public class ModBlocks {
                     .mapColor(MapColor.COLOR_BLACK)));
 
     public static final RegistryObject<FleshBlock> FLESH_BLOCK = registerBlock("flesh_block",
-            () -> new FleshBlock(BlockBehaviour.Properties.copy(Blocks.WET_SPONGE)
+            () -> new FleshBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6F)
+                    .sound(SoundType.WET_GRASS)
+                    .speedFactor(0.6F)
+                    .isValidSpawn(ModBlocks::alwaysEntity)
+                    .isRedstoneConductor(ModBlocks::always)
+                    .isViewBlocking(ModBlocks::always)
+                    .isSuffocating(ModBlocks::always)
                     .mapColor(MapColor.COLOR_RED)));
+
+
 
 
 
