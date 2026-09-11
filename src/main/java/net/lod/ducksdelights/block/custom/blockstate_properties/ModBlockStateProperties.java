@@ -51,6 +51,7 @@ public class ModBlockStateProperties {
     public static final BooleanProperty SENSING = BooleanProperty.create("sensing");
     public static final BooleanProperty AGITATED = BooleanProperty.create("agitated");
     public static final BooleanProperty IS_SPREADING_FLESH = BooleanProperty.create("is_spreading_flesh");
+    public static final BooleanProperty IS_FULL = BooleanProperty.create("is_full");
 
 
 
