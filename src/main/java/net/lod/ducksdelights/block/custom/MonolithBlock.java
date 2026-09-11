@@ -68,33 +68,23 @@ public class MonolithBlock extends Block {
                 if (pLevel.hasNeighborSignal(pPos)) {
                     this.changeToLitBlock(pLevel, pPos, pState);
                 } else {
-                    this.checkSpreading(pLevel, pPos, pState);
+                    this.updateSpreading(pLevel, pPos, pState);
                 }
             }
         }
     }
 
     public boolean isAlive(Level level, BlockPos pos) {
-        boolean foundFlesh = false;
         for (int x = -1; x <= 1; ++x) {
             for (int y = -1; y <= 1; ++y) {
                 for (int z = -1; z <= 1; ++z) {
-                    if (!foundFlesh) {
-                        if (this.obtainFlesh(level, pos.offset(x,y,z))) {
-                            foundFlesh = true;
-                            break;
-                        }
+                    if (this.obtainFlesh(level, pos.offset(x,y,z))) {
+                        return true;
                     }
                 }
-                if (!foundFlesh) {
-                    break;
-                }
-            }
-            if (!foundFlesh) {
-                break;
             }
         }
-        return foundFlesh;
+        return false;
     }
 
     public boolean obtainFlesh(Level level, BlockPos pos) {
@@ -132,14 +122,13 @@ public class MonolithBlock extends Block {
 
     public void checkAndLightMonolith(Level level, BlockPos pos) {
         BlockState state = level.getBlockState(pos);
-
         if (state.getBlock() instanceof MonolithBlock && !state.getValue(AGITATED) && !state.getValue(SENSING)) {
             this.changeToLitBlock(level, pos, state);
         }
     }
 
-    public void checkSpreading(Level level, BlockPos pos, BlockState blockState) {
-        if (canSpread(level, pos)) {
+    public void updateSpreading(Level level, BlockPos pos, BlockState blockState) {
+        if (this.canSpread(level, pos)) {
             level.setBlockAndUpdate(pos, blockState.setValue(IS_SPREADING, true));
         }
     }
@@ -174,29 +163,31 @@ public class MonolithBlock extends Block {
         for (Direction checkDirection : Direction.values()) {
             BlockState airCheckedState = level.getBlockState(pos.relative(checkDirection));
             if (airCheckedState.is(BlockTags.REPLACEABLE) || airCheckedState.is(ModBlocks.FLESH_BLOCK.get())) {
-                for (int distance = 2; distance <= 4; distance++) {
+                int checkDistance = 5;
+                if (checkDirection == Direction.UP || checkDirection == Direction.DOWN) {
+                    checkDistance = 16;
+                }
+                for (int distance = checkDistance; distance >= 2; distance--) {
                     BlockState monolithFindState = level.getBlockState(pos.relative(checkDirection, distance));
                     if (monolithFindState.is(ModBlocks.MONOLITH.get())) {
-                            resultDirection = checkDirection;
-                            break;
+                        resultDirection = checkDirection;
+                        break;
                     }
                 }
             }
-            if (resultDirection != null) {
-                break;
-            }
+            if (resultDirection != null) {break;}
         }
         return resultDirection;
     }
 
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (pState.getValue(IS_SPREADING) && !pState.getValue(AGITATED)) {
-            if (!this.canSpread(pLevel, pPos)) {
+        if (!pState.getValue(AGITATED)) {
+            if (!this.canSpread(pLevel, pPos) || !this.isAlive(pLevel, pPos)) {
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(IS_SPREADING, false));
-            } else if (pRandom.nextIntBetweenInclusive(1, 5) == 5) {
+            } else if (pRandom.nextIntBetweenInclusive(1, 5) == 5 && this.isAlive(pLevel, pPos)) {
                 Direction spreadDirection = this.getSpreadDirection(pLevel, pPos);
                 if (spreadDirection != null) {
-                    pLevel.setBlockAndUpdate(pPos.relative(spreadDirection), ModBlocks.MONOLITH.get().defaultBlockState().setValue(IS_SPREADING, true));
+                    pLevel.setBlockAndUpdate(pPos.relative(spreadDirection), ModBlocks.MONOLITH.get().defaultBlockState().setValue(IS_SPREADING, this.isAlive(pLevel, pPos.relative(spreadDirection))));
                 }
             }
         }
