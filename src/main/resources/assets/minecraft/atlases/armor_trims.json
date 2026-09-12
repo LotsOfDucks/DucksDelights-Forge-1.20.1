@@ -53,7 +53,9 @@
         "diamond_darker": "trims/color_palettes/diamond_darker",
         "netherite_darker": "trims/color_palettes/netherite_darker",
         "bedrock_chips": "ducksdelights:trims/color_palettes/bedrock_chips",
-        "pearl": "ducksdelights:trims/color_palettes/pearl"
+        "pearl": "ducksdelights:trims/color_palettes/pearl",
+        "haunted_steel": "ducksdelights:trims/color_palettes/haunted_steel",
+        "monolith": "ducksdelights:trims/color_palettes/monolith"
       }
     }
   ]

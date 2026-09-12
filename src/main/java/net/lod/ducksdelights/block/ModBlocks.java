@@ -540,13 +540,13 @@ public class ModBlocks {
                     .isSuffocating(ModBlocks::never)
                     .isViewBlocking(ModBlocks::never)));
 
-    public static final RegistryObject<MonolithBlock> MONOLITH = registerBlock("monolith",
+    public static final RegistryObject<Block> MONOLITH = registerBlock("monolith",
             () -> new MonolithBlock(BlockBehaviour.Properties.copy(Blocks.BEDROCK)
                     .strength(-1.0F, 9.0F)
                     .lightLevel((state) -> state.getValue(ModBlockStateProperties.AGITATED) ? 15 : 0)
                     .mapColor(MapColor.COLOR_BLACK)));
 
-    public static final RegistryObject<FleshBlock> FLESH_BLOCK = registerBlock("flesh_block",
+    public static final RegistryObject<Block> FLESH_BLOCK = registerBlock("flesh_block",
             () -> new FleshBlock(BlockBehaviour.Properties.of()
                     .strength(0.6F)
                     .sound(SoundType.WET_GRASS)
@@ -556,6 +556,13 @@ public class ModBlocks {
                     .isViewBlocking(ModBlocks::always)
                     .isSuffocating(ModBlocks::always)
                     .mapColor(MapColor.COLOR_RED)));
+
+    public static final RegistryObject<MonolithGraftBlock> MONOLITH_GRAFT = registerBlock("monolith_graft",
+            () -> new MonolithGraftBlock(BlockBehaviour.Properties.of()
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(1.5F, 6.0F)
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .noOcclusion()));
 
 
 

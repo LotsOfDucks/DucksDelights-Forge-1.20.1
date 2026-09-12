@@ -89,7 +89,7 @@ public class MonolithBlock extends Block {
 
     public boolean obtainFlesh(Level level, BlockPos pos) {
         BlockState checkedState = level.getBlockState(pos);
-        return checkedState.is(ModBlocks.FLESH_BLOCK.get());
+        return checkedState.is(ModTags.Blocks.MONOLITH_ALIVE_GRANTING);
     }
 
     private void changeToLitBlock(Level level, BlockPos pos, BlockState state) {
@@ -163,6 +163,9 @@ public class MonolithBlock extends Block {
         for (Direction checkDirection : Direction.values()) {
             BlockState airCheckedState = level.getBlockState(pos.relative(checkDirection));
             if (airCheckedState.is(ModTags.Blocks.MONOLITH_REPLACEABLE)) {
+                if (airCheckedState.is(ModBlocks.MONOLITH_GRAFT.get())) {
+                    level.setBlockAndUpdate(pos.relative(checkDirection), ModBlocks.MONOLITH.get().defaultBlockState().setValue(IS_SPREADING, this.isAlive(level, pos.relative(checkDirection))));
+                }
                 int checkDistance = 5;
                 if (checkDirection == Direction.UP || checkDirection == Direction.DOWN) {
                     checkDistance = 16;

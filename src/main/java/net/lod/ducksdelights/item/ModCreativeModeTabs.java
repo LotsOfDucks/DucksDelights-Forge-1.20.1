@@ -68,6 +68,7 @@ public class ModCreativeModeTabs {
 
                 output.accept(ModBlocks.MONOLITH.get());
                 output.accept(ModBlocks.FLESH_BLOCK.get());
+                output.accept(ModBlocks.MONOLITH_GRAFT.get());
 
             })
             .build());

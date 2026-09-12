@@ -6,7 +6,6 @@ import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -15,8 +14,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -121,6 +118,7 @@ public class FleshBlock extends Block {
         if (checkedState.is(ModTags.Blocks.FLESH_REPLACEABLE)) {
             if (randomSource.nextIntBetweenInclusive(1, 2) == 2) {
                 level.setBlockAndUpdate(relative, ModBlocks.FLESH_BLOCK.get().defaultBlockState().setValue(IS_SPREADING, true));
+                level.levelEvent(null, 2001, relative, Block.getId(ModBlocks.FLESH_BLOCK.get().defaultBlockState()));
             }
         }
     }

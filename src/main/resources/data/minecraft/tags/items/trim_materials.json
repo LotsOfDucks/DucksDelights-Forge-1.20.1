@@ -1,5 +1,9 @@
 {
   "replace": false,
-  "values": ["ducksdelights:bedrock_chips",
-    "ducksdelights:pearl"]
+  "values": [
+    "ducksdelights:bedrock_chips",
+    "ducksdelights:pearl",
+    "ducksdelights:monolithic_chitin",
+    "ducksdelights:haunted_steel_nugget"
+  ]
 }

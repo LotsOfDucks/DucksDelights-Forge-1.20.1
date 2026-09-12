@@ -229,6 +229,7 @@
   "item.ducksdelights.flesh_clump": "Flesh Clump",
   "item.ducksdelights.cooked_flesh_clump": "Cooked Flesh Clump",
   "item.ducksdelights.monolithic_chitin": "Monolithic Chitin",
+  "block.ducksdelights.monolith_graft": "Monolith Graft",
 
   "sounds.ducksdelights.giant_marshmallow_boowoop": "Marshmallow Boowoops",
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",
@@ -249,6 +250,8 @@
 
   "trim_material.ducksdelights.bedrock_chips": "Bedrock Material",
   "trim_material.ducksdelights.pearl": "Pearl Material",
+  "trim_material.ducksdelights.haunted_steel": "Haunted Steel Material",
+  "trim_material.ducksdelights.monolith": "Monolith Material",
 
   "potion.ducksdelights.remaining_applications": "Remaining Uses:",
 

@@ -1,5 +1,6 @@
 {
   "values": [
-    "ducksdelights:monolith"
+    "ducksdelights:monolith",
+    "ducksdelights:monolith_graft"
   ]
 }

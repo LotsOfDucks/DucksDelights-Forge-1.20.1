@@ -43,6 +43,7 @@ public class ModTags {
 
         public static final TagKey<Block> MONOLITH_ATTRACTABLE = tag("monolith_attractable");
         public static final TagKey<Block> MONOLITH_REPLACEABLE = tag("monolith_replaceable");
+        public static final TagKey<Block> MONOLITH_ALIVE_GRANTING = tag("monolith_alive_granting");
         public static final TagKey<Block> FLESH_REPLACEABLE = tag("flesh_replaceable");
 
         @SuppressWarnings("removal")

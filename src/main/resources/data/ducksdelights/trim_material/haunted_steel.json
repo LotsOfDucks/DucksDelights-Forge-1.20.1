@@ -1,0 +1,9 @@
+{
+  "asset_name": "haunted_steel",
+  "description": {
+    "color": "#2a4455",
+    "translate": "trim_material.ducksdelights.haunted_steel"
+  },
+  "ingredient": "ducksdelights:haunted_steel_nugget",
+  "item_model_index": 0.3
+}

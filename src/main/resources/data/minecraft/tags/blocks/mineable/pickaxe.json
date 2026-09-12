@@ -16,6 +16,7 @@
     "ducksdelights:detector_casing",
     "ducksdelights:entity_detector",
     "ducksdelights:monster_detector",
-    "ducksdelights:player_detector"
+    "ducksdelights:player_detector",
+    "ducksdelights:monolith_graft"
   ]
 }
