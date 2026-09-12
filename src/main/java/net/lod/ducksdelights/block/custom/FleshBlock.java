@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -72,7 +73,7 @@ public class FleshBlock extends Block {
 
     public int obtainAir(Level level, BlockPos pos) {
         BlockState checkedState = level.getBlockState(pos);
-        if (checkedState.is(BlockTags.REPLACEABLE)) {
+        if (checkedState.is(ModTags.Blocks.FLESH_REPLACEABLE)) {
             return 1;
         } else {
             return 0;
@@ -117,7 +118,7 @@ public class FleshBlock extends Block {
 
     public void trySpread(ServerLevel level, BlockPos relative, RandomSource randomSource) {
         BlockState checkedState = level.getBlockState(relative);
-        if (checkedState.is(BlockTags.REPLACEABLE)) {
+        if (checkedState.is(ModTags.Blocks.FLESH_REPLACEABLE)) {
             if (randomSource.nextIntBetweenInclusive(1, 2) == 2) {
                 level.setBlockAndUpdate(relative, ModBlocks.FLESH_BLOCK.get().defaultBlockState().setValue(IS_SPREADING, true));
             }

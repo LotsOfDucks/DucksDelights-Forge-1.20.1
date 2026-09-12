@@ -41,6 +41,10 @@ public class ModTags {
         public static final TagKey<Block> CLEAVER_EFFICIENT = tag("cleaver_efficient");
         public static final TagKey<Block> CLEAVER_DROPS = tag("cleaver_drops");
 
+        public static final TagKey<Block> MONOLITH_ATTRACTABLE = tag("monolith_attractable");
+        public static final TagKey<Block> MONOLITH_REPLACEABLE = tag("monolith_replaceable");
+        public static final TagKey<Block> FLESH_REPLACEABLE = tag("flesh_replaceable");
+
         @SuppressWarnings("removal")
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(DucksDelights.MOD_ID, name));

@@ -2,12 +2,12 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -151,7 +151,7 @@ public class MonolithBlock extends Block {
 
     public int obtainNonMonolith(Level level, BlockPos pos) {
         BlockState checkedState = level.getBlockState(pos);
-        if (checkedState.is(BlockTags.REPLACEABLE) || checkedState.is(ModBlocks.FLESH_BLOCK.get())) {
+        if (checkedState.is(ModTags.Blocks.MONOLITH_REPLACEABLE)) {
             return 1;
         } else {
             return 0;
@@ -162,14 +162,14 @@ public class MonolithBlock extends Block {
         Direction resultDirection = null;
         for (Direction checkDirection : Direction.values()) {
             BlockState airCheckedState = level.getBlockState(pos.relative(checkDirection));
-            if (airCheckedState.is(BlockTags.REPLACEABLE) || airCheckedState.is(ModBlocks.FLESH_BLOCK.get())) {
+            if (airCheckedState.is(ModTags.Blocks.MONOLITH_REPLACEABLE)) {
                 int checkDistance = 5;
                 if (checkDirection == Direction.UP || checkDirection == Direction.DOWN) {
                     checkDistance = 16;
                 }
                 for (int distance = checkDistance; distance >= 2; distance--) {
                     BlockState monolithFindState = level.getBlockState(pos.relative(checkDirection, distance));
-                    if (monolithFindState.is(ModBlocks.MONOLITH.get())) {
+                    if (monolithFindState.is(ModTags.Blocks.MONOLITH_ATTRACTABLE)) {
                         resultDirection = checkDirection;
                         break;
                     }

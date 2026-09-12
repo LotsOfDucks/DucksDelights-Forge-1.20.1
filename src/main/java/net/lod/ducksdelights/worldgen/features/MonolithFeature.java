@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.worldgen.features;
 
 import com.mojang.serialization.Codec;
+import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -20,29 +21,33 @@ public class MonolithFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
-        BlockPos blockpos = featurePlaceContext.origin();
-        RandomSource randomsource = featurePlaceContext.random();
-        WorldGenLevel worldgenlevel = featurePlaceContext.level();
-        int xScale = randomsource.nextIntBetweenInclusive(3, 6);
-        int zScale = randomsource.nextIntBetweenInclusive(3, 6);
-        int minHeight = worldgenlevel.getMinBuildHeight() + 1;
-        int maxHeight = Math.max(minHeight + 50, worldgenlevel.getMaxBuildHeight() - (randomsource.nextIntBetweenInclusive(0, 50)));
-        for (int xPos = -xScale; xPos <= xScale; ++xPos) {
-            for (int zPos = -zScale; zPos <= zScale; ++zPos) {
-                for (int yPos = minHeight; yPos <= maxHeight; ++yPos) {
-                    BlockPos placementPos = new BlockPos(blockpos.getX() + xPos, yPos, blockpos.getZ() + zPos);
-                    if ((placementPos.getX() == blockpos.getX() + xScale) || (placementPos.getX() == blockpos.getX() - xScale)) {
-                        this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
-                    } else if ((placementPos.getZ() == blockpos.getZ() + zScale) || (placementPos.getZ() == blockpos.getZ() - zScale)) {
-                        this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
-                    } else if (placementPos.getY() == maxHeight) {
-                        this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
-                    } else {
-                        this.setBlock(worldgenlevel, placementPos, ModBlocks.FLESH_BLOCK.get().defaultBlockState());
+        if (!Config.monolith_should_spawn) {
+            return true;
+        } else {
+            BlockPos blockpos = featurePlaceContext.origin();
+            RandomSource randomsource = featurePlaceContext.random();
+            WorldGenLevel worldgenlevel = featurePlaceContext.level();
+            int xScale = randomsource.nextIntBetweenInclusive(3, 6);
+            int zScale = randomsource.nextIntBetweenInclusive(3, 6);
+            int minHeight = worldgenlevel.getMinBuildHeight() + 1;
+            int maxHeight = Math.max(minHeight + 50, worldgenlevel.getMaxBuildHeight() - (randomsource.nextIntBetweenInclusive(0, 50)));
+            for (int xPos = -xScale; xPos <= xScale; ++xPos) {
+                for (int zPos = -zScale; zPos <= zScale; ++zPos) {
+                    for (int yPos = minHeight; yPos <= maxHeight; ++yPos) {
+                        BlockPos placementPos = new BlockPos(blockpos.getX() + xPos, yPos, blockpos.getZ() + zPos);
+                        if ((placementPos.getX() == blockpos.getX() + xScale) || (placementPos.getX() == blockpos.getX() - xScale)) {
+                            this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                        } else if ((placementPos.getZ() == blockpos.getZ() + zScale) || (placementPos.getZ() == blockpos.getZ() - zScale)) {
+                            this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                        } else if (placementPos.getY() == maxHeight) {
+                            this.setBlock(worldgenlevel, placementPos, ModBlocks.MONOLITH.get().defaultBlockState());
+                        } else {
+                            this.setBlock(worldgenlevel, placementPos, ModBlocks.FLESH_BLOCK.get().defaultBlockState());
+                        }
                     }
                 }
             }
+            return true;
         }
-        return true;
     }
 }
