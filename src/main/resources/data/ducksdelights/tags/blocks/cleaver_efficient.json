@@ -1,5 +1,7 @@
 {
   "values": [
-    "minecraft:bone_block"
+    "minecraft:bone_block",
+    "ducksdelights:flesh_block",
+    "ducksdelights:rottingflesh_block"
   ]
 }

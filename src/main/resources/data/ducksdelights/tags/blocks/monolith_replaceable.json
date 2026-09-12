@@ -2,6 +2,7 @@
   "values": [
     "#minecraft:replaceable",
     "ducksdelights:flesh_block",
+    "ducksdelights:rotting_flesh_block",
     "ducksdelights:monolith_graft"
   ]
 }

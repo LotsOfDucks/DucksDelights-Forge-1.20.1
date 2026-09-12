@@ -557,6 +557,18 @@ public class ModBlocks {
                     .isSuffocating(ModBlocks::always)
                     .mapColor(MapColor.COLOR_RED)));
 
+    public static final RegistryObject<Block> ROTTING_FLESH_BLOCK = registerBlock("rotting_flesh_block",
+            () -> new RottingFleshBlock(BlockBehaviour.Properties.of()
+                    .strength(0.3F)
+                    .sound(SoundType.WET_GRASS)
+                    .speedFactor(0.6F)
+                    .isValidSpawn(ModBlocks::alwaysEntity)
+                    .isRedstoneConductor(ModBlocks::always)
+                    .isViewBlocking(ModBlocks::always)
+                    .isSuffocating(ModBlocks::always)
+                    .mapColor(MapColor.COLOR_ORANGE)
+                    .randomTicks()));
+
     public static final RegistryObject<MonolithGraftBlock> MONOLITH_GRAFT = registerBlock("monolith_graft",
             () -> new MonolithGraftBlock(BlockBehaviour.Properties.of()
                     .instrument(NoteBlockInstrument.BASEDRUM)

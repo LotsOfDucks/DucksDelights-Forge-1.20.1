@@ -7,11 +7,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -19,22 +14,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class FleshBlock extends Block {
+public class RottingFleshBlock extends Block {
     protected static final VoxelShape SQUISH_SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 12.0, 16.0);
     protected static final VoxelShape FULL_SHAPE = Shapes.block();
-    public static final BooleanProperty IS_SPREADING;
     public static final BooleanProperty IS_FULL;
 
-
-    public FleshBlock(Properties pProperties) {
+    public RottingFleshBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(IS_SPREADING, false).setValue(IS_FULL, true));
     }
 
     public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
@@ -58,41 +49,6 @@ public class FleshBlock extends Block {
         return this.defaultBlockState().setValue(IS_FULL, pContext.getLevel().getBlockState(pContext.getClickedPos().above()).isSolid());
     }
 
-    @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        if (itemstack.is(Items.ROTTEN_FLESH)) {
-            pLevel.setBlockAndUpdate(pPos, ModBlocks.ROTTING_FLESH_BLOCK.get().defaultBlockState());
-            return InteractionResult.sidedSuccess(pLevel.isClientSide);
-        }
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-    }
-
-    public boolean isRandomlyTicking(BlockState pState) {
-        return this.isSpreading(pState);
-    }
-
-    public boolean isSpreading(BlockState state) {
-        return state.getValue(IS_SPREADING);
-    }
-
-    public boolean canSpread(Level level, BlockPos pos) {
-        int availableAir = 0;
-        for (Direction directions : Direction.values()) {
-            availableAir += this.obtainAir(level, pos.relative(directions));
-        }
-        return (availableAir == 1 || availableAir == 2);
-    }
-
-    public int obtainAir(Level level, BlockPos pos) {
-        BlockState checkedState = level.getBlockState(pos);
-        if (checkedState.is(ModTags.Blocks.FLESH_REPLACEABLE)) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
             BlockState newState = pState;
@@ -105,12 +61,6 @@ public class FleshBlock extends Block {
                     newState = newState.setValue(IS_FULL, false);
                 }
             }
-
-            if (!pState.getValue(IS_SPREADING)) {
-                if (this.canSpread(pLevel, pPos)) {
-                    newState = newState.setValue(IS_SPREADING, true);
-                }
-            }
             if (newState != pState) {
                 pLevel.setBlockAndUpdate(pPos, newState);
             }
@@ -118,33 +68,32 @@ public class FleshBlock extends Block {
     }
 
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (pState.getValue(IS_SPREADING)) {
-            if (!this.canSpread(pLevel, pPos)) {
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(IS_SPREADING, false));
-            } else if (pRandom.nextIntBetweenInclusive(1, 5) == 5) {
-                for (Direction directions : Direction.values()) {
-                    this.trySpread(pLevel, pPos.relative(directions), pRandom);
-                }
-            }
+        for (Direction directions : Direction.values()) {
+            this.trySpread(pLevel, pPos.relative(directions), pRandom);
+            pLevel.scheduleTick(pPos, this, 600 + pLevel.getRandom().nextInt(40));
         }
+    }
+
+    public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        for (Direction directions : Direction.values()) {
+            this.trySpread(pLevel, pPos.relative(directions), pRandom);
+        }
+        pLevel.destroyBlock(pPos, true);
     }
 
     public void trySpread(ServerLevel level, BlockPos relative, RandomSource randomSource) {
         BlockState checkedState = level.getBlockState(relative);
-        if (checkedState.is(ModTags.Blocks.FLESH_REPLACEABLE)) {
-            if (randomSource.nextIntBetweenInclusive(1, 2) == 2) {
-                level.setBlockAndUpdate(relative, ModBlocks.FLESH_BLOCK.get().defaultBlockState().setValue(IS_SPREADING, true));
-                level.levelEvent(null, 2001, relative, Block.getId(ModBlocks.FLESH_BLOCK.get().defaultBlockState()));
-            }
+        if (checkedState.is(ModBlocks.FLESH_BLOCK.get())) {
+            level.setBlockAndUpdate(relative, ModBlocks.ROTTING_FLESH_BLOCK.get().defaultBlockState());
+            level.levelEvent(null, 2001, relative, Block.getId(ModBlocks.ROTTING_FLESH_BLOCK.get().defaultBlockState()));
         }
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(IS_SPREADING, IS_FULL);
+        pBuilder.add(IS_FULL);
     }
 
     static {
-        IS_SPREADING = ModBlockStateProperties.IS_SPREADING_FLESH;
         IS_FULL = ModBlockStateProperties.IS_FULL;
     }
 }
