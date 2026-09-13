@@ -9,6 +9,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -41,6 +44,7 @@ public class MonolithBlock extends Block {
         if (!pLevel.isClientSide) {
             if (this.isAlive(pLevel, pPos)) {
                 this.changeToLitBlock(pLevel, pPos, pState);
+                pPlayer.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
             }
         }
     }
@@ -48,6 +52,11 @@ public class MonolithBlock extends Block {
     public void onProjectileHit(Level pLevel, BlockState pState, BlockHitResult pHit, Projectile pProjectile) {
         if (this.isAlive(pLevel, pHit.getBlockPos())) {
             this.changeToLitBlock(pLevel, pHit.getBlockPos(), pState);
+            if (pProjectile.getOwner() != null) {
+                if (pProjectile.getOwner() instanceof LivingEntity livingEntity && pProjectile.getOwner().isAlive()) {
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
+                }
+            }
         }
         super.onProjectileHit(pLevel, pState, pHit, pProjectile);
     }
@@ -57,6 +66,9 @@ public class MonolithBlock extends Block {
             for (Direction directions : Direction.values()) {
                 this.checkAndLightMonolith(level, pos.relative(directions));
                 level.playSound(null, pos.getCenter().x(), pos.getCenter().y(), pos.getCenter().z(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.BLOCKS, 0.1F, 0.1F);
+                if (explosion.getExploder() instanceof LivingEntity livingEntity && explosion.getExploder().isAlive()) {
+                    livingEntity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
+                }
             }
         }
         super.onBlockExploded(state, level, pos, explosion);
@@ -65,11 +77,7 @@ public class MonolithBlock extends Block {
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
             if (this.isAlive(pLevel, pPos)) {
-                if (pLevel.hasNeighborSignal(pPos)) {
-                    this.changeToLitBlock(pLevel, pPos, pState);
-                } else {
-                    this.updateSpreading(pLevel, pPos, pState);
-                }
+                this.updateSpreading(pLevel, pPos, pState);
             }
         }
     }

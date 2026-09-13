@@ -18,20 +18,11 @@
           ],
           "functions": [
             {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "extra": 1,
-                "probability": 0.15
-              }
-            },
-            {
               "add": true,
               "count": {
                 "type": "minecraft:uniform",
-                "max": 2.0,
-                "min": 1.0
+                "max": 3.0,
+                "min": 0.0
               },
               "function": "minecraft:set_count"
             }

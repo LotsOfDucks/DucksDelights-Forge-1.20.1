@@ -51,18 +51,14 @@ public class RottingFleshBlock extends Block {
 
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
-            BlockState newState = pState;
             if (!pState.getValue(IS_FULL)) {
                 if (pLevel.getBlockState(pPos.above()).isSolid()) {
-                    newState = newState.setValue(IS_FULL, true);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(IS_FULL, true));
                 }
             } else {
                 if (!pLevel.getBlockState(pPos.above()).isSolid()) {
-                    newState = newState.setValue(IS_FULL, false);
+                    pLevel.setBlockAndUpdate(pPos, pState.setValue(IS_FULL, false));
                 }
-            }
-            if (newState != pState) {
-                pLevel.setBlockAndUpdate(pPos, newState);
             }
         }
     }
@@ -70,22 +66,21 @@ public class RottingFleshBlock extends Block {
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         for (Direction directions : Direction.values()) {
             this.trySpread(pLevel, pPos.relative(directions), pRandom);
-            pLevel.scheduleTick(pPos, this, 600 + pLevel.getRandom().nextInt(40));
         }
+        pLevel.scheduleTick(pPos, ModBlocks.ROTTING_FLESH_BLOCK.get(), 300 + pLevel.getRandom().nextInt(600));
     }
 
     public void tick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        for (Direction directions : Direction.values()) {
-            this.trySpread(pLevel, pPos.relative(directions), pRandom);
+        if (pState.is(ModBlocks.ROTTING_FLESH_BLOCK.get())) {
+            pLevel.destroyBlock(pPos, true);
         }
-        pLevel.destroyBlock(pPos, true);
     }
 
     public void trySpread(ServerLevel level, BlockPos relative, RandomSource randomSource) {
         BlockState checkedState = level.getBlockState(relative);
         if (checkedState.is(ModBlocks.FLESH_BLOCK.get())) {
             level.setBlockAndUpdate(relative, ModBlocks.ROTTING_FLESH_BLOCK.get().defaultBlockState());
-            level.levelEvent(null, 2001, relative, Block.getId(ModBlocks.ROTTING_FLESH_BLOCK.get().defaultBlockState()));
+            level.levelEvent(null, 2001, relative, Block.getId(ModBlocks.FLESH_BLOCK.get().defaultBlockState()));
         }
     }
 
