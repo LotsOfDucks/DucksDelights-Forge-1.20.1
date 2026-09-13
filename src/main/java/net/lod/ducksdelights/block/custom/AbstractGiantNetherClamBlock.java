@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.custom;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.custom.interfaces.ISimpleWaterAndLavaloggedBlock;
 import net.lod.ducksdelights.block.entity.AbstractGiantClamNetherBlockEntity;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -169,7 +170,7 @@ public abstract class AbstractGiantNetherClamBlock extends BaseEntityBlock imple
 
     public void toggleOpen(Level level, BlockPos pos, BlockState state) {
         level.setBlockAndUpdate(pos, state.cycle(ModBlockStateProperties.OPEN));
-        level.playSound(null, pos, SoundEvents.BONE_BLOCK_STEP, SoundSource.BLOCKS, 1, 0.75F);
+        level.playSound(null, pos, ModSoundEvents.GIANT_CLAM_OPENCLOSE.get(), SoundSource.BLOCKS, 1, 0.75F);
     }
 
     public void emitParticle(Level level, BlockPos pos, BlockState state) {

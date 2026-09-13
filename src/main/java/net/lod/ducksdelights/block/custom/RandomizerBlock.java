@@ -3,6 +3,7 @@ package net.lod.ducksdelights.block.custom;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.RandomizerBlockEntity;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -53,7 +54,7 @@ public class RandomizerBlock extends DiodeBlock implements EntityBlock {
         } else {
             pState = pState.cycle(BINARY);
             float f = pState.getValue(BINARY) ? 0.55F : 0.5F;
-            pLevel.playSound(pPlayer, pPos, SoundEvents.COMPARATOR_CLICK, SoundSource.BLOCKS, 0.3F, f);
+            pLevel.playSound(pPlayer, pPos, ModSoundEvents.RANDOMIZER_CLICK.get(), SoundSource.BLOCKS, 0.3F, f);
             pLevel.setBlock(pPos, pState, 3);
             this.refreshOutputState(pLevel, pPos, pState);
             return InteractionResult.sidedSuccess(pLevel.isClientSide);

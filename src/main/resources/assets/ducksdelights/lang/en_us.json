@@ -239,6 +239,10 @@
   "sounds.ducksdelights.barrel_fill": "Barrel Fills/Empties",
   "sounds.ducksdelights.blazing_barrel_crackle": "Blaze Powder Crackles",
   "sounds.ducksdelights.resonator_resonate": "Resonator Resonates Resoundingly",
+  "sounds.ducksdelights.giant_clam_openclose": "Giant Clam Opens/Closes",
+  "sounds.ducksdelights.monolith_roar": "Monolith Roars",
+  "sounds.ducksdelights.monolith_agitated": "Monolith Becomes Agitated",
+  "sounds.ducksdelights.randomizer_clicks": "Randomizer Clicks",
 
   "death.attack.fission": "%1$s observed supercriticality.",
   "death.attack.fission.player": "%2$s convinced %1$s to remove the screwdriver.",

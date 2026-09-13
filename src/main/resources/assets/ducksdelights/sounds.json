@@ -42,5 +42,38 @@
       "minecraft:block/campfire/crackle5",
       "minecraft:block/campfire/crackle6"
     ]
+  },
+  "giant_clam_openclose": {
+    "subtitle": "sounds.ducksdelights.giant_clam_openclose",
+    "sounds": [
+      "minecraft:block/bone_block/step1",
+      "minecraft:block/bone_block/step2",
+      "minecraft:block/bone_block/step3",
+      "minecraft:block/bone_block/step4",
+      "minecraft:block/bone_block/step5"
+    ]
+  },
+  "monolith_roar": {
+    "subtitle": "sounds.ducksdelights.monolith_roar",
+    "sounds": [
+      "minecraft:mob/enderdragon/growl1",
+      "minecraft:mob/enderdragon/growl2",
+      "minecraft:mob/enderdragon/growl3",
+      "minecraft:mob/enderdragon/growl4"
+    ]
+  },
+  "monolith_agitated": {
+    "subtitle": "sounds.ducksdelights.monolith_agitated",
+    "sounds": [
+      "minecraft:block/beacon/power1",
+      "minecraft:block/beacon/power2",
+      "minecraft:block/beacon/power3"
+    ]
+  },
+  "randomizer_click": {
+    "subtitle": "sounds.ducksdelights.randomizer_clicks",
+    "sounds": [
+      "minecraft:random/click"
+    ]
   }
 }

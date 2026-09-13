@@ -155,13 +155,6 @@ public abstract class AbstractGiantClamBlockEntity extends BlockEntity implement
         boolean blockHasBeenChanged = false;
         boolean blockShouldClose = false;
 
-        if (pLevel.dimension() == Level.END) {
-            if (isLogged) {
-                if (pLevel.random.nextInt(20) == 0) {
-                    pLevel.setBlock(pPos, Blocks.GRASS_BLOCK.defaultBlockState(), 3);
-                }
-            }
-        }
         if (!isOpen) {
             if (isLogged) {
                 if (hasItemInput && !hasItemOutput) {

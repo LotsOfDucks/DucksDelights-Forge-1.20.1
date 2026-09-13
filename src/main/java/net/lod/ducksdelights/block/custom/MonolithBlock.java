@@ -2,6 +2,7 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
+import net.lod.ducksdelights.sound.ModSoundEvents;
 import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -65,7 +66,7 @@ public class MonolithBlock extends Block {
         if (this.isAlive(level, pos)) {
             for (Direction directions : Direction.values()) {
                 this.checkAndLightMonolith(level, pos.relative(directions));
-                level.playSound(null, pos.getCenter().x(), pos.getCenter().y(), pos.getCenter().z(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.BLOCKS, 0.1F, 0.1F);
+                level.playSound(null, pos.getCenter().x(), pos.getCenter().y(), pos.getCenter().z(), ModSoundEvents.MONOLITH_ROAR.get(), SoundSource.BLOCKS, 0.1F, 0.1F);
                 if (explosion.getExploder() instanceof LivingEntity livingEntity && explosion.getExploder().isAlive()) {
                     livingEntity.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 200));
                 }
@@ -119,7 +120,7 @@ public class MonolithBlock extends Block {
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(AGITATED, true).setValue(SENSING, false));
                 pLevel.scheduleTick(pPos, this, 600 + pLevel.getRandom().nextInt(40));
 
-                pLevel.playSound(null, pPos.getCenter().x(), pPos.getCenter().y(), pPos.getCenter().z(), SoundEvents.BEACON_POWER_SELECT, SoundSource.BLOCKS, 0.1F, 0.25F);
+                pLevel.playSound(null, pPos.getCenter().x(), pPos.getCenter().y(), pPos.getCenter().z(), ModSoundEvents.MONOLITH_AGITATED.get(), SoundSource.BLOCKS, 0.1F, 0.25F);
 
                 for (Direction directions : Direction.values()) {
                     this.checkAndLightMonolith(pLevel, pPos.relative(directions));
@@ -176,7 +177,7 @@ public class MonolithBlock extends Block {
                 }
                 int checkDistance = 5;
                 if (checkDirection == Direction.UP || checkDirection == Direction.DOWN) {
-                    checkDistance = 16;
+                    checkDistance = 12;
                 }
                 for (int distance = checkDistance; distance >= 2; distance--) {
                     BlockState monolithFindState = level.getBlockState(pos.relative(checkDirection, distance));

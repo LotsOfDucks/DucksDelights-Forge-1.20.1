@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "monolith_graft",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "ducksdelights:monolithic_chitin"
+    },
+    "X": {
+      "item": "minecraft:flesh_clump"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "X#X",
+    "#X#"
+  ],
+  "result": {
+    "item": "ducksdelights:monolith_graft",
+    "count": 4
+  }
+}

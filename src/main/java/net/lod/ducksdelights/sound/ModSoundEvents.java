@@ -15,14 +15,22 @@ public class ModSoundEvents {
     public static final RegistryObject<SoundEvent> GIANT_MARSHMALLOW_BOOWOOP = registerSoundEvents("giant_marshmallow_boowoop");
 
     public static final RegistryObject<SoundEvent> DEMON_CORE_TINK = registerSoundEvents("demon_core_tink");
-
     public static final RegistryObject<SoundEvent> DEMON_CORE_AMBIENT = registerSoundEvents("demon_core_ambient");
 
     public static final RegistryObject<SoundEvent> ARMOR_BARREL_EQUIP = registerSoundEvents("armor_barrel_equip");
-
     public static final RegistryObject<SoundEvent> BARREL_FILL = registerSoundEvents("barrel_fill");
-
     public static final RegistryObject<SoundEvent> BLAZING_BARREL_CRACKLE = registerSoundEvents("blazing_barrel_crackle");
+
+    public static final RegistryObject<SoundEvent> GIANT_CLAM_OPENCLOSE = registerSoundEvents("giant_clam_openclose");
+
+    public static final RegistryObject<SoundEvent> MONOLITH_ROAR = registerSoundEvents("monolith_roar");
+    public static final RegistryObject<SoundEvent> MONOLITH_AGITATED = registerSoundEvents("monolith_agitated");
+
+    public static final RegistryObject<SoundEvent> RANDOMIZER_CLICK = registerSoundEvents("randomizer_click");
+
+
+
+
 
     private static RegistryObject<SoundEvent> registerSoundEvents(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(ResourceLocation.tryBuild(DucksDelights.MOD_ID, name)));

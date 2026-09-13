@@ -569,8 +569,8 @@ public class ModBlocks {
                     .mapColor(MapColor.COLOR_ORANGE)
                     .randomTicks()));
 
-    public static final RegistryObject<MonolithGraftBlock> MONOLITH_GRAFT = registerBlock("monolith_graft",
-            () -> new MonolithGraftBlock(BlockBehaviour.Properties.of()
+    public static final RegistryObject<Block> MONOLITH_GRAFT = registerBlock("monolith_graft",
+            () -> new Block(BlockBehaviour.Properties.of()
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .strength(1.5F, 6.0F)
                     .mapColor(MapColor.COLOR_BLACK)
