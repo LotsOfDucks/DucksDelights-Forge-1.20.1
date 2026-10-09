@@ -13,5 +13,6 @@ public class ModBlockEntityRenderers {
         BlockEntityRenderers.register(ModBlockEntities.GIANT_CLAM_WHITE_BE.get(), GiantClamRenderer::new);
         BlockEntityRenderers.register(ModBlockEntities.GIANT_CLAM_NETHER_BE.get(), GiantClamNetherRenderer::new);
         BlockEntityRenderers.register(ModBlockEntities.GIANT_CLAM_ENDER_BE.get(), GiantClamEnderRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.FRIGID_HEART_BE.get(), FrigidHeartRenderer::new);
     }
 }

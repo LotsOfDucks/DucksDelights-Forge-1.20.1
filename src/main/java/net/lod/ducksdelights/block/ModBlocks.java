@@ -93,6 +93,9 @@ public class ModBlocks {
 
             }))));
 
+    public static final RegistryObject<RedstoneBarrelBlock> REDSTONE_BARREL = registerBlock("redstone_barrel",
+            () -> new RedstoneBarrelBlock(Items.REDSTONE ,BlockBehaviour.Properties.copy(ModBlocks.EMPTY_BARREL.get())));
+
     public static final RegistryObject<BlazingBarrelBlock> BLAZING_BARREL = registerBlock("blazing_barrel",
             () -> new BlazingBarrelBlock(Items.BLAZE_POWDER , true, 1,BlockBehaviour.Properties.copy(ModBlocks.EMPTY_BARREL.get())
                     .lightLevel(((state) ->
@@ -575,6 +578,12 @@ public class ModBlocks {
                     .strength(1.5F, 6.0F)
                     .mapColor(MapColor.COLOR_BLACK)
                     .noOcclusion()));
+
+    public static final RegistryObject<Block> NOSTALGIA_BLOCK = registerBlock("nostalgia_block",
+            () -> new NostalgiaBlock(BlockBehaviour.Properties.copy(Blocks.NETHERRACK)));
+
+    public static final RegistryObject<Block> FRIGID_HEART = registerBlock("frigid_heart",
+            () -> new FrigidHeartBlock(BlockBehaviour.Properties.copy(Blocks.ICE)));
 
 
 

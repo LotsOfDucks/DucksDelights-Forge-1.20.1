@@ -47,9 +47,9 @@ public class MobDetectorBlock extends BaseEntityBlock {
     }
 
     private static void tickEntity(Level world, BlockPos blockPos, BlockState blockState, MobDetectorBlockEntity blockEntity) {
-        if (world.getGameTime() % 5L == 0L) {
+        //if (world.getGameTime() % 5L == 0L) {
             getEntitiesInRange(world, blockPos, blockState);
-        }
+        //}
     }
 
     public static void getEntitiesInRange(Level level, BlockPos pos, BlockState blockState) {

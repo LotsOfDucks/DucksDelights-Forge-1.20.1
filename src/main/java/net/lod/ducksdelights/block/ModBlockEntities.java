@@ -92,6 +92,16 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(EnderGiantClamBlockEntity::new,
                             ModBlocks.GIANT_CLAM_ENDER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<FrigidHeartBlockEntity>> FRIGID_HEART_BE =
+            BLOCK_ENTITIES.register("frigid_heart_block_entity", () ->
+                    BlockEntityType.Builder.of(FrigidHeartBlockEntity::new,
+                            ModBlocks.FRIGID_HEART.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<PearlLampBlockEntity>> PEARL_LAMP_BE =
+            BLOCK_ENTITIES.register("pearl_lamp_block_entity", () ->
+                    BlockEntityType.Builder.of(PearlLampBlockEntity::new,
+                            ModBlocks.PEARL_LAMP.get()).build(null));
+
     //public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAN_BE =
     //        BLOCK_ENTITIES.register("giant_clam", () ->
     //                BlockEntityType.Builder.of(GiantClamBlockEntity::new,

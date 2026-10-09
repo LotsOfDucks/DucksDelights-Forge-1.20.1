@@ -1,0 +1,8 @@
+{
+  "type": "ducksdelights:frigid_heart_freezing",
+ "ingredient": {
+    "item": "minecraft:ice"
+  },
+  "result": "minecraft:packed_ice",
+  "freeze_neighbors": true
+}

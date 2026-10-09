@@ -1,25 +1,37 @@
 package net.lod.ducksdelights.item;
 
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.FishingRodItem;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
 
 public class ModItemProperties {
     @SuppressWarnings("removal")
     public static void register() {
-        ItemProperties.register(ModItems.PEARL_FISHING_ROD.get(), new ResourceLocation("cast"), (p_174585_, p_174586_, p_174587_, p_174588_) -> {
-            if (p_174587_ == null) {
+        ItemProperties.register(ModItems.PEARL_FISHING_ROD.get(), new ResourceLocation("cast"), (itemStack, client, player, integer) -> {
+            if (player == null) {
                 return 0.0F;
             } else {
-                boolean flag = p_174587_.getMainHandItem() == p_174585_;
-                boolean flag1 = p_174587_.getOffhandItem() == p_174585_;
-                if (p_174587_.getMainHandItem().getItem() instanceof FishingRodItem) {
-                    flag1 = false;
+                boolean isMainhand = player.getMainHandItem() == itemStack;
+                boolean isOffhand = player.getOffhandItem() == itemStack;
+                if (player.getMainHandItem().getItem() instanceof FishingRodItem) {
+                    isOffhand = false;
                 }
 
-                return (flag || flag1) && p_174587_ instanceof Player && ((Player)p_174587_).fishing != null ? 1.0F : 0.0F;
+                return (isMainhand || isOffhand) && player instanceof Player && ((Player)player).fishing != null ? 1.0F : 0.0F;
+            }
+        });
+
+        ItemProperties.registerGeneric(new ResourceLocation("potion_dipped_lod"), (itemStack, client, player, integer) -> {
+            if (player == null) {
+                return 0.0F;
+            } else if (itemStack.is(ModTags.Items.POTION_DIPPABLE)) {
+                boolean hasEffects = !PotionUtils.getCustomEffects(itemStack).isEmpty();
+                return hasEffects ? 1.0F : 0.0F;
+            } else {
+                return 0.0F;
             }
         });
     }

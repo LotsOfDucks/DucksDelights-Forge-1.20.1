@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.item.custom.tiers;
 
 import net.lod.ducksdelights.item.ModItems;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
@@ -64,7 +65,7 @@ public enum ModTiers implements Tier {
     public static TagKey<Block> getTagFromModTier(ModTiers tier) {
         TagKey tagKey;
         switch (tier) {
-            case PEARL -> tagKey = Tags.Blocks.NEEDS_WOOD_TOOL;
+            case PEARL, HAUNTED_STEEL -> tagKey = BlockTags.NEEDS_DIAMOND_TOOL;
             default -> throw new IncompatibleClassChangeError();
         }
 

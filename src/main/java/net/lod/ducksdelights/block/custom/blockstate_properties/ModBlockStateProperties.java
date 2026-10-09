@@ -1,7 +1,5 @@
 package net.lod.ducksdelights.block.custom.blockstate_properties;
 
-import net.lod.ducksdelights.block.custom.blockstate_properties.enums.ClamTexture;
-import net.minecraft.core.FrontAndTop;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -16,6 +14,9 @@ public class ModBlockStateProperties {
 
     //SpacialAnchor
     public static final BooleanProperty ANCHORED = BooleanProperty.create("anchored");
+
+    //PlayerDetector
+    public static final IntegerProperty SKIN = IntegerProperty.create("skin", 0, 9);
 
     //Blackberries
     public static final IntegerProperty AGE_6 = IntegerProperty.create("age", 0, 5);
@@ -53,8 +54,8 @@ public class ModBlockStateProperties {
     public static final BooleanProperty IS_SPREADING_FLESH = BooleanProperty.create("is_spreading_flesh");
     public static final BooleanProperty IS_FULL = BooleanProperty.create("is_full");
 
-
-
+    //Nostalgia
+    public static final IntegerProperty DIMENSION = IntegerProperty.create("dimension", 0,3);
 
     public ModBlockStateProperties() {
     }

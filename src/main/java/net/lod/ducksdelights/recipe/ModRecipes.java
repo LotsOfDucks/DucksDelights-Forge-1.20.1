@@ -22,12 +22,15 @@ public class ModRecipes {
     });
     public static final RegistryObject<RecipeType<EndPearlingRecipe>> END_PEARLING_RECIPE_TYPE = RECIPE_TYPES.register("end_pearling", () -> new RecipeType<>() {
     });
+    public static final RegistryObject<RecipeType<FrigidHeartFreezingRecipe>> FRIGID_HEART_FREEZING_RECIPE_TYPE = RECIPE_TYPES.register("frigid_heart_freezing", () -> new RecipeType<>() {
+    });
 
 
     public static final RegistryObject<RecipeSerializer<?>> BLAZING_RECIPE = SERIALIZERS.register("blazing", () -> new BlazingCookingSerializer<>(BlazingRecipe::new, 100));
     public static final RegistryObject<RecipeSerializer<?>> PEARLING_RECIPE = SERIALIZERS.register("pearling", () -> new PearlingSerializer<>(PearlingRecipe::new, 100));
     public static final RegistryObject<RecipeSerializer<?>> NETHER_PEARLING_RECIPE = SERIALIZERS.register("nether_pearling", () -> new PearlingSerializer<>(NetherPearlingRecipe::new, 100));
     public static final RegistryObject<RecipeSerializer<?>> END_PEARLING_RECIPE = SERIALIZERS.register("end_pearling", () -> new PearlingSerializer<>(EndPearlingRecipe::new, 100));
+    public static final RegistryObject<RecipeSerializer<?>> FRIGID_HEART_FREEZING_RECIPE = SERIALIZERS.register("frigid_heart_freezing", () -> new FrigidHeartFreezingSerializer<>(FrigidHeartFreezingRecipe::new));
 
 
     public static void register(IEventBus eventBus) {

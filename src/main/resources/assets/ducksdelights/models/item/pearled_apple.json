@@ -2,5 +2,13 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "ducksdelights:item/pearled_apple"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "potion_dipped_lod": 1
+      },
+      "model": "ducksdelights:item/pearled_apple_potion_dipped"
+    }
+  ]
 }

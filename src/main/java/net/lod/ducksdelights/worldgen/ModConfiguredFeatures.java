@@ -16,16 +16,16 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 
 public class ModConfiguredFeatures {
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MARSHMALLOW_ROOT_KEY = registerKey("marshmallow_root_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MARSHMALLOW_ROOT_KEY = registerKey("marshmallow_root");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_KEY = registerKey("giant_clam_key");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_NETHER_KEY = registerKey("giant_clam_nether_key");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_END_KEY = registerKey("giant_clam_end_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_KEY = registerKey("giant_clam");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_NETHER_KEY = registerKey("giant_clam_nether");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> GIANT_CLAM_END_KEY = registerKey("giant_clam_end");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DEMON_CORE_OVERWORLD_ROOM_KEY = registerKey("demon_core_overworld_room_key");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> DEMON_CORE_OVERWORLD_DEEP_ROOM_KEY = registerKey("demon_core_overworld_deep_room_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DEMON_CORE_OVERWORLD_ROOM_KEY = registerKey("demon_core_overworld_room");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DEMON_CORE_OVERWORLD_DEEP_ROOM_KEY = registerKey("demon_core_overworld_deep_room");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> MONOLITH_KEY = registerKey("monolith_key");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MONOLITH_KEY = registerKey("monolith");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         register(context, MARSHMALLOW_ROOT_KEY, Feature.FLOWER, new RandomPatchConfiguration(48, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.WILD_MARSHMALLOW_ROOT.get())))));

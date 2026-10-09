@@ -45,7 +45,7 @@ public class ModFoods {
         SALMON_ONIGIRI = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
         GILDED_ONIGIRI = (new FoodProperties.Builder()).nutrition(14).saturationMod(1.2F).effect(() ->  new MobEffectInstance(MobEffects.REGENERATION, 200, 1), 1).effect(() ->  new MobEffectInstance(MobEffects.ABSORPTION, 2400, 1), 1).effect(() ->  new MobEffectInstance(MobEffects.NIGHT_VISION, 4800, 0), 1).alwaysEat().build();
 
-        PEARLED_APPLE = (new FoodProperties.Builder()).nutrition(4).saturationMod(1.2F).effect(() ->  new MobEffectInstance(MobEffects.HEAL, 1, 0), 1).effect(() ->  new MobEffectInstance(MobEffects.CONDUIT_POWER, 600, 0), 1).effect(() ->  new MobEffectInstance(ModMobEffects.PURIFICATION.get(), 200, 0), 1).alwaysEat().build();
+        PEARLED_APPLE = (new FoodProperties.Builder()).nutrition(5).saturationMod(1.2F).alwaysEat().build();
 
         KIBBLESTONE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
         ROCK_CANDY = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).alwaysEat().build();

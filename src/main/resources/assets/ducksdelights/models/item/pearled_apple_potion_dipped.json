@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "ducksdelights:item/pearled_apple",
+    "layer1": "ducksdelights:item/pearled_apple_overlay"
+  }
+}

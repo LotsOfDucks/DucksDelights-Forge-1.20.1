@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "dimension=0": {
+      "model": "ducksdelights:block/nostalgia_cobblestone"
+    },
+    "dimension=1": {
+      "model": "ducksdelights:block/nostalgia_netherrack"
+    },
+    "dimension=2": {
+      "model": "ducksdelights:block/nostalgia_end_stone"
+    },
+    "dimension=3": {
+      "model": "minecraft:block/sponge"
+    }
+  }
+}

@@ -75,6 +75,14 @@ public class EmptyBarrelBlock extends Block implements SimpleWaterloggedBlock {
                 }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }
+            if (itemstack.is(Items.REDSTONE)) {
+                pLevel.setBlock(pPos, ModBlocks.REDSTONE_BARREL.get().defaultBlockState().setValue(FillableBarrelBlock.FULLNESS, 1).setValue(WATERLOGGED, isWaterlogged), 3);
+                pLevel.playSound(null, pPos, ModSoundEvents.BARREL_FILL.get(), SoundSource.BLOCKS, 5, 1);
+                if (!pPlayer.isCreative()) {
+                    itemstack.shrink(1);
+                }
+                return InteractionResult.sidedSuccess(pLevel.isClientSide);
+            }
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }

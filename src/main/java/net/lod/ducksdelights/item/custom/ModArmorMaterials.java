@@ -16,7 +16,8 @@ import java.util.function.Supplier;
 
 public enum ModArmorMaterials implements ArmorMaterial {
     BARREL("barrel", 3, new int[]{1, 3, 2, 1}, 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0F, 0F, () -> Ingredient.of(ItemTags.PLANKS)),
-    HAUNTED_STEEL("haunted_steel", 3, new int[]{1, 3, 2, 1}, 1, SoundEvents.ARMOR_EQUIP_GENERIC, 0F, 0F, () -> Ingredient.of(ModItems.HAUNTED_STEEL_INGOT.get()))
+    HAUNTED_STEEL("haunted_steel", 20, new int[]{3, 7, 6, 2}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 0F, 0.05F, () -> Ingredient.of(ModItems.HAUNTED_STEEL_INGOT.get()))
+    
     ;
     //barrel
 

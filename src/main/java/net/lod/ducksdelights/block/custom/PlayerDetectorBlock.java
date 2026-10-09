@@ -2,12 +2,15 @@ package net.lod.ducksdelights.block.custom;
 
 import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.block.ModBlockEntities;
+import net.lod.ducksdelights.block.custom.blockstate_properties.ModBlockStateProperties;
 import net.lod.ducksdelights.block.entity.PlayerDetectorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -19,6 +22,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
@@ -27,9 +31,12 @@ import java.util.List;
 
 public class PlayerDetectorBlock extends BaseEntityBlock {
     public static final IntegerProperty POWER;
+    public static final BooleanProperty LIT;
+    public static final IntegerProperty SKIN;
 
     public PlayerDetectorBlock(Properties pProperties) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(SKIN, 0));
     }
 
     public RenderShape getRenderShape(BlockState pState) {
@@ -40,15 +47,24 @@ public class PlayerDetectorBlock extends BaseEntityBlock {
         return new PlayerDetectorBlockEntity(pPos, pState);
     }
 
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        Level level = pContext.getLevel();
+        if (level.isClientSide()) {
+            return this.defaultBlockState().setValue(SKIN, 9);
+        }
+        return this.defaultBlockState().setValue(SKIN, pContext.getLevel().getRandom().nextIntBetweenInclusive(0,7));
+    }
+
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         return !pLevel.isClientSide && pLevel.dimensionType().hasSkyLight() ? createTickerHelper(pBlockEntityType, ModBlockEntities.PLAYER_DETECTOR_BE.get(), PlayerDetectorBlock::tickEntity) : null;
     }
 
     private static void tickEntity(Level world, BlockPos blockPos, BlockState blockState, PlayerDetectorBlockEntity blockEntity) {
-        if (world.getGameTime() % 5L == 0L) {
+        //if (world.getGameTime() % 5L == 0L) {
             getEntitiesInRange(world, blockPos, blockState);
-        }
+        //}
     }
 
     public static void getEntitiesInRange(Level level, BlockPos pos, BlockState blockState) {
@@ -71,10 +87,12 @@ public class PlayerDetectorBlock extends BaseEntityBlock {
             if (targets > 15) {
                 targets = 15;
             }
-            level.setBlock(pos, blockState.setValue(POWER, targets), 3);
+
+
+            level.setBlockAndUpdate(pos, blockState.setValue(POWER, targets).setValue(LIT, targets > 0));
         } else {
             if (level.getBlockState(pos).getValue(POWER) != 0) {
-                level.setBlock(pos, blockState.setValue(POWER, 0), 3);
+                level.setBlockAndUpdate(pos, blockState.setValue(POWER, 0).setValue(LIT, false));
             }
         }
     }
@@ -89,10 +107,12 @@ public class PlayerDetectorBlock extends BaseEntityBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(POWER);
+        pBuilder.add(POWER, LIT, SKIN);
     }
 
     static {
         POWER = BlockStateProperties.POWER;
+        LIT = BlockStateProperties.LIT;
+        SKIN = ModBlockStateProperties.SKIN;
     }
 }

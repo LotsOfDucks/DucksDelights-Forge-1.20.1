@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "ducksdelights:block/cube_all_tint",
   "textures": {
     "all": "ducksdelights:block/pearl_lamp_on"
   }

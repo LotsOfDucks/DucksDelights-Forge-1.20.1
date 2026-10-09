@@ -38,7 +38,7 @@ public class MonolithBlock extends Block {
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(SENSING, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos())).setValue(AGITATED, false);
+        return this.defaultBlockState().setValue(AGITATED, false);
     }
 
     public void attack(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {

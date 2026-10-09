@@ -8,6 +8,7 @@ import net.lod.ducksdelights.item.custom.*;
 import net.lod.ducksdelights.item.custom.foods.ModFoods;
 import net.lod.ducksdelights.item.custom.PearlShovelItem;
 import net.lod.ducksdelights.item.custom.tiers.ModTiers;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -45,6 +46,18 @@ public class ModItems {
 
     public static final RegistryObject<HauntedSteelHoeItem> HAUNTED_STEEL_HOE = ITEMS.register("haunted_steel_hoe",
             () -> new HauntedSteelHoeItem(ModTiers.HAUNTED_STEEL, -2, -3.0F, new Item.Properties()));
+
+    public static final RegistryObject<ArmorItem> HAUNTED_STEEL_HELMET = ITEMS.register("haunted_steel_helmet",
+            () -> new ArmorItem(ModArmorMaterials.HAUNTED_STEEL, ArmorItem.Type.HELMET, new Item.Properties()));
+
+    public static final RegistryObject<ArmorItem> HAUNTED_STEEL_CHESTPLATE = ITEMS.register("haunted_steel_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.HAUNTED_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+
+    public static final RegistryObject<ArmorItem> HAUNTED_STEEL_LEGGINGS = ITEMS.register("haunted_steel_leggings",
+            () -> new ArmorItem(ModArmorMaterials.HAUNTED_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
+
+    public static final RegistryObject<ArmorItem> HAUNTED_STEEL_BOOTS = ITEMS.register("haunted_steel_boots",
+            () -> new ArmorItem(ModArmorMaterials.HAUNTED_STEEL, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
 
@@ -238,9 +251,14 @@ public class ModItems {
             () -> new SoulPearlItem(new Item.Properties()));
 
     public static final RegistryObject<Item> PEARLED_APPLE = ITEMS.register("pearled_apple",
-            () -> new Item(new Item.Properties()
+            () -> new PearlAppleItem(new Item.Properties()
                     .food(ModFoods.PEARLED_APPLE)
                     .rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> ENCHANTED_PEARLED_APPLE = ITEMS.register("enchanted_pearled_apple",
+            () -> new EnchantedPearlAppleItem(new Item.Properties()
+                    .food(ModFoods.PEARLED_APPLE)
+                    .rarity(Rarity.EPIC)));
 
     public static final RegistryObject<Item> PEARL_SWORD = ITEMS.register("pearl_sword",
             () -> new PearlSwordItem(ModTiers.PEARL, 3, -2.4F, new Item.Properties()
@@ -302,6 +320,9 @@ public class ModItems {
                     .food(ModFoods.COOKED_FLESH_CLUMP)));
 
     public static final RegistryObject<Item> MONOLITHIC_CHITIN = ITEMS.register("monolithic_chitin",
+            () -> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> FRIGID_HEART_ITEM = ITEMS.register("frigid_heart_item",
             () -> new Item(new Item.Properties()));
 
 

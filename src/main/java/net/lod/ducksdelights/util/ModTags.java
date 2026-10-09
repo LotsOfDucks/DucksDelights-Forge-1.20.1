@@ -57,6 +57,7 @@ public class ModTags {
         public static final TagKey<Item> DETECTORS = tag("detectors");
         public static final TagKey<Item> CLEAVERS = tag("cleavers");
         public static final TagKey<Item> ONIGIRI = tag("onigiri");
+        public static final TagKey<Item> POTION_DIPPABLE = tag("potion_dippable");
 
         @SuppressWarnings("removal")
         private static TagKey<Item> tag(String name) {

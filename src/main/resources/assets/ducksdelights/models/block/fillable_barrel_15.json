@@ -37,8 +37,8 @@
       "to": [15, 15.5, 15],
       "rotation": {"angle": 0, "axis": "y", "origin": [0, 1, 0]},
       "faces": {
-        "up": {"uv": [0, 0, 14, 14], "texture": "#filler"},
-        "down": {"uv": [0, 0, 14, 14], "texture": "#filler"}
+        "up": {"uv": [0, 0, 14, 14], "texture": "#filler", "tintindex": 1},
+        "down": {"uv": [0, 0, 14, 14], "texture": "#filler", "tintindex": 1}
       }
     }
   ]

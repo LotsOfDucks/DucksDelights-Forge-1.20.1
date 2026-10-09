@@ -2,5 +2,13 @@
   "parent": "minecraft:item/handheld",
   "textures": {
     "layer0": "ducksdelights:item/pearl_axe"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "potion_dipped_lod": 1
+      },
+      "model": "ducksdelights:item/pearl_axe_potion_dipped"
+    }
+  ]
 }

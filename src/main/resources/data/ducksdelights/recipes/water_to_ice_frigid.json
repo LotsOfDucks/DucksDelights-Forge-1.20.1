@@ -1,0 +1,8 @@
+{
+  "type": "ducksdelights:frigid_heart_freezing",
+ "ingredient": {
+    "item": "minecraft:water_bucket"
+  },
+  "result": "minecraft:ice",
+  "freeze_neighbors": false
+}

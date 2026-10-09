@@ -172,6 +172,11 @@
   "item.ducksdelights.pearl": "Pearl",
   "item.ducksdelights.soul_pearl": "Soul Pearl",
   "item.ducksdelights.pearled_apple": "Pearled Apple",
+  "item.ducksdelights.pearled_apple_applicable": "Interact with a potion to apply up to 3 effects.",
+  "item.ducksdelights.pearled_apple_potion_applied": "Unable to apply more effects.",
+  "item.ducksdelights.enchanted_pearled_apple": "Enchanted Pearled Apple",
+  "item.ducksdelights.enchanted_pearled_apple_applicable": "Interact with a potion to apply up to 6 effects.",
+
 
   "item.ducksdelights.pearl_sword": "Pearled Sword",
   "item.ducksdelights.pearl_shovel": "Pearled Shovel",
@@ -210,6 +215,7 @@
   "block.ducksdelights.glowstone_barrel": "Barrel Of Glowstone",
   "block.ducksdelights.blazing_barrel": "Barrel Of Blaze Powder",
   "block.ducksdelights.gunpowder_barrel": "Barrel Of Gunpowder",
+  "block.ducksdelights.redstone_barrel": "Barrel Of Redstone Dust",
 
   "block.ducksdelights.haunted_steel_block": "Block of Haunted Steel",
   "block.ducksdelights.haunted_steel_bars": "Haunted Steel Bars",
@@ -231,6 +237,10 @@
   "item.ducksdelights.cooked_flesh_clump": "Cooked Flesh Clump",
   "item.ducksdelights.monolithic_chitin": "Monolithic Chitin",
   "block.ducksdelights.monolith_graft": "Monolith Graft",
+
+  "block.ducksdelights.nostalgia_block": "Nostalgia",
+
+  "block.ducksdelights.frigid_heart": "Frigid Heart",
 
   "sounds.ducksdelights.giant_marshmallow_boowoop": "Marshmallow Boowoops",
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",

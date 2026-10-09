@@ -24,6 +24,8 @@ public class ModCreativeModeTabs {
 
                 output.accept(ModBlocks.DEMON_CORE.get());
 
+                output.accept(ModBlocks.FRIGID_HEART.get());
+
                 output.accept(ModBlocks.PEARL_BLOCK.get());
                 output.accept(ModBlocks.CHISELED_PEARL_BLOCK.get());
                 output.accept(ModBlocks.PEARL_BRICKS.get());
@@ -39,6 +41,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
 
                 output.accept(ModBlocks.EMPTY_BARREL.get());
+                output.accept(ModBlocks.REDSTONE_BARREL.get());
                 output.accept(ModBlocks.BLAZING_BARREL.get());
                 output.accept(ModBlocks.GLOWSTONE_BARREL.get());
                 output.accept(ModBlocks.GUNPOWDER_BARREL.get());
@@ -71,6 +74,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModBlocks.MONOLITH_GRAFT.get());
                 output.accept(ModBlocks.ROTTING_FLESH_BLOCK.get());
 
+                output.accept(ModBlocks.NOSTALGIA_BLOCK.get());
+
             })
             .build());
 
@@ -98,6 +103,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.PEARL_HOE.get());
                 output.accept(ModItems.PEARL_FISHING_ROD.get());
                 output.accept(ModItems.PEARLED_APPLE.get());
+                output.accept(ModItems.ENCHANTED_PEARLED_APPLE.get());
 
                 output.accept(ModItems.HAUNTED_METAL_SCRAP.get());
                 output.accept(ModItems.HAUNTED_STEEL_NUGGET.get());
@@ -110,6 +116,10 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_STEEL_CLEAVER.get());
                 output.accept(ModItems.HAUNTED_STEEL_SHOVEL.get());
                 output.accept(ModItems.HAUNTED_STEEL_HOE.get());
+                output.accept(ModItems.HAUNTED_STEEL_HELMET.get());
+                output.accept(ModItems.HAUNTED_STEEL_CHESTPLATE.get());
+                output.accept(ModItems.HAUNTED_STEEL_LEGGINGS.get());
+                output.accept(ModItems.HAUNTED_STEEL_BOOTS.get());
 
                 output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.FISSILE_CHUNK.get());
