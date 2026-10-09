@@ -20,13 +20,12 @@ import java.util.List;
 
 public class PearlLampBlockEntity extends BlockEntity {
     public boolean hasCustomColor = false;
-    private float tintRed = 1;
-    private float tintGreen = 1;
-    private float tintBlue = 1;
+    public float tintRed = 1;
+    public float tintGreen = 1;
+    public float tintBlue = 1;
 
     public PearlLampBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.PEARL_LAMP_BE.get(), pPos, pBlockState);
-        this.hasCustomColor = false;
     }
 
     //mmmmm... data saving....
@@ -49,6 +48,10 @@ public class PearlLampBlockEntity extends BlockEntity {
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    public CompoundTag getUpdateTag() {
+        return this.saveWithoutMetadata();
     }
 
     public void dyeLamp(DyeItem dyeItem) {

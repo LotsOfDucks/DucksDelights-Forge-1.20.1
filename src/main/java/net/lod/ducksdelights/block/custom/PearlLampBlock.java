@@ -34,7 +34,7 @@ public class PearlLampBlock extends BaseEntityBlock {
         this.registerDefaultState(this.defaultBlockState().setValue(LIT, false));
     }
 
-    @javax.annotation.Nullable
+    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(LIT, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos()));
     }
