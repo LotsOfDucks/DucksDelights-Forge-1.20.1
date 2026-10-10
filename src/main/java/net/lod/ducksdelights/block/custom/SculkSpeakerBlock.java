@@ -79,11 +79,16 @@ public class SculkSpeakerBlock extends Block implements SimpleWaterloggedBlock {
         int a = pLevel.getSignal(pPos.relative(pState.getValue(FACING).getOpposite()), pState.getValue(FACING).getOpposite());
         if (isPowered != pState.getValue(POWERED)) {
             if (a > 0) {
-                pLevel.setBlock(pPos, pState.setValue(POWERED, isPowered).setValue(TUNE, a), 2);
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(POWERED, isPowered).setValue(TUNE, a));
             }else {
-                pLevel.setBlock(pPos, pState.setValue(POWERED, isPowered), 2);
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(POWERED, isPowered));
             }
             if (!pState.getValue(POWERED)) {
+                this.playResonance(null, pState, pLevel, pPos);
+            }
+        } else if (isPowered && (a != pState.getValue(TUNE))) {
+            if (a != 0) {
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(TUNE, a));
                 this.playResonance(null, pState, pLevel, pPos);
             }
         }
@@ -166,7 +171,7 @@ public class SculkSpeakerBlock extends Block implements SimpleWaterloggedBlock {
         if (MinecraftForge.EVENT_BUS.post(i)) {
             return false;
         } else {
-            NoteBlockInstrument noteBlockInstrument = NoteBlockInstrument.BASEDRUM;
+            NoteBlockInstrument noteBlockInstrument = pLevel.getBlockState(pPos.below()).instrument();
             float f;
             if (noteBlockInstrument.isTunable()) {
                 int tune = pState.getValue(TUNE);
