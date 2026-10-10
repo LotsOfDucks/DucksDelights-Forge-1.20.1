@@ -39,11 +39,6 @@ public class PearlLampBlock extends BaseEntityBlock {
         return this.defaultBlockState().setValue(LIT, pContext.getLevel().hasNeighborSignal(pContext.getClickedPos()));
     }
 
-    @Override
-    public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
-        return true;
-    }
-
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         if (!pLevel.isClientSide) {
             boolean wasLit = pState.getValue(LIT);
@@ -58,6 +53,19 @@ public class PearlLampBlock extends BaseEntityBlock {
     }
 
     public int getAnalogOutputSignal(BlockState pState, Level pLevel, BlockPos pPos) {
+        if (pLevel.getBlockEntity(pPos) instanceof PearlLampBlockEntity blockEntity) {
+            if (pLevel.getBlockState(pPos).getValue(LIT)) {
+                if (blockEntity.hasCustomColor) {
+                    int red = Math.round(blockEntity.tintRed * 5);
+                    int green = Math.round(blockEntity.tintGreen * 5);
+                    int blue = Math.round(blockEntity.tintBlue * 5);
+                    return Math.min((red + green + blue), 15);
+                }
+                return 15;
+            }
+            return 0;
+
+        }
         return pLevel.getBlockState(pPos).getValue(LIT) ? 15 : 0;
     }
 
@@ -89,7 +97,7 @@ public class PearlLampBlock extends BaseEntityBlock {
                     itemstack.shrink(1);
                 }
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
-            } else if (itemstack.is(Items.SPONGE)) {
+            } else if (itemstack.is(Items.SPONGE) && blockEntity.hasCustomColor) {
                 blockEntity.clearDyes();
                 return InteractionResult.sidedSuccess(pLevel.isClientSide);
             }

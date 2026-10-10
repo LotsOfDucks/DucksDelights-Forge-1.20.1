@@ -20,9 +20,9 @@ import java.util.List;
 
 public class PearlLampBlockEntity extends BlockEntity {
     public boolean hasCustomColor = false;
-    public float tintRed = 1;
-    public float tintGreen = 1;
-    public float tintBlue = 1;
+    public float tintRed = 1.0F;
+    public float tintGreen = 1.0F;
+    public float tintBlue = 1.0F;
 
     public PearlLampBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.PEARL_LAMP_BE.get(), pPos, pBlockState);
@@ -56,40 +56,44 @@ public class PearlLampBlockEntity extends BlockEntity {
 
     public void dyeLamp(DyeItem dyeItem) {
         if (this.getBlockState().getBlock() instanceof PearlLampBlock) {
-            int[] newColorArray = new int[3];
-            float oldRed = this.tintRed;
-            float oldGreen = this.tintGreen;
-            float oldBlue = this.tintBlue;
-            int colorsApplied = 1;
-            float[] dyeItemColors = dyeItem.getDyeColor().getTextureDiffuseColors();
 
+            int[] newColorArray = new int[3];
+            float oldRed = this.tintRed * 2;
+            float oldGreen = this.tintGreen * 2;
+            float oldBlue = this.tintBlue * 2;
+            int colorsApplied = 0;
+
+            float[] dyeItemColors = dyeItem.getDyeColor().getTextureDiffuseColors();
             int dyeItemRed = (int)(dyeItemColors[0] * 255.0F);
             int dyeItemGreen = (int)(dyeItemColors[1] * 255.0F);
             int dyeItemBlue = (int)(dyeItemColors[2] * 255.0F);
-            int variable4 = 0;
+            int brightestValue = 0;
 
             if (this.hasCustomColor) {
-                variable4 += (int)(Math.max(oldRed, Math.max(oldGreen, oldBlue)) * 255.0F);
+                brightestValue += (int)(Math.max(oldRed, Math.max(oldGreen, oldBlue)) * 255.0F);
                 newColorArray[0] += (int)(oldRed * 255.0F);
                 newColorArray[1] += (int)(oldGreen * 255.0F);
                 newColorArray[2] += (int)(oldBlue * 255.0F);
-                ++colorsApplied;
+                colorsApplied += 2;
             }
 
-            variable4 += Math.max(dyeItemRed, Math.max(dyeItemGreen, dyeItemBlue));
+            brightestValue += Math.max(dyeItemRed, Math.max(dyeItemGreen, dyeItemBlue));
             newColorArray[0] += dyeItemRed;
             newColorArray[1] += dyeItemGreen;
             newColorArray[2] += dyeItemBlue;
+            ++colorsApplied;
 
 
             int newRed = newColorArray[0] / colorsApplied;
             int newGreen = newColorArray[1] / colorsApplied;
             int newBlue = newColorArray[2] / colorsApplied;
-            float variable20 = (float)variable4 / (float)colorsApplied;
-            float variable4Again = (float)Math.max(newRed, Math.max(newGreen, newBlue));
-            newRed = (int)((float)newRed * variable20 / variable4Again);
-            newGreen = (int)((float)newGreen * variable20 / variable4Again);
-            newBlue = (int)((float)newBlue * variable20 / variable4Again);
+            float brightestVsApplied = (float)brightestValue / (float)colorsApplied;
+
+            float newBrightestValue = (float)Math.max(newRed, Math.max(newGreen, newBlue));
+            newRed = (int)((float)newRed * brightestVsApplied / newBrightestValue);
+            newGreen = (int)((float)newGreen * brightestVsApplied / newBrightestValue);
+            newBlue = (int)((float)newBlue * brightestVsApplied / newBrightestValue);
+
             this.tintRed = newRed / 255.0F;
             this.tintGreen = newGreen / 255.0F;
             this.tintBlue = newBlue / 255.0F;
