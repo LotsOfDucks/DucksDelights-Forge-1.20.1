@@ -1,24 +1,25 @@
 package net.lod.ducksdelights.worldgen.dimensions;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Axis;
 import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.client.renderer.ShaderInstance;
-import net.minecraft.util.Mth;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
 import javax.annotation.Nullable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
+@OnlyIn(Dist.CLIENT)
 public class ModDimSkyRenderer {
+    @SuppressWarnings("removal")
+    private static final ResourceLocation END_SKY_LOCATION = new ResourceLocation("textures/environment/end_sky.png");
+
     @Nullable
     private static VertexBuffer skyBuffer;
     @Nullable
@@ -27,118 +28,66 @@ public class ModDimSkyRenderer {
 
     public ModDimSkyRenderer() {
         this.createStars();
-        this.createLightSky();
-        this.createDarkSky();
     }
 
-    private void createDarkSky() {
-        Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferbuilder = tesselator.getBuilder();
-        if (darkBuffer != null) {
-            darkBuffer.close();
-        }
+    public static boolean renderSky(PoseStack pPoseStack, Matrix4f pProjectionMatrix, float pPartialTick, Camera pCamera, boolean pIsFoggy, Runnable pSkyFogSetup) {
+        renderEndSky(pPoseStack, pProjectionMatrix, pSkyFogSetup);
+        if (GameRenderer.getPositionShader() != null) {
+            RenderSystem.setShaderColor(1, 1, 1, 1);
+            FogRenderer.setupNoFog();
+            starBuffer.bind();
+            starBuffer.drawWithShader(pPoseStack.last().pose(), pProjectionMatrix, GameRenderer.getPositionShader());
 
-        darkBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
-        BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSkyDisc(bufferbuilder, -16.0F);
-        darkBuffer.bind();
-        darkBuffer.upload(bufferbuilder$renderedbuffer);
-        VertexBuffer.unbind();
-    }
-
-    private void createLightSky() {
-        Tesselator tesselator = Tesselator.getInstance();
-        BufferBuilder bufferbuilder = tesselator.getBuilder();
-        if (skyBuffer != null) {
-            skyBuffer.close();
-        }
-
-        skyBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
-        BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSkyDisc(bufferbuilder, 16.0F);
-        skyBuffer.bind();
-        skyBuffer.upload(bufferbuilder$renderedbuffer);
-        VertexBuffer.unbind();
-    }
-
-    private static BufferBuilder.RenderedBuffer buildSkyDisc(BufferBuilder pBuilder, float pY) {
-        float f = Math.signum(pY) * 512.0F;
-        float f1 = 512.0F;
-        RenderSystem.setShader(GameRenderer::getPositionShader);
-        pBuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION);
-        pBuilder.vertex(0.0, (double)pY, 0.0).endVertex();
-
-        for(int i = -180; i <= 180; i += 45) {
-            pBuilder.vertex((double)(f * Mth.cos((float)i * 0.017453292F)), (double)pY, (double)(512.0F * Mth.sin((float)i * 0.017453292F))).endVertex();
-        }
-
-        return pBuilder.end();
-    }
-
-
-    // [VanillaCopy] LevelRenderer.renderSky's overworld branch, without sun/moon/sunrise/sunset, using our own stars at full brightness, and lowering void horizon threshold height from getHorizonHeight (63) to 0
-    public static boolean renderSky(ClientLevel level, float partialTicks, PoseStack stack, Camera camera, Matrix4f projectionMatrix, Runnable setupFog) {
-        //LevelRenderer levelRenderer = Minecraft.getInstance().levelRenderer;
-
-        setupFog.run();
-        Vec3 vec3 = level.getSkyColor(camera.getPosition(), partialTicks);
-        float f = (float) vec3.x();
-        float f1 = (float) vec3.y();
-        float f2 = (float) vec3.z();
-        FogRenderer.levelFogColor();
-        //==BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder(); TF - Unused
-        RenderSystem.depthMask(false);
-        RenderSystem.setShaderColor(f, f1, f2, 1.0F);
-        ShaderInstance shaderinstance = RenderSystem.getShader();
-        skyBuffer.bind();
-        skyBuffer.drawWithShader(stack.last().pose(), projectionMatrix, shaderinstance);
-        VertexBuffer.unbind();
-        RenderSystem.enableBlend();
-        /* TF - snip out sunrise/sunset since that doesn't happen here
-         * float[] afloat = level.effects().getSunriseColor(level.getTimeOfDay(partialTicks), partialTicks);
-         * if (afloat != null) ...
-         */
-
-        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        stack.pushPose();
-        float f11 = 1.0F - level.getRainLevel(partialTicks);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, f11);
-        stack.mulPose(Axis.YP.rotationDegrees(-90.0F));
-        stack.mulPose(Axis.XP.rotationDegrees(level.getTimeOfDay(partialTicks) * 360.0F));
-        /* TF - snip out sun/moon
-         * Matrix4f matrix4f1 = stack.last().pose();
-         * float f12 = 30.0F;
-         * ...
-         * BufferUploader.drawWithShader(bufferbuilder.end());
-         */
-        float f10 = 1.0F; // TF - stars are always bright
-
-        //if (f10 > 0.0F) { Always true
-        RenderSystem.setShaderColor(f10, f10, f10, f10);
-        RenderSystem.setShaderColor(f10, f10, f10, f10);
-        FogRenderer.setupNoFog();
-        starBuffer.bind();
-        starBuffer.drawWithShader(stack.last().pose(), projectionMatrix, GameRenderer.getPositionShader());
-        VertexBuffer.unbind();
-        setupFog.run();
-        //}
-
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.disableBlend();
-        RenderSystem.defaultBlendFunc();
-        stack.popPose();
-        RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-        double d0 = camera.getEntity().getEyePosition(partialTicks).y(); // - level.getLevelData().getHorizonHeight(level); // TF: Lower Void Horizon Y-Threshold from 63 to 0
-        if (d0 < 0.0D) {
-            stack.pushPose();
-            stack.translate(0.0F, 12.0F, 0.0F);
-            darkBuffer.bind();
-            darkBuffer.drawWithShader(stack.last().pose(), projectionMatrix, shaderinstance);
             VertexBuffer.unbind();
-            stack.popPose();
+            pSkyFogSetup.run();
         }
 
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.depthMask(true);
+        //renderEndSky(pPoseStack);
         return true;
+    }
+
+    private static void renderEndSky(PoseStack pPoseStack, Matrix4f pProjectionMatrix, Runnable pSkyFogSetup) {
+        RenderSystem.enableBlend();
+        RenderSystem.depthMask(false);
+        RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
+        RenderSystem.setShaderTexture(0, END_SKY_LOCATION);
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder bufferbuilder = tesselator.getBuilder();
+
+        for(int i = 0; i < 6; ++i) {
+            pPoseStack.pushPose();
+            if (i == 1) {
+                pPoseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(90.0F));
+            }
+
+            if (i == 2) {
+                pPoseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(-90.0F));
+            }
+
+            if (i == 3) {
+                pPoseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(180.0F));
+            }
+
+            if (i == 4) {
+                pPoseStack.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(90.0F));
+            }
+
+            if (i == 5) {
+                pPoseStack.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(-90.0F));
+            }
+
+            Matrix4f matrix4f = pPoseStack.last().pose();
+            bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+            bufferbuilder.vertex(matrix4f, -100.0F, -100.0F, -100.0F).uv(0.0F, 0.0F).color(40, 40, 40, 255).endVertex();
+            bufferbuilder.vertex(matrix4f, -100.0F, -100.0F, 100.0F).uv(0.0F, 16.0F).color(40, 40, 40, 255).endVertex();
+            bufferbuilder.vertex(matrix4f, 100.0F, -100.0F, 100.0F).uv(16.0F, 16.0F).color(40, 40, 40, 255).endVertex();
+            bufferbuilder.vertex(matrix4f, 100.0F, -100.0F, -100.0F).uv(16.0F, 0.0F).color(40, 40, 40, 255).endVertex();
+            tesselator.end();
+            pPoseStack.popPose();
+        }
+
+        RenderSystem.depthMask(true);
+        RenderSystem.disableBlend();
     }
 
     // [VanillaCopy] LevelRenderer.createStars
@@ -155,6 +104,7 @@ public class ModDimSkyRenderer {
         starBuffer.bind();
         starBuffer.upload(renderedBuffer);
         VertexBuffer.unbind();
+
     }
 
     // [VanillaCopy] of LevelRenderer.drawStars but with double the number of them
@@ -163,7 +113,7 @@ public class ModDimSkyRenderer {
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
         // TF - 1500 -> 3000
-        for (int i = 0; i < 3000; ++i) {
+        for (int i = 0; i < 4500; ++i) {
             double d0 = random.nextFloat() * 2.0F - 1.0F;
             double d1 = random.nextFloat() * 2.0F - 1.0F;
             double d2 = random.nextFloat() * 2.0F - 1.0F;

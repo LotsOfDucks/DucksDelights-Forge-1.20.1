@@ -15,6 +15,7 @@ import net.lod.ducksdelights.item.custom.enchantments.ModEnchantments;
 import net.lod.ducksdelights.loot.ModLootModifiers;
 import net.lod.ducksdelights.recipe.ModRecipes;
 import net.lod.ducksdelights.sound.ModSoundEvents;
+import net.lod.ducksdelights.worldgen.dimensions.ModDimSkyRenderer;
 import net.lod.ducksdelights.worldgen.dimensions.ModDimensionSpecialEffects;
 import net.lod.ducksdelights.worldgen.features.ModFeatures;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
@@ -50,8 +51,8 @@ public class DucksDelights {
     public DucksDelights(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
 
-        context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        context.registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
+        context.registerConfig(ModConfig.Type.COMMON, Config.Common.SPEC);
+        //context.registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
 
         ModRecipes.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
@@ -125,7 +126,8 @@ public class DucksDelights {
         @SubscribeEvent
         @SuppressWarnings("removal")
         public static void registerDimEffects(RegisterDimensionSpecialEffectsEvent event) {
-            event.register(new ResourceLocation(DucksDelights.MOD_ID, "pocketrenderer"), new ModDimensionSpecialEffects(Float.NaN, false, DimensionSpecialEffects.SkyType.END, true, false));
+            new ModDimSkyRenderer();
+            event.register(new ResourceLocation(DucksDelights.MOD_ID, "pocketrenderer"), new ModDimensionSpecialEffects(Float.NaN, false, DimensionSpecialEffects.SkyType.NONE, false, false));
         }
     }
 }
