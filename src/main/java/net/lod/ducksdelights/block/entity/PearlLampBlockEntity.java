@@ -20,9 +20,9 @@ import java.util.List;
 
 public class PearlLampBlockEntity extends BlockEntity {
     public boolean hasCustomColor = false;
-    public float tintRed = 1.0F;
-    public float tintGreen = 1.0F;
-    public float tintBlue = 1.0F;
+    private float tintRed = 1.0F;
+    private float tintGreen = 1.0F;
+    private float tintBlue = 1.0F;
 
     public PearlLampBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.PEARL_LAMP_BE.get(), pPos, pBlockState);
@@ -109,10 +109,22 @@ public class PearlLampBlockEntity extends BlockEntity {
         return Mth.color(this.tintRed, this.tintGreen, this.tintBlue);
     }
 
+    public float getTintRed() {
+        return this.tintRed;
+    }
+
+    public float getTintGreen() {
+        return this.tintGreen;
+    }
+
+    public float getTintBlue() {
+        return this.tintBlue;
+    }
+
     public void clearDyes() {
-        this.tintRed = 0;
-        this.tintGreen = 0;
-        this.tintBlue = 0;
+        this.tintRed = 1.0F;
+        this.tintGreen = 1.0F;
+        this.tintBlue = 1.0F;
         this.hasCustomColor = false;
         this.setChanged();
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 3);

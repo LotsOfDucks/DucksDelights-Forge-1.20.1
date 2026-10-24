@@ -3,6 +3,7 @@ package net.lod.ducksdelights.item.custom;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.lod.ducksdelights.block.entity.SoulSpawnerBlockEntity;
 import net.lod.ducksdelights.item.ModItems;
+import net.lod.ducksdelights.util.ModTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -52,7 +53,7 @@ public class SoulCageItem extends Item {
 
     public InteractionResult interactLivingEntity(ItemStack stack, Player playerIn, LivingEntity entity, InteractionHand hand) {
         Level level = entity.level();
-        if (entity.getType().is(Tags.EntityTypes.BOSSES) || entity.getHealth() > 1) {
+        if (entity.getType().is(ModTags.EntityTypes.SOUL_CAGE_UNCAPTURABLE) || entity.getHealth() > 1) {
             return InteractionResult.PASS;
         } else {
             if (level instanceof ServerLevel) {

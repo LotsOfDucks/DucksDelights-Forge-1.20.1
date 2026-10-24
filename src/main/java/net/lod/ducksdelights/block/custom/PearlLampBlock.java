@@ -56,9 +56,9 @@ public class PearlLampBlock extends BaseEntityBlock {
         if (pLevel.getBlockEntity(pPos) instanceof PearlLampBlockEntity blockEntity) {
             if (pLevel.getBlockState(pPos).getValue(LIT)) {
                 if (blockEntity.hasCustomColor) {
-                    int red = Math.round(blockEntity.tintRed * 5);
-                    int green = Math.round(blockEntity.tintGreen * 5);
-                    int blue = Math.round(blockEntity.tintBlue * 5);
+                    int red = Math.round(blockEntity.getTintRed() * 5);
+                    int green = Math.round(blockEntity.getTintGreen() * 5);
+                    int blue = Math.round(blockEntity.getTintBlue() * 5);
                     return Math.min((red + green + blue), 15);
                 }
                 return 15;

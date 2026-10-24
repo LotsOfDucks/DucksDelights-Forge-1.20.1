@@ -45,6 +45,9 @@ public class Config {
     public static ForgeConfigSpec.ConfigValue<Integer> WORMHOLE_POTION_COOLDOWN;
     public static int wormhole_potion_cooldown;
 
+    public static ForgeConfigSpec.ConfigValue<Integer> ENDER_KEY_COOLDOWN;
+    public static int ender_key_cooldown;
+
     public static ForgeConfigSpec.ConfigValue<Boolean> MONOLITH_SHOULD_SPAWN;
     public static boolean monolith_should_spawn;
 
@@ -75,6 +78,8 @@ public class Config {
         wormhole_potion_cross_dimensions = WORMHOLE_POTION_CROSS_DIMENSIONS.get();
         wormhole_potion_cooldown = WORMHOLE_POTION_COOLDOWN.get();
 
+        ender_key_cooldown = ENDER_KEY_COOLDOWN.get();
+
         monolith_should_spawn = MONOLITH_SHOULD_SPAWN.get();
 
     }
@@ -101,6 +106,8 @@ public class Config {
 
         WORMHOLE_POTION_CROSS_DIMENSIONS =BUILDER.comment("Wormhole Potion can Cross Dimensions").define("Wormhole Potion Dimension Crossing", true);
         WORMHOLE_POTION_COOLDOWN = BUILDER.comment("Wormhole Potion Cooldown").define("Wormhole Potion Cooldown in Seconds", 10);
+
+        ENDER_KEY_COOLDOWN = BUILDER.comment("Ender Key Cooldown").define("Ender Key Cooldown in Seconds", 10);
 
         MONOLITH_SHOULD_SPAWN =BUILDER.comment("Whether or not to generate Monoliths").define("Generate Monoliths", true);
 

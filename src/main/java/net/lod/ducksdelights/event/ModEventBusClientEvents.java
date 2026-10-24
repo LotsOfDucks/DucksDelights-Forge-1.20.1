@@ -56,30 +56,18 @@ public class ModEventBusClientEvents {
                 return -1;
             }
         }, ModBlocks.REDSTONE_BARREL.get());
-        event.register((blockState, blockAndTintGetter, blockPos, tintIndex) -> {
-            if (blockPos != null) {
-                Vec3 pos = blockPos.getCenter();
-                double posConglom = (1 / (1 + Math.exp(Math.sin(pos.x() + pos.y() + pos.z()))));
-                double posX = (1 / (1 + Math.exp(Math.sin(pos.x()))));
-                double posY = (1 / (1 + Math.exp(Math.sin(pos.y()))));
-                double posZ = (1 / (1 + Math.exp(Math.sin(pos.z()))));
-                return Mth.color((float)posConglom, (float)posConglom, (float)posConglom);
-            } else {
-                return -1;
-            }
-        }, ModBlocks.REINFORCED_GLASS.get());
-        event.register((blockState, blockAndTintGetter, blockPos, tintIndex) -> {
-            if (blockPos != null) {
-                Vec3 pos = blockPos.getCenter();
-                long scalar = Mth.getSeed((int) pos.x(), (int) pos.y(), (int) pos.z());
-                double posX = (1 / (1 + Math.exp(Math.sin(pos.x() * scalar))));
-                double posY = (1 / (1 + Math.exp(Math.sin(pos.y() * scalar))));
-                double posZ = (1 / (1 + Math.exp(Math.sin(pos.z() * scalar))));
-                return Mth.color((float)posX, (float)posY, (float)posZ);
-            } else {
-                return -1;
-            }
-        }, ModBlocks.PEARL_BLOCK.get());
+        //event.register((blockState, blockAndTintGetter, blockPos, tintIndex) -> {
+        //    if (blockPos != null) {
+        //        Vec3 pos = blockPos.getCenter();
+        //        long scalar = Mth.getSeed((int) pos.x(), (int) pos.y(), (int) pos.z());
+        //        double posX = (1 / (1 + Math.exp(Math.sin(pos.x() * scalar))));
+        //        double posY = (1 / (1 + Math.exp(Math.sin(pos.y() * scalar))));
+        //        double posZ = (1 / (1 + Math.exp(Math.sin(pos.z() * scalar))));
+        //        return Mth.color((float)posX, (float)posY, (float)posZ);
+        //    } else {
+        //        return -1;
+        //    }
+        //}, ModBlocks.PEARL_BLOCK.get());
         event.register((blockState, blockAndTintGetter, blockPos, tintIndex) -> {
             if (blockAndTintGetter.getBlockEntity(blockPos) instanceof PearlLampBlockEntity pearlLampBlockEntity) {
                 if (pearlLampBlockEntity.hasCustomColor) {

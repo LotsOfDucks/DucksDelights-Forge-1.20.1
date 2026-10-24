@@ -1,0 +1,15 @@
+{
+  "type": "ducksdelights:pocket",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "minecraft:plains",
+      "layers": [
+        {
+          "height": 0
+        }
+      ],
+      "structure_overrides": []
+    }
+  }
+}

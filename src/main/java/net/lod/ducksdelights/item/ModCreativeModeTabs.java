@@ -121,6 +121,8 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_STEEL_LEGGINGS.get());
                 output.accept(ModItems.HAUNTED_STEEL_BOOTS.get());
 
+                output.accept(ModItems.ENDER_KEY.get());
+
                 output.accept(ModItems.BEDROCK_CHIPS.get());
                 output.accept(ModItems.FISSILE_CHUNK.get());
 

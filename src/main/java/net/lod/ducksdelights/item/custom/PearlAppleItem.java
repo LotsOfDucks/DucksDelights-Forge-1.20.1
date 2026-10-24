@@ -1,8 +1,14 @@
 package net.lod.ducksdelights.item.custom;
 
+import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.util.BrewingHandler;
+import net.lod.ducksdelights.util.pocketDim.PocketDimSaveTransportHandler;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -128,6 +134,7 @@ public class PearlAppleItem extends Item {
         return ItemUtils.startUsingInstantly(pLevel, pPlayer, pHand);
     }
 
+    @SuppressWarnings("removal")
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         Player player = pEntityLiving instanceof Player ? (Player)pEntityLiving : null;
 
