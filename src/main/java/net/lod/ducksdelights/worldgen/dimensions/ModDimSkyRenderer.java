@@ -1,7 +1,9 @@
 package net.lod.ducksdelights.worldgen.dimensions;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import net.lod.ducksdelights.DucksDelights;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 public class ModDimSkyRenderer {
     @SuppressWarnings("removal")
     private static final ResourceLocation END_SKY_LOCATION = new ResourceLocation("textures/environment/end_sky.png");
+    @SuppressWarnings("removal")
+    private static final ResourceLocation EYE_LOCATION = new ResourceLocation(DucksDelights.MOD_ID, "textures/environment/pocket_dim_eye.png");
 
     @Nullable
     private static VertexBuffer skyBuffer;
@@ -31,18 +35,58 @@ public class ModDimSkyRenderer {
     }
 
     public static boolean renderSky(PoseStack pPoseStack, Matrix4f pProjectionMatrix, float pPartialTick, Camera pCamera, boolean pIsFoggy, Runnable pSkyFogSetup) {
+        //render background
         renderEndSky(pPoseStack, pProjectionMatrix, pSkyFogSetup);
+        
+        //define stuff
+        Matrix4f matrix4f1 = pPoseStack.last().pose();
+        BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
+
+        //begin render setup
+        RenderSystem.enableBlend();
+        RenderSystem.depthMask(false);
+        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        
+        //get sun info
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderTexture(0, EYE_LOCATION);
+        float size = 30.0F;
+
+        //define sun render location
+        bufferbuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
+        bufferbuilder.vertex(matrix4f1, -size, 200.0F, -size).uv(0.0F, 0.0F).endVertex();
+        bufferbuilder.vertex(matrix4f1, size, 200.0F, -size).uv(1.0F, 0.0F).endVertex();
+        bufferbuilder.vertex(matrix4f1, size, 200.0F, size).uv(1.0F, 1.0F).endVertex();
+        bufferbuilder.vertex(matrix4f1, -size, 200.0F, size).uv(0.0F, 1.0F).endVertex();
+
+        //finish rendering sun
+        BufferUploader.drawWithShader(bufferbuilder.end());
+        pPoseStack.pushPose();
+
+        //try render stars
         if (GameRenderer.getPositionShader() != null) {
+            RenderSystem.depthMask(true);
             RenderSystem.setShaderColor(1, 1, 1, 1);
             FogRenderer.setupNoFog();
             starBuffer.bind();
             starBuffer.drawWithShader(pPoseStack.last().pose(), pProjectionMatrix, GameRenderer.getPositionShader());
 
+            //finish rendering starts
             VertexBuffer.unbind();
             pSkyFogSetup.run();
+            RenderSystem.depthMask(false);
         }
 
-        //renderEndSky(pPoseStack);
+        //reset render after sky rendering
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.disableBlend();
+        RenderSystem.defaultBlendFunc();
+        pPoseStack.popPose();
+
+        //final render reset
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.depthMask(true);
+        
         return true;
     }
 
@@ -113,27 +157,30 @@ public class ModDimSkyRenderer {
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
         // TF - 1500 -> 3000
-        for (int i = 0; i < 4500; ++i) {
+        for (int i = 0; i < 6000; ++i) {
             double d0 = random.nextFloat() * 2.0F - 1.0F;
             double d1 = random.nextFloat() * 2.0F - 1.0F;
             double d2 = random.nextFloat() * 2.0F - 1.0F;
-            double d3 = 0.15F + random.nextFloat() * 0.1F;
+            double d3 = (0.15F + random.nextFloat() * 0.1F); // also scaling factor
             double d4 = d0 * d0 + d1 * d1 + d2 * d2;
             if (d4 < 1.0D && d4 > 0.01D) {
                 d4 = 1.0D / Math.sqrt(d4);
                 d0 *= d4;
                 d1 *= d4;
                 d2 *= d4;
-                double d5 = d0 * 100.0D;
-                double d6 = d1 * 100.0D;
-                double d7 = d2 * 100.0D;
-                double d8 = Math.atan2(d0, d2);
+
+                //star squash and stretch
+                double startX = d0 * 100.0D;
+                double startY = d1 * 100.0D;
+                double startZ = d2 * 100.0D;
+
+                double d8 = Math.atan2(d0, d2); //horizontal stretch
                 double d9 = Math.sin(d8);
                 double d10 = Math.cos(d8);
-                double d11 = Math.atan2(Math.sqrt(d0 * d0 + d2 * d2), d1);
-                double d12 = Math.sin(d11);
+                double d11 = Math.atan2(Math.sqrt(d0 * d0 + d2 * d2), d1); // vertical stretch from below
+                double d12 = Math.sin(d11); // contextual vertical stretch at horizontal
                 double d13 = Math.cos(d11);
-                double d14 = random.nextDouble() * Math.PI * 2.0D;
+                double d14 = random.nextDouble() * Math.PI * 2.0D; //rotation
                 double d15 = Math.sin(d14);
                 double d16 = Math.cos(d14);
 
@@ -142,11 +189,11 @@ public class ModDimSkyRenderer {
                     double d19 = ((j + 1 & 2) - 1) * d3;
                     double d21 = d18 * d16 - d19 * d15;
                     double d22 = d19 * d16 + d18 * d15;
-                    double d23 = d21 * d12 + 0.0D * d13;
+                    double endY = d21 * d12 + 0.0D * d13; // universal vertical compression at horizontal
                     double d24 = 0.0D * d12 - d21 * d13;
-                    double d25 = d24 * d9 - d22 * d10;
-                    double d26 = d22 * d9 + d24 * d10;
-                    bufferBuilder.vertex(d5 + d25, d6 + d23, d7 + d26).endVertex();
+                    double endX = d24 * d9 - d22 * d10;
+                    double endZ = 0; //d22 * d9 + d24 * d10
+                    bufferBuilder.vertex(startX + endX, startY + endY, startZ + endZ).endVertex();
                 }
             }
         }

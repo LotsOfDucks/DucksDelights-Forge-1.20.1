@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "ducksdelights:block/haunted_ender"
+    },
+    "lit=true": {
+      "model": "ducksdelights:block/haunted_ender"
+    }
+  }
+}

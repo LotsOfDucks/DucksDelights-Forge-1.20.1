@@ -3,7 +3,6 @@ package net.lod.ducksdelights.item.custom;
 import net.lod.ducksdelights.Config;
 import net.lod.ducksdelights.item.ModItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.GlobalPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -20,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class RecoveryPotionItem extends Item {
     public RecoveryPotionItem(Properties pProperties) {
@@ -50,7 +48,7 @@ public class RecoveryPotionItem extends Item {
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving) {
         if (!level.isClientSide && entityLiving instanceof ServerPlayer serverPlayer) {
-            boolean interDimensional = Config.recovery_potion_cross_dimensions;
+            boolean interDimensional = Config.COMMON_CONFIG.recovery_potion_cross_dimensions.get();
             ResourceKey<Level> currentDimension = level.dimension();
             if (serverPlayer.getLastDeathLocation().isPresent()) {
                 ResourceKey<Level> respawnDimension = serverPlayer.getLastDeathLocation().get().dimension();
@@ -67,7 +65,7 @@ public class RecoveryPotionItem extends Item {
                         serverWorld.playSound(null, respawnVec.x, respawnVec.y, respawnVec.z, SoundEvents.CHORUS_FRUIT_TELEPORT, serverPlayer.getSoundSource(), 1.0F, 1.0F);
                         serverPlayer.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
                         serverPlayer.hurt(serverPlayer.damageSources().fall(), 2);
-                        serverPlayer.getCooldowns().addCooldown(ModItems.RECOVERY_POTION.get(), 20 * Config.recovery_potion_cooldown); // 20 ticks = 1 second
+                        serverPlayer.getCooldowns().addCooldown(ModItems.RECOVERY_POTION.get(), 20 * Config.COMMON_CONFIG.recovery_potion_cooldown.get()); // 20 ticks = 1 second
                     } catch (Exception e) {
                         serverPlayer.displayClientMessage(Component.translatable("item.ducksdelights.recovery_potion.failed_teleport"), true);
                     }
@@ -83,7 +81,7 @@ public class RecoveryPotionItem extends Item {
     public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
         pTooltip.add(Component.translatable("item.ducksdelights.recovery_potion.desc1").withStyle(ChatFormatting.GRAY));
-        if (Config.recovery_potion_cross_dimensions) {
+        if (Config.COMMON_CONFIG.recovery_potion_cross_dimensions.get()) {
             pTooltip.add(Component.translatable("item.ducksdelights.recovery_potion.desc2").withStyle(ChatFormatting.BLUE));
         } else {
             pTooltip.add(Component.translatable("item.ducksdelights.recovery_potion.desc3").withStyle(ChatFormatting.RED));

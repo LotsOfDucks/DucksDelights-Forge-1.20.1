@@ -49,7 +49,7 @@ public class HomePotionItem extends Item {
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entityLiving) {
         if (!level.isClientSide && entityLiving instanceof ServerPlayer serverPlayer) {
-            boolean interDimensional = Config.home_potion_cross_dimensions;
+            boolean interDimensional = Config.COMMON_CONFIG.home_potion_cross_dimensions.get();
             ResourceKey<net.minecraft.world.level.Level> currentDimension = level.dimension();
             ResourceKey<Level> respawnDimension = serverPlayer.getRespawnDimension();
             ServerLevel serverWorld = interDimensional ? serverPlayer.server.getLevel(respawnDimension) : (currentDimension == respawnDimension ? Objects.requireNonNull(level.getServer()).getLevel(currentDimension) : null);
@@ -67,7 +67,7 @@ public class HomePotionItem extends Item {
                         serverWorld.playSound(null, respawnVec.x, respawnVec.y, respawnVec.z, SoundEvents.CHORUS_FRUIT_TELEPORT, serverPlayer.getSoundSource(), 1.0F, 1.0F);
                         serverPlayer.playSound(SoundEvents.CHORUS_FRUIT_TELEPORT, 1.0F, 1.0F);
                         serverPlayer.hurt(serverPlayer.damageSources().fall(), 2);
-                        serverPlayer.getCooldowns().addCooldown(ModItems.HOME_POTION.get(), 20 * Config.home_potion_cooldown); // 20 ticks = 1 second
+                        serverPlayer.getCooldowns().addCooldown(ModItems.HOME_POTION.get(), 20 * Config.COMMON_CONFIG.home_potion_cooldown.get()); // 20 ticks = 1 second
                     } else {
                         serverPlayer.displayClientMessage(Component.translatable("item.ducksdelights.home_potion.failed_respawn"), true);
                     }
@@ -84,7 +84,7 @@ public class HomePotionItem extends Item {
     public void appendHoverText(ItemStack pStack, Level pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
         super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
         pTooltip.add(Component.translatable("item.ducksdelights.home_potion.desc1").withStyle(ChatFormatting.GRAY));
-        if (Config.home_potion_cross_dimensions) {
+        if (Config.COMMON_CONFIG.home_potion_cross_dimensions.get()) {
             pTooltip.add(Component.translatable("item.ducksdelights.home_potion.desc2").withStyle(ChatFormatting.BLUE));
         } else {
             pTooltip.add(Component.translatable("item.ducksdelights.home_potion.desc3").withStyle(ChatFormatting.RED));

@@ -223,6 +223,17 @@ public class ModBlocks {
     public static final RegistryObject<IronBarsBlock> HAUNTED_STEEL_BARS = registerBlock("haunted_steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS)));
 
+    public static final RegistryObject<PocketDimBlock> HAUNTED_ENDER_BLOCK = registerBlock("haunted_ender",
+            () -> new PocketDimBlock(BlockBehaviour.Properties.of()
+                    .strength(-1.0F, 3600000.0F)
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .noOcclusion()
+                    .isValidSpawn(ModBlocks::neverEntity)
+                    .isRedstoneConductor(ModBlocks::never)
+                    .isSuffocating(ModBlocks::never)
+                    .isViewBlocking(ModBlocks::never)
+                    .pushReaction(PushReaction.IGNORE)));
+
     public static final RegistryObject<SoulSpawnerBlock> SOUL_SPAWNER_BLOCK = registerBlock("soul_spawner",
             () -> new SoulSpawnerBlock(BlockBehaviour.Properties.copy(Blocks.SPAWNER)
                     .lightLevel((state) -> 1)));

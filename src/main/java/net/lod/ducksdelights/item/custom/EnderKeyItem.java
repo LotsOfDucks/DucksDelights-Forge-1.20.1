@@ -67,7 +67,7 @@ public class EnderKeyItem extends Item {
                     transportHandler.teleportOutPocketDim(targetServerLevel, player);
                 }
             }
-            player.getCooldowns().addCooldown(ModItems.ENDER_KEY.get(), 20 * Config.ender_key_cooldown); // 20 ticks = 1 second
+            player.getCooldowns().addCooldown(ModItems.ENDER_KEY.get(), 20 * Config.COMMON_CONFIG.ender_key_cooldown.get()); // 20 ticks = 1 second
         }
 
         return pStack;

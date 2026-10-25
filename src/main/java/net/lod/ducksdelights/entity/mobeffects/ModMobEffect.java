@@ -3,7 +3,6 @@ package net.lod.ducksdelights.entity.mobeffects;
 import net.lod.ducksdelights.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
@@ -93,7 +92,7 @@ public class ModMobEffect extends MobEffect {
             }
         } else if (this == ModMobEffects.GRAVITATION.get()) {
             if (pLivingEntity instanceof Player player) {
-                if (Config.gravitation_elytra_lock) {
+                if (Config.COMMON_CONFIG.gravitation_elytra_lock.get()) {
                     if (player.isFallFlying()) {
                         player.stopFallFlying();
                     }

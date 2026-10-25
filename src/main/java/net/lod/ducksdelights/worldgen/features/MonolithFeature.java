@@ -17,7 +17,7 @@ public class MonolithFeature extends Feature<NoneFeatureConfiguration> {
 
     @Override
     public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
-        if (!Config.monolith_should_spawn) {
+        if (!Config.COMMON_CONFIG.monolith_should_spawn.get()) {
             return true;
         } else {
             BlockPos blockpos = featurePlaceContext.origin();

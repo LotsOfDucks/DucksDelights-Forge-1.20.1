@@ -1,121 +1,94 @@
 package net.lod.ducksdelights;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod.EventBusSubscriber(modid = DucksDelights.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config {
+    public static Common COMMON_CONFIG;
     public static class Common {
-
-        public static ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-        public static ForgeConfigSpec SPEC;
-
-        public static ForgeConfigSpec.ConfigValue<Integer> DEMON_CORE_RANGE;
-        public static int demon_core_range;
-        public static ForgeConfigSpec.ConfigValue<Float> DEMON_CORE_DAMAGE_SCALE;
-        public static float demon_core_damage_scale;
-
-        public static ForgeConfigSpec.ConfigValue<Boolean> RESONATOR_CAN_MINE_BEDROCK;
-        public static boolean resonator_mine_bedrock;
-        public static ForgeConfigSpec.ConfigValue<Boolean> RESONATOR_CAN_MINE_UNMINEABLES;
-        public static boolean resonator_mine_unmineables;
-
-        public static ForgeConfigSpec.ConfigValue<Integer> ENTITY_DETECTOR_RANGE;
-        public static int entity_detector_range;
-        public static ForgeConfigSpec.ConfigValue<Integer> MONSTER_DETECTOR_RANGE;
-        public static int monster_detector_range;
-        public static ForgeConfigSpec.ConfigValue<Integer> PLAYER_DETECTOR_RANGE;
-        public static int player_detector_range;
-
-        public static ForgeConfigSpec.ConfigValue<Boolean> GRAVITATION_ELYTRA_LOCK;
-        public static boolean gravitation_elytra_lock;
-
-        public static ForgeConfigSpec.ConfigValue<Boolean> HOME_POTION_CROSS_DIMENSIONS;
-        public static boolean home_potion_cross_dimensions;
-        public static ForgeConfigSpec.ConfigValue<Integer> HOME_POTION_COOLDOWN;
-        public static int home_potion_cooldown;
-
-        public static ForgeConfigSpec.ConfigValue<Boolean> RECOVERY_POTION_CROSS_DIMENSIONS;
-        public static boolean recovery_potion_cross_dimensions;
-        public static ForgeConfigSpec.ConfigValue<Integer> RECOVERY_POTION_COOLDOWN;
-        public static int recovery_potion_cooldown;
-
-        public static ForgeConfigSpec.ConfigValue<Boolean> WORMHOLE_POTION_CROSS_DIMENSIONS;
-        public static boolean wormhole_potion_cross_dimensions;
-        public static ForgeConfigSpec.ConfigValue<Integer> WORMHOLE_POTION_COOLDOWN;
-        public static int wormhole_potion_cooldown;
-
-        public static ForgeConfigSpec.ConfigValue<Integer> ENDER_KEY_COOLDOWN;
-        public static int ender_key_cooldown;
-
-        public static ForgeConfigSpec.ConfigValue<Boolean> MONOLITH_SHOULD_SPAWN;
-        public static boolean monolith_should_spawn;
-
-
-
-
-        @SubscribeEvent
-        static void onLoad(ModConfigEvent.Loading configEvent) {
-            demon_core_range = DEMON_CORE_RANGE.get();
-            demon_core_damage_scale = DEMON_CORE_DAMAGE_SCALE.get();
-
-            resonator_mine_bedrock = RESONATOR_CAN_MINE_BEDROCK.get();
-            resonator_mine_unmineables = RESONATOR_CAN_MINE_UNMINEABLES.get();
-
-            entity_detector_range = ENTITY_DETECTOR_RANGE.get();
-            monster_detector_range = MONSTER_DETECTOR_RANGE.get();
-            player_detector_range = PLAYER_DETECTOR_RANGE.get();
-
-            gravitation_elytra_lock = GRAVITATION_ELYTRA_LOCK.get();
-
-            home_potion_cross_dimensions = HOME_POTION_CROSS_DIMENSIONS.get();
-            home_potion_cooldown = HOME_POTION_COOLDOWN.get();
-
-            recovery_potion_cross_dimensions = RECOVERY_POTION_CROSS_DIMENSIONS.get();
-            recovery_potion_cooldown = RECOVERY_POTION_COOLDOWN.get();
-
-            wormhole_potion_cross_dimensions = WORMHOLE_POTION_CROSS_DIMENSIONS.get();
-            wormhole_potion_cooldown = WORMHOLE_POTION_COOLDOWN.get();
-
-            ender_key_cooldown = ENDER_KEY_COOLDOWN.get();
-
-            monolith_should_spawn = MONOLITH_SHOULD_SPAWN.get();
-
+        public Common(ForgeConfigSpec.Builder builder) {
+            demon_core_range = builder.
+                    translation("demon_core_range").
+                    comment("Distance at which the Demon Core block will begin damaging entities (Blocks).").
+                    define("Range DC(int)", 20);
+            demon_core_damage_scale = builder.
+                    translation("demon_core_damage_scale").
+                    comment("Scaling Rate at which the Demon Core damage will scale up. (Higher = Faster).").
+                    define("Scale DC(float)", 1.0F);
+            resonator_mine_bedrock = builder.
+                    translation("resonator_mine_bedrock").
+                    comment("Whether the Resonator can break bedrock.").
+                    define("Can Break Bedrock R(boolean)", true);
+            resonator_mine_unmineables = builder.
+                    translation("resonator_mine_unmineables").
+                    comment("Whether the Resonator can break normally unbreakable blocks.").
+                    define("Can Break Unbreakable Blocks R(boolean)", false);
+            entity_detector_range = builder.
+                    translation("entity_detector_range").
+                    comment("Distance at which the Entity Detector block will detect entities (Blocks).").
+                    define("Range ED(int)", 10);
+            monster_detector_range = builder.
+                    translation("monster_detector_range").
+                    comment("Distance at which the Monster Detector block will detect monsters (Blocks).").
+                    define("Range MD(int)", 10);
+            player_detector_range = builder.
+                    translation("player_detector_range").
+                    comment("Distance at which the Player Detector block will detect players (Blocks).").
+                    define("Range PD(int)", 7);
+            gravitation_elytra_lock = builder.
+                    translation("gravitation_elytra_lock").
+                    comment("Whether the Gravitation Effect blocks elytra use.").
+                    define("Interrupt Elytra? GP(boolean)", true);
+            home_potion_cross_dimensions = builder.
+                    translation("home_potion_cross_dimensions").
+                    comment("Whether the Potion of Home can teleport user across dimensions.").
+                    define("Can cross Dimensions? HP(boolean)", true);
+            home_potion_cooldown = builder.
+                    translation("home_potion_cross_dimensions").
+                    comment("Cooldown of Potion of Home after use (seconds).").
+                    define("Cooldown Duration HP(int)", 10);
+            recovery_potion_cross_dimensions = builder.
+                    translation("recovery_potion_cross_dimensions").
+                    comment("Whether the Potion of Recovery can teleport user across dimensions.").
+                    define("Can cross Dimensions? RP(boolean)", false);
+            recovery_potion_cooldown = builder.
+                    translation("recovery_potion_cross_dimensions").
+                    comment("Cooldown of Potion of Recovery after use (seconds).").
+                    define("Cooldown Duration RP(int)", 20);
+            wormhole_potion_cross_dimensions = builder.
+                    translation("wormhole_potion_cross_dimensions").
+                    comment("Whether the Wormhole Potion can teleport user across dimensions.").
+                    define("Can cross Dimensions? WP(boolean)", true);
+            wormhole_potion_cooldown = builder.
+                    translation("wormhole_potion_cooldown").
+                    comment("Cooldown of Wormhole Potion after use (seconds).").
+                    define("Cooldown Duration WP(int)", 10);
+            ender_key_cooldown = builder.
+                    translation("ender_key_cooldown").
+                    comment("Cooldown of Ender Key after use (seconds).").
+                    define("Cooldown Duration EK(int)", 3);
+            monolith_should_spawn = builder.
+                    translation("monolith_should_spawn").
+                    comment("Whether of not you Acknowledge the Monoliths.").
+                    define("Acknowledge?", true);
         }
 
-
-        static {
-            BUILDER.push("Duck's Delights");
-            DEMON_CORE_RANGE = BUILDER.comment("Damaging Range in Blocks").define("Range", 20);
-            DEMON_CORE_DAMAGE_SCALE = BUILDER.comment("Scaling Rate").define("Scale", 1.0F);
-
-            RESONATOR_CAN_MINE_BEDROCK = BUILDER.comment("Can The Resonator Break Bedrock").define("Break Bedrock", true);
-            RESONATOR_CAN_MINE_UNMINEABLES = BUILDER.comment("Can The Resonator Break Unmineables").define("Break Unbreakable", false);
-
-            ENTITY_DETECTOR_RANGE = BUILDER.comment("Entity Detector Range in Blocks").define("Entity Detector Block Radius", 10);
-            MONSTER_DETECTOR_RANGE = BUILDER.comment("Monster Detector Range in Blocks").define("Monster Detector Block Radius", 10);
-            PLAYER_DETECTOR_RANGE = BUILDER.comment("Player Detector Range in Blocks").define("Player Detector Block Radius", 7);
-
-            GRAVITATION_ELYTRA_LOCK = BUILDER.comment("Gravitation Potion Locks Elytra").define("Gravitation Elytra Lock", true);
-
-            HOME_POTION_CROSS_DIMENSIONS = BUILDER.comment("Home Potion can Cross Dimensions").define("Home Potion Dimension Crossing", true);
-            HOME_POTION_COOLDOWN = BUILDER.comment("Home Potion Cooldown").define("Home Potion Cooldown in Seconds", 10);
-
-            RECOVERY_POTION_CROSS_DIMENSIONS = BUILDER.comment("Recovery Potion can Cross Dimensions").define("Recovery Potion Dimension Crossing", false);
-            RECOVERY_POTION_COOLDOWN = BUILDER.comment("Recovery Potion Cooldown").define("Recovery Potion in Seconds", 20);
-
-            WORMHOLE_POTION_CROSS_DIMENSIONS = BUILDER.comment("Wormhole Potion can Cross Dimensions").define("Wormhole Potion Dimension Crossing", true);
-            WORMHOLE_POTION_COOLDOWN = BUILDER.comment("Wormhole Potion Cooldown").define("Wormhole Potion Cooldown in Seconds", 10);
-
-            ENDER_KEY_COOLDOWN = BUILDER.comment("Ender Key Cooldown").define("Ender Key Cooldown in Seconds", 2);
-
-            MONOLITH_SHOULD_SPAWN = BUILDER.comment("Whether or not to generate Monoliths").define("Generate Monoliths", true);
-
-            BUILDER.pop();
-
-            SPEC = BUILDER.build();
-        }
+        public final ForgeConfigSpec.ConfigValue<Integer> demon_core_range;
+        public final ForgeConfigSpec.ConfigValue<Float> demon_core_damage_scale;
+        public final ForgeConfigSpec.ConfigValue<Boolean> resonator_mine_bedrock;
+        public final ForgeConfigSpec.ConfigValue<Boolean> resonator_mine_unmineables;
+        public final ForgeConfigSpec.ConfigValue<Integer> entity_detector_range;
+        public final ForgeConfigSpec.ConfigValue<Integer> monster_detector_range;
+        public final ForgeConfigSpec.ConfigValue<Integer> player_detector_range;
+        public final ForgeConfigSpec.ConfigValue<Boolean> gravitation_elytra_lock;
+        public final ForgeConfigSpec.ConfigValue<Boolean> home_potion_cross_dimensions;
+        public final ForgeConfigSpec.ConfigValue<Integer> home_potion_cooldown;
+        public final ForgeConfigSpec.ConfigValue<Boolean> recovery_potion_cross_dimensions;
+        public final ForgeConfigSpec.ConfigValue<Integer> recovery_potion_cooldown;
+        public final ForgeConfigSpec.ConfigValue<Boolean> wormhole_potion_cross_dimensions;
+        public final ForgeConfigSpec.ConfigValue<Integer> wormhole_potion_cooldown;
+        public final ForgeConfigSpec.ConfigValue<Integer> ender_key_cooldown;
+        public final ForgeConfigSpec.ConfigValue<Boolean> monolith_should_spawn;
     }
 }

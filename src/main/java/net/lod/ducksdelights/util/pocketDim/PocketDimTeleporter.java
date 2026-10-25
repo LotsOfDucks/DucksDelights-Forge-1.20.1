@@ -73,8 +73,8 @@ public class PocketDimTeleporter implements ITeleporter {
             for (int y = minY; y <= maxY; y++) {
                 for (int z = minZ; z <= maxZ; z++) {
                     if (x == minX || y == minY || z == minZ || x == maxX || y == maxY || z == maxZ) {
-                        if (this.level.getBlockState(new BlockPos(x, y, z)) != ModBlocks.REINFORCED_GLASS.get().defaultBlockState()) {
-                            this.level.setBlockAndUpdate(new BlockPos(x, y, z), ModBlocks.REINFORCED_GLASS.get().defaultBlockState());
+                        if (this.level.getBlockState(new BlockPos(x, y, z)) != ModBlocks.HAUNTED_ENDER_BLOCK.get().defaultBlockState()) {
+                            this.level.setBlockAndUpdate(new BlockPos(x, y, z), ModBlocks.HAUNTED_ENDER_BLOCK.get().defaultBlockState());
                         }
                     }
                 }

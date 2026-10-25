@@ -24,8 +24,8 @@ public class DemonCoreBlockEntity extends BlockEntity implements IRadiativeBlock
     private boolean lavalogged;
     private boolean logged;
     public int ticks;
-    public int range = Config.demon_core_range;
-    public float damageScale = Config.demon_core_damage_scale;
+    public int range = Config.COMMON_CONFIG.demon_core_range.get();
+    public float damageScale = Config.COMMON_CONFIG.demon_core_damage_scale.get();
 
     public DemonCoreBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.DEMON_CORE_BE.get(), pPos, pBlockState);

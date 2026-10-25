@@ -55,7 +55,7 @@ public class EntityDetectorBlock extends BaseEntityBlock {
         int boxX = pos.getX();
         int boxY = pos.getY();
         int boxZ = pos.getZ();
-        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.entity_detector_range);
+        AABB box = (new AABB(boxX, boxY, boxZ, boxX + 1, boxY + 1, boxZ + 1)).inflate(Config.COMMON_CONFIG.entity_detector_range.get());
         List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, box, LivingEntity::attackable);
         if (!list.isEmpty()) {
             int targets = 0;
@@ -63,11 +63,11 @@ public class EntityDetectorBlock extends BaseEntityBlock {
                 if (!livingEntity.hasEffect(MobEffects.INVISIBILITY)) {
                     if (livingEntity instanceof Player player) {
                         if (!player.isSpectator()) {
-                            if (pos.getCenter().closerThan(livingEntity.position(), Config.entity_detector_range) && livingEntity.isAlive()) {
+                            if (pos.getCenter().closerThan(livingEntity.position(), Config.COMMON_CONFIG.entity_detector_range.get()) && livingEntity.isAlive()) {
                                 targets++;
                             }
                         }
-                    } else if (pos.getCenter().closerThan(livingEntity.position(), Config.ENTITY_DETECTOR_RANGE.get()) && livingEntity.isAlive()) {
+                    } else if (pos.getCenter().closerThan(livingEntity.position(), Config.COMMON_CONFIG.entity_detector_range.get()) && livingEntity.isAlive()) {
                         targets++;
                     }
                 }

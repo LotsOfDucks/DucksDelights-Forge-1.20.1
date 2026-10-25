@@ -1,6 +1,7 @@
 package net.lod.ducksdelights.block;
 
 import net.lod.ducksdelights.DucksDelights;
+import net.lod.ducksdelights.block.custom.PocketDimBlock;
 import net.lod.ducksdelights.block.entity.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -101,6 +102,11 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("pearl_lamp_block_entity", () ->
                     BlockEntityType.Builder.of(PearlLampBlockEntity::new,
                             ModBlocks.PEARL_LAMP.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<PocketDimBlockEntity>> POCKET_DIM_BE =
+            BLOCK_ENTITIES.register("pocket_dim_block_entity", () ->
+                    BlockEntityType.Builder.of(PocketDimBlockEntity::new,
+                            ModBlocks.HAUNTED_ENDER_BLOCK.get()).build(null));
 
     //public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAN_BE =
     //        BLOCK_ENTITIES.register("giant_clam", () ->
