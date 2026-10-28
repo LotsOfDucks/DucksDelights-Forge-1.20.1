@@ -152,6 +152,7 @@
   "item.ducksdelights.overflowing_water_bucket": "Overflowing Water Bucket",
   "item.ducksdelights.overflowing_lava_bucket": "Overflowing Lava Bucket",
 
+  "item.ducksdelights.skeleton_key": "Skeleton Key",
   "item.ducksdelights.ender_key": "Ender Key",
 
   "block.ducksdelights.giant_clam_brown": "Brown Giant Clam",
@@ -221,6 +222,7 @@
 
   "block.ducksdelights.haunted_steel_block": "Block of Haunted Steel",
   "block.ducksdelights.haunted_steel_bars": "Haunted Steel Bars",
+  "block.ducksdelights.haunted_steel_door": "Haunted Steel Door",
   "block.ducksdelights.haunted_ender": "Haunted Ender",
   "item.ducksdelights.soul_spawner": "Soul Spawner",
 
@@ -244,6 +246,8 @@
   "block.ducksdelights.nostalgia_block": "Nostalgia",
 
   "block.ducksdelights.frigid_heart": "Frigid Heart",
+
+  "block.ducksdelights.heater": "Heater",
 
   "sounds.ducksdelights.giant_marshmallow_boowoop": "Marshmallow Boowoops",
   "sounds.ducksdelights.demon_core_ambient": "Demon Core Hums Ominously",

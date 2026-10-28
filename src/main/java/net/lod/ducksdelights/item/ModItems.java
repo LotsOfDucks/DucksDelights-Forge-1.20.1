@@ -60,6 +60,9 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.HAUNTED_STEEL, ArmorItem.Type.BOOTS, new Item.Properties()));
 
 
+    public static final RegistryObject<Item> SKELETON_KEY = ITEMS.register("skeleton_key",
+            () -> new SkeletonKeyItem(new Item.Properties().stacksTo(1)));
+
     public static final RegistryObject<Item> ENDER_KEY = ITEMS.register("ender_key",
             () -> new EnderKeyItem(new Item.Properties().stacksTo(1)));
 

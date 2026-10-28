@@ -108,6 +108,11 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(PocketDimBlockEntity::new,
                             ModBlocks.HAUNTED_ENDER_BLOCK.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<HeaterBlockEntity>> HEATER_BE =
+            BLOCK_ENTITIES.register("heater_block_entity", () ->
+                    BlockEntityType.Builder.of(HeaterBlockEntity::new,
+                            ModBlocks.HEATER.get()).build(null));
+
     //public static final RegistryObject<BlockEntityType<GiantClamBlockEntity>> GIANT_CLAN_BE =
     //        BLOCK_ENTITIES.register("giant_clam", () ->
     //                BlockEntityType.Builder.of(GiantClamBlockEntity::new,

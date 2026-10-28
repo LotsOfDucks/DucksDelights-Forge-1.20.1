@@ -19,6 +19,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.Fluids;
@@ -219,6 +220,15 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.NETHERITE_BLOCK)));
+
+    public static final RegistryObject<Block> HAUNTED_STEEL_DOOR = registerBlock("haunted_steel_door",
+            () -> new HauntedSteelDoorBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_CYAN)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .requiresCorrectToolForDrops()
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.NETHERITE_BLOCK),
+                    BlockSetType.IRON));
 
     public static final RegistryObject<IronBarsBlock> HAUNTED_STEEL_BARS = registerBlock("haunted_steel_bars",
             () -> new IronBarsBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BARS)));
@@ -595,6 +605,10 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> FRIGID_HEART = registerBlock("frigid_heart",
             () -> new FrigidHeartBlock(BlockBehaviour.Properties.copy(Blocks.ICE)));
+
+    public static final RegistryObject<Block> HEATER = registerBlock("heater",
+            () -> new HeaterBlock(BlockBehaviour.Properties.copy(Blocks.FURNACE)
+                    .mapColor(MapColor.COLOR_RED)));
 
 
 

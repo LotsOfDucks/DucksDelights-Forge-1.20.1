@@ -20,6 +20,7 @@ public class ModCreativeModeTabs {
             .displayItems((itemDisplayParameters, output) -> {
                 output.accept(ModBlocks.HAUNTED_STEEL_BLOCK.get());
                 output.accept(ModBlocks.HAUNTED_STEEL_BARS.get());
+                output.accept(ModBlocks.HAUNTED_STEEL_DOOR.get());
                 output.accept(ModBlocks.SOUL_SPAWNER_BLOCK.get());
 
                 output.accept(ModBlocks.DEMON_CORE.get());
@@ -39,6 +40,8 @@ public class ModCreativeModeTabs {
 
                 output.accept(ModBlocks.ROPE_LADDER.get());
                 output.accept(ModBlocks.ANTI_ROPE_LADDER.get());
+
+                output.accept(ModBlocks.HEATER.get());
 
                 output.accept(ModBlocks.EMPTY_BARREL.get());
                 output.accept(ModBlocks.REDSTONE_BARREL.get());
@@ -121,6 +124,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.HAUNTED_STEEL_LEGGINGS.get());
                 output.accept(ModItems.HAUNTED_STEEL_BOOTS.get());
 
+                output.accept(ModItems.SKELETON_KEY.get());
                 output.accept(ModItems.ENDER_KEY.get());
 
                 output.accept(ModItems.BEDROCK_CHIPS.get());

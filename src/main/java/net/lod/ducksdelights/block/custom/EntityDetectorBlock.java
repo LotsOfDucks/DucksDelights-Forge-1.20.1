@@ -42,7 +42,7 @@ public class EntityDetectorBlock extends BaseEntityBlock {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return !pLevel.isClientSide && pLevel.dimensionType().hasSkyLight() ? createTickerHelper(pBlockEntityType, ModBlockEntities.ENTITY_DETECTOR_BE.get(), EntityDetectorBlock::tickEntity) : null;
+        return !pLevel.isClientSide ? createTickerHelper(pBlockEntityType, ModBlockEntities.ENTITY_DETECTOR_BE.get(), EntityDetectorBlock::tickEntity) : null;
     }
 
     private static void tickEntity(Level world, BlockPos blockPos, BlockState blockState, EntityDetectorBlockEntity blockEntity) {

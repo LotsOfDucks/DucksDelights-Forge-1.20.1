@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "front": "ducksdelights:block/heater_front_on",
+    "side": "ducksdelights:block/heater_side",
+    "top": "ducksdelights:block/heater_top_on",
+    "bottom": "minecraft:block/smooth_stone"
+  }
+}

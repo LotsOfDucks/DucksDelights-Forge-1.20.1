@@ -3,11 +3,14 @@ package net.lod.ducksdelights.worldgen.dimensions;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Axis;
 import net.lod.ducksdelights.DucksDelights;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -16,6 +19,7 @@ import org.joml.Matrix4f;
 import javax.annotation.Nullable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class ModDimSkyRenderer {
@@ -32,6 +36,35 @@ public class ModDimSkyRenderer {
 
     public ModDimSkyRenderer() {
         this.createStars();
+        //this.createLightSky();
+    }
+
+    private void createLightSky() {
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder bufferbuilder = tesselator.getBuilder();
+        if (skyBuffer != null) {
+            skyBuffer.close();
+        }
+
+        skyBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
+        BufferBuilder.RenderedBuffer bufferbuilder$renderedbuffer = buildSkyDisc(bufferbuilder, 16.0F); // default 16
+        skyBuffer.bind();
+        skyBuffer.upload(bufferbuilder$renderedbuffer);
+        VertexBuffer.unbind();
+    }
+
+    private static BufferBuilder.RenderedBuffer buildSkyDisc(BufferBuilder pBuilder, float pY) {
+        float f = Math.signum(pY) * 512.0F;
+        float f1 = 512.0F;
+        RenderSystem.setShader(GameRenderer::getPositionShader);
+        pBuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION);
+        pBuilder.vertex(0.0, pY, 0.0).endVertex();
+
+        for(int i = -180; i <= 180; i += 45) {
+            pBuilder.vertex(f * Mth.cos((float)i * 0.017453292F), pY, 512.0F * Mth.sin((float)i * 0.017453292F)).endVertex();
+        }
+
+        return pBuilder.end();
     }
 
     public static boolean renderSky(PoseStack pPoseStack, Matrix4f pProjectionMatrix, float pPartialTick, Camera pCamera, boolean pIsFoggy, Runnable pSkyFogSetup) {
@@ -46,7 +79,16 @@ public class ModDimSkyRenderer {
         RenderSystem.enableBlend();
         RenderSystem.depthMask(false);
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        
+        //ShaderInstance shaderinstance = RenderSystem.getShader();
+
+        //RenderSystem.setShaderColor(0.0F,  0.0F, 0.0F, 1.0F);
+        //pPoseStack.pushPose();
+        //pPoseStack.translate(0.0F, 1200.0F, 0.0F);// default 12
+        //skyBuffer.bind();
+        //skyBuffer.drawWithShader(pPoseStack.last().pose(), pProjectionMatrix, shaderinstance);
+        //VertexBuffer.unbind();
+        //pPoseStack.popPose();
+
         //get sun info
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, EYE_LOCATION);
@@ -66,7 +108,7 @@ public class ModDimSkyRenderer {
         //try render stars
         if (GameRenderer.getPositionShader() != null) {
             RenderSystem.depthMask(true);
-            RenderSystem.setShaderColor(1, 1, 1, 1);
+            RenderSystem.setShaderColor(1.0F, 0.7F, 1.0F, 1.0F);
             FogRenderer.setupNoFog();
             starBuffer.bind();
             starBuffer.drawWithShader(pPoseStack.last().pose(), pProjectionMatrix, GameRenderer.getPositionShader());
@@ -101,23 +143,23 @@ public class ModDimSkyRenderer {
         for(int i = 0; i < 6; ++i) {
             pPoseStack.pushPose();
             if (i == 1) {
-                pPoseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(90.0F));
+                pPoseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
             }
 
             if (i == 2) {
-                pPoseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(-90.0F));
+                pPoseStack.mulPose(Axis.XP.rotationDegrees(-90.0F));
             }
 
             if (i == 3) {
-                pPoseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(180.0F));
+                pPoseStack.mulPose(Axis.XP.rotationDegrees(180.0F));
             }
 
             if (i == 4) {
-                pPoseStack.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(90.0F));
+                pPoseStack.mulPose(Axis.ZP.rotationDegrees(90.0F));
             }
 
             if (i == 5) {
-                pPoseStack.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(-90.0F));
+                pPoseStack.mulPose(Axis.ZP.rotationDegrees(-90.0F));
             }
 
             Matrix4f matrix4f = pPoseStack.last().pose();
@@ -144,16 +186,18 @@ public class ModDimSkyRenderer {
         }
 
         starBuffer = new VertexBuffer(VertexBuffer.Usage.STATIC);
-        BufferBuilder.RenderedBuffer renderedBuffer = this.drawStars(bufferbuilder);
         starBuffer.bind();
+
+        RandomSource random = RandomSource.create(10842L);
+        BufferBuilder.RenderedBuffer renderedBuffer = this.drawStars(bufferbuilder, random);
         starBuffer.upload(renderedBuffer);
+
         VertexBuffer.unbind();
 
     }
 
     // [VanillaCopy] of LevelRenderer.drawStars but with double the number of them
-    private BufferBuilder.RenderedBuffer drawStars(BufferBuilder bufferBuilder) {
-        RandomSource random = RandomSource.create(10842L);
+    private BufferBuilder.RenderedBuffer drawStars(BufferBuilder bufferBuilder, RandomSource random) {
         bufferBuilder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 
         // TF - 1500 -> 3000
@@ -196,6 +240,7 @@ public class ModDimSkyRenderer {
                     bufferBuilder.vertex(startX + endX, startY + endY, startZ + endZ).endVertex();
                 }
             }
+            //bufferBuilder.color(random.nextIntBetweenInclusive(0, 225), random.nextIntBetweenInclusive(0, 225), random.nextIntBetweenInclusive(0, 225), random.nextIntBetweenInclusive(180, 225));
         }
 
         return bufferBuilder.end();

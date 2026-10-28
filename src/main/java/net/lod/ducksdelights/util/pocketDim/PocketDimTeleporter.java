@@ -3,8 +3,6 @@ package net.lod.ducksdelights.util.pocketDim;
 import net.lod.ducksdelights.DucksDelights;
 import net.lod.ducksdelights.block.ModBlocks;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,6 +46,7 @@ public class PocketDimTeleporter implements ITeleporter {
             if (destWorld.getBlockState(dimSpawnPos).getBlock() == Blocks.AIR) {
                 this.placePortalStructure();
             }
+            dimVec = dimVec.add(0, 0, 6.5);
         } else if (entity.getPersistentData().contains("ducks_pocketDimOldDim")) {
             double xPos = entity.getPersistentData().getDouble("ducks_pocketDimOldX");
             double yPos = entity.getPersistentData().getDouble("ducks_pocketDimOldY");
@@ -66,7 +65,7 @@ public class PocketDimTeleporter implements ITeleporter {
         final int minZ = 0;
 
         final int maxX = Math.max(coord * 32, coord * 32 + 15);
-        final int maxY = 52;
+        final int maxY = 53;
         final int maxZ = 15;
 
         for (int x = minX; x <= maxX; x++) {
